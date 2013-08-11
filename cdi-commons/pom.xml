@@ -57,8 +57,8 @@
     <url>http://wiki.rapidpm.org/display/PHB/02+-+CDI+for+JavaEE+and+JavaSE</url>
     <scm>
         <url>https://bitbucket.org/rapidpm/rapidpm-modules</url>
-        <connection>scm:git:https://bitbucket.org/rapidpm/rapidpm-modules.git</connection>
-        <developerConnection>scm:git:https://bitbucket.org/rapidpm/rapidpm-modules.git</developerConnection>
+        <connection>scm:git:https://bitbucket.org/rapidpm/modules.git</connection>
+        <developerConnection>scm:git:https://bitbucket.org/rapidpm/modules.git</developerConnection>
         <!--<tag>master</tag>-->
       <tag>rapidpm-parent-1.1</tag>
   </scm>
