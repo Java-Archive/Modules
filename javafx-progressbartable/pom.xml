@@ -4,14 +4,14 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
     </parent>
     <name>javafx-progressbartable</name>
     <description>A JavaFX component: a TableView to show progress of different threads</description>
 
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>javafx-progressbartable</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     
    <properties>
@@ -58,7 +58,7 @@
         <connection>scm:git:https://bitbucket.org/rapidpm/rapidpm-modules.git</connection>
         <developerConnection>scm:git:https://bitbucket.org/rapidpm/rapidpm-modules.git</developerConnection>
         <!--<tag>master</tag>-->
-        <tag>HEAD</tag>
+        <tag>rapidpm-parent-1.1</tag>
     </scm>
     <developers>
         <developer>
