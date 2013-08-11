@@ -16,9 +16,9 @@ import javafx.scene.control.TextField;
 /**
  * This class is main Control class which extends from Control <br>
  * and also implements basic functions of  the AutoCompleteTextFieldFactory<br>
- * <p/>
+ * <p></p>
  * You can easily utilize the AutoCompleteTextField in your application<br>
- * <p/>
+ * <p></p>
  * e.g <br>
  * <pre>
  *      //..codes

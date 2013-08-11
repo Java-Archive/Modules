@@ -15,7 +15,7 @@ public interface AutoCompleteTextFieldFactory<T extends AutoCompleteElement> {
     /**
      * Keeps the array of String which contains the 
      * words to be matched on typing.
-     * @param data 
+     * @param data value
      */
     void setData(ObservableList<T> data);
     
@@ -40,7 +40,7 @@ public interface AutoCompleteTextFieldFactory<T extends AutoCompleteElement> {
     /**
      * This defines how many max listcell to be visibled in listview when
      * matched words are occured on typing.
-     * @param limit 
+     * @param limit value
      */
     public void setListLimit(int limit);
     
@@ -53,7 +53,7 @@ public interface AutoCompleteTextFieldFactory<T extends AutoCompleteElement> {
     /**
      * This sets the AutoFilterMode which can show as filter type
      * rather than searched type if value is true.
-     * @param filter 
+     * @param filter value
      */
     public void setFilterMode(boolean filter);
         
