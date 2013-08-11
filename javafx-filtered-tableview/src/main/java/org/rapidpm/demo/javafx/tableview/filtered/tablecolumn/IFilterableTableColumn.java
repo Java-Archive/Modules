@@ -36,7 +36,7 @@ import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.editor.IFilterEdit
  */
 public interface IFilterableTableColumn<R extends IFilterOperator, M extends IFilterEditor<R>> {
     /**
-     * Note: this method can return {@link IFilterOperator.Type.NONE}'s.
+     * Note: this method can return { IFilterOperator.Type.NONE}'s.
      * Use {@link #isFiltered()} to determine if there is actually a filter
      * applied to this column
      *
