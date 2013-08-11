@@ -1,0 +1,57 @@
+package org.rapidpm.demo.cdi.commons.legacy;
+
+import java.util.List;
+
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+/**
+ * Created by Sven Ruppert on 02.08.13.
+ */
+@RunWith(Arquillian.class)
+public class ListFactoryTest {
+
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackages(true, "org.rapidpm.demo.cdi.commons")
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
+
+    @Test
+    public void testListFactory001() throws Exception {
+        final List list = new ListFactory().createArrayList();
+        Assert.assertNotNull(list);
+        Assert.assertTrue(list.isEmpty());
+    }
+
+
+    @Inject @CDILegacyTest Instance<List> listInstance;
+    @Inject @CDILegacyTest List list;
+
+
+    @Test
+    public void testListFactory002() throws Exception {
+
+//        final List list = listInstance.select(new AnnotationLiteral<CDILegacyTest>() {}).get();
+        final List list = listInstance.get();
+        Assert.assertNotNull(list);
+        Assert.assertTrue(list.isEmpty());
+
+    }
+
+
+
+
+
+
+}

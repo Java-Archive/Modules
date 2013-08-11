@@ -1,0 +1,194 @@
+<project name="LeaseOS Build FeatureBranches" basedir=".">
+
+    <!-- set global properties for this build -->
+    <!--<property name="workspaceDir" location="c:/workspace/svenruppert\"/>-->
+    <property name="workspaceDir" location="d:/workspace/shared/Demos/"/>
+    <!--<property name="mavenHome" location="C:\opt\apache-maven-3.0.5"/>-->
+    <property name="mavenHome" location="d:\opt\apache-maven-3.0.5"/>
+    <property name="dist" location="dist"/>
+
+    <target name="buildProject all">
+        <antcall target="buildProject - rapidpm - genericcache"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - cdi-commons"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - cdi-commons-se"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - cdi-commons-fx"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - fx - javafx-filtered-tableview"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - fx - javafx-autocomplete-textfield"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - fx - javafx-dialog"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - fx - javafx-progressbartable"/>
+        <antcall target="buildProject - rapidpm - demos - cdi - fx - javafx-searchbox"/>
+    </target>
+
+
+    <target name="buildProject - rapidpm - genericcache">
+        <exec dir="${workspaceDir}\..\genericcache" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - cdi-commons">
+        <exec dir="${workspaceDir}\cdi-commons" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - cdi-commons-se">
+        <exec dir="${workspaceDir}\cdi-commons-se" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - cdi-commons-fx">
+        <exec dir="${workspaceDir}\cdi-commons-fx" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - fx - javafx-filtered-tableview">
+        <exec dir="${workspaceDir}\javafx-filtered-tableview" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - fx - javafx-autocomplete-textfield">
+        <exec dir="${workspaceDir}\javafx-autocomplete-textField" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - fx - javafx-dialog">
+        <exec dir="${workspaceDir}\javafx-dialog" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - fx - javafx-progressbartable">
+        <exec dir="${workspaceDir}\javafx-progressbartable" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+    <target name="buildProject - rapidpm - demos - cdi - fx - javafx-searchbox">
+        <exec dir="${workspaceDir}\javafx-searchbox" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+        </exec>
+    </target>
+
+
+    <target name="deploy all">
+        <antcall target="deploy - rapidpm - genericcache"/>
+        <antcall target="deploy - rapidpm - demos - cdi - cdi-commons"/>
+        <antcall target="deploy - rapidpm - demos - cdi - cdi-commons-se"/>
+        <antcall target="deploy - rapidpm - demos - cdi - cdi-commons-fx"/>
+        <antcall target="deploy - rapidpm - demos - cdi - fx - javafx-filtered-tableview"/>
+        <antcall target="deploy - rapidpm - demos - cdi - fx - javafx-autocomplete-textfield"/>
+        <antcall target="deploy - rapidpm - demos - cdi - fx - javafx-dialog"/>
+        <antcall target="deploy - rapidpm - demos - cdi - fx - javafx-progressbartable"/>
+        <antcall target="deploy - rapidpm - demos - cdi - fx - javafx-searchbox"/>
+    </target>
+
+    <target name="deploy - rapidpm - genericcache">
+        <exec dir="${workspaceDir}\genericcache" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+
+    </target>
+
+
+    <target name="deploy - rapidpm - demos - cdi - cdi-commons">
+        <exec dir="${workspaceDir}\cdi-commons" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+    </target>
+    <target name="deploy - rapidpm - demos - cdi - cdi-commons-se">
+        <exec dir="${workspaceDir}\cdi-commons-se" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+
+    </target>
+    <target name="deploy - rapidpm - demos - cdi - cdi-commons-fx">
+        <exec dir="${workspaceDir}\cdi-commons-fx" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+
+        <!--<parallel>-->
+        <!--</parallel>-->
+    </target>
+
+    <target name="deploy - rapidpm - demos - cdi - fx - javafx-filtered-tableview">
+        <exec dir="${workspaceDir}\javafx-filtered-tableview" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+    </target>
+    <target name="deploy - rapidpm - demos - cdi - fx - javafx-autocomplete-textfield">
+        <exec dir="${workspaceDir}\javafx-autocomplete-textField" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+    </target>
+    <target name="deploy - rapidpm - demos - cdi - fx - javafx-dialog">
+        <exec dir="${workspaceDir}\javafx-dialog" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+    </target>
+    <target name="deploy - rapidpm - demos - cdi - fx - javafx-progressbartable">
+        <exec dir="${workspaceDir}\javafx-progressbartable" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+    </target>
+    <target name="deploy - rapidpm - demos - cdi - fx - javafx-searchbox">
+        <exec dir="${workspaceDir}\javafx-searchbox" executable="cmd.exe">
+            <arg value="/c"/>
+            <arg value="${mavenHome}\bin\mvn.bat"/>
+            <arg value="clean"/>
+            <arg value="deploy"/>
+        </exec>
+    </target>
+
+
+
+
+
+</project>

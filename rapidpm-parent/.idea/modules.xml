@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RapidPM Parent.iml" filepath="$PROJECT_DIR$/RapidPM Parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../cdi-commons/cdi-commons.iml" filepath="$PROJECT_DIR$/../cdi-commons/cdi-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cdi-commons/cdi-commons.iml" filepath="$PROJECT_DIR$/cdi-commons/cdi-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../cdi-commons-fx/cdi-commons-fx.iml" filepath="$PROJECT_DIR$/../cdi-commons-fx/cdi-commons-fx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cdi-commons-fx/cdi-commons-fx.iml" filepath="$PROJECT_DIR$/cdi-commons-fx/cdi-commons-fx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../cdi-commons-se/cdi-commons-se.iml" filepath="$PROJECT_DIR$/../cdi-commons-se/cdi-commons-se.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cdi-commons-se/cdi-commons-se.iml" filepath="$PROJECT_DIR$/cdi-commons-se/cdi-commons-se.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../se-genericcache/genericcache.iml" filepath="$PROJECT_DIR$/../se-genericcache/genericcache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/genericcache/genericcache.iml" filepath="$PROJECT_DIR$/genericcache/genericcache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-autocomplete-textfield/javafx-autocomplete-textfield.iml" filepath="$PROJECT_DIR$/../javafx-autocomplete-textfield/javafx-autocomplete-textfield.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-autocomplete-textField/javafx-autocomplete-textfield.iml" filepath="$PROJECT_DIR$/javafx-autocomplete-textField/javafx-autocomplete-textfield.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-dialog/javafx-dialog.iml" filepath="$PROJECT_DIR$/../javafx-dialog/javafx-dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-dialog/javafx-dialog.iml" filepath="$PROJECT_DIR$/javafx-dialog/javafx-dialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-filtered-tableview/javafx-filtered-tableview.iml" filepath="$PROJECT_DIR$/../javafx-filtered-tableview/javafx-filtered-tableview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-filtered-tableview/javafx-filtered-tableview.iml" filepath="$PROJECT_DIR$/javafx-filtered-tableview/javafx-filtered-tableview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-progressbartable/javafx-progressbartable.iml" filepath="$PROJECT_DIR$/../javafx-progressbartable/javafx-progressbartable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-progressbartable/javafx-progressbartable.iml" filepath="$PROJECT_DIR$/javafx-progressbartable/javafx-progressbartable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-searchbox/javafx-searchbox.iml" filepath="$PROJECT_DIR$/../javafx-searchbox/javafx-searchbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-searchbox/javafx-searchbox.iml" filepath="$PROJECT_DIR$/javafx-searchbox/javafx-searchbox.iml" />
+    </modules>
+  </component>
+</project>
+

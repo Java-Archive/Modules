@@ -1,0 +1,68 @@
+package org.rapidpm.demo.cdi.commons.fx;
+
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.stage.Stage;
+import org.rapidpm.demo.cdi.commons.logger.Logger;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+
+/**
+ * User: Sven Ruppert
+ * Date: 24.07.13
+ * Time: 11:37
+ */
+public abstract class JavaFXBaseTest {
+
+
+    @Before
+    public void beforeTest() {
+        JavaFXTestSingleton.getInstance().getSemaphore().acquireUninterruptibly();
+    }
+
+    @Test
+    public void testGo() {
+        JavaFXTestSingleton.getInstance().setClazz(getTestClass());
+        Application.launch(JavaFXTestApplication.class, "Go Test Go");
+    }
+
+    protected abstract Class<? extends JavaFXBaseTest> getTestClass();
+
+    @After
+    public void afterTest() {
+        JavaFXTestSingleton.getInstance().getSemaphore().release();
+    }
+
+
+    public static abstract class JavaFXBaseTestImpl {
+
+        protected abstract Class<? extends JavaFXBaseTest> getParentTestClass();
+
+        @Inject
+        @CDILogger
+        Logger logger;
+
+        @Inject
+        public FXMLLoaderSingleton fxmlLoaderSingleton;
+
+        public void launchJavaFXApplication(@Observes @CDIStartupScene Stage stage) {
+            final String simpleName = JavaFXTestSingleton.getInstance().getClazz().getSimpleName();
+            logger.debug("JavaFXTestSingleton.simpleName = " + simpleName);
+            final String testClassName = getParentTestClass().getSimpleName();
+            if (simpleName.equals(testClassName)) {
+                testImpl(stage);
+                stage.close();
+                Platform.exit();
+            } else {
+                logger.debug("JavaFXTestSingleton.simpleName (nicht aktiv)= " + testClassName);
+            }
+        }
+        public abstract void testImpl(final Stage stage);
+    }
+}

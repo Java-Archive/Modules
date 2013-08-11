@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-parent</artifactId>
+        <version>1.1-SNAPSHOT</version>
+    </parent>
+    <name>cdi-commons</name>
+    <description>Utils for CDI SE and EE</description>
+
+    <groupId>org.rapidpm.modul</groupId>
+    <artifactId>cdi-commons</artifactId>
+    <version>1.1-SNAPSHOT</version>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.symbolic.name>cdi-commons</project.symbolic.name>
+
+        <!--<version.weld-servlet>1.1.9.Final</version.weld-servlet>-->
+        <!--<org.arquillian.bom.version>1.0.2.Final</org.arquillian.bom.version>-->
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>genericcache</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <!-- testing stuff -->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <inceptionYear>2013</inceptionYear>
+    <organization>
+        <name>RapidPM</name>
+        <url>http://www.rapidpm.org</url>
+    </organization>
+    <url>http://wiki.rapidpm.org/display/PHB/02+-+CDI+for+JavaEE+and+JavaSE</url>
+    <scm>
+        <url>https://bitbucket.org/rapidpm/rapidpm-modules</url>
+        <connection>scm:git:https://bitbucket.org/rapidpm/rapidpm-modules.git</connection>
+        <developerConnection>scm:git:https://bitbucket.org/rapidpm/rapidpm-modules.git</developerConnection>
+        <!--<tag>master</tag>-->
+      <tag>HEAD</tag>
+  </scm>
+    <developers>
+        <developer>
+            <name>Sven Ruppert</name>
+            <email>sven.ruppert@rapidpm.org</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://bitbucket.org/rapidpm/rapidpm-modules/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>http://jenkins.rapidpm.org/job/rapidpm-modules/</url>
+        <!--<notifiers>-->
+        <!--<notifier></notifier>-->
+        <!--</notifiers>-->
+    </ciManagement>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <!--<reporting>-->
+    <!--<plugins>-->
+    <!--<plugin></plugin>-->
+    <!--</plugins>-->
+    <!--</reporting>-->
+</project>
