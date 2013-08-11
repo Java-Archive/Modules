@@ -25,7 +25,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
  * For example 30.12.2010 would be transformed into an dir
  * 2010
  *      12
- *          30 -> this file would be given back.
+ *          30 this file would be given back.
  *
  */
 public class TargetDateFile {
