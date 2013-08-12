@@ -35,6 +35,11 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest  {
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
 
         @Override
+        public boolean isExitAfterTest() {
+            return true;
+        }
+
+        @Override
         protected Class<? extends JavaFXBaseTest> getParentTestClass() {
             return CDIJavaFxBaseApplication001Test.class;
         }

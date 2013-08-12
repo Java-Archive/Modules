@@ -276,20 +276,20 @@
                     <!--<nexusUrl>http://${nexus.ip}/nexus/</nexusUrl>-->
                 <!--</configuration>-->
             <!--</plugin>-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-gpg-plugin</artifactId>-->
+                <!--<version>1.4</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>sign-artifacts</id>-->
+                        <!--<phase>verify</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>sign</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
@@ -357,6 +357,29 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>_sys-gpg-active</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
 
         <profile>
             <activation>
@@ -968,8 +991,8 @@
     </organization>
     <scm>
         <url>https://bitbucket.org/rapidpm/rapidpm-modules</url>
-        <connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>
-        <developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>
+        <connection>scm:git:ssh://git@bitbucket.org:443/rapidpm/modules.git</connection>
+        <developerConnection>scm:git:ssh://git@bitbucket.org:443/rapidpm/modules.git</developerConnection>
         <!--<tag>master</tag>-->
         <tag>rapidpm-parent-1.1</tag>
     </scm>

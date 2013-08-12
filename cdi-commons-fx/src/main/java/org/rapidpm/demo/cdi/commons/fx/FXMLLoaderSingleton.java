@@ -35,7 +35,11 @@ public class FXMLLoaderSingleton {
                 logger.debug("fx loader fuer diese klasse schon in der map " + name);
             }
         } else {
-            final URL resource = clazz.getResource(clazz.getSimpleName() + ".fxml");
+            final String fxmlFileName = clazz.getSimpleName() + ".fxml";
+            if (logger.isDebugEnabled()) {
+                logger.debug("fxmlFileName -> " + fxmlFileName);
+            }
+            final URL resource = clazz.getResource(fxmlFileName);
             FXMLLoader loader = new FXMLLoader(resource);
             loader.setClassLoader(cachingClassLoader);
             loader.setControllerFactory(new Callback<Class<?>, Object>() {

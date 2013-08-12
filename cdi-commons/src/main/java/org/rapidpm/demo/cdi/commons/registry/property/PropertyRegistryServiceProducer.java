@@ -9,6 +9,7 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 
+import org.rapidpm.demo.cdi.commons.CDICommons;
 import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
@@ -28,11 +29,11 @@ public class PropertyRegistryServiceProducer {
     @Produces
     @CDIPropertyRegistryService
     public PropertyRegistryService create(BeanManager beanManager, InjectionPoint injectionPoint,
-                                          ContextResolver contextResolver){
+                                          @CDICommons ContextResolver contextResolver){
         if (logger.isDebugEnabled()) {
             logger.debug("used ContextResolver - " + contextResolver.getClass().getName());
         }
-        final Set<Bean<?>> beanSet = beanManager.getBeans(PropertyRegistryService.class, contextResolver.resolveContext());
+        final Set<Bean<?>> beanSet = beanManager.getBeans(PropertyRegistryService.class, contextResolver.resolveContext(PropertyRegistryService.class));
         for (final Bean<?> bean : beanSet) {
             final Set<Type> types = bean.getTypes();
             for (final Type type : types) {

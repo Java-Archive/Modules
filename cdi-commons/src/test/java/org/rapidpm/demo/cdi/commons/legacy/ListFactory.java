@@ -29,7 +29,7 @@ public class ListFactory {
             return createArrayList();
         } else{
             //triviale Fallunterscheidung
-            if(contextResolver.resolveContext().equals(null)){
+            if(contextResolver.resolveContext(List.class).equals(null)){
                 return createArrayList();
             } else{
                 return createLinkedList();

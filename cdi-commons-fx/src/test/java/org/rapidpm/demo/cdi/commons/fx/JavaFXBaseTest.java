@@ -21,6 +21,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 public abstract class JavaFXBaseTest {
 
 
+
     @Before
     public void beforeTest() {
         JavaFXTestSingleton.getInstance().getSemaphore().acquireUninterruptibly();
@@ -42,6 +43,8 @@ public abstract class JavaFXBaseTest {
 
     public static abstract class JavaFXBaseTestImpl {
 
+        public abstract boolean isExitAfterTest();
+
         protected abstract Class<? extends JavaFXBaseTest> getParentTestClass();
 
         @Inject
@@ -57,8 +60,15 @@ public abstract class JavaFXBaseTest {
             final String testClassName = getParentTestClass().getSimpleName();
             if (simpleName.equals(testClassName)) {
                 testImpl(stage);
-                stage.close();
-                Platform.exit();
+                if(isExitAfterTest()){
+                    stage.close();
+                    Platform.exit();
+                } else{
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("isExitAfterTest -> " + isExitAfterTest());
+                    }
+                    stage.show();
+                }
             } else {
                 logger.debug("JavaFXTestSingleton.simpleName (nicht aktiv)= " + testClassName);
             }

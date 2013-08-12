@@ -9,7 +9,7 @@ import javax.enterprise.util.AnnotationLiteral;
  */
 public interface ContextResolver {
 
-    public AnnotationLiteral resolveContext();
+    public AnnotationLiteral resolveContext(final Class<?> targetClass);
 
 
 
