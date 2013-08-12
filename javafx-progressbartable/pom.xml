@@ -4,14 +4,14 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
     <name>javafx-progressbartable</name>
     <description>A JavaFX component: a TableView to show progress of different threads</description>
 
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>javafx-progressbartable</artifactId>
-    <version>1.1</version>
+    <version>1.1-SNAPSHOT</version>
 
     
    <properties>
@@ -53,13 +53,13 @@
         <url>http://www.rapidpm.org</url>
     </organization>
     <url>http://wiki.rapidpm.org/display/PHB/Modul+-+progressbartable</url>
-    <!--<scm>-->
-        <!--<url>https://bitbucket.org/rapidpm/rapidpm-modules</url>-->
-        <!--<connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>-->
-        <!--<developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>-->
-        <!--&lt;!&ndash;<tag>master</tag>&ndash;&gt;-->
-        <!--<tag>rapidpm-parent-1.1</tag>-->
-    <!--</scm>-->
+    <scm>
+        <url>https://bitbucket.org/rapidpm/rapidpm-modules</url>
+        <connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>
+        <developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>
+        <!--<tag>master</tag>-->
+        <tag>rapidpm-parent-1.1</tag>
+    </scm>
     <developers>
         <developer>
             <name>Sven Ruppert</name>
