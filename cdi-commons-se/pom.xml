@@ -56,13 +56,13 @@
         <url>http://www.rapidpm.org</url>
     </organization>
     <url>http://wiki.rapidpm.org/display/PHB/03+-+CDI+for+JavaSE+environments</url>
-    <scm>
-        <url>https://bitbucket.org/rapidpm/rapidpm-modules</url>
-        <connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>
-        <developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>
-        <!--<tag>master</tag>-->
-        <tag>rapidpm-parent-1.1</tag>
-    </scm>
+    <!--<scm>-->
+        <!--<url>https://bitbucket.org/rapidpm/rapidpm-modules</url>-->
+        <!--<connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>-->
+        <!--<developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>-->
+        <!--&lt;!&ndash;<tag>master</tag>&ndash;&gt;-->
+        <!--<tag>rapidpm-parent-1.1</tag>-->
+    <!--</scm>-->
     <developers>
         <developer>
             <name>Sven Ruppert</name>
