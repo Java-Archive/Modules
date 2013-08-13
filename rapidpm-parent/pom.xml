@@ -257,6 +257,7 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4.1</version>
+
                 <!--<configuration>-->
                     <!--<tagNameFormat>v@{project.version}</tagNameFormat>-->
                     <!--&lt;!&ndash;-->
@@ -968,8 +969,8 @@
     </organization>
     <scm>
         <url>https://bitbucket.org/rapidpm/rapidpm-modules</url>
-        <connection>scm:git:ssh://git@bitbucket.org:443/rapidpm/modules.git</connection>
-        <developerConnection>scm:git:ssh://git@bitbucket.org:443/rapidpm/modules.git</developerConnection>
+        <connection>scm:git:ssh://git@bitbucket.org/rapidpm/modules.git</connection>
+        <developerConnection>scm:git:ssh://git@bitbucket.org/rapidpm/modules.git</developerConnection>
         <!--<tag>master</tag>-->
         <tag>rapidpm-parent-1.1</tag>
     </scm>
