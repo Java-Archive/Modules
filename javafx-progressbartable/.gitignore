@@ -1,0 +1,10 @@
+.metadata
+.settings/
+.classpath
+.project
+target/
+*.iml
+.idea/*
+atlassian-ide-plugin.xml
+*.bak
+
