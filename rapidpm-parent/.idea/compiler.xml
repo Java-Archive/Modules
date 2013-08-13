@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="autocomplete-textfield" />
+        <module name="cdi-commons" />
+        <module name="cdi-commons-fx" />
+        <module name="cdi-commons-se" />
+        <module name="genericcache" />
+        <module name="javafx-autocomplete-textfield" />
+        <module name="javafx-dialog" />
+        <module name="javafx-filtered-tableview" />
+        <module name="javafx-progressbartable" />
+        <module name="javafx-searchbox" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="autocomplete-textfield" target="1.7" />
+      <module name="cdi-commons" target="1.7" />
+      <module name="cdi-commons-fx" target="1.7" />
+      <module name="cdi-commons-se" target="1.7" />
+      <module name="genericcache" target="1.7" />
+      <module name="javafx-autocomplete-textfield" target="1.7" />
+      <module name="javafx-commons" target="1.7" />
+      <module name="javafx-dialog" target="1.7" />
+      <module name="javafx-filtered-tableview" target="1.7" />
+      <module name="javafx-progressbartable" target="1.7" />
+      <module name="javafx-searchbox" target="1.7" />
+      <module name="RapidPM Parent" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
+

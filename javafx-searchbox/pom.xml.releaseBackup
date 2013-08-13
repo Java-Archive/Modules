@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-parent</artifactId>
+        <version>1.1-SNAPSHOT</version>
+    </parent>
+    <name>javafx-searchbox</name>
+    <description>A JavaFX component: a TextField with autocompletion featiures and a transient lucene index</description>
+
+
+    <groupId>org.rapidpm.modul</groupId>
+    <artifactId>javafx-searchbox</artifactId>
+    <version>1.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+   <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.symbolic.name>javafx-searchbox</project.symbolic.name>
+       <nexus.ip>nexus.rapidpm.org</nexus.ip>
+   </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons-se</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.javafx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>2.2</version>
+            <systemPath>${fx.home}/jfxrt.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+
+        <!-- Lucene f SearchBox-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.3.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>4.3.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>4.3.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queries</artifactId>
+            <version>4.3.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Lucene f SearchBox-->
+    </dependencies>
+
+
+
+
+    <inceptionYear>2013</inceptionYear>
+    <organization>
+        <name>RapidPM</name>
+        <url>http://www.rapidpm.org</url>
+    </organization>
+    <url>http://wiki.rapidpm.org/display/PHB/Modul+-+searchbox</url>
+    <!--<scm>-->
+        <!--<url>https://bitbucket.org/rapidpm/rapidpm-modules</url>-->
+        <!--<connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>-->
+        <!--<developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>-->
+        <!--&lt;!&ndash;<tag>master</tag>&ndash;&gt;-->
+        <!--<tag>rapidpm-parent-1.1</tag>-->
+    <!--</scm>-->
+    <developers>
+        <developer>
+            <name>Sven Ruppert</name>
+            <email>sven.ruppert@rapidpm.org</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://bitbucket.org/rapidpm/rapidpm-modules/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>http://jenkins.rapidpm.org/job/rapidpm-modules/</url>
+        <!--<notifiers>-->
+        <!--<notifier></notifier>-->
+        <!--</notifiers>-->
+    </ciManagement>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <!--<reporting>-->
+    <!--<plugins>-->
+    <!--<plugin></plugin>-->
+    <!--</plugins>-->
+    <!--</reporting>-->
+</project>

@@ -1,0 +1,138 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BooleanOperator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">org.rapidpm.demo.javafx.tableview.filtered.operators</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BooleanOperator (org.rapidpm.demo.javafx.tableview.filtered.operators)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BooleanOperator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;/*
+<i>2</i>&nbsp; * Copyright (c) 2013, jhsheets@gmail.com
+<i>3</i>&nbsp; * All rights reserved.
+<i>4</i>&nbsp; *
+<i>5</i>&nbsp; * Redistribution and use in source and binary forms, with or without
+<i>6</i>&nbsp; * modification, are permitted provided that the following conditions are met:
+<i>7</i>&nbsp; *
+<i>8</i>&nbsp; * * Redistributions of source code must retain the above copyright notice, this
+<i>9</i>&nbsp; *   list of conditions and the following disclaimer.
+<i>10</i>&nbsp; * * Redistributions in binary form must reproduce the above copyright notice,
+<i>11</i>&nbsp; *   this list of conditions and the following disclaimer in the documentation
+<i>12</i>&nbsp; *   and/or other materials provided with the distribution.
+<i>13</i>&nbsp; *
+<i>14</i>&nbsp; * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+<i>15</i>&nbsp; * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+<i>16</i>&nbsp; * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+<i>17</i>&nbsp; * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+<i>18</i>&nbsp; * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+<i>19</i>&nbsp; * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+<i>20</i>&nbsp; * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+<i>21</i>&nbsp; * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+<i>22</i>&nbsp; * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+<i>23</i>&nbsp; * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+<i>24</i>&nbsp; * POSSIBILITY OF SUCH DAMAGE.
+<i>25</i>&nbsp; */
+<i>26</i>&nbsp;package org.rapidpm.demo.javafx.tableview.filtered.operators;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;import java.util.EnumSet;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;/**
+<i>31</i>&nbsp; * @author JHS
+<i>32</i>&nbsp; */
+<i>33</i>&nbsp;public class BooleanOperator implements IFilterOperator&lt;Boolean&gt; {
+<i>34</i>&nbsp;    private final IFilterOperator.Type type;
+<i>35</i>&nbsp;    private final Boolean value;
+<i>36</i>&nbsp;
+<b class="nc"><i>37</i>&nbsp;    public static final EnumSet VALID_TYPES = EnumSet.of(Type.NONE, Type.TRUE, Type.FALSE);</b>
+<i>38</i>&nbsp;
+<b class="nc"><i>39</i>&nbsp;    public BooleanOperator(IFilterOperator.Type type, Boolean value) {</b>
+<b class="nc"><i>40</i>&nbsp;        this.type = type;</b>
+<b class="nc"><i>41</i>&nbsp;        this.value = value;</b>
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    @Override
+<i>45</i>&nbsp;    public IFilterOperator.Type getType() {
+<b class="nc"><i>46</i>&nbsp;        return type;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    @Override
+<i>50</i>&nbsp;    public Boolean getValue() {
+<b class="nc"><i>51</i>&nbsp;        return value;</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2013-05-03 10:23</div>
+</div>
+</body>
+</html>

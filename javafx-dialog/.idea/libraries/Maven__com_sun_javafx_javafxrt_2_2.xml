@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Maven: com.sun.javafx:javafxrt:2.2">
+    <CLASSES>
+      <root url="jar://c:/program files/java/jdk1.8.0/jre/lib/jfxrt.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
