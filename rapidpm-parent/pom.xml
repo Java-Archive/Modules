@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
+    <!--<parent>-->
+        <!--<groupId>org.sonatype.oss</groupId>-->
+        <!--<artifactId>oss-parent</artifactId>-->
+        <!--<version>7</version>-->
+    <!--</parent>-->
 
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-parent</artifactId>
@@ -257,14 +257,11 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4.1</version>
-                <!--<configuration>-->
-                    <!--<tagNameFormat>v@{project.version}</tagNameFormat>-->
-                    <!--&lt;!&ndash;-->
-                      <!--During release:perform, enable the "release" profile-->
-                     <!--&ndash;&gt;-->
-                    <!--<releaseProfiles>release</releaseProfiles>-->
-                    <!--<goals>deploy assembly:single</goals>-->
-                <!--</configuration>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-repository-plugin</artifactId>
+                <version>2.3.1</version>
             </plugin>
             <!--<plugin>-->
                 <!--<groupId>org.sonatype.plugins</groupId>-->
@@ -272,8 +269,9 @@
                 <!--<version>1.4.4</version>-->
                 <!--<extensions>true</extensions>-->
                 <!--<configuration>-->
-                    <!--<serverId>snapshots</serverId>-->
-                    <!--<nexusUrl>http://${nexus.ip}/nexus/</nexusUrl>-->
+                    <!--<serverId>sonatype-nexus-staging</serverId>-->
+                    <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+
                 <!--</configuration>-->
             <!--</plugin>-->
             <plugin>
@@ -290,21 +288,22 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
-    <!--<distributionManagement>-->
-    <!--<repository>-->
-    <!--<id>releases</id>-->
-    <!--<name>RapidPM Releases</name>-->
-    <!--<url>http://${nexus.ip}/nexus/content/repositories/releases</url>-->
-    <!--</repository>-->
-    <!--<snapshotRepository>-->
-    <!--<id>snapshots</id>-->
-    <!--<name>RapidPM Snapshots</name>-->
-    <!--<url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>-->
-    <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
+    <distributionManagement>
+    <repository>
+    <id>releases</id>
+    <name>RapidPM Releases</name>
+    <url>http://${nexus.ip}/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+    <id>snapshots</id>
+    <name>RapidPM Snapshots</name>
+    <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+    </distributionManagement>
 
     <!-- OSS Sonatype -->
     <!--<distributionManagement>-->
