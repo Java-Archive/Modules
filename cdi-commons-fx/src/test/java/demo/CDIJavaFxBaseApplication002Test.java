@@ -50,34 +50,27 @@ public class CDIJavaFxBaseApplication002Test extends JavaFXBaseTest {
         @CDISimpleDateFormatter(value = "date.yyyyMMdd")
         SimpleDateFormat sdf;
 
-        @Inject @CDILogger
-        Logger logger;
-
+        @Inject @CDILogger Logger logger;
+        @Inject LoginPane root;
 
         @Override
         public void testImpl(Stage stage) {
-            try {
-                final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(LoginPane.class);
-                Parent root = (Parent) fxmlLoader.load();
-                stage.setTitle("Login");
-                stage.setScene(new Scene(root, 300, 275));
-                //stage.show();
-                final Scene scene = stage.getScene();
+            stage.setTitle("Login");
+            stage.setScene(new Scene(root, 300, 275));
+            //stage.show();
+            final Scene scene = stage.getScene();
 
-                //TestCode
-                final TextField login = (TextField) scene.lookup("#loginField");
-                login.setText("Hoppel");
-                final PasswordField passwd = (PasswordField) scene.lookup("#passwordField");
-                passwd.setText("LOGIN");
+            //TestCode
+            final TextField login = (TextField) scene.lookup("#loginField");
+            login.setText("Hoppel");
+            final PasswordField passwd = (PasswordField) scene.lookup("#passwordField");
+            passwd.setText("LOGIN");
 
-                final LoginController controller = fxmlLoader.getController();
-                controller.handleSubmitButtonAction(new ActionEvent());
+            final LoginController controller = root.getController();
+            controller.handleSubmitButtonAction(new ActionEvent());
 
-                final Text feedback = (Text) scene.lookup("#feedback");
-                Assert.assertNotEquals("LOGIN logged in successfully", feedback.getText());
-            } catch (IOException e) {
-                logger.error(e);
-            }
+            final Text feedback = (Text) scene.lookup("#feedback");
+            Assert.assertNotEquals("LOGIN logged in successfully", feedback.getText());
         }
     }
 }
