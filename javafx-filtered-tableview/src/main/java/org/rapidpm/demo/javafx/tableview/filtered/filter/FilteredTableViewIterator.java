@@ -49,7 +49,14 @@ public abstract class FilteredTableViewIterator<T, V> {
 
                     for (final T rowElement : data2Filter) {
                         final V value2Test = getValue(rowElement);
-                        decide(filter, value2Test, rowElement);
+                        if(value2Test == null){
+                            if (logger.isDebugEnabled()) {
+                                logger.debug("value2Test == null -> wird behalten");
+                            }
+                            //remove.add(rowElement);
+                        } else{
+                            decide(filter, value2Test, rowElement);
+                        }
                     }
                 }
             }
