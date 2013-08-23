@@ -70,9 +70,29 @@ public class FilteredTableView<T> extends TableView<T> {
     private List<MouseClickedRowAction> mouseDoubleClickedRowActions = new ArrayList<>();
     private List<MouseClickedRowAction> mouseSingleClickedRowActions = new ArrayList<>();
 
-    public FilteredTableView(ObservableList<T> ol) {
+
+    private ObservableList<T> backupItems = FXCollections.observableArrayList();
+
+    public void setTableViewData(final ObservableList<T> items){
+        super.setItems(items);
+        backupItems.clear();
+        backupItems.addAll(items);
+    }
+
+    public ObservableList<T> getBackupItems(){
+        final ObservableList<T> copy = FXCollections.observableArrayList();
+        copy.addAll(backupItems);
+        return copy;
+    }
+
+    public void resetTableViewDataFromBackup(){
+        super.setItems(getBackupItems());
+    }
+
+
+    public FilteredTableView(ObservableList<T> items) {
         this();
-        super.setItems(ol);
+        setTableViewData(items);
     }
 
     public FilteredTableView() {

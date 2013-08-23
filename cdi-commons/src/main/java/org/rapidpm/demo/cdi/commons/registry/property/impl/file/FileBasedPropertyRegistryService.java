@@ -36,22 +36,22 @@ public class FileBasedPropertyRegistryService extends PropertyRegistryService {
     public String getRessourceForKey(String ressourceKey) {
         if(classFilePropertyRegistry.hasProperty(ressourceKey)){
             if (logger.isDebugEnabled()) {
-                logger.debug("classFilePropertyRegistry hasProperty " + ressourceKey);
+                logger.debug("classFilePropertyRegistry found Property " + ressourceKey);
             }
             return classFilePropertyRegistry.getProperty(ressourceKey);
         } else if(modulFilePropertyRegistry.hasProperty(ressourceKey)){
             if (logger.isDebugEnabled()) {
-                logger.debug("modulFilePropertyRegistry hasProperty " + ressourceKey);
+                logger.debug("modulFilePropertyRegistry found Property " + ressourceKey);
             }
             return modulFilePropertyRegistry.getProperty(ressourceKey);
         } else if(applicationFilePropertyRegistry.hasProperty(ressourceKey)) {
             if (logger.isDebugEnabled()) {
-                logger.debug("applicationFilePropertyRegistry hasProperty " + ressourceKey);
+                logger.debug("applicationFilePropertyRegistry found Property " + ressourceKey);
             }
             return applicationFilePropertyRegistry.getProperty(ressourceKey);
         } else {
             if (logger.isDebugEnabled()) {
-                logger.debug("companyPropertyRegistry hasProperty " + ressourceKey);
+                logger.debug("companyPropertyRegistry must have Property " + ressourceKey);
             }
             return companyPropertyRegistry.getProperty(ressourceKey);
         }

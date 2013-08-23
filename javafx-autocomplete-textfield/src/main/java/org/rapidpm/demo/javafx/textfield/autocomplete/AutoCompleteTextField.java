@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Control;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import org.rapidpm.demo.javafx.commons.textfield.LimitedTextField;
 
 /**
  * This class is main Control class which extends from Control <br>
@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
  * <pre>
  *      //..codes
  *      AutoCompleteTextField autobox = new AutoCompleteTextField("hello","prefix","dog","city");
- *      autobox.setLimit(7);
+ *      autobox.setListLimit(7);
  *      //..add autobox to your scene then the output must be like this:
  * </pre>
  *
@@ -35,7 +35,7 @@ public class AutoCompleteTextField<T extends AutoCompleteElement> extends Contro
     public static final int DEFAULT_LIMIT = 6;
 
     private boolean filterModeStartsWith = true;
-    private TextField textbox;
+    private LimitedTextField textbox;
     private ListView<T> listview;
     private ObservableList<T> data = FXCollections.observableArrayList();
     private boolean filterMode;
@@ -65,7 +65,8 @@ public class AutoCompleteTextField<T extends AutoCompleteElement> extends Contro
 
     private void init() {
         getStyleClass().setAll("autofill-text");
-        textbox = new TextField();
+        textbox = new LimitedTextField();
+        textbox.setLimit(255);
         listview = new ListView<T>();
         limit = DEFAULT_LIMIT;
         filterMode = false;
@@ -104,7 +105,7 @@ public class AutoCompleteTextField<T extends AutoCompleteElement> extends Contro
     }
 
     @Override
-    public TextField getTextbox() {
+    public LimitedTextField getTextbox() {
         return textbox;
     }
 

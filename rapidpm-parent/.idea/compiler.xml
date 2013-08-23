@@ -28,6 +28,7 @@
         <module name="cdi-commons-se" />
         <module name="genericcache" />
         <module name="javafx-autocomplete-textfield" />
+        <module name="javafx-comomns" />
         <module name="javafx-dialog" />
         <module name="javafx-filtered-tableview" />
         <module name="javafx-progressbartable" />
@@ -42,6 +43,7 @@
       <module name="genericcache" target="1.7" />
       <module name="javafx-autocomplete-textfield" target="1.7" />
       <module name="javafx-commons" target="1.7" />
+      <module name="javafx-comomns" target="1.7" />
       <module name="javafx-dialog" target="1.7" />
       <module name="javafx-filtered-tableview" target="1.7" />
       <module name="javafx-progressbartable" target="1.7" />

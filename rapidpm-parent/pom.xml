@@ -952,7 +952,8 @@
         <module>../cdi-commons</module>
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
-        <module>../javafx-autocomplete-textField</module>
+        <module>../javafx-commons</module>
+        <module>../javafx-autocomplete-textfield</module>
         <module>../javafx-dialog</module>
         <module>../javafx-filtered-tableview</module>
         <module>../javafx-progressbartable</module>
