@@ -222,7 +222,18 @@ public class DatePicker extends HBox {
             // Double parse the date here, since e.g. 01.01.1 is parsed as year 1, and then formatted as 01.01.01 and then parsed as year 2001.
             // This might lead to an undesired date.
             DateFormat dateFormat = getActualDateFormat();
-            Date parsedDate = dateFormat.parse(textField.getText());
+            String text = textField.getText();
+            if(text.length() == 8 && !text.contains(".")){
+                final String days = text.substring(0, 2);
+                final String month = text.substring(2, 4);
+                final String year = text.substring(4);
+                text =  days + "."+ month +"."+ year;
+            } else {
+
+            }
+
+
+            Date parsedDate = dateFormat.parse(text);
             parsedDate = dateFormat.parse(dateFormat.format(parsedDate));
             if (selectedDate.get() == null || selectedDate.get() != null && parsedDate.getTime() != selectedDate.get().getTime()) {
                 selectedDate.set(parsedDate);
@@ -267,7 +278,7 @@ public class DatePicker extends HBox {
             return dateFormat.get();
         }
 
-        DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT, locale.get());
+        final DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT, locale.get());
         format.setCalendar(calendarView.getCalendar());
         format.setLenient(false);
 

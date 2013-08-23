@@ -4,47 +4,42 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
     </parent>
-    <name>se-genericcache</name>
-    <description>A GenericCache for embedded usage</description>
+    <name>javafx-commons</name>
+    <description>JavaFX common components</description>
+
     <groupId>org.rapidpm.modul</groupId>
-    <artifactId>genericcache</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <artifactId>javafx-commons</artifactId>
+    <version>1.1</version>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.symbolic.name>genericcache</project.symbolic.name>
+        <jfx.version>2.2</jfx.version>
+        <!-- override if your javafx is sourced from a different jdk then your maven build execution jre -->
+        <!--<javafx.home>${java.home}</javafx.home>-->
+        <!--<javafx.runtime.lib.jar>${javafx.home}/lib/jfxrt.jar</javafx.runtime.lib.jar>-->
+        <!--<javafx.tools.ant.jar>${javafx.home}/../lib/ant-javafx.jar</javafx.tools.ant.jar>-->
+        <!--<log4j.version>1.2.17</log4j.version>-->
     </properties>
 
-     <profiles>
-        <!-- embedded profiles -->
-        <profile>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <id>junit</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <inherited>true</inherited>
-                        <configuration>
-                            <includes>
-                                <include>**/junit/**</include>
-                            </includes>
-                            <forkMode>once</forkMode>
-                            <reportFormat>xml</reportFormat>
-                            <!--<classesDirectory>target/generated-classes/emma/classes</classesDirectory>-->
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
-    </profiles>
+    <dependencies>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.javafx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>2.2</version>
+            <systemPath>${fx.home}/jfxrt.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
 
+    </dependencies>
 
 
     <inceptionYear>2013</inceptionYear>
@@ -52,7 +47,7 @@
         <name>RapidPM</name>
         <url>http://www.rapidpm.org</url>
     </organization>
-    <url>http://wiki.rapidpm.org/display/PHB/Modul+-+GenericCache</url>
+    <url>http://wiki.rapidpm.org/display/PHB/Modul+-+commons</url>
     <!--<scm>-->
         <!--<url>https://bitbucket.org/rapidpm/rapidpm-modules</url>-->
         <!--<connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>-->
@@ -93,7 +88,5 @@
     <!--<plugin></plugin>-->
     <!--</plugins>-->
     <!--</reporting>-->
-
-
     
 </project>

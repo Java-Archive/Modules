@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.stage.Stage;
+import org.junit.Ignore;
 import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -24,10 +25,10 @@ public abstract class JavaFXBaseTest {
 
     @Before
     public void beforeTest() {
-        JavaFXTestSingleton.getInstance().getSemaphore().acquireUninterruptibly();
+//        JavaFXTestSingleton.getInstance().getSemaphore().acquireUninterruptibly();
     }
 
-    @Test
+    @Test @Ignore
     public void testGo() {
         JavaFXTestSingleton.getInstance().setClazz(getTestClass());
         Application.launch(JavaFXTestApplication.class, "Go Test Go");
@@ -37,7 +38,7 @@ public abstract class JavaFXBaseTest {
 
     @After
     public void afterTest() {
-        JavaFXTestSingleton.getInstance().getSemaphore().release();
+//        JavaFXTestSingleton.getInstance().getSemaphore().release();
     }
 
 

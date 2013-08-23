@@ -32,6 +32,12 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>javafx-commons</artifactId>
+            <version>1.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.oracle.javafx</groupId>
             <artifactId>javafx</artifactId>
             <version>2.2</version>

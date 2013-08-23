@@ -31,10 +31,15 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
@@ -65,9 +70,29 @@ public class FilteredTableView<T> extends TableView<T> {
     private List<MouseClickedRowAction> mouseDoubleClickedRowActions = new ArrayList<>();
     private List<MouseClickedRowAction> mouseSingleClickedRowActions = new ArrayList<>();
 
-    public FilteredTableView(ObservableList<T> ol) {
+
+    private ObservableList<T> backupItems = FXCollections.observableArrayList();
+
+    public void setTableViewData(final ObservableList<T> items){
+        super.setItems(items);
+        backupItems.clear();
+        backupItems.addAll(items);
+    }
+
+    public ObservableList<T> getBackupItems(){
+        final ObservableList<T> copy = FXCollections.observableArrayList();
+        copy.addAll(backupItems);
+        return copy;
+    }
+
+    public void resetTableViewDataFromBackup(){
+        super.setItems(getBackupItems());
+    }
+
+
+    public FilteredTableView(ObservableList<T> items) {
         this();
-        super.setItems(ol);
+        setTableViewData(items);
     }
 
     public FilteredTableView() {
@@ -149,6 +174,27 @@ public class FilteredTableView<T> extends TableView<T> {
             }
         });
 
+        //add contextMenue
+//        final ContextMenu contextMenu = new ContextMenu();
+//        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");  //TODO i18n
+//        copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
+//            public void handle(ActionEvent e) {
+//                final ObservableList<TableColumn<T, ?>> columns = getColumns();
+//
+//                final ObservableList<T> items = getItems();
+//                final StringBuilder clipboardString = new StringBuilder();
+//                for (final T item : items) {
+//                    clipboardString.append(item);
+//                    clipboardString.append('\n');
+//                }
+//                final ClipboardContent content = new ClipboardContent();
+//                //System.out.println(clipboardString);
+//                content.putString(clipboardString.toString());
+//                Clipboard.getSystemClipboard().setContent(content);
+//            }
+//        });
+//        contextMenu.getItems().addAll(copyTableCSV2Clipboard);
+//        setContextMenu(contextMenu);
 
     }
 
