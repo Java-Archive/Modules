@@ -1,4 +1,4 @@
-package org.rapidpm.demo.javafx.tableview.filtered;
+package org.rapidpm.demo.javafx.tableview.filtered.contextmenue;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -11,9 +11,10 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ContextMenu;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.FileChooser;
@@ -24,6 +25,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.rapidpm.demo.cdi.commons.logger.Logger;
+import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 
 import siteos.leasware.client.gui.rechnungseingangsbuch.model.TransientRechnung;
 import siteos.leasware.util.ExcelUtil;
@@ -31,20 +33,20 @@ import siteos.leasware.util.ExcelUtil;
 /**
  * User: Sven Ruppert Date: 14.08.13 Time: 16:30
  */
-public class RechnungseingangsbuchContextMenu extends ContextMenu {
+public class ContextMenu<T> extends javafx.scene.control.ContextMenu {
 
-    private static final Logger logger = Logger.getLogger(RechnungseingangsbuchContextMenu.class);
+    private static final Logger logger = Logger.getLogger(ContextMenu.class);
 //    private @Inject @CDILogger Logger logger;
 
-    public RechnungseingangsbuchContextMenu() {
+    public ContextMenu() {
 
     }
 
-    private FilteredTableView<TransientRechnung> rechnungseingangsbuchTabelle;
+    private FilteredTableView<T> filteredTableView;
 
 //    @PostConstruct
     public void init(){
-        MenuItem openCSV = new MenuItem("Als CSV öffnen");
+        MenuItem openCSV = new MenuItem("contextmenu.opencsv");
         openCSV.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 Platform.runLater(new Runnable() {
@@ -66,7 +68,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
                 });
             }
         });
-        MenuItem saveCSV = new MenuItem("Als CSV speichern");
+        MenuItem saveCSV = new MenuItem("contextmenu.savecsv");
         saveCSV.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 Platform.runLater(new Runnable() {
@@ -74,11 +76,11 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
                         try {
                             final StringBuilder stringBuilder = convertTable2CSV();
                             FileChooser fileChooser = new FileChooser();
-                            fileChooser.setTitle("Open Resource File");
+                            fileChooser.setTitle("contextmenu.savecsv");
                             fileChooser.setInitialDirectory(
-                                    new File(System.getProperty("user.home"))
+                                    new File(System.getProperty("contextmenu.defaultdir"))
                             );
-                            final File targetFile = fileChooser.showSaveDialog(rechnungseingangsbuchTabelle.getScene().getWindow());
+                            final File targetFile = fileChooser.showSaveDialog(filteredTableView.getScene().getWindow());
                             if (targetFile != null) {
                                 final FileOutputStream fos = new FileOutputStream(targetFile);
                                 fos.write(stringBuilder.toString().getBytes());
@@ -86,7 +88,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
                                 fos.close();
                             } else {
                                 if (logger.isDebugEnabled()) {
-                                    logger.debug("keine Ziel ausgewählt..");
+                                    logger.debug("keine Ziel ausgewï¿½hlt..");
                                 }
                             }
                         } catch (IOException e1) {
@@ -96,7 +98,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
                 });
             }
         });
-        final MenuItem openXlS = new MenuItem("Als XLS öffnen");
+        final MenuItem openXlS = new MenuItem("contextmenu.openxls");
         openXlS.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 if (logger.isDebugEnabled()) {
@@ -123,7 +125,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
         });
 
 
-        final MenuItem saveXlS = new MenuItem("Als XLS speichern");
+        final MenuItem saveXlS = new MenuItem("contextmenu.savexls");
         saveXlS.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 Platform.runLater(new Runnable() {
@@ -131,11 +133,11 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
                         try {
                             final byte[] bytes = convertTable2Xls();
                             FileChooser fileChooser = new FileChooser();
-                            fileChooser.setTitle("Open Resource File");
+                            fileChooser.setTitle("contextmenu.savexls");
                             fileChooser.setInitialDirectory(
-                                    new File(System.getProperty("user.home"))
+                                    new File(System.getProperty("contextmenu.defaultdir"))
                             );
-                            final File targetFile = fileChooser.showSaveDialog(rechnungseingangsbuchTabelle.getScene().getWindow());
+                            final File targetFile = fileChooser.showSaveDialog(filteredTableView.getScene().getWindow());
                             if (targetFile != null) {
                                 final FileOutputStream fos = new FileOutputStream(targetFile);
                                 fos.write(bytes);
@@ -143,7 +145,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
                                 fos.close();
                             } else {
                                 if (logger.isDebugEnabled()) {
-                                    logger.debug("keine Ziel ausgewählt..");
+                                    logger.debug("keine Ziel ausgewï¿½hlt..");
                                 }
                             }
                         } catch (IOException e1) {
@@ -153,7 +155,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
                 });
             }
         });
-        MenuItem copyTableCSV2Clipboard = new MenuItem("als CSV in die Zwischenablage");
+        MenuItem copyTableCSV2Clipboard = new MenuItem("contextmenu.copyclipboard");
         copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 Platform.runLater(new Runnable() {
@@ -167,19 +169,38 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
             }
         });
 
+        //send csv as mail
+        //send xls as mail
+        //save as pdf
+        //zoom view
 
-        getItems().addAll(openCSV, saveCSV, openXlS, saveXlS, copyTableCSV2Clipboard);
+        MenuItem copyTableImage2Clipboard = new MenuItem("contextmenu.copyimage");
+        copyTableImage2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                Platform.runLater(new Runnable() {
+                    @Override public void run() {
+                        final WritableImage snapImage = filteredTableView.snapshot(new SnapshotParameters(), null);
+                        final ClipboardContent content = new ClipboardContent();
+                        content.putImage(snapImage);
+                        Clipboard.getSystemClipboard().setContent(content);
+                    }
+                });
+            }
+        });
+
+
+        getItems().addAll(openCSV, saveCSV, openXlS, saveXlS, copyTableCSV2Clipboard,copyTableImage2Clipboard);
     }
 
 
     private StringBuilder convertTable2CSV() {
         final StringBuilder clipboardString = new StringBuilder();
-        final ObservableList<TableColumn<TransientRechnung, ?>> columns = rechnungseingangsbuchTabelle.getColumns();
+        final ObservableList<TableColumn<TransientRechnung, ?>> columns = filteredTableView.getColumns();
         for (final TableColumn<TransientRechnung, ?> column : columns) {
             clipboardString.append(column.getText() + ";");
         }
         clipboardString.append('\n');
-        final ObservableList<TransientRechnung> items = rechnungseingangsbuchTabelle.getItems();
+        final ObservableList<TransientRechnung> items = filteredTableView.getItems();
 
         for (final TransientRechnung item : items) {
             final String rechnungseingang = item.getRechnungseingang();
@@ -214,7 +235,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
     }
 
     private byte[] convertTable2Xls() throws IOException {
-        final ObservableList<TableColumn<TransientRechnung, ?>> columns = rechnungseingangsbuchTabelle.getColumns();
+        final ObservableList<TableColumn<TransientRechnung, ?>> columns = filteredTableView.getColumns();
         final HSSFWorkbook wb = new HSSFWorkbook();
         final HSSFCellStyle csHeader = ExcelUtil.createCellStyle(wb, HSSFFont.BOLDWEIGHT_BOLD, HSSFColor.WHITE.index, null, false);
         csHeader.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -235,7 +256,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
         final HSSFCellStyle csData = ExcelUtil.createCellStyle(wb, HSSFFont.BOLDWEIGHT_NORMAL, HSSFColor.BLACK.index, null, false);
 
         //data
-        final ObservableList<TransientRechnung> items = rechnungseingangsbuchTabelle.getItems();
+        final ObservableList<TransientRechnung> items = filteredTableView.getItems();
         for (final TransientRechnung item : items) {
             final String rechnungseingang = item.getRechnungseingang();
             ExcelUtil.setCellValue(sheet, row, (short) 0, rechnungseingang, csData);
@@ -248,7 +269,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
 
             HSSFDataFormat cf = wb.createDataFormat();
             HSSFCellStyle currencyCellStyle = wb.createCellStyle();
-            currencyCellStyle.setDataFormat(cf.getFormat("#,##0.00\\ €"));
+            currencyCellStyle.setDataFormat(cf.getFormat("#,##0.00\\ ï¿½"));
             ExcelUtil.setCellValue(sheet, row, (short) 3, betrag, currencyCellStyle);
 
             final String abteilung = item.getAbteilung();
@@ -272,7 +293,7 @@ public class RechnungseingangsbuchContextMenu extends ContextMenu {
         return ExcelUtil.wbToByteArray(wb);
     }
 
-    public void setRechnungseingangsbuchTabelle(FilteredTableView<TransientRechnung> rechnungseingangsbuchTabelle) {
-        this.rechnungseingangsbuchTabelle = rechnungseingangsbuchTabelle;
+    public void setFilteredTableView(FilteredTableView<TransientRechnung> filteredTableView) {
+        this.filteredTableView = filteredTableView;
     }
 }

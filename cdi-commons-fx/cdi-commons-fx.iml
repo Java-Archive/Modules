@@ -15,6 +15,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.rapidpm.modul:genericcache:1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.rapidpm.modul:cdi-commons-se:test-jar:tests:1.1-SNAPSHOT" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: com.oracle.javafx:javafx:2.2">
         <CLASSES>
@@ -57,9 +59,8 @@
     <orderEntry type="library" name="Maven: ch.qos.cal10n:cal10n-api:0.7.7" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.weld:weld-core-jsf:2.0.3.Final" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.2" level="project" />
-    <orderEntry type="module" module-name="cdi-commons-se" />
+    <orderEntry type="library" name="Maven: org.rapidpm.modul:cdi-commons-se:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.weld.se:weld-se:2.0.3.Final" level="project" />
-    <orderEntry type="module" module-name="cdi-commons-se" scope="TEST" production-on-test="" />
     <orderEntry type="library" scope="TEST" name="Maven: org.rapidpm.modul:cdi-commons-se:test-jar:tests:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.rapidpm.modul:cdi-commons:test-jar:tests:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.validation:validation-api:1.0.0.GA" level="project" />
