@@ -4,31 +4,18 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.FileChooser;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
-
-import siteos.leasware.client.gui.rechnungseingangsbuch.model.TransientRechnung;
-import siteos.leasware.util.ExcelUtil;
 
 /**
  * User: Sven Ruppert Date: 14.08.13 Time: 16:30
@@ -195,105 +182,16 @@ public class ContextMenu<T> extends javafx.scene.control.ContextMenu {
 
     private StringBuilder convertTable2CSV() {
         final StringBuilder clipboardString = new StringBuilder();
-        final ObservableList<TableColumn<TransientRechnung, ?>> columns = filteredTableView.getColumns();
-        for (final TableColumn<TransientRechnung, ?> column : columns) {
-            clipboardString.append(column.getText() + ";");
-        }
-        clipboardString.append('\n');
-        final ObservableList<TransientRechnung> items = filteredTableView.getItems();
-
-        for (final TransientRechnung item : items) {
-            final String rechnungseingang = item.getRechnungseingang();
-            clipboardString.append(rechnungseingang + ";");
-            final String kreditor = item.getKreditor();
-            clipboardString.append(kreditor + ";");
-            final String rechnungsnummer = item.getRechnungsnummer();
-            clipboardString.append(rechnungsnummer + ";");
-            final double betrag = item.getBetrag();
-            final String betragEUR = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(betrag);
-            clipboardString.append(betragEUR + ";");
-
-            final String abteilung = item.getAbteilung();
-            clipboardString.append(abteilung + ";");
-            final String vermerk = item.getVermerk();
-            clipboardString.append(vermerk + ";");
-            final String ersteller = item.getErsteller();
-            clipboardString.append(ersteller + ";");
-            final String erstellungsDatum = item.getErstellungsDatum();
-            clipboardString.append(erstellungsDatum + ";");
-            final String bearbeiter = item.getBearbeiter();
-            clipboardString.append(bearbeiter + ";");
-            final String bearbeitungsDatum = item.getBearbeitungsDatum();
-            clipboardString.append(bearbeitungsDatum + ";");
-            final String status = item.getStatus();
-            clipboardString.append(status + ";");
-            final String zahlungsstatus = item.getZahlungsstatus();
-            clipboardString.append(zahlungsstatus + ";");
-            clipboardString.append('\n');
-        }
+        //konvertiere..
         return clipboardString;
     }
 
     private byte[] convertTable2Xls() throws IOException {
-        final ObservableList<TableColumn<TransientRechnung, ?>> columns = filteredTableView.getColumns();
-        final HSSFWorkbook wb = new HSSFWorkbook();
-        final HSSFCellStyle csHeader = ExcelUtil.createCellStyle(wb, HSSFFont.BOLDWEIGHT_BOLD, HSSFColor.WHITE.index, null, false);
-        csHeader.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-        csHeader.setFillBackgroundColor(HSSFColor.GREY_50_PERCENT.index);
-        csHeader.setFillForegroundColor(HSSFColor.GREY_50_PERCENT.index);
-        csHeader.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-
-        final HSSFSheet sheet = ExcelUtil.getOrCreateSheet(wb, "Eingansgbuch");
-        int row = 0;
-        short colNr = 0;
-        for (final TableColumn<TransientRechnung, ?> column : columns) {
-            final String columnText = column.getText();
-            ExcelUtil.setCellValue(sheet, row, colNr, columnText, csHeader);
-            colNr++;
-        }
-        row++;
-
-        final HSSFCellStyle csData = ExcelUtil.createCellStyle(wb, HSSFFont.BOLDWEIGHT_NORMAL, HSSFColor.BLACK.index, null, false);
-
-        //data
-        final ObservableList<TransientRechnung> items = filteredTableView.getItems();
-        for (final TransientRechnung item : items) {
-            final String rechnungseingang = item.getRechnungseingang();
-            ExcelUtil.setCellValue(sheet, row, (short) 0, rechnungseingang, csData);
-            final String kreditor = item.getKreditor();
-            ExcelUtil.setCellValue(sheet, row, (short) 1, kreditor, csData);
-            final String rechnungsnummer = item.getRechnungsnummer();
-            ExcelUtil.setCellValue(sheet, row, (short) 2, rechnungsnummer, csData);
-            final double betrag = item.getBetrag();
-//                        final String betragEUR = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(betrag);
-
-            HSSFDataFormat cf = wb.createDataFormat();
-            HSSFCellStyle currencyCellStyle = wb.createCellStyle();
-            currencyCellStyle.setDataFormat(cf.getFormat("#,##0.00\\ �"));
-            ExcelUtil.setCellValue(sheet, row, (short) 3, betrag, currencyCellStyle);
-
-            final String abteilung = item.getAbteilung();
-            ExcelUtil.setCellValue(sheet, row, (short) 4, abteilung, csData);
-            final String vermerk = item.getVermerk();
-            ExcelUtil.setCellValue(sheet, row, (short) 5, vermerk, csData);
-            final String ersteller = item.getErsteller();
-            ExcelUtil.setCellValue(sheet, row, (short) 6, ersteller, csData);
-            final String erstellungsDatum = item.getErstellungsDatum();
-            ExcelUtil.setCellValue(sheet, row, (short) 7, erstellungsDatum, csData);
-            final String bearbeiter = item.getBearbeiter();
-            ExcelUtil.setCellValue(sheet, row, (short) 8, bearbeiter, csData);
-            final String bearbeitungsDatum = item.getBearbeitungsDatum();
-            ExcelUtil.setCellValue(sheet, row, (short) 9, bearbeitungsDatum, csData);
-            final String status = item.getStatus();
-            ExcelUtil.setCellValue(sheet, row, (short) 10, status, csData);
-            final String zahlungsstatus = item.getZahlungsstatus();
-            ExcelUtil.setCellValue(sheet, row, (short) 11, zahlungsstatus, csData);
-            row++;
-        }
-        return ExcelUtil.wbToByteArray(wb);
+        //konvertiere
+        return null;
     }
 
-    public void setFilteredTableView(FilteredTableView<TransientRechnung> filteredTableView) {
+    public void setFilteredTableView(FilteredTableView<T> filteredTableView) {
         this.filteredTableView = filteredTableView;
     }
 }
