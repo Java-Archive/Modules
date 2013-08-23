@@ -216,7 +216,7 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
 
     public void showAllIndexElements(){
         itemListe.clear();
-        itemListe.addAll(tablevalues.values() );
+        itemListe.addAll(tablevalues.values());
     }
 
     private void addStringField(final Document d,final String fieldName, @NotNull final String fieldValue){
