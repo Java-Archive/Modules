@@ -1,7 +1,6 @@
 package org.rapidpm.demo.javafx.tableview.filtered.filter;
 
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
-import org.rapidpm.demo.javafx.tableview.filtered.filter.FilteredTableViewIterator;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.operation.DefaultStringOperation;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.operation.Operation;
 

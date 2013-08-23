@@ -248,32 +248,63 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.14.1</version>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <aggregate>true</aggregate>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate</id>
+                        <goals>
+                            <goal>jar</goal>
+                            <!--<goal>test-jar</goal>-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <!--<dependencies>-->
+                <!--<dependency>-->
+                    <!--<groupId>org.apache.maven.surefire</groupId>-->
+                    <!--<artifactId>surefire-junit47</artifactId>-->
+                    <!--<version>2.16</version>-->
+                <!--</dependency>-->
+            <!--</dependencies>-->
+                <configuration>
+                    <!--<skipTests>true</skipTests>-->
+                    <!--<forkCount>2.5C</forkCount>-->
+                    <!--<forkCount>1</forkCount>-->
+                    <!--<parallel>methods</parallel>-->
+                    <!--<threadCount>10</threadCount>-->
+                    <!--<reuseForks>false</reuseForks>-->
+                    <!--<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
+                    <!--<argLine>-Xmx1024m</argLine>-->
+                    <!--<forkMode>always</forkMode>-->
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4.1</version>
-                <!--<configuration>-->
-                    <!--<tagNameFormat>v@{project.version}</tagNameFormat>-->
-                    <!--&lt;!&ndash;-->
-                      <!--During release:perform, enable the "release" profile-->
-                     <!--&ndash;&gt;-->
-                    <!--<releaseProfiles>release</releaseProfiles>-->
-                    <!--<goals>deploy assembly:single</goals>-->
-                <!--</configuration>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-repository-plugin</artifactId>
+                <version>2.3.1</version>
             </plugin>
             <!--<plugin>-->
                 <!--<groupId>org.sonatype.plugins</groupId>-->
                 <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
-                <!--<version>1.4.4</version>-->
+                <!--<version>1.4.5</version>-->
                 <!--<extensions>true</extensions>-->
                 <!--<configuration>-->
-                    <!--<serverId>snapshots</serverId>-->
-                    <!--<nexusUrl>http://${nexus.ip}/nexus/</nexusUrl>-->
+                    <!--<serverId>sonatype-nexus-staging</serverId>-->
+                    <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
                 <!--</configuration>-->
             <!--</plugin>-->
             <plugin>
@@ -290,6 +321,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
@@ -333,9 +365,12 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <includes>
-                                <include>**/junit/**</include>
-                            </includes>
+                            <!--<includes>-->
+                                <!--<include>**/junit/**</include>-->
+                            <!--</includes>-->
+                            <excludes>
+                                <exclude>**/perf/**</exclude>
+                            </excludes>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -953,7 +988,8 @@
         <module>../cdi-commons</module>
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
-        <module>../javafx-autocomplete-textField</module>
+        <module>../javafx-commons</module>
+        <module>../javafx-autocomplete-textfield</module>
         <module>../javafx-dialog</module>
         <module>../javafx-filtered-tableview</module>
         <module>../javafx-progressbartable</module>

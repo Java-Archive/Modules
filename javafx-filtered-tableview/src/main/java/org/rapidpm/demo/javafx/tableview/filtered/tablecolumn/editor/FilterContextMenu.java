@@ -47,7 +47,6 @@ import org.rapidpm.demo.javafx.tableview.filtered.control.TitledSeparatorMenuIte
  */
 public class FilterContextMenu
         extends ContextMenu {
-    //http://www.guigarage.com/2012/11/custom-ui-controls-with-javafx-part-1/
 
     private static FilterContextMenu currentlyVisibleMenu;
 

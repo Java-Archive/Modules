@@ -2,10 +2,83 @@
 
     <!-- set global properties for this build -->
     <!--<property name="workspaceDir" location="c:/workspace/svenruppert\"/>-->
-    <property name="workspaceDir" location="d:/workspace/shared/Demos/"/>
+    <property name="workspaceDir" location="d:/workspace/shared/rapidpm-modules/"/>
     <!--<property name="mavenHome" location="C:\opt\apache-maven-3.0.5"/>-->
     <property name="mavenHome" location="d:\opt\apache-maven-3.0.5"/>
     <property name="dist" location="dist"/>
+
+
+    <target name="bundle all">
+
+        <antcall target="bundle parent"/>
+        <antcall target="bundle genericcache"/>
+        <antcall target="bundle cdi-commons"/>
+        <antcall target="bundle cdi-commons-se"/>
+        <antcall target="bundle cdi-commons-fx"/>
+        <antcall target="bundle javafx-autocomplete-textfield"/>
+        <antcall target="bundle javafx-dialog"/>
+        <antcall target="bundle javafx-filtered-tableview"/>
+        <antcall target="bundle javafx-searchbox"/>
+    </target>
+
+
+    <target name="bundle parent">
+        <zip destfile="${workspaceDir}/dist/parent.zip"
+             basedir="${workspaceDir}/rapidpm-parent/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+    <target name="bundle genericcache">
+        <zip destfile="${workspaceDir}/dist/genericcache.zip"
+             basedir="${workspaceDir}/se-genericcache/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+
+    <target name="bundle cdi-commons">
+        <zip destfile="${workspaceDir}/dist/cdi-commons.zip"
+             basedir="${workspaceDir}/cdi-commons/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+    <target name="bundle cdi-commons-se">
+        <zip destfile="${workspaceDir}/dist/cdi-commons-se.zip"
+             basedir="${workspaceDir}/cdi-commons-se/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+    <target name="bundle cdi-commons-fx">
+        <zip destfile="${workspaceDir}/dist/cdi-commons-fx.zip"
+             basedir="${workspaceDir}/cdi-commons-fx/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+    <target name="bundle javafx-filtered-tableview">
+        <zip destfile="${workspaceDir}/dist/javafx-filtered-tableview.zip"
+             basedir="${workspaceDir}/javafx-filtered-tableview/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+
+    <target name="bundle javafx-autocomplete-textfield">
+        <zip destfile="${workspaceDir}/dist/javafx-autocomplete-textfield.zip"
+             basedir="${workspaceDir}/javafx-autocomplete-textfield/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+    <target name="bundle javafx-dialog">
+        <zip destfile="${workspaceDir}/dist/javafx-dialog.zip"
+             basedir="${workspaceDir}/javafx-dialog/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+    <target name="bundle javafx-searchbox">
+        <zip destfile="${workspaceDir}/dist/javafx-searchbox.zip"
+             basedir="${workspaceDir}/javafx-searchbox/target/"
+             includes="*.jar , *.asc, *.pom"
+                />
+    </target>
+
 
     <target name="buildProject all">
         <antcall target="buildProject - rapidpm - genericcache"/>
@@ -186,9 +259,6 @@
             <arg value="deploy"/>
         </exec>
     </target>
-
-
-
 
 
 </project>

@@ -15,7 +15,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="cdi-commons-se" />
+    <orderEntry type="library" name="Maven: org.rapidpm.modul:genericcache:1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.rapidpm.modul:cdi-commons-se:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.rapidpm.modul:cdi-commons:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.rapidpm.modul:genericcache:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
