@@ -47,7 +47,7 @@ public class SimpleDateFormatterProducer {
             final CDISimpleDateFormatter annotation = annotated.getAnnotation(CDISimpleDateFormatter.class);
             final String ressourceKey = annotation.value();
             final String ressource = propertyRegistryService.getRessourceForKey(ressourceKey);
-            if(ressource.isEmpty()){
+            if(ressource.equals("###"+ressourceKey+"###")){
                 return createDefault(injectionPoint);
             } else{
                 return new SimpleDateFormat(ressource, defaultLocale);

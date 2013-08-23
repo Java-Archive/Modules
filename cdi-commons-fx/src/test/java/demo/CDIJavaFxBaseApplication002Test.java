@@ -1,25 +1,20 @@
 package demo;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.junit.Assert;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
 import org.rapidpm.demo.cdi.commons.fx.JavaFXBaseTest;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.demo.cdi.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert

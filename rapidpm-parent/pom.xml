@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--<parent>-->
-        <!--<groupId>org.sonatype.oss</groupId>-->
-        <!--<artifactId>oss-parent</artifactId>-->
-        <!--<version>7</version>-->
-    <!--</parent>-->
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-parent</artifactId>
@@ -248,10 +248,44 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.14.1</version>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <aggregate>true</aggregate>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate</id>
+                        <goals>
+                            <goal>jar</goal>
+                            <!--<goal>test-jar</goal>-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <!--<dependencies>-->
+                <!--<dependency>-->
+                    <!--<groupId>org.apache.maven.surefire</groupId>-->
+                    <!--<artifactId>surefire-junit47</artifactId>-->
+                    <!--<version>2.16</version>-->
+                <!--</dependency>-->
+            <!--</dependencies>-->
+                <configuration>
+                    <!--<skipTests>true</skipTests>-->
+                    <!--<forkCount>2.5C</forkCount>-->
+                    <!--<forkCount>1</forkCount>-->
+                    <!--<parallel>methods</parallel>-->
+                    <!--<threadCount>10</threadCount>-->
+                    <!--<reuseForks>false</reuseForks>-->
+                    <!--<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
+                    <!--<argLine>-Xmx1024m</argLine>-->
+                    <!--<forkMode>always</forkMode>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -266,12 +300,11 @@
             <!--<plugin>-->
                 <!--<groupId>org.sonatype.plugins</groupId>-->
                 <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
-                <!--<version>1.4.4</version>-->
+                <!--<version>1.4.5</version>-->
                 <!--<extensions>true</extensions>-->
                 <!--<configuration>-->
                     <!--<serverId>sonatype-nexus-staging</serverId>-->
                     <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-
                 <!--</configuration>-->
             <!--</plugin>-->
             <plugin>
@@ -292,18 +325,18 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-    <repository>
-    <id>releases</id>
-    <name>RapidPM Releases</name>
-    <url>http://${nexus.ip}/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-    <id>snapshots</id>
-    <name>RapidPM Snapshots</name>
-    <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-    </distributionManagement>
+    <!--<distributionManagement>-->
+    <!--<repository>-->
+    <!--<id>releases</id>-->
+    <!--<name>RapidPM Releases</name>-->
+    <!--<url>http://${nexus.ip}/nexus/content/repositories/releases</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>snapshots</id>-->
+    <!--<name>RapidPM Snapshots</name>-->
+    <!--<url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>-->
+    <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 
     <!-- OSS Sonatype -->
     <!--<distributionManagement>-->
@@ -332,9 +365,12 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <includes>
-                                <include>**/junit/**</include>
-                            </includes>
+                            <!--<includes>-->
+                                <!--<include>**/junit/**</include>-->
+                            <!--</includes>-->
+                            <excludes>
+                                <exclude>**/perf/**</exclude>
+                            </excludes>
                         </configuration>
                     </plugin>
                 </plugins>
