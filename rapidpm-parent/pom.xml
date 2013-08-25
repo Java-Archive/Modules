@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <!--for release only-->
     <!--<parent>-->
-        <!--<groupId>org.sonatype.oss</groupId>-->
-        <!--<artifactId>oss-parent</artifactId>-->
-        <!--<version>7</version>-->
+    <!--<groupId>org.sonatype.oss</groupId>-->
+    <!--<artifactId>oss-parent</artifactId>-->
+    <!--<version>7</version>-->
     <!--</parent>-->
 
     <groupId>org.rapidpm</groupId>
@@ -86,19 +87,19 @@
                 <version>1.1</version>
                 <scope>compile</scope>
             </dependency>
-             <dependency>
+            <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons</artifactId>
                 <version>1.1</version>
                 <scope>compile</scope>
-                 <type>jar</type>
+                <type>jar</type>
             </dependency>
-             <dependency>
+            <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons</artifactId>
                 <version>1.1</version>
                 <scope>test</scope>
-                 <type>test-jar</type>
+                <type>test-jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
@@ -254,11 +255,11 @@
                 <version>2.16</version>
                 <!--<dependencies>-->
                 <!--<dependency>-->
-                    <!--<groupId>org.apache.maven.surefire</groupId>-->
-                    <!--<artifactId>surefire-junit47</artifactId>-->
-                    <!--<version>2.16</version>-->
+                <!--<groupId>org.apache.maven.surefire</groupId>-->
+                <!--<artifactId>surefire-junit47</artifactId>-->
+                <!--<version>2.16</version>-->
                 <!--</dependency>-->
-            <!--</dependencies>-->
+                <!--</dependencies>-->
                 <configuration>
                     <!--<skipTests>true</skipTests>-->
                     <!--<forkCount>2.5C</forkCount>-->
@@ -296,22 +297,24 @@
 
     <!-- OSS Sonatype -->
     <!--<distributionManagement>-->
-        <!--<repository>-->
-            <!--<id>releases</id>-->
-            <!--<name>sonatype-nexus-staging</name>-->
-            <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>sonatype-nexus-snapshots</id>-->
-            <!--<name>Sonatype Snapshots</name>-->
-            <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
-        <!--</snapshotRepository>-->
+    <!--<repository>-->
+    <!--<id>releases</id>-->
+    <!--<name>sonatype-nexus-staging</name>-->
+    <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>sonatype-nexus-snapshots</id>-->
+    <!--<name>Sonatype Snapshots</name>-->
+    <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
+    <!--</snapshotRepository>-->
     <!--</distributionManagement>-->
 
 
     <profiles>
         <profile>
-            <activation><activeByDefault>false</activeByDefault></activation>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <id>sys-release</id>
             <build>
                 <plugins>
@@ -367,7 +370,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <!--<includes>-->
-                                <!--<include>**/junit/**</include>-->
+                            <!--<include>**/junit/**</include>-->
                             <!--</includes>-->
                             <excludes>
                                 <exclude>**/perf/**</exclude>
@@ -984,18 +987,18 @@
     </profiles>
 
 
-    <!--<modules>-->
-    <!--<module>../se-genericcache</module>-->
-    <!--<module>../cdi-commons</module>-->
-    <!--<module>../cdi-commons-se</module>-->
-    <!--<module>../cdi-commons-fx</module>-->
-    <!--<module>../javafx-commons</module>-->
-    <!--<module>../javafx-autocomplete-textfield</module>-->
-    <!--<module>../javafx-dialog</module>-->
-    <!--<module>../javafx-filtered-tableview</module>-->
-    <!--<module>../javafx-progressbartable</module>-->
-    <!--<module>../javafx-searchbox</module>-->
-    <!--</modules>-->
+    <modules>
+        <module>../se-genericcache</module>
+        <module>../cdi-commons</module>
+        <module>../cdi-commons-se</module>
+        <module>../cdi-commons-fx</module>
+        <module>../javafx-commons</module>
+        <module>../javafx-autocomplete-textfield</module>
+        <module>../javafx-dialog</module>
+        <module>../javafx-filtered-tableview</module>
+        <module>../javafx-progressbartable</module>
+        <module>../javafx-searchbox</module>
+    </modules>
 
 
     <inceptionYear>2013</inceptionYear>
