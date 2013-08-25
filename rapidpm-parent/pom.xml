@@ -277,20 +277,6 @@
                 <version>2.3.1</version>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
         </plugins>
     </build>
@@ -352,7 +338,20 @@
                         <artifactId>maven-release-plugin</artifactId>
                         <version>2.4.1</version>
                     </plugin>
-
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -985,18 +984,18 @@
     </profiles>
 
 
-    <modules>
-        <module>../se-genericcache</module>
-        <module>../cdi-commons</module>
-        <module>../cdi-commons-se</module>
-        <module>../cdi-commons-fx</module>
-        <module>../javafx-commons</module>
-        <module>../javafx-autocomplete-textfield</module>
-        <module>../javafx-dialog</module>
-        <module>../javafx-filtered-tableview</module>
-        <module>../javafx-progressbartable</module>
-        <module>../javafx-searchbox</module>
-    </modules>
+    <!--<modules>-->
+    <!--<module>../se-genericcache</module>-->
+    <!--<module>../cdi-commons</module>-->
+    <!--<module>../cdi-commons-se</module>-->
+    <!--<module>../cdi-commons-fx</module>-->
+    <!--<module>../javafx-commons</module>-->
+    <!--<module>../javafx-autocomplete-textfield</module>-->
+    <!--<module>../javafx-dialog</module>-->
+    <!--<module>../javafx-filtered-tableview</module>-->
+    <!--<module>../javafx-progressbartable</module>-->
+    <!--<module>../javafx-searchbox</module>-->
+    <!--</modules>-->
 
 
     <inceptionYear>2013</inceptionYear>
