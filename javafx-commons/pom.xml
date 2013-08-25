@@ -4,14 +4,14 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1</version>
+        <version>1.1.1-SNAPSHOT</version>
     </parent>
     <name>javafx-commons</name>
     <description>JavaFX common components</description>
 
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>javafx-commons</artifactId>
-    <version>1.1</version>
+    <version>${parent.version}</version>
     <packaging>jar</packaging>
 
     <properties>

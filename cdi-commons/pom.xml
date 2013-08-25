@@ -5,14 +5,14 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1</version>
+        <version>1.1.1-SNAPSHOT</version>
     </parent>
     <name>cdi-commons</name>
     <description>Utils for CDI SE and EE</description>
 
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>cdi-commons</artifactId>
-    <version>1.1</version>
+    <version>${parent.version}</version>
 
 
     <properties>
@@ -21,6 +21,7 @@
 
         <!--<version.weld-servlet>1.1.9.Final</version.weld-servlet>-->
         <!--<org.arquillian.bom.version>1.0.2.Final</org.arquillian.bom.version>-->
+        <project.version>1.1</project.version>
     </properties>
 
     <dependencies>

@@ -4,14 +4,14 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1</version>
+        <version>1.1.1-SNAPSHOT</version>
     </parent>
     <name>javafx-dialog</name>
     <description>A JavaFX component: Dialogs for Userinteraction</description>
 
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>javafx-dialog</artifactId>
-    <version>1.1</version>
+    <version>${parent.version}</version>
 
     
    <properties>

@@ -4,14 +4,14 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1</version>
+        <version>1.1.1-SNAPSHOT</version>
     </parent>
     <name>javafx-progressbartable</name>
     <description>A JavaFX component: a TableView to show progress of different threads</description>
 
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>javafx-progressbartable</artifactId>
-    <version>1.1</version>
+    <version>${parent.version}</version>
 
     
    <properties>
