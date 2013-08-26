@@ -12,7 +12,7 @@
 
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>javafx-commons</artifactId>
-    <version>${parent.version}</version>
+    <version>${project.parent.version}</version>
     <packaging>jar</packaging>
 
     <properties>

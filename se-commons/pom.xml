@@ -10,14 +10,22 @@
     <description>SE Commons</description>
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>se-commons</artifactId>
-    <version>${parent.version}</version>
+    <version>${project.parent.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.symbolic.name>se-commons</project.symbolic.name>
     </properties>
 
-     <profiles>
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+    </dependencies>
+
+
+    <profiles>
         <!-- embedded profiles -->
         <profile>
             <activation>

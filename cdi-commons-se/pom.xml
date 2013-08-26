@@ -12,7 +12,7 @@
     <description>Utils for CDI SE</description>
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>cdi-commons-se</artifactId>
-    <version>${parent.version}</version>
+    <version>${project.parent.version}</version>
 
 
     <properties>

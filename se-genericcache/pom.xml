@@ -11,7 +11,7 @@
     <description>A GenericCache for embedded usage</description>
     <groupId>org.rapidpm.modul</groupId>
     <artifactId>se-genericcache</artifactId>
-    <version>${parent.version}</version>
+    <version>${project.parent.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

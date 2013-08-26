@@ -84,86 +84,92 @@
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>se-commons</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>se-genericcache</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>test</scope>
                 <type>test-jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-se</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-se</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>test</scope>
                 <type>test-jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-fx</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-fx</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-dialog</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-searchbox</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-filtered-tableview</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-autocomplete-textfield</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-progressbartable</artifactId>
-                <version>${parent.version}</version>
+                <version>${project.parent.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>

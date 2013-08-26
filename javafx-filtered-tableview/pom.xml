@@ -15,7 +15,7 @@
     <artifactId>javafx-filtered-tableview</artifactId>
 
     <packaging>jar</packaging>
-    <version>${parent.version}</version>
+    <version>${project.parent.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
