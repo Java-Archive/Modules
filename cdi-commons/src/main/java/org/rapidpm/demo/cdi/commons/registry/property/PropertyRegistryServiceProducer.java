@@ -10,10 +10,10 @@ import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.CDICommons;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.CDIPropertyRegistryFileBased;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -29,7 +29,7 @@ public class PropertyRegistryServiceProducer {
     @Produces
     @CDIPropertyRegistryService
     public PropertyRegistryService create(BeanManager beanManager, InjectionPoint injectionPoint,
-                                          @CDICommons ContextResolver contextResolver){
+                                          @CDICommons ContextResolver contextResolver) {
         if (logger.isDebugEnabled()) {
             logger.debug("used ContextResolver - " + contextResolver.getClass().getName());
         }
@@ -37,10 +37,10 @@ public class PropertyRegistryServiceProducer {
         for (final Bean<?> bean : beanSet) {
             final Set<Type> types = bean.getTypes();
             for (final Type type : types) {
-                if(type.equals(PropertyRegistryService.class)){
+                if (type.equals(PropertyRegistryService.class)) {
                     final Bean<PropertyRegistryService> registry = (Bean<PropertyRegistryService>) bean;
                     return registry.create(beanManager.createCreationalContext(registry));
-                } else{
+                } else {
                     if (logger.isDebugEnabled()) {
                         logger.debug("! type.equals(PropertyRegistryService.class) " + type);
                     }

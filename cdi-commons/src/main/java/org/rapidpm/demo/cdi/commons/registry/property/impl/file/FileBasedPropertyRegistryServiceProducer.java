@@ -4,9 +4,9 @@ import javax.enterprise.inject.New;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -20,7 +20,7 @@ public class FileBasedPropertyRegistryServiceProducer {
 
     @Produces
     @CDIPropertyRegistryFileBased
-    private PropertyRegistryService createFileBased(@New FileBasedPropertyRegistryService service ){
+    private PropertyRegistryService createFileBased(@New FileBasedPropertyRegistryService service) {
         return service;
     }
 }

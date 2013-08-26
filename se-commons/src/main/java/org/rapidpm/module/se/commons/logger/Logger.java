@@ -1,4 +1,4 @@
-package org.rapidpm.demo.cdi.commons.logger;
+package org.rapidpm.module.se.commons.logger;
 
 import org.apache.log4j.Priority;
 

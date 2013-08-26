@@ -8,6 +8,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.CDIPropertyRegistryFileBased;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -23,7 +24,7 @@ public class DefaultPropertyContextResolver implements ContextResolver {
     private
     @Inject
     @CDILogger
-    org.rapidpm.demo.cdi.commons.logger.Logger logger;
+    Logger logger;
 
     public AnnotationLiteral resolveContext(final Class<?> targetClass){
         if(targetClass.getName().equals(PropertyRegistryService.class.getName())){

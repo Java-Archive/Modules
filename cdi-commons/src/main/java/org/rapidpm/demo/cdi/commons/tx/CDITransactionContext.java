@@ -14,10 +14,10 @@ import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.lang.cache.generic.Cache;
 import org.rapidpm.lang.cache.generic.Cacheable;
 import org.rapidpm.lang.cache.generic.GenericCacheThreadsave;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -68,8 +68,7 @@ public class CDITransactionContext implements Context {
      * @param contextual        the contextual type
      * @param creationalContext the context in which the new instance will be created
      * @return the contextual instance
-     * @throws javax.enterprise.context.ContextNotActiveException
-     *          if the context is not active
+     * @throws javax.enterprise.context.ContextNotActiveException if the context is not active
      */
     @Override
     public <T> T get(Contextual<T> contextual, CreationalContext<T> creationalContext) {
@@ -103,7 +102,7 @@ public class CDITransactionContext implements Context {
                     if (logger.isDebugEnabled()) {
                         logger.debug("annotationPresent = " + annotationPresent);
                     }
-                    if(annotationPresent){
+                    if (annotationPresent) {
                         final String className = t.getClass().getAnnotation(Cacheable.class).className().getName();
                         if (logger.isDebugEnabled()) {
                             logger.debug("classname " + className);
@@ -136,7 +135,7 @@ public class CDITransactionContext implements Context {
                             }
                             return t;
                         }
-                    } else{
+                    } else {
                         if (logger.isDebugEnabled()) {
                             logger.debug("t not chacheable " + t);
 
@@ -154,14 +153,13 @@ public class CDITransactionContext implements Context {
         return null;
     }
 
-     /**
+    /**
      * Return an existing instance of a certain contextual type or a null value.
      *
      * @param <T>        the type of the contextual type
      * @param contextual the contextual type
      * @return the contextual instance, or a null value
-     * @throws javax.enterprise.context.ContextNotActiveException
-     *          if the context is not active
+     * @throws javax.enterprise.context.ContextNotActiveException if the context is not active
      */
     @Override
     public <T> T get(Contextual<T> contextual) {

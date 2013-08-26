@@ -6,10 +6,10 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.locale.CDILocale;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.ApplicationPropertyRegistry;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert

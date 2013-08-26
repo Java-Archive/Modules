@@ -6,10 +6,10 @@ import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.locale.CDILocale;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.ModulPropertyRegistry;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
@@ -40,10 +40,10 @@ public class ModulFilePropertyRegistry implements ModulPropertyRegistry {
     @Override
     public String getProperty(String key) {
         final boolean contains = messages.containsKey(key);
-        if(contains){
+        if (contains) {
             return messages.getString(key);
-        } else{
-            return "###"+key+"###";  //TODO not good, replace with def null object
+        } else {
+            return "###" + key + "###";  //TODO not good, replace with def null object
         }
     }
 

@@ -11,8 +11,8 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert

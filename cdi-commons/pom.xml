@@ -25,10 +25,14 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
-            <artifactId>genericcache</artifactId>
+            <artifactId>se-commons</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>se-genericcache</artifactId>
             <scope>compile</scope>
         </dependency>
         <!-- testing stuff -->

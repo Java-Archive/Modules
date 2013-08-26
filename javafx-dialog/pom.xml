@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.rapidpm</groupId>
@@ -13,18 +14,22 @@
     <artifactId>javafx-dialog</artifactId>
     <version>${parent.version}</version>
 
-    
-   <properties>
+
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.symbolic.name>javafx-dialog</project.symbolic.name>
-       <jfx.version>2.2</jfx.version>
-       <!--<javafx.home>${java.home}</javafx.home>-->
-       <!--<javafx.runtime.lib.jar>${javafx.home}/lib/jfxrt.jar</javafx.runtime.lib.jar>-->
-       <!--<javafx.tools.ant.jar>${javafx.home}/../lib/ant-javafx.jar</javafx.tools.ant.jar>-->
-   </properties>
+        <jfx.version>2.2</jfx.version>
+        <!--<javafx.home>${java.home}</javafx.home>-->
+        <!--<javafx.runtime.lib.jar>${javafx.home}/lib/jfxrt.jar</javafx.runtime.lib.jar>-->
+        <!--<javafx.tools.ant.jar>${javafx.home}/../lib/ant-javafx.jar</javafx.tools.ant.jar>-->
+    </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>se-commons</artifactId>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
             <artifactId>cdi-commons-se</artifactId>
@@ -41,8 +46,6 @@
     </dependencies>
 
 
-
-
     <inceptionYear>2013</inceptionYear>
     <organization>
         <name>RapidPM</name>
@@ -50,11 +53,11 @@
     </organization>
     <url>http://wiki.rapidpm.org/display/PHB/Modul+-+dialog</url>
     <!--<scm>-->
-        <!--<url>https://bitbucket.org/rapidpm/rapidpm-modules</url>-->
-        <!--<connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>-->
-        <!--<developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>-->
-        <!--&lt;!&ndash;<tag>master</tag>&ndash;&gt;-->
-        <!--<tag>rapidpm-parent-1.1</tag>-->
+    <!--<url>https://bitbucket.org/rapidpm/rapidpm-modules</url>-->
+    <!--<connection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</connection>-->
+    <!--<developerConnection>scm:git:ssh://git@bitbucket.org//rapidpm/modules.git</developerConnection>-->
+    <!--&lt;!&ndash;<tag>master</tag>&ndash;&gt;-->
+    <!--<tag>rapidpm-parent-1.1</tag>-->
     <!--</scm>-->
     <developers>
         <developer>

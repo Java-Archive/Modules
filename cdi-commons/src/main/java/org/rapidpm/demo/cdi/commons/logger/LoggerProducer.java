@@ -4,8 +4,7 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 
-import org.rapidpm.demo.cdi.commons.CDICommons;
-import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**

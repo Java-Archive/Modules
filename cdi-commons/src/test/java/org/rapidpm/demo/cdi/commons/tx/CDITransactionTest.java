@@ -2,11 +2,8 @@ package org.rapidpm.demo.cdi.commons.tx;
 
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.New;
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -16,7 +13,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
-import org.rapidpm.lang.cache.generic.Cacheable;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert

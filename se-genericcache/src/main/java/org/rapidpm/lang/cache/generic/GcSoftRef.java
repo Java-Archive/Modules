@@ -6,10 +6,11 @@
 
 package org.rapidpm.lang.cache.generic;
 
-import org.apache.log4j.Logger;
 
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
+
+import org.rapidpm.module.se.commons.logger.Logger;
 
 public class GcSoftRef<T> extends SoftReference<T> implements GcReference<T> {
     private static final Logger logger = Logger.getLogger(GcSoftRef.class);

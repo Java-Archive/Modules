@@ -4,11 +4,11 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.locale.CDILocale;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -29,8 +29,8 @@ public class FilteredTableCdiHolder {
     private @Inject @CDILocale
     Locale defaultLocale;
 
-    public String getRessource(final String relativeKey){
-        final String mappedKey = propertyRegistryService.getRessourceForKey(COMPONENT_NAME +"." + relativeKey);
+    public String getRessource(final String relativeKey) {
+        final String mappedKey = propertyRegistryService.getRessourceForKey(COMPONENT_NAME + "." + relativeKey);
         if (logger.isDebugEnabled()) {
             logger.debug("mappedKey - " + mappedKey);
         }

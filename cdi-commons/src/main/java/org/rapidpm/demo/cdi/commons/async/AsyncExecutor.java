@@ -5,7 +5,7 @@ import java.util.concurrent.Future;
 
 import javax.interceptor.InvocationContext;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -29,7 +29,7 @@ public class AsyncExecutor implements Callable<Future<Object>> {
             Object result = invocationContext.proceed();
             if (result instanceof Future) {
                 return (Future) result;
-            }else{
+            } else {
                 return null;
             }
         } catch (Exception e) {

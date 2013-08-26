@@ -34,14 +34,13 @@ import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
-import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableCdiHolder;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableCdiHolder;
 import org.rapidpm.demo.javafx.tableview.filtered.control.ComboBoxMenuItem;
 import org.rapidpm.demo.javafx.tableview.filtered.control.DateMenuItem;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.DateOperator;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.IFilterOperator;
+import org.rapidpm.module.se.commons.logger.Logger;
 import thirdparty.eu.schudt.javafx.controls.calendar.DatePicker;
 
 /**
@@ -76,14 +75,14 @@ public class DateFilterEditor
         final List<DateOperator.Type> set2 = new ArrayList<>(20);
         parseTypes(types, set1, set2);
 
-        if(dateFormat.isEmpty()){
+        if (dateFormat.isEmpty()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("setze default dateformat");
             }
             dateFormat = cdiHolder.getRessource("default.dateformat");
 
-        } else{
-           //nichts
+        } else {
+            //nichts
         }
 
         picker1 = new Picker(dateFormat, set1.toArray(new DateOperator.Type[0]));

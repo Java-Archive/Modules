@@ -9,11 +9,11 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.IFilterOperator;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.operation.Operation;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.IFilterableTableColumn;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -49,12 +49,12 @@ public abstract class FilteredTableViewIterator<T, V> {
 
                     for (final T rowElement : data2Filter) {
                         final V value2Test = getValue(rowElement);
-                        if(value2Test == null){
+                        if (value2Test == null) {
                             if (logger.isDebugEnabled()) {
                                 logger.debug("value2Test == null -> wird behalten");
                             }
                             //remove.add(rowElement);
-                        } else{
+                        } else {
                             decide(filter, value2Test, rowElement);
                         }
                     }

@@ -5,9 +5,9 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.lang.cache.generic.Cacheable;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -18,7 +18,7 @@ import org.rapidpm.lang.cache.generic.Cacheable;
 @Cacheable(primaryKeyAttributeName = "txNumber")
 public abstract class AbstractCDITransaction implements CDITransaction, Serializable {
 
-    public String txNumber = System.nanoTime()+"";
+    public String txNumber = System.nanoTime() + "";
 
 
     private @Inject @CDILogger

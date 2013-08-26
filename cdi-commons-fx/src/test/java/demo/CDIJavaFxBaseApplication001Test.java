@@ -15,7 +15,7 @@ import org.junit.Assert;
 import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
 import org.rapidpm.demo.cdi.commons.fx.JavaFXBaseTest;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert

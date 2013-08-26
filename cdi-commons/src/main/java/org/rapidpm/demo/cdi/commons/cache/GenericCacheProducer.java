@@ -6,10 +6,10 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.lang.cache.generic.Cache;
 import org.rapidpm.lang.cache.generic.GenericCacheThreadsave;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -24,17 +24,17 @@ public class GenericCacheProducer {
     Logger logger;
 
     @Produces @CDIGenericCache
-    public Cache createCache(final BeanManager beanManager, final InjectionPoint injectionPoint){
+    public Cache createCache(final BeanManager beanManager, final InjectionPoint injectionPoint) {
         final Annotated annotated = injectionPoint.getAnnotated();
         final boolean annotationPresent = annotated.isAnnotationPresent(CDIGenericCache.class);
-        if(annotationPresent){
+        if (annotationPresent) {
             final Class<?> aClass = annotated.getAnnotation(CDIGenericCache.class).clazz2Cache();
             return new GenericCacheThreadsave(aClass, false);
-        } else{
+        } else {
             if (logger.isDebugEnabled()) {
                 logger.debug("Annotation CDIGenericCache not present...");
             }
         }
-       return null;
+        return null;
     }
 }

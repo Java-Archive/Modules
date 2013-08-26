@@ -5,8 +5,8 @@ import java.util.concurrent.CountDownLatch;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -26,17 +26,13 @@ public class TestService1 {
     private boolean called = false;
 
     @Async
-    public void call()
-    {
-        try
-        {
+    public void call() {
+        try {
             Thread.sleep(1 * 1000);
             if (logger.isDebugEnabled()) {
                 logger.debug("wach again");
             }
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             throw new IllegalStateException(e);
         }
         this.called = true;
@@ -46,8 +42,7 @@ public class TestService1 {
         TEST_LATCH.countDown();
     }
 
-    public boolean isCalled()
-    {
+    public boolean isCalled() {
         return called;
     }
 }

@@ -6,27 +6,26 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Sven Ruppert
  * Date: 09.06.13
  * Time: 17:33
- *
+ * <p/>
  * TargetFile based on the given date. The File will be in an dir
  * with the following structure.
- *
+ * <p/>
  * yyyy
- *      MM
- *          dd
+ * MM
+ * dd
  * For example 30.12.2010 would be transformed into an dir
  * 2010
- *      12
- *          30 this file would be given back.
- *
+ * 12
+ * 30 this file would be given back.
  */
 public class TargetDateFile {
 

@@ -36,9 +36,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.IFilterOperator;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.editor.IFilterEditor;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**

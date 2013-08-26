@@ -21,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
 import javafx.stage.Window;
 import javafx.util.Callback;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
@@ -74,9 +74,9 @@ public class AutoCompleteTextFieldSkin<T extends AutoCompleteElement> extends Sk
 
             @Override
             public void changed(ObservableValue ov, Object t, Object t1) {
-                if(t == null && ((String)t1).length() > 1){
-                     hidePopUp();  //manuelle Eingabe beginnt mit einem Zeichen
-                 } else if (listview.getItems() != null && listview.getItems().size() > 0) {
+                if (t == null && ((String) t1).length() > 1) {
+                    hidePopUp();  //manuelle Eingabe beginnt mit einem Zeichen
+                } else if (listview.getItems() != null && listview.getItems().size() > 0) {
                     showPopup();
                 } else {
                     hidePopup();
@@ -285,7 +285,7 @@ public class AutoCompleteTextFieldSkin<T extends AutoCompleteElement> extends Sk
         return Math.max(100.0d, textbox.getPrefWidth());
     }
 
-    public void hidePopUp(){
+    public void hidePopUp() {
         popup.hide();
     }
 
@@ -304,13 +304,14 @@ public class AutoCompleteTextFieldSkin<T extends AutoCompleteElement> extends Sk
         if (itemCount > AutoCompleteTextField.DEFAULT_LIMIT) {
             listview.setPrefHeight((AutoCompleteTextField.DEFAULT_LIMIT * heightPerElement));
             listview.setVisible(true);
-        } else if(itemCount > 1){
+        } else if (itemCount > 1) {
             final int tmpCount = itemCount + 1;
             listview.setPrefHeight(tmpCount * heightPerElement);
             listview.setVisible(true);
-        } if(itemCount == 0) {
+        }
+        if (itemCount == 0) {
             listview.setVisible(false);
-        } else{
+        } else {
             listview.setPrefHeight(itemCount * heightPerElement); //Sollte dann weg sein
             listview.setVisible(true);
         }
@@ -371,9 +372,9 @@ public class AutoCompleteTextFieldSkin<T extends AutoCompleteElement> extends Sk
         //setzen von Text
         final int deltalength = Math.abs(t.length() - t1.length());
         final boolean b = deltalength > 1;
-        if(b){
+        if (b) {
             hidePopUp();
-        } else{
+        } else {
             if (value.length() > 0) {
                 final String txtdata = (textbox.getText()).trim();
                 if (logger.isDebugEnabled()) {

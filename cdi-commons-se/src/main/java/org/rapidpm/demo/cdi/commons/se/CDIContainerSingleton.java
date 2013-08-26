@@ -4,19 +4,17 @@ import javax.enterprise.event.Event;
 import javax.enterprise.inject.Instance;
 import javax.enterprise.util.AnnotationLiteral;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Sven Ruppert
  * Date: 05.06.13
  * Time: 22:07
- *
+ * <p/>
  * A Singleton for the SE Applikation.
- *
- *
  */
 public class CDIContainerSingleton {
 
@@ -33,7 +31,7 @@ public class CDIContainerSingleton {
         logger = weldContainer.instance().select(Logger.class).get();  //bootstrapping but with Weld itself ;-)
     }
 
-    public <T> T getManagedInstance(final Class<T> clazz){
+    public <T> T getManagedInstance(final Class<T> clazz) {
         if (logger.isDebugEnabled()) {
             logger.debug("managed instance " + clazz);
         }
@@ -47,12 +45,13 @@ public class CDIContainerSingleton {
         }
         return weldContainer.instance().select(clazz);
     }
-    public <T> T getManagedInstance(final AnnotationLiteral literal,final Class<T> clazz){
+
+    public <T> T getManagedInstance(final AnnotationLiteral literal, final Class<T> clazz) {
         if (logger.isDebugEnabled()) {
             logger.debug("managed instance " + clazz);
             logger.debug("AnnotationLiteral - literal " + literal);
         }
-        final Instance<T> ref = getInstanceReference(literal,clazz);
+        final Instance<T> ref = getInstanceReference(literal, clazz);
         return ref.get();
     }
 
@@ -64,14 +63,13 @@ public class CDIContainerSingleton {
         return weldContainer.instance().select(clazz, literal);
     }
 
-    public void fireEvent(final Object o){
+    public void fireEvent(final Object o) {
         weldContainer.event().fire(o);
     }
 
-    public Event<Object> event(){
+    public Event<Object> event() {
         return weldContainer.event();
     }
-
 
 
 }

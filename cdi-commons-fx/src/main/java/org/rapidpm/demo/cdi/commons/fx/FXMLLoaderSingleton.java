@@ -10,8 +10,8 @@ import javax.inject.Singleton;
 
 import javafx.fxml.FXMLLoader;
 import javafx.util.Callback;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert

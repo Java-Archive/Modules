@@ -5,14 +5,13 @@ import javax.inject.Inject;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import javafx.stage.Stage;
-import org.junit.Ignore;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -20,7 +19,6 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
  * Time: 11:37
  */
 public abstract class JavaFXBaseTest {
-
 
 
     @Before
@@ -61,10 +59,10 @@ public abstract class JavaFXBaseTest {
             final String testClassName = getParentTestClass().getSimpleName();
             if (simpleName.equals(testClassName)) {
                 testImpl(stage);
-                if(isExitAfterTest()){
+                if (isExitAfterTest()) {
                     stage.close();
                     Platform.exit();
-                } else{
+                } else {
                     if (logger.isDebugEnabled()) {
                         logger.debug("isExitAfterTest -> " + isExitAfterTest());
                     }
@@ -74,6 +72,7 @@ public abstract class JavaFXBaseTest {
                 logger.debug("JavaFXTestSingleton.simpleName (nicht aktiv)= " + testClassName);
             }
         }
+
         public abstract void testImpl(final Stage stage);
     }
 }

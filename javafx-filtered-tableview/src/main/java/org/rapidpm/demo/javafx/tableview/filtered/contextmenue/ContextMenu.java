@@ -14,8 +14,8 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.FileChooser;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert Date: 14.08.13 Time: 16:30
@@ -31,8 +31,8 @@ public class ContextMenu<T> extends javafx.scene.control.ContextMenu {
 
     private FilteredTableView<T> filteredTableView;
 
-//    @PostConstruct
-    public void init(){
+    //    @PostConstruct
+    public void init() {
         MenuItem openCSV = new MenuItem("contextmenu.opencsv");
         openCSV.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
@@ -176,7 +176,7 @@ public class ContextMenu<T> extends javafx.scene.control.ContextMenu {
         });
 
 
-        getItems().addAll(openCSV, saveCSV, openXlS, saveXlS, copyTableCSV2Clipboard,copyTableImage2Clipboard);
+        getItems().addAll(openCSV, saveCSV, openXlS, saveXlS, copyTableCSV2Clipboard, copyTableImage2Clipboard);
     }
 
 

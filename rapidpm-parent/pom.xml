@@ -83,80 +83,87 @@
 
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
-                <artifactId>genericcache</artifactId>
-                <version>1.1</version>
+                <artifactId>se-commons</artifactId>
+                <version>${parent.version}</version>
+                <scope>compile</scope>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.rapidpm.modul</groupId>
+                <artifactId>se-genericcache</artifactId>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>test</scope>
                 <type>test-jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-se</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
                 <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-se</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>test</scope>
                 <type>test-jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-fx</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>cdi-commons-fx</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-dialog</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-searchbox</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-filtered-tableview</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-autocomplete-textfield</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-progressbartable</artifactId>
-                <version>1.1</version>
+                <version>${parent.version}</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>
@@ -988,6 +995,7 @@
 
 
     <modules>
+        <module>../se-commons</module>
         <module>../se-genericcache</module>
         <module>../cdi-commons</module>
         <module>../cdi-commons-se</module>

@@ -31,26 +31,21 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.AbstractFilterableTableColumn;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.ColumnFilterEvent;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
  * A {@link TableView} that identifies any {@link AbstractFilterableTableColumn}'s added to it,
  * and fires a single event when any of them have their filters changed.
- *
+ * <p/>
  * To listen for changes the table's filters, register a {@link ColumnFilterEvent#FILTER_CHANGED_EVENT}
  * with {@link #addEventFilter(javafx.event.EventType, javafx.event.EventHandler) }
  * or {@link #addEventHandler(javafx.event.EventType, javafx.event.EventHandler) }
@@ -73,19 +68,19 @@ public class FilteredTableView<T> extends TableView<T> {
 
     private ObservableList<T> backupItems = FXCollections.observableArrayList();
 
-    public void setTableViewData(final ObservableList<T> items){
+    public void setTableViewData(final ObservableList<T> items) {
         super.setItems(items);
         backupItems.clear();
         backupItems.addAll(items);
     }
 
-    public ObservableList<T> getBackupItems(){
+    public ObservableList<T> getBackupItems() {
         final ObservableList<T> copy = FXCollections.observableArrayList();
         copy.addAll(backupItems);
         return copy;
     }
 
-    public void resetTableViewDataFromBackup(){
+    public void resetTableViewDataFromBackup() {
         super.setItems(getBackupItems());
     }
 
@@ -160,13 +155,14 @@ public class FilteredTableView<T> extends TableView<T> {
                     for (final MouseClickedRowAction clickedRowAction : mouseDoubleClickedRowActions) {
                         clickedRowAction.workOnSelecteditem(selectedItem);
                     }
-                } if(mouseEvent.getClickCount() == 1){
+                }
+                if (mouseEvent.getClickCount() == 1) {
                     final T selectedItem = getSelectedItem(mouseEvent);
                     for (final MouseClickedRowAction clickedRowAction : mouseSingleClickedRowActions) {
                         clickedRowAction.workOnSelecteditem(selectedItem);
                     }
 
-                }else {
+                } else {
                     if (logger.isDebugEnabled()) {
                         logger.debug("ClickCount <= 1 " + mouseEvent);
                     }

@@ -2,13 +2,13 @@ package org.rapidpm.demo.cdi.commons.registry.property.impl.file;
 
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.CompanyPropertyRegistry;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.registries.ApplicationFilePropertyRegistry;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.registries.ClassFilePropertyRegistry;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.registries.ModulFilePropertyRegistry;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -34,17 +34,17 @@ public class FileBasedPropertyRegistryService extends PropertyRegistryService {
 
     @Override
     public String getRessourceForKey(String ressourceKey) {
-        if(classFilePropertyRegistry.hasProperty(ressourceKey)){
+        if (classFilePropertyRegistry.hasProperty(ressourceKey)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("classFilePropertyRegistry found Property " + ressourceKey);
             }
             return classFilePropertyRegistry.getProperty(ressourceKey);
-        } else if(modulFilePropertyRegistry.hasProperty(ressourceKey)){
+        } else if (modulFilePropertyRegistry.hasProperty(ressourceKey)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("modulFilePropertyRegistry found Property " + ressourceKey);
             }
             return modulFilePropertyRegistry.getProperty(ressourceKey);
-        } else if(applicationFilePropertyRegistry.hasProperty(ressourceKey)) {
+        } else if (applicationFilePropertyRegistry.hasProperty(ressourceKey)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("applicationFilePropertyRegistry found Property " + ressourceKey);
             }

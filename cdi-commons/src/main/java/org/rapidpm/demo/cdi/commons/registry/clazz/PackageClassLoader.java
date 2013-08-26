@@ -10,8 +10,8 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -22,7 +22,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 
 public class PackageClassLoader {
 
-     private @Inject @CDILogger Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     public Class[] getClasses(String packageName) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

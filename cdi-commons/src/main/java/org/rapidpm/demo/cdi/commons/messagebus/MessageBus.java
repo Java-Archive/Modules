@@ -4,8 +4,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import com.google.common.eventbus.EventBus;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -15,7 +15,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 @ApplicationScoped //zu hart def
 public class MessageBus {
 
-//    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());
+    //    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());
     private EventBus eventBus = new EventBus(this.getClass().getName());
 
     private
@@ -23,27 +23,26 @@ public class MessageBus {
     @CDILogger
     Logger logger;
 
-    public void registerCallBack(MessageBusCallback callBack){
+    public void registerCallBack(MessageBusCallback callBack) {
         if (logger.isDebugEnabled()) {
             logger.debug("registerCallBack " + callBack);
         }
         eventBus.register(callBack);
     }
 
-    public void destroyCallBack(MessageBusCallback callBack){
+    public void destroyCallBack(MessageBusCallback callBack) {
         if (logger.isDebugEnabled()) {
             logger.debug("destroyCallBack " + callBack);
         }
         eventBus.unregister(callBack);
     }
 
-    public void post(Message message){
+    public void post(Message message) {
         if (logger.isDebugEnabled()) {
             logger.debug("post " + message);
         }
         eventBus.post(message.getValue());
     }
-
 
 
     //ScoringMessgae -> Cache<ScoringMessaget>
@@ -81,9 +80,6 @@ public class MessageBus {
 //        //hole aus dem Cache
 //        return null;
 //    }
-
-
-
 
 
 }
