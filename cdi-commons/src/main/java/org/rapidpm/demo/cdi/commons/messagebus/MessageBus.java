@@ -41,7 +41,7 @@ public class MessageBus {
         if (logger.isDebugEnabled()) {
             logger.debug("post " + message);
         }
-        eventBus.post(message.getValue());
+        eventBus.post(message);
     }
 
 
