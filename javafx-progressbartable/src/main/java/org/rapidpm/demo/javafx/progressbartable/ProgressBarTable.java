@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.javafx.progressbartable;
 
 import java.util.ArrayList;
@@ -31,20 +47,20 @@ public class ProgressBarTable {
     private static final int COL_STATUS_WIDTH = 150;
     private TableView<WaitableTask> table = createTable();
 
-    public Stage createStage(){
-         final BorderPane root = new BorderPane();
-         root.setPrefHeight(28 + (table.getItems().size() * 24));
-         root.setPrefWidth(COL_STEP_WIDTH + COL_STATUS_WIDTH + 128);
-         root.setMinWidth(COL_STEP_WIDTH + COL_STATUS_WIDTH + 128);
-         root.setCenter(table);
-         final Stage stage = new Stage();
-         stage.setScene(new Scene(root));
-         stage.initStyle(StageStyle.UNDECORATED);
-         stage.initModality(Modality.APPLICATION_MODAL);
-         return stage;
-     }
+    public Stage createStage() {
+        final BorderPane root = new BorderPane();
+        root.setPrefHeight(28 + (table.getItems().size() * 24));
+        root.setPrefWidth(COL_STEP_WIDTH + COL_STATUS_WIDTH + 128);
+        root.setMinWidth(COL_STEP_WIDTH + COL_STATUS_WIDTH + 128);
+        root.setCenter(table);
+        final Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        return stage;
+    }
 
-    public void addTask(@NotNull final WaitableTask task){
+    public void addTask(@NotNull final WaitableTask task) {
         table.getItems().add(task);
     }
 
@@ -72,7 +88,7 @@ public class ProgressBarTable {
         return table;
     }
 
-    public void execute(){
+    public void execute() {
         ExecutorService executor = Executors.newFixedThreadPool(table.getItems().size(), new ThreadFactory() {
             @Override
             public Thread newThread(Runnable r) {
@@ -88,9 +104,7 @@ public class ProgressBarTable {
     }
 
 
-
-
-    public static class WaitableTask extends Task<Void>{
+    public static class WaitableTask extends Task<Void> {
 
         private final String taskname;
         private boolean waiting = true;
@@ -123,7 +137,7 @@ public class ProgressBarTable {
             for (final Step step : steps) {
                 this.updateMessage(step.getMessage());
                 this.updateProgress(i, steps.size());
-                i= i+1;
+                i = i + 1;
                 step.doIt();
             }
 
@@ -133,7 +147,7 @@ public class ProgressBarTable {
         }
     }
 
-    public static abstract class Step{
+    public static abstract class Step {
         private String message;
 
         protected Step(String messgae) {

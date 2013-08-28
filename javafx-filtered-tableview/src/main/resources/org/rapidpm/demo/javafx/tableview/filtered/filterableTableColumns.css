@@ -1,4 +1,36 @@
 /*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+/*
 http://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html
 
 Example of setting a global font
@@ -16,67 +48,69 @@ somewhere to actually load the font.
 */
 
 .titled-separator-menu-item .line {
-    -fx-border-color: 
-        derive(-fx-background, -40%) 
-        -fx-background 
-        derive(-fx-background, 40%) 
-        -fx-background;
+    -fx-border-color: derive(-fx-background, -40%) -fx-background derive(-fx-background, 40%) -fx-background;
 }
+
 .titled-separator-menu-item .label {
     -fx-background-color: derive(-fx-background, 0%);
-    -fx-background-radius: 5,5,5,5;
+    -fx-background-radius: 5, 5, 5, 5;
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-padding: -2 2 -2 2;
 }
 
-.combobox-menu-item ,
-.combobox-menu-item:hover ,
+.combobox-menu-item,
+.combobox-menu-item:hover,
 .combobox-menu-item:focused {
     -fx-background-color: transparent;
 }
+
 .combobox-menu-item .combo-box:disabled {
     -fx-background-color: transparent, -fx-outer-border, -fx-inner-border, -fx-body-color;
 }
 
-.textfield-menu-item ,
-.textfield-menu-item:hover ,
+.textfield-menu-item,
+.textfield-menu-item:hover,
 .textfield-menu-item:focused {
     -fx-text-fill: black;
     -fx-background-color: transparent;
 }
+
 .textfield-menu-item .text-field:disabled {
     -fx-background-color: transparent, -fx-box-border, -fx-control-inner-background;
 }
 
-.date-menu-item ,
-.date-menu-item:hover ,
+.date-menu-item,
+.date-menu-item:hover,
 .date-menu-item:focused {
     -fx-text-fill: black;
     -fx-background-color: transparent;
 }
+
 .date-menu-item .text-field:disabled {
     -fx-background-color: transparent, -fx-box-border, -fx-control-inner-background;
 }
 
-
-
 .filter-button-node {
     -fx-background-image: url('funnel-icon.png');
-    -fx-background-repeat: no-repeat;   
+    -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-color: transparent;
     -fx-scale-y: 0.8;
 }
+
 .filter-button-node:hover {
     -fx-background-image: url('funnel-pencil-icon.png');
 }
-.filter-button-node.active{
+
+.filter-button-node.active {
     -fx-background-image: url('funnel-active-icon.png');
 }
+
 .filter-button-node.active:hover {
     -fx-background-image: url('funnel-pencil-active-icon.png');
 }
+
 .filter-button-node:focused {
     -fx-background-insets: 0, 0, 1, 1;
 }
@@ -86,17 +120,11 @@ somewhere to actually load the font.
     -fx-content-display: graphic-only;
 }*/
 
-
-
-
-
-.datepicker-invalid
-{
+.datepicker-invalid {
     -fx-border-color: red;
 }
 
-.datepicker-valid
-{
+.datepicker-valid {
     -fx-border-color: null;
 }
 
@@ -106,7 +134,7 @@ somewhere to actually load the font.
 
 .calendar-popup-button {
     -fx-background-image: url('calendar-icon.png');
-    -fx-background-repeat: no-repeat;   
+    -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-color: transparent;
     -fx-content-display: graphic-only;
@@ -117,24 +145,21 @@ somewhere to actually load the font.
 }
 
 /* The calendar header, which contains the navigation elements. */
-.calendar-header
-{
-    -fx-background-color: linear-gradient(to bottom, derive(-fx-base,-70%), derive(-fx-base,-90%));
+.calendar-header {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-base, -70%), derive(-fx-base, -90%));
     -fx-padding: 0.5em;
-   /* -fx-background-radius: 10;*/
+    /* -fx-background-radius: 10;*/
 }
 
 /* The calendar footer, which contains the today button. It is only visible when the today button is shown */
-.calendar-footer
-{
-    -fx-background-color: linear-gradient(to top, derive(-fx-base,-70%), derive(-fx-base,-90%));
+.calendar-footer {
+    -fx-background-color: linear-gradient(to top, derive(-fx-base, -70%), derive(-fx-base, -90%));
     -fx-padding: 0.2em;
 }
 
 /* The 3 different panes, which show the month, the year, and the decades */
-.calendar-month-view, .calendar-year-view, .calendar-decades-view
-{
-    -fx-background-color: linear-gradient(to bottom, derive(-fx-base,80%), derive(-fx-base,40%));
+.calendar-month-view, .calendar-year-view, .calendar-decades-view {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-base, 80%), derive(-fx-base, 40%));
     -fx-padding: 0;
 }
 
@@ -172,7 +197,7 @@ somewhere to actually load the font.
 
 /* The button which shows the current day. */
 .calendar-cell-today {
-     -fx-background-color: -fx-accent;
+    -fx-background-color: -fx-accent;
 }
 
 /* The buttons in the header and the footer */
