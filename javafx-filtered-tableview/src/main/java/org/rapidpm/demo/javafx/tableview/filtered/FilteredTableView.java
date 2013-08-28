@@ -172,7 +172,7 @@ public class FilteredTableView<T> extends TableView<T> {
 
         //add contextMenue
 //        final ContextMenu contextMenu = new ContextMenu();
-//        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");  //TODO i18n
+//        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");
 //        copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
 //            public void handle(ActionEvent e) {
 //                final ObservableList<TableColumn<T, ?>> columns = getColumns();

@@ -51,18 +51,18 @@ public class ProgressBarTable {
     private TableView<WaitableTask> createTable() {
         TableView<WaitableTask> table = new TableView<>();
 
-        final TableColumn<WaitableTask, String> stepCol = new TableColumn("Step");  //TODO CDI i18n
+        final TableColumn<WaitableTask, String> stepCol = new TableColumn("Step");  //JIRA MOD-47 CDI i18n
         stepCol.setCellValueFactory(new PropertyValueFactory<WaitableTask, String>("title"));
         stepCol.setPrefWidth(COL_STEP_WIDTH);
         stepCol.setMinWidth(COL_STEP_WIDTH);
 
-        final TableColumn<WaitableTask, String> statusCol = new TableColumn("Status"); //TODO CDI i18n
+        final TableColumn<WaitableTask, String> statusCol = new TableColumn("Status"); //JIRA MOD-48 CDI i18n
         statusCol.setCellValueFactory(new PropertyValueFactory<WaitableTask, String>("message"));
         statusCol.setPrefWidth(COL_STATUS_WIDTH);
         statusCol.setMinWidth(COL_STATUS_WIDTH);
 
         final TableColumn<WaitableTask, Double> progressCol = new TableColumn("Progress");
-        progressCol.setCellValueFactory(new PropertyValueFactory<WaitableTask, Double>("progress"));   //TODO CDI i18n
+        progressCol.setCellValueFactory(new PropertyValueFactory<WaitableTask, Double>("progress"));   //JIRA MOD-49 CDI i18n
         progressCol.setCellFactory(ProgressBarTableCell.<WaitableTask>forTableColumn());
 
 

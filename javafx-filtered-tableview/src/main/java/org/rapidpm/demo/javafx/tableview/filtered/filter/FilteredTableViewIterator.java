@@ -25,7 +25,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * @param <T>yp   der Typ der eine Zeile/Row beschreibt, z.B. TransientRechnung
  * @param <V>alue der den Zelleninhalt beschreibt der im vergleich verwendet werden soll.. z.B. String
  */
-//TODO die DefaultTypOperationen können per Annotation aus der Registry geholt werden.
+//JIRA MOD-57 die DefaultTypOperationen können per Annotation aus der Registry geholt werden.
 public abstract class FilteredTableViewIterator<T, V> {
     private static final Logger logger = Logger.getLogger(FilteredTableViewIterator.class);
 

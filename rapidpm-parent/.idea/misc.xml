@@ -380,11 +380,13 @@
         <option value="$PROJECT_DIR$/../javafx-progressbartable/pom.xml" />
         <option value="$PROJECT_DIR$/../javafx-searchbox/pom.xml" />
         <option value="$PROJECT_DIR$/../javafx-commons/pom.xml" />
+        <option value="$PROJECT_DIR$/../se-commons/pom.xml" />
+        <option value="$PROJECT_DIR$/../se-tablemodel/pom.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectKey">
-    <option name="state" value="https://svenruppert@bitbucket.org/svenruppert/rapidpm-parent.git" />
+    <option name="state" value="https://svenruppert@bitbucket.org/rapidpm/modules.git" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

@@ -1,5 +1,10 @@
 package thirdparty.eu.schudt.javafx.controls.calendar;
 
+import java.text.DateFormat;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
+import java.util.Date;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -10,11 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Responsible for displaying the days of a month.
@@ -265,7 +265,7 @@ final class MonthView extends DatePane {
 
             label.setText(shortWeekDay);
         }
-        //TODO CDI
+        //JIRA MOD-59 CDIPropertyRegistryService verwenden - updateWeekNames
         title.set(getDateFormat("MMMM yyyy").format(calendarView.getCalendar().getTime()));
     }
 }

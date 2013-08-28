@@ -1,11 +1,11 @@
 package junit.org.rapidpm.lang.cache.generic.document;
 
+import java.util.Collection;
+
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.Test;
 import org.junit.After;
 import org.junit.Before;
-
-import java.util.Collection;
 
 
 public class DocumentCacheWrapperTest {
@@ -39,7 +39,7 @@ public class DocumentCacheWrapperTest {
      */
     @org.junit.Test
     public void testPut2Cache() throws Exception {
-        //TODO: Test goes here...
+        //JIRA MOD-22 test Fehlt : testPut2Cache()
     }
 
     /**
@@ -47,7 +47,7 @@ public class DocumentCacheWrapperTest {
      */
     @org.junit.Test
     public void testRemovePerson() throws Exception {
-        //TODO: Test goes here...
+        //JIRA MOD-23 test Fehlt : testRemovePerson()
     }
 
     /**
@@ -55,11 +55,10 @@ public class DocumentCacheWrapperTest {
      */
     @org.junit.Test
     public void testGetDocument() throws Exception {
-        //TODO: Test goes here...
         for (int i = 0; i < 1000; i++) {
             final Collection<Document> documents = wrapper.getDocument(i);
             for (final Document document : documents) {
-                System.out.println("document = " + document);
+                //JIRA MOD-24 test Fehlt : testGetDocument()
             }
         }
 

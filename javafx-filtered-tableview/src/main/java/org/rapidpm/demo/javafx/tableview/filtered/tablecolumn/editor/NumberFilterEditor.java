@@ -39,8 +39,6 @@ import org.rapidpm.demo.javafx.tableview.filtered.control.ComboBoxMenuItem;
 import org.rapidpm.demo.javafx.tableview.filtered.control.TextFieldMenuItem;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.IFilterOperator;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.NumberOperator;
-import org.rapidpm.demo.javafx.tableview.filtered.control.TextFieldMenuItem;
-import org.rapidpm.demo.javafx.tableview.filtered.operators.NumberOperator;
 
 /**
  * @author Sven Ruppert
@@ -96,7 +94,7 @@ public class NumberFilterEditor<T extends Number>
         final NumberOperator<T> val1 = picker1.getFilter();
         final NumberOperator<T> val2 = picker2.getFilter();
 
-        // TODO: if the Types are ranges, we should probably check that they're within the proper bounds.  Need a separate check for each <T> though
+        //JIRA MOD-21 if the Types are ranges, we should probably check that they're within the proper bounds.  Need a separate check for each <T> though
 
         return new NumberOperator[]{val1, val2};
     }

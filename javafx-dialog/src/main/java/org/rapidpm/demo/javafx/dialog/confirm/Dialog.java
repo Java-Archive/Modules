@@ -186,10 +186,10 @@ public class Dialog extends Stage {
         // NOTE: invoke once during Dialog creating
         private Builder setStackTrace(Throwable t) {
             // view button
-            stage.viewStacktraceButton = new ToggleButton("View stacktrace"); //TODO CDI i18n
+            stage.viewStacktraceButton = new ToggleButton("View stacktrace"); //JIRA MOD-36 CDI i18n
 
             // copy button
-            stage.copyStacktraceButton = new Button("Copy to clipboard"); //TODO CDI i18n
+            stage.copyStacktraceButton = new Button("Copy to clipboard"); //JIRA MOD-37 CDI i18n
             HBox.setMargin(stage.copyStacktraceButton, new Insets(0, 0, 0, MARGIN));
 
             stage.stacktraceButtonsPanel = new HBox();
@@ -297,9 +297,9 @@ public class Dialog extends Stage {
         }
 
         protected Builder addOkButton() {
-            stage.okButton = new Button("OK"); //TODO CDI i18n
+            stage.okButton = new Button("OK"); //JIRA MOD-38 CDI i18n
             stage.okButton.setPrefWidth(BUTTON_WIDTH);
-            stage.okButton.setOnAction(new EventHandler<ActionEvent> () {
+            stage.okButton.setOnAction(new EventHandler<ActionEvent>() {
 
                 public void handle(ActionEvent t) {
                     stage.close();
@@ -333,7 +333,7 @@ public class Dialog extends Stage {
          * @return
          */
         public Builder addYesButton(EventHandler actionHandler) {
-            return addConfirmationButton("Ja", actionHandler);  //TODO CDI i18n
+            return addConfirmationButton("Ja", actionHandler);  //JIRA MOD-39 CDI i18n
         }
 
         /**
@@ -343,7 +343,7 @@ public class Dialog extends Stage {
          * @return
          */
         public Builder addNoButton(EventHandler actionHandler) {
-            return addConfirmationButton("Nein", actionHandler); //TODO CDI i18n
+            return addConfirmationButton("Nein", actionHandler); //JIRA MOD-40 CDI i18n
         }
 
         /**
@@ -353,7 +353,7 @@ public class Dialog extends Stage {
          * @return
          */
         public Builder addCancelButton(EventHandler actionHandler) {
-            return addConfirmationButton("Abbrechen", actionHandler);  //TODO CDI i18n
+            return addConfirmationButton("Abbrechen", actionHandler);  //JIRA MOD-41 CDI i18n
         }
 
         /**
@@ -374,9 +374,9 @@ public class Dialog extends Stage {
     /**
      * Show information dialog box as parentWindow child
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
-     * @param owner parent window
+     * @param owner   parent window
      */
     public static void showInfo(String title, String message, Window owner) {
         new Builder()
@@ -393,7 +393,7 @@ public class Dialog extends Stage {
     /**
      * Show information dialog box as parentStage child
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
      */
     public static void showInfo(String title, String message) {
@@ -403,9 +403,9 @@ public class Dialog extends Stage {
     /**
      * Show warning dialog box as parentStage child
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
-     * @param owner parent window
+     * @param owner   parent window
      */
     public static void showWarning(String title, String message, Window owner) {
         new Builder()
@@ -422,7 +422,7 @@ public class Dialog extends Stage {
     /**
      * Show warning dialog box
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
      */
     public static void showWarning(String title, String message) {
@@ -432,9 +432,9 @@ public class Dialog extends Stage {
     /**
      * Show error dialog box
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
-     * @param owner parent window
+     * @param owner   parent window
      */
     public static void showError(String title, String message, Window owner) {
         new Builder()
@@ -451,7 +451,7 @@ public class Dialog extends Stage {
     /**
      * Show error dialog box
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
      */
     public static void showError(String title, String message) {
@@ -461,10 +461,10 @@ public class Dialog extends Stage {
     /**
      * Show error dialog box with stacktrace
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
-     * @param t throwable
-     * @param owner parent window
+     * @param t       throwable
+     * @param owner   parent window
      */
     public static void showThrowable(String title, String message, Throwable t, Window owner) {
         new Builder()
@@ -482,9 +482,9 @@ public class Dialog extends Stage {
     /**
      * Show error dialog box with stacktrace
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
-     * @param t throwable
+     * @param t       throwable
      */
     public static void showThrowable(String title, String message, Throwable t) {
         showThrowable(title, message, t, null);
@@ -493,9 +493,9 @@ public class Dialog extends Stage {
     /**
      * Build confirmation dialog builder
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
-     * @param owner parent window
+     * @param owner   parent window
      * @return
      */
     public static Builder buildConfirmation(String title, String message, Window owner) {
@@ -510,7 +510,7 @@ public class Dialog extends Stage {
     /**
      * Build confirmation dialog builder
      *
-     * @param title dialog title
+     * @param title   dialog title
      * @param message dialog message
      * @return
      */

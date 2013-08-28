@@ -37,7 +37,7 @@ public interface IFilterOperator<T> {
     /**
      * Probably should turn this into a normal class, so I can create true subsets of these type in IFilterOperator subclasses
      */
-    public static enum Type { //TODO CDI i18n
+    public static enum Type {
         NONE("filteroperator.none"), NOTSET("filteroperator.notset"), EQUALS("filteroperator.equals"),
         NOTEQUALS("filteroperator.notequals"), GREATERTHAN("filteroperator.greaterthan"),
         GREATERTHANEQUALS("greaterthanequals"), LESSTHAN("filteroperator.lessthan"),

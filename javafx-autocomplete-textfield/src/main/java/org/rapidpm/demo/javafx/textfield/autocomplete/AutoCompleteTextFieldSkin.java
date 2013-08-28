@@ -410,7 +410,7 @@ public class AutoCompleteTextFieldSkin<T extends AutoCompleteElement> extends Sk
                             //
                         }
 
-                        if (limit == autofillTextbox.getListLimit())  //TODo Anzahl aller Treffer anzeigen
+                        if (limit == autofillTextbox.getListLimit())  //JIRA MOD-58 Anzahl aller Treffer anzeigen
                             break;
                     }
                     final ObservableList<T> items = listview.getItems();

@@ -28,11 +28,15 @@
         <module name="cdi-commons-se" />
         <module name="genericcache" />
         <module name="javafx-autocomplete-textfield" />
+        <module name="javafx-commons" />
         <module name="javafx-comomns" />
         <module name="javafx-dialog" />
         <module name="javafx-filtered-tableview" />
         <module name="javafx-progressbartable" />
         <module name="javafx-searchbox" />
+        <module name="se-commons" />
+        <module name="se-genericcache" />
+        <module name="tablemodell" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -49,6 +53,9 @@
       <module name="javafx-progressbartable" target="1.7" />
       <module name="javafx-searchbox" target="1.7" />
       <module name="RapidPM Parent" target="1.7" />
+      <module name="se-commons" target="1.7" />
+      <module name="se-genericcache" target="1.7" />
+      <module name="tablemodell" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

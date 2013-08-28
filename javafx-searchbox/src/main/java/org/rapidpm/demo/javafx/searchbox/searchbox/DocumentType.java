@@ -7,7 +7,7 @@ package org.rapidpm.demo.javafx.searchbox.searchbox;
  */
 public enum DocumentType {
 
-    SAMPLE("Samples"), //TODO muss
+    SAMPLE("Samples"), //JIRA MOD-50 deklarative DocumentTypes erzeugen
 
     CLASS("Classes"),
 

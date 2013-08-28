@@ -6,16 +6,17 @@
 */
 
 /* 
-   TODO customize this sample style
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
+.autofill-text {
+    -fx-skin: "org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextFieldSkin";
+}
 
-.autofill-text{
-    -fx-skin:"org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextFieldSkin";
-}   {}
+{
+}
 
-root { 
+root {
     display: block;
 }
 

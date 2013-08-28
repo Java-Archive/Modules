@@ -139,7 +139,7 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
 //    }
     private Semaphore sem = new Semaphore(1);
 
-    //TODO MappingCode muss extern liegen
+    //JIRA MOD-51 MappingCode muss extern liegen
     public void refreshIndex(final List<T> itemListe) {
         try {
             sem.acquire();
@@ -373,7 +373,7 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
 
     private void filtertable(Map<DocumentType, List<Long>> results) {
         this.itemListe.clear();
-        final List<Long> longList = results.get(DocumentType.SAMPLE);//TODO ueber alle Gruppen
+        final List<Long> longList = results.get(DocumentType.SAMPLE);//JIRA MOD-52 verwenden der Gruppen bei der Anzeige
         for (final Long itemID : longList) {
             itemListe.add(tablevalues.get(itemID));
         }
@@ -404,7 +404,7 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
         }
     }
 
-    //TODO per attribut im xml konfiguerieren
+    //JIRA MOD-53 per attribut im xml konfiguerieren, oder programatisch
     private void populateMenu(Map<DocumentType, List<Long>> results) {
         contextMenu.getItems().clear();
         for (Map.Entry<DocumentType, List<Long>> entry : results.entrySet()) {
@@ -419,7 +419,8 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
                 itemLabel.getStyleClass().add("item-label");
                 if (first) {
                     first = false;
-//                    Label groupLabel = new Label(result.getDocumentType().getPluralDisplayName()); //TODO interface f transiente Daten
+//                    Label groupLabel = new Label(result.getDocumentType().getPluralDisplayName());
+                    //JIRA MOD-56 interface f transiente Daten
                     Label groupLabel = new Label("###GroupName###");
                     groupLabel.getStyleClass().add("group-label");
                     groupLabel.setAlignment(Pos.CENTER_RIGHT);
@@ -437,14 +438,13 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
                 popRegion.getStyleClass().add("search-menu-item-popup-region");
                 popRegion.setPrefSize(10, 10);
                 hBox.getChildren().add(popRegion);
-                //final String name = t.getBarcode() + ""; // TODO Sinnvolle Vorbelegung??
 
                 final String shortDescription = (shortInfo.length() == 160) ? shortInfo + "..." : shortInfo;
 
                 popRegion.opacityProperty().addListener(new ChangeListener<Number>() {
                     @Override
                     public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        Platform.runLater(new Runnable() { // TODO runLater used here as a workaround for RT-14396
+                        Platform.runLater(new Runnable() { //JIRA MOD-54 runLater used here as a workaround for RT-14396
                             @Override
                             public void run() {
                                 if (popRegion.getOpacity() == 1) {
@@ -470,7 +470,7 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
                         if (logger.isDebugEnabled()) {
                             logger.debug("SearchBox.handle menuItem.setOnAction");
                         }
-                        //TODO Liste externe Actions evtl EventBus
+                        //JIRA MOD-55 Liste externe Actions evtl EventBus
                     }
                 });
             }

@@ -43,7 +43,7 @@ public class ModulFilePropertyRegistry implements ModulPropertyRegistry {
         if (contains) {
             return messages.getString(key);
         } else {
-            return "###" + key + "###";  //TODO not good, replace with def null object
+            return "###" + key + "###";  //JIRA MOD-43 write to separat log file that this key is missing
         }
     }
 

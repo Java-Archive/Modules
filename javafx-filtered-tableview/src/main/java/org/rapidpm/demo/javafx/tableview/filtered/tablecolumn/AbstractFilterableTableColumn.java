@@ -164,17 +164,5 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
         return filterEditor.isFiltered();
     }
 
-    //public void setFilters(R filters) {
-    //    // TODO
-    //}
-    //public boolean isFilterable() {
-    //    // TODO
-    //}
-    //public void setFilterable(boolean filterable) {
-    //    // TODO
-    //}
-    //public SimpleBooleanProperty filterableProperty() {
-    //    // TODO
-    //}
 
 }

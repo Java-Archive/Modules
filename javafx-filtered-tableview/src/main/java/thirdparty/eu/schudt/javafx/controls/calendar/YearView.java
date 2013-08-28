@@ -1,5 +1,8 @@
 package thirdparty.eu.schudt.javafx.controls.calendar;
 
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -7,9 +10,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
 
 /**
  * The year view shows the months.
@@ -85,7 +85,7 @@ final class YearView extends DatePane {
             Button button = (Button) getChildren().get(i - 1);
             button.setText(monthNames[i - 1]);
         }
-        //TODO CDI
+        //JIRA MOD-60 CDIPropertyRegistryService verwenden - updateContent
         title.set(getDateFormat("yyyy").format(calendarView.getCalendar().getTime()));
     }
 }

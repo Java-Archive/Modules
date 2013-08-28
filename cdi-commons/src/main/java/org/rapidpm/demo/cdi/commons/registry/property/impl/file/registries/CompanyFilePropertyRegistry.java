@@ -36,10 +36,10 @@ public class CompanyFilePropertyRegistry implements CompanyPropertyRegistry {
     @Override
     public String getProperty(String key) {
         final boolean contains = messages.containsKey(key);
-        if(contains){
+        if (contains) {
             return messages.getString(key);
-        } else{
-            return "###"+key+"###";  //TODO not good, replace with def null object
+        } else {
+            return "###" + key + "###";  //JIRA MOD-44 write to separat log file that this key is missing
         }
     }
 
