@@ -382,6 +382,7 @@
         <option value="$PROJECT_DIR$/../javafx-commons/pom.xml" />
         <option value="$PROJECT_DIR$/../se-commons/pom.xml" />
         <option value="$PROJECT_DIR$/../se-tablemodel/pom.xml" />
+        <option value="$PROJECT_DIR$/../cdi-tablemodel/pom.xml" />
       </list>
     </option>
   </component>

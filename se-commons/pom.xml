@@ -34,14 +34,6 @@
         <project.symbolic.name>se-commons</project.symbolic.name>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-        </dependency>
-    </dependencies>
-
-
     <profiles>
         <!-- embedded profiles -->
         <profile>
