@@ -162,7 +162,7 @@ public class FilteredTableView<T> extends TableView<T> {
         });
 
         //add contextMenue
-//        final ContextMenu contextMenu = new ContextMenu();
+//        final ContextMenuItems contextMenu = new ContextMenuItems();
 //        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");
 //        copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
 //            public void handle(ActionEvent e) {

@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.inject.Inject;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,18 +32,26 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.FileChooser;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert Date: 14.08.13 Time: 16:30
  */
-public class ContextMenu<T> extends javafx.scene.control.ContextMenu {
+public class ContextMenuItems<T> {
 
-    private static final Logger logger = Logger.getLogger(ContextMenu.class);
-//    private @Inject @CDILogger Logger logger;
+    private @Inject @CDILogger Logger logger;
 
-    public ContextMenu() {
+    private boolean openCSV = false;
+    private boolean saveCSV = false;
+    private boolean openXLSX = false;
+    private boolean saveXLSX = false;
+    private boolean copyClippboardCSV = false;
+    private boolean copyClippboardImage = false;
+
+
+    public ContextMenuItems() {
 
     }
 
@@ -192,7 +202,7 @@ public class ContextMenu<T> extends javafx.scene.control.ContextMenu {
         });
 
 
-        getItems().addAll(openCSV, saveCSV, openXlS, saveXlS, copyTableCSV2Clipboard, copyTableImage2Clipboard);
+//        getItems().addAll(openCSV, saveCSV, openXlS, saveXlS, copyTableCSV2Clipboard, copyTableImage2Clipboard);
     }
 
 
