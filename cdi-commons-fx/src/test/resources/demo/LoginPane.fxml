@@ -23,8 +23,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
-<fx:root type="demo.LoginPane"
-         alignment="CENTER" hgap="10.0" stylesheets="/demo/login.css" vgap="10.0"
+<fx:root type="demo.LoginPane" alignment="CENTER" hgap="10.0" stylesheets="/demo/login.css" vgap="10.0"
          xmlns:fx="http://javafx.com/fxml">
 
     <Text id="welcome-text" text="Welcome" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0"/>

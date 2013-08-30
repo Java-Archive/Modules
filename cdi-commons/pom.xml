@@ -38,7 +38,7 @@
 
         <!--<version.weld-servlet>1.1.9.Final</version.weld-servlet>-->
         <!--<org.arquillian.bom.version>1.0.2.Final</org.arquillian.bom.version>-->
-        <project.version>1.1</project.version>
+        <!--<project.version>1.1</project.version>-->
     </properties>
 
     <dependencies>

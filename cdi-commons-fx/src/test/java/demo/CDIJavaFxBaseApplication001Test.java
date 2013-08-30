@@ -50,7 +50,7 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
 
         @Override
         public boolean isExitAfterTest() {
-            return true;
+            return false;
         }
 
         @Override
@@ -74,7 +74,7 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
             }
             stage.setTitle("Login");  //i18n
             stage.setScene(new Scene(root, 300, 275));
-            //stage.show();
+            stage.show();
             final Scene scene = stage.getScene();
 
             //TestCode
