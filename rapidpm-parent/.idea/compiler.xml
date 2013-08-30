@@ -26,6 +26,7 @@
         <module name="cdi-commons" />
         <module name="cdi-commons-fx" />
         <module name="cdi-commons-se" />
+        <module name="cdi-tablemodel" />
         <module name="genericcache" />
         <module name="javafx-autocomplete-textfield" />
         <module name="javafx-commons" />
@@ -44,6 +45,7 @@
       <module name="cdi-commons" target="1.7" />
       <module name="cdi-commons-fx" target="1.7" />
       <module name="cdi-commons-se" target="1.7" />
+      <module name="cdi-tablemodel" target="1.7" />
       <module name="genericcache" target="1.7" />
       <module name="javafx-autocomplete-textfield" target="1.7" />
       <module name="javafx-commons" target="1.7" />

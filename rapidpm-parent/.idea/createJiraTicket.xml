@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CreateJiraTicketConfiguration">
+    <option name="commentRules">
+      <list>
+        <CommentRule>
+          <option name="commentExpression" value="^//TODO (.*)$" />
+          <option name="commentTemplate" value="//JIRA {Key} {Summary}" />
+          <option name="jiraIssueType" value="Story" />
+          <option name="jiraLabels" value="" />
+          <option name="jiraPriority" value="Dringend" />
+          <option name="jiraSummaryTemplate" value="$1" />
+          <option name="name" value="ToDo Tasks" />
+        </CommentRule>
+      </list>
+    </option>
+    <option name="jiraUrl" value="http://jira.rapidpm.org" />
+    <option name="password" value="kruppvdm76" />
+    <option name="project" value="MOD" />
+    <option name="username" value="sven.ruppert" />
+  </component>
+</project>
+

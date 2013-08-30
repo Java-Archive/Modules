@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.cdi.commons.legacy;
 
 import java.util.ArrayList;
@@ -12,26 +28,27 @@ import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
 public class ListFactory {
 
 
-    public List createArrayList(){
+    public List createArrayList() {
         return new ArrayList();
     }
 
-    public List createLinkedList(){
+    public List createLinkedList() {
         return new LinkedList();
     }
 
-    public List createList(){
+    public List createList() {
         return new ArrayList();
     }
-    public List createList(final ContextResolver contextResolver){
+
+    public List createList(final ContextResolver contextResolver) {
         //trivial Implementierung
-        if(contextResolver == null){
+        if (contextResolver == null) {
             return createArrayList();
-        } else{
+        } else {
             //triviale Fallunterscheidung
-            if(contextResolver.resolveContext(List.class).equals(null)){
+            if (contextResolver.resolveContext(List.class).equals(null)) {
                 return createArrayList();
-            } else{
+            } else {
                 return createLinkedList();
             }
         }

@@ -1,7 +1,17 @@
 /*
- * Copyright (c) 2012.
- * This is part of the project "RapidPM"
- * from Sven Ruppert for RapidPM, please contact chef@sven-ruppert.de
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 
@@ -90,9 +100,9 @@ public class GenericCacheThreadsave<T> implements Cache<T> {
     public void fillCache(final T cacheable) throws IllegalAccessException, InvocationTargetException {
 
         final boolean annotationPresent = cacheable.getClass().isAnnotationPresent(Cacheable.class);
-        if(annotationPresent){
+        if (annotationPresent) {
             final Cacheable annotation = cacheable.getClass().getAnnotation(Cacheable.class);
-            primaryKeyAttributeName =  annotation.primaryKeyAttributeName();
+            primaryKeyAttributeName = annotation.primaryKeyAttributeName();
             for (final Map.Entry<String, Method> attribute : attribName2Method.entrySet()) {
                 final String attribName = attribute.getKey();
                 Index<T> index = attribName2Index.get(attribName);
@@ -104,7 +114,7 @@ public class GenericCacheThreadsave<T> implements Cache<T> {
                 final Object key = readMethod.invoke(cacheable);
                 index.putSingleOrMultiple(key, cacheable);
             }
-        } else{
+        } else {
             if (logger.isDebugEnabled()) {
                 logger.debug("Class has no Annotation Cacheable");
             }
