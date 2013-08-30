@@ -17,9 +17,12 @@
 package org.rapidpm.demo.javafx.tableview.filtered.contextmenue;
 
 import java.awt.Desktop;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -30,10 +33,16 @@ import javafx.event.EventHandler;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.FileChooser;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
@@ -50,7 +59,7 @@ public class FilteredTableContextMenu extends ContextMenu {
     private @Inject @CDILogger Logger logger;
     @Inject @CDIPropertyRegistryService PropertyRegistryService propertyRegistryService;
     @Inject FilteredTableKeyMapper keyMapper;
-
+    private @Inject @CDISimpleDateFormatter(value = "date.yyyyMMdd") SimpleDateFormat sdf;
     private boolean openCSV = true;
     private boolean saveCSV = true;
     private boolean openXLSX = true;
@@ -160,7 +169,7 @@ public class FilteredTableContextMenu extends ContextMenu {
                         @Override public void run() {
                             try {
                                 final byte[] bytes = convertTable2Xls();
-                                final File temp = File.createTempFile("xls-temp-" + System.nanoTime(), ".xls");
+                                final File temp = File.createTempFile("xls-temp-" + System.nanoTime(), ".xlsx");
                                 final FileOutputStream fos = new FileOutputStream(temp);
                                 fos.write(bytes);
                                 fos.flush();
@@ -283,9 +292,44 @@ public class FilteredTableContextMenu extends ContextMenu {
 
     private byte[] convertTable2Xls() throws IOException {
         //konvertiere
+        final XSSFWorkbook workbook = new XSSFWorkbook();
+        final XSSFSheet xssfSheet = workbook.createSheet("ExcelExport_" + sdf.format(new Date()));
+        final XSSFRow xssfHeaderRow = xssfSheet.createRow(0);
+        final ObservableList<TableColumn> columns = filteredTableView.getColumns();
+        int colNr = 0;
+        for (final TableColumn column : columns) {
+            final String columnText = column.getText();
+            final XSSFCell xssfCell = xssfHeaderRow.createCell(colNr);
+            colNr = colNr + 1;
+            xssfCell.setCellValue(columnText);
+            xssfCell.setCellType(XSSFCell.CELL_TYPE_STRING);
+        }
+
+        final ObservableList<FilteredTableDataRow> rowList = filteredTableView.getItems();
+        int rowNr = 0;
+        for (final FilteredTableDataRow row : rowList) {
+            final XSSFRow xssfRow = xssfSheet.createRow(rowNr);
+            rowNr = rowNr + 1;
+            final String csvRow = row.convertToCSV();
+            final String[] split = csvRow.split(";");
+            int cellNr = 0;
+            for (final String s : split) {
+                final XSSFCell xssfCell = xssfRow.createCell(cellNr);
+                cellNr = cellNr + 1;
+                xssfCell.setCellValue(s);
+                xssfCell.setCellType(XSSFCell.CELL_TYPE_STRING);
+            }
 
 
-        return null;
+        }
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try {
+            workbook.write(outputStream);
+        } catch (IOException e) {
+            logger.error(e);
+        }
+
+        return outputStream.toByteArray();
     }
 
     public void setFilteredTableView(FilteredTableView filteredTableView) {
