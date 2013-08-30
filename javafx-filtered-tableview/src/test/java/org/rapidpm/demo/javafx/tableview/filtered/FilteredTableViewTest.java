@@ -55,8 +55,6 @@ public class FilteredTableViewTest extends JavaFXBaseTest {
 
             final FilteredTableViewDemoPaneController controller = root.getController();
             controller.tableView.setTableViewData(dataBuilder.create());
-
-
         }
     }
 }

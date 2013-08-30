@@ -9,7 +9,7 @@
     <file url="file://$PROJECT_DIR$/../javafx-commons" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../javafx-dialog" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/contextmenue/ContextMenuItems.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/contextmenue/FilteredTableContextMenu.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/../javafx-progressbartable" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../javafx-searchbox" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />

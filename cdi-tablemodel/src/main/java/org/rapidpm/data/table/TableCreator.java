@@ -83,7 +83,7 @@ public class TableCreator<T extends BaseCellFactory> {
 
     public void createNewTableInstance() {
         table = new TableImpl();
-        table.setTableName("NeoScioTable_" + format.format(new Date()));
+        table.setTableName("RapidPMTable_" + format.format(new Date()));
         colNr = 0;
     }
 

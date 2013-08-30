@@ -67,6 +67,12 @@
 
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-tablemodel</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
             <artifactId>cdi-commons</artifactId>
             <scope>test</scope>
             <type>test-jar</type>

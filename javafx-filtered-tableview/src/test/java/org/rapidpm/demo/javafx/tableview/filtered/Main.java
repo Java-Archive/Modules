@@ -226,7 +226,7 @@ public class Main extends Application {
         );
     }
 
-    static public class ExampleItem {
+    static public class ExampleItem implements FilteredTableDataRow {
         private final SimpleIntegerProperty id;
         private final SimpleStringProperty val;
         private final SimpleObjectProperty<ExampleType> type;
@@ -312,6 +312,10 @@ public class Main extends Application {
 
         public SimpleBooleanProperty boolProperty() {
             return bool;
+        }
+
+        @Override public String convertToCSV() {
+            return null;
         }
     }
 }

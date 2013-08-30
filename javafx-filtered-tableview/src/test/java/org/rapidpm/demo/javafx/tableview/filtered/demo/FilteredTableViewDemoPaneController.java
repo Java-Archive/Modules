@@ -33,6 +33,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
+import org.rapidpm.demo.javafx.tableview.filtered.contextmenue.FilteredTableContextMenu;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TableFilter;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoDataRow;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoRowComparator;
@@ -49,6 +50,8 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
 
     private @Inject @CDILogger Logger logger;
     private @Inject TableFilter tableFilter;
+    private @Inject FilteredTableContextMenu contextMenu;
+
     @Inject @CDIPropertyRegistryService PropertyRegistryService propertyRegistryService;
     @Inject DemoKeyMapper keyMapper;
     @Inject Instance<TransientDemoRowComparator> comparatorInstance;
@@ -56,6 +59,9 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
     @FXML public FilteredTableView<TransientDemoDataRow> tableView;
 
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+        contextMenu.setFilteredTableView(tableView);
+        contextMenu.init();
+        tableView.setContextMenu(contextMenu);
         tableFilter.setFilteredTableView(tableView);
         tableView.addEventHandler(ColumnFilterEvent.FILTER_CHANGED_EVENT, new EventHandler<ColumnFilterEvent>() {
             @Override

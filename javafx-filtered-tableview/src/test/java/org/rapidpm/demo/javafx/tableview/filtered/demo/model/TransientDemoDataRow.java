@@ -25,6 +25,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
+import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableDataRow;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.DemoKeyMapper;
 
 /**
@@ -32,7 +33,7 @@ import org.rapidpm.demo.javafx.tableview.filtered.demo.DemoKeyMapper;
  * Date: 30.08.13
  * Time: 07:28
  */
-public class TransientDemoDataRow implements Serializable {
+public class TransientDemoDataRow implements FilteredTableDataRow, Serializable {
 
     @Inject @CDIPropertyRegistryService PropertyRegistryService propertyRegistryService;
     @Inject DemoKeyMapper keyMapper;
@@ -100,5 +101,9 @@ public class TransientDemoDataRow implements Serializable {
 
     public void setBetrag(String betrag) {
         this.betrag.set(betrag);
+    }
+
+    @Override public String convertToCSV() {
+        return "" + getVorname() + ";" + getNachname() + ";" + getNachname() + ";" + getBetrag() + "";
     }
 }

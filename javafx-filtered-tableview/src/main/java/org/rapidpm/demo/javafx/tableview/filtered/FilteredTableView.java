@@ -43,7 +43,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  *
  * @author Sven Ruppert
  */
-public class FilteredTableView<T> extends TableView<T> {
+public class FilteredTableView<T extends FilteredTableDataRow> extends TableView<T> {
     //private static final Logger logger = Logger.getLogger(FilteredTableView.class);
 
     final private Logger logger = CDIContainerSingleton.getInstance().getManagedInstance(Logger.class);
@@ -162,7 +162,7 @@ public class FilteredTableView<T> extends TableView<T> {
         });
 
         //add contextMenue
-//        final ContextMenuItems contextMenu = new ContextMenuItems();
+//        final FilteredTableContextMenu contextMenu = new FilteredTableContextMenu();
 //        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");
 //        copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
 //            public void handle(ActionEvent e) {
