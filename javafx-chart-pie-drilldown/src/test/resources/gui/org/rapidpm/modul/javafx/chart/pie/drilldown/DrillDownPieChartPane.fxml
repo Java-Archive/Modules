@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<?import gui.org.rapidpm.modul.javafx.chart.pie.drilldown.DemoDrillDownPieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<fx:root type="gui.org.rapidpm.modul.javafx.chart.pie.drilldown.DrillDownPieChartPane"
+         fx:id="DrillDownPieChartPane" xmlns:fx="http://javafx.com/fxml" style="-fx-background-color:#EEEEEE">
+
+    <!--<stylesheets>-->
+    <!--<URL value="@/main.css"/>-->
+    <!--</stylesheets>-->
+    <children>
+        <!--Table-->
+        <AnchorPane minHeight="0.0" minWidth="0.0" VBox.vgrow="ALWAYS"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label text="hallo Hier bin ich"/>
+                <DemoDrillDownPieChart fx:id="piechart">
+
+                </DemoDrillDownPieChart>
+            </children>
+        </AnchorPane>
+    </children>
+</fx:root>

@@ -168,6 +168,20 @@
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
+                <artifactId>javafx-commons</artifactId>
+                <version>${project.parent.version}</version>
+                <scope>compile</scope>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.rapidpm.modul</groupId>
+                <artifactId>javafx-commons</artifactId>
+                <version>${project.parent.version}</version>
+                <scope>test</scope>
+                <type>test-jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-dialog</artifactId>
                 <version>${project.parent.version}</version>
                 <scope>compile</scope>
@@ -1075,6 +1089,7 @@
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
         <module>../javafx-commons</module>
+        <module>../javafx-chart-pie-drilldown</module>
         <module>../javafx-autocomplete-textfield</module>
         <module>../javafx-dialog</module>
         <module>../javafx-filtered-tableview</module>

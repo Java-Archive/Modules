@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/../cdi-commons-se/cdi-commons-se.iml" filepath="$PROJECT_DIR$/../cdi-commons-se/cdi-commons-se.iml" />
       <module fileurl="file://$PROJECT_DIR$/../cdi-tablemodel/cdi-tablemodel.iml" filepath="$PROJECT_DIR$/../cdi-tablemodel/cdi-tablemodel.iml" />
       <module fileurl="file://$PROJECT_DIR$/../javafx-autocomplete-textfield/javafx-autocomplete-textfield.iml" filepath="$PROJECT_DIR$/../javafx-autocomplete-textfield/javafx-autocomplete-textfield.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-chart-pie-drilldown/javafx-chart-pie-drilldown.iml" filepath="$PROJECT_DIR$/../javafx-chart-pie-drilldown/javafx-chart-pie-drilldown.iml" />
       <module fileurl="file://$PROJECT_DIR$/../javafx-commons/javafx-commons.iml" filepath="$PROJECT_DIR$/../javafx-commons/javafx-commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/../javafx-dialog/javafx-dialog.iml" filepath="$PROJECT_DIR$/../javafx-dialog/javafx-dialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/../javafx-filtered-tableview/javafx-filtered-tableview.iml" filepath="$PROJECT_DIR$/../javafx-filtered-tableview/javafx-filtered-tableview.iml" />

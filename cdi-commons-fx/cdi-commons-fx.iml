@@ -15,8 +15,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.rapidpm.modul:cdi-commons-se:test-jar:tests:1.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.rapidpm.modul:cdi-commons-se:test-jar:tests:1.1-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="se-commons" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.arquillian.container:arquillian-weld-ee-embedded-1.1:1.0.0.CR7" level="project" />
@@ -52,7 +50,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.oracle.javafx:javafx:2.2">
         <CLASSES>
-          <root url="jar://D:/opt/Java/7u25/jre/lib/jfxrt.jar!/" />
+          <root url="jar://C:/Program Files/Java/jdk1.7.0_25/jre/lib/jfxrt.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
