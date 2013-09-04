@@ -370,19 +370,7 @@
         <option value="$PROJECT_DIR$/javafx-searchbox/pom.xml" />
         <option value="$PROJECT_DIR$/javafx-autocomplete-textField/pom.xml" />
         <option value="$PROJECT_DIR$/genericcache/pom.xml" />
-        <option value="$PROJECT_DIR$/../se-genericcache/pom.xml" />
-        <option value="$PROJECT_DIR$/../cdi-commons/pom.xml" />
-        <option value="$PROJECT_DIR$/../cdi-commons-fx/pom.xml" />
-        <option value="$PROJECT_DIR$/../cdi-commons-se/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-autocomplete-textfield/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-dialog/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-filtered-tableview/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-progressbartable/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-searchbox/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-commons/pom.xml" />
-        <option value="$PROJECT_DIR$/../se-commons/pom.xml" />
         <option value="$PROJECT_DIR$/../se-tablemodel/pom.xml" />
-        <option value="$PROJECT_DIR$/../cdi-tablemodel/pom.xml" />
         <option value="$PROJECT_DIR$/../javafx-chart-pie-drilldown/pom.xml" />
       </list>
     </option>

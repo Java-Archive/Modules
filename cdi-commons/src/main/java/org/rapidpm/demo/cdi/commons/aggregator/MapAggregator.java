@@ -34,22 +34,14 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public abstract class MapAggregator<T, K> {
 
-    private @Inject @CDILogger Logger logger;
-
-//    private @Inject Instance<Map> mapInstance;
-
-
-    /**
-     * Key sollte n-dimensional sein..
-     *
-     * @param t
-     * @return
-     */
+    private
+    @Inject
+    @CDILogger
+    Logger logger;
 
     public abstract K getKeyElement(T t);
 
     public Map<K, List<T>> aggregate(final Collection<T> dataCollection) {
-//        final Map<K , List<T>> result = mapInstance.get();
         final Map<K, List<T>> result = new HashMap<>();
         for (final T dataObject : dataCollection) {
             final K key = getKeyElement(dataObject);
@@ -64,5 +56,4 @@ public abstract class MapAggregator<T, K> {
         }
         return result;
     }
-
 }

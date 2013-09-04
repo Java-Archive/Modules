@@ -25,6 +25,5 @@ import org.rapidpm.modul.javafx.chart.pie.drilldown.DrillDownPieChart;
  * Time: 17:00
  */
 public class DemoDrillDownPieChart extends DrillDownPieChart<TransientDemoDataRow> {
-
-
+    //additional if needed
 }
