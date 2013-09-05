@@ -34,10 +34,8 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public abstract class MapAggregator<T, K> {
 
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
+
 
     public abstract K getKeyElement(T t);
 
@@ -47,7 +45,7 @@ public abstract class MapAggregator<T, K> {
             final K key = getKeyElement(dataObject);
             if (result.containsKey(key)) {
                 if (logger.isDebugEnabled()) {
-                    logger.debug("key schon vorhanden -> " + key);
+                    logger.debug("key allready available -> " + key);
                 }
             } else {
                 result.put(key, new ArrayList<T>());
@@ -56,4 +54,5 @@ public abstract class MapAggregator<T, K> {
         }
         return result;
     }
+
 }

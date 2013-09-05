@@ -35,15 +35,24 @@ public class DemoDataBuilder {
     public ObservableList<TransientDemoDataRow> create() {
         final ObservableList<TransientDemoDataRow> observableList = FXCollections.observableArrayList();
 
-        createRow(observableList, "Holger", "Mueller", "2013.10.02", "120.0");
-        createRow(observableList, "Willi", "Hampel", "2013.10.04", "10.0");
-        createRow(observableList, "Holger", "Hampel", "2013.11.02", "120.0");
-        createRow(observableList, "Ulli", "Moppel", "2013.11.04", "130.0");
+        createRow(observableList, "Holger", "Mueller", "2013.10.02", 120.0);
+        createRow(observableList, "Holger", "Mueller", "2013.10.03", 121.0);
+
+        createRow(observableList, "Holger", "Hoppel", "2013.10.02", 120.0);
+        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 121.0);
+        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 122.0);
+        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 123.0);
+
+        createRow(observableList, "Willi", "Hampel", "2013.10.04", 10.0);
+        createRow(observableList, "Willi", "Hampel", "2013.10.05", 10.0);
+
+        createRow(observableList, "Willi", "Pampel", "2013.10.04", 11.0);
+        createRow(observableList, "Willi", "Pampel", "2013.10.05", 11.0);
 
         return observableList;
     }
 
-    private void createRow(ObservableList<TransientDemoDataRow> observableList, String vorname, String nachname, String datum, String betrag) {
+    private void createRow(ObservableList<TransientDemoDataRow> observableList, String vorname, String nachname, String datum, Double betrag) {
         final TransientDemoDataRow dataRow = rowInstance.get();
         dataRow.setVorname(vorname);
         dataRow.setNachname(nachname);

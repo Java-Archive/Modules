@@ -433,4 +433,8 @@ public class DatePicker extends HBox {
 
         popup.show(this, posX, posY);
     }
+
+    public TextField getTextField() {
+        return textField;
+    }
 }

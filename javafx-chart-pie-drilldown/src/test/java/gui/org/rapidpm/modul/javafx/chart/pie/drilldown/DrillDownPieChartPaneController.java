@@ -35,22 +35,16 @@ import org.rapidpm.modul.javafx.chart.pie.drilldown.DrillDownPieChartMapAggregat
  */
 public class DrillDownPieChartPaneController implements CDIJavaFxBaseController {
 
-    @FXML
-    DemoDrillDownPieChart piechart;
+    @FXML DemoDrillDownPieChart piechart;
 
 
-    @Inject
-    Instance<VornameAggregator> vornameAggregatorInstance;
-    @Inject
-    Instance<NachnameAggregator> nachnameAggregatorInstance;
-    @Inject
-    Instance<DatumAggregator> datumAggregatorInstance;
-    @Inject
-    Instance<BetragAggregator> betragAggregatorInstance;
+    @Inject Instance<VornameAggregator> vornameAggregatorInstance;
+    @Inject Instance<NachnameAggregator> nachnameAggregatorInstance;
+    @Inject Instance<DatumAggregator> datumAggregatorInstance;
+    @Inject Instance<BetragAggregator> betragAggregatorInstance;
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //setze Aggregatoren
         final VornameAggregator vornameAggregator = vornameAggregatorInstance.get();
@@ -75,74 +69,63 @@ public class DrillDownPieChartPaneController implements CDIJavaFxBaseController 
 
 
     public static class BetragAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-        @Override
-        public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
+        @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             double betrag = 0;
             for (final TransientDemoDataRow aggregatedValue : aggregatedValues) {
                 betrag = betrag + aggregatedValue.getBetrag();
             }
+
             return betrag;
         }
 
-        @Override
-        public String getLevelName() {
+        @Override public String getLevelName() {
             return "Betrag";
         }
 
-        @Override
-        public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
+        @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getBetrag() + " € Beträge";
         }
     }
 
     public static class DatumAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-        @Override
-        public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
+        @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             return aggregatedValues.size();
         }
 
-        @Override
-        public String getLevelName() {
+        @Override public String getLevelName() {
             return "Datum";
         }
 
-        @Override
-        public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
+        @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getDatum();
         }
     }
 
     public static class VornameAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-        @Override
-        public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
+        @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             return aggregatedValues.size();
         }
 
-        @Override
-        public String getLevelName() {
+        @Override public String getLevelName() {
             return "Vorname";
         }
 
-        @Override
-        public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
+        @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getVorname();
         }
     }
 
 
     public static class NachnameAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-        @Override
-        public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
+        @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             return aggregatedValues.size();
         }
 
-        @Override
-        public String getLevelName() {
+        @Override public String getLevelName() {
             return "Nachname";
         }
 
-        @Override
-        public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
+        @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getNachname();
         }
     }

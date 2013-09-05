@@ -27,13 +27,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
 import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.demo.javafx.tableview.filtered.contextmenue.FilteredTableContextMenu;
+import org.rapidpm.demo.javafx.tableview.filtered.demo.controll.cell.BetragComboBoxCell;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TableFilter;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoDataRow;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoRowComparator;
@@ -82,8 +85,81 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
             }
         });
 
+
+        initTable();
+
+
         setI18n();
     }
+
+
+    //with Anonymous inner class
+    @Inject Instance<BetragComboBoxCell> betragComboBoxCellInstance;
+
+    private void initTable() {
+        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
+        for (final TableColumn column : columns) {
+            if (column.getText().equals("betrag")) {
+                column.setCellFactory(new Callback<TableColumn, TableCell>() {
+                    @Override public TableCell call(TableColumn tableColumn) {
+                        final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
+                        cell.setComboBoxEditable(false);  //true if you want bidirectional dataflow
+                        return cell;
+                    }
+                });
+
+            } else {
+                //other col
+            }
+        }
+    }
+
+
+    //with BetragComboBoxCell
+//    @Inject Instance<BetragComboBoxCell> betragComboBoxCellInstance;
+//    private void initTable() {
+//        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
+//        for (final TableColumn<TransientDemoDataRow, ?> column : columns) {
+//            if(column.getText().equals("betrag")){
+//                final TableColumn<TransientDemoDataRow, Double> colTyped =(TableColumn<TransientDemoDataRow, Double>) column;
+//
+//                colTyped.setCellFactory(new Callback<TableColumn<TransientDemoDataRow, Double>, TableCell<TransientDemoDataRow, Double>>() {
+//                    @Override public TableCell<TransientDemoDataRow, Double> call(TableColumn<TransientDemoDataRow, Double> transientDemoDataRowTableColumn) {
+//                        final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
+//                        cell.setComboBoxEditable(false);  //true if you want bidirectional dataflow
+//                        return  cell;
+//                    }
+//                });
+//
+//            } else{
+//                //other col
+//            }
+//        }
+//    }
+
+
+    // with LegacyBetragComboBoxCell
+//    @Inject Instance<LegacyBetragComboBoxCell> legacyBetragComboBoxCellInstance;
+//
+//    private void initTable() {
+//        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
+//        for (final TableColumn<TransientDemoDataRow, ?> column : columns) {
+//            if(column.getText().equals("betrag")){
+//                final TableColumn<TransientDemoDataRow, Double> colTyped =(TableColumn<TransientDemoDataRow, Double>) column;
+//
+//                colTyped.setCellFactory(new Callback<TableColumn<TransientDemoDataRow, Double>, TableCell<TransientDemoDataRow, Double>>() {
+//                    @Override public TableCell<TransientDemoDataRow, Double> call(TableColumn<TransientDemoDataRow, Double> transientDemoDataRowTableColumn) {
+//                        final LegacyBetragComboBoxCell cell = legacyBetragComboBoxCellInstance.get();
+//                        cell.setComboBoxEditable(false);  //true if you want bidirectional dataflow
+//                        return  cell;
+//                    }
+//                });
+//
+//            } else{
+//                //other col
+//            }
+//        }
+//    }
 
     private void setI18n() {
         final ObservableList<TableColumn<TransientDemoDataRow, ?>> col = tableView.getColumns();

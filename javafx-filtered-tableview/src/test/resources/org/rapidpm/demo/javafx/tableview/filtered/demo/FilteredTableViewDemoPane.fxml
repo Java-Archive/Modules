@@ -21,6 +21,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView?>
+<?import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.FilterableDoubleTableColumn?>
 <?import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.FilterableStringTableColumn?>
 <fx:root type="org.rapidpm.demo.javafx.tableview.filtered.demo.FilteredTableViewDemoPane"
          fx:id="FilteredTableviewDemoPane" xmlns:fx="http://javafx.com/fxml" style="-fx-background-color:#EEEEEE">
@@ -53,11 +54,11 @@
                                     <PropertyValueFactory property="datum"/>
                                 </cellValueFactory>
                             </FilterableStringTableColumn>
-                            <FilterableStringTableColumn prefWidth="120.0" text="betrag">
-                                <cellValueFactory>
+                            <FilterableDoubleTableColumn prefWidth="120.0" text="betrag">
+                            <cellValueFactory>
                                     <PropertyValueFactory property="betrag"/>
                                 </cellValueFactory>
-                            </FilterableStringTableColumn>
+                            </FilterableDoubleTableColumn>
                         </columns>
                     </FilteredTableView>
                 </ScrollPane>
