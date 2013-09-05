@@ -21,6 +21,8 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
@@ -41,14 +43,14 @@ public class TransientDemoDataRow implements FilteredTableDataRow, Serializable 
     private StringProperty vorname;
     private StringProperty nachname;
     private StringProperty datum;
-    private StringProperty betrag;
+    private SimpleDoubleProperty betrag;
 
     @PostConstruct
     public void init() {
         vorname = new SimpleStringProperty(this, map("vorname"));
         nachname = new SimpleStringProperty(this, map("nachname"));
         datum = new SimpleStringProperty(this, map("datum"));
-        betrag = new SimpleStringProperty(this, map("betrag"));
+        betrag = new SimpleDoubleProperty(this, map("betrag"));
     }
 
     private String map(final String key) {
@@ -91,15 +93,15 @@ public class TransientDemoDataRow implements FilteredTableDataRow, Serializable 
         this.datum.set(datum);
     }
 
-    public String getBetrag() {
+    public Double getBetrag() {
         return betrag.get();
     }
 
-    public StringProperty betragProperty() {
+    public DoubleProperty betragProperty() {
         return betrag;
     }
 
-    public void setBetrag(String betrag) {
+    public void setBetrag(Double betrag) {
         this.betrag.set(betrag);
     }
 

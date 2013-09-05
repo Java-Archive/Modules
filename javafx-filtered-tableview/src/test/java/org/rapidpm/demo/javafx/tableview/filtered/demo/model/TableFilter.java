@@ -23,6 +23,7 @@ import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.DemoKeyMapper;
+import org.rapidpm.demo.javafx.tableview.filtered.filter.DoubleFilter;
 import org.rapidpm.demo.javafx.tableview.filtered.filter.StringFilter;
 import org.rapidpm.module.se.commons.logger.Logger;
 
@@ -53,9 +54,9 @@ public class TableFilter {
         if (logger.isDebugEnabled()) {
             logger.debug("filterOnBetrag");
         }
-        final StringFilter<TransientDemoDataRow> it = new StringFilter<TransientDemoDataRow>(filteredTableView) {
+        final DoubleFilter<TransientDemoDataRow> it = new DoubleFilter<TransientDemoDataRow>(filteredTableView) {
             @Override
-            public String getValue(TransientDemoDataRow rowElement) {
+            public Double getValue(TransientDemoDataRow rowElement) {
                 return rowElement.getBetrag();
             }
         };
