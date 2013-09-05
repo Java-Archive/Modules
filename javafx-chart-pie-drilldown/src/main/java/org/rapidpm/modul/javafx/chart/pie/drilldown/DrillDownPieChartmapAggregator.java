@@ -27,7 +27,6 @@ import org.rapidpm.demo.cdi.commons.aggregator.MapAggregator;
  */
 public abstract class DrillDownPieChartMapAggregator<T> extends MapAggregator<T, String> {
 
-
     /**
      * Calculate the Value for the PiChart.Data based on the aggregated values
      *

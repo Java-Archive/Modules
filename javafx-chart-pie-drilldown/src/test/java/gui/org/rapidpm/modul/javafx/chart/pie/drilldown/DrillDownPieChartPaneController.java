@@ -69,14 +69,6 @@ public class DrillDownPieChartPaneController implements CDIJavaFxBaseController 
 
 
     public static class BetragAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-
-
-        /**
-         * Calculate the Value for the PiChart.Data based on the aggregated values
-         *
-         * @param aggregatedValues
-         * @return
-         */
         @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             double betrag = 0;
             for (final TransientDemoDataRow aggregatedValue : aggregatedValues) {
@@ -90,26 +82,12 @@ public class DrillDownPieChartPaneController implements CDIJavaFxBaseController 
             return "Betrag";
         }
 
-        /**
-         * Key sollte n-dimensional sein..
-         *
-         * @param transientDemoDataRow
-         * @return
-         */
         @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getBetrag() + " € Beträge";
         }
     }
 
     public static class DatumAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-
-
-        /**
-         * Calculate the Value for the PiChart.Data based on the aggregated values
-         *
-         * @param aggregatedValues
-         * @return
-         */
         @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             return aggregatedValues.size();
         }
@@ -118,26 +96,12 @@ public class DrillDownPieChartPaneController implements CDIJavaFxBaseController 
             return "Datum";
         }
 
-        /**
-         * Key sollte n-dimensional sein..
-         *
-         * @param transientDemoDataRow
-         * @return
-         */
         @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getDatum();
         }
     }
 
     public static class VornameAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-
-
-        /**
-         * Calculate the Value for the PiChart.Data based on the aggregated values
-         *
-         * @param aggregatedValues
-         * @return
-         */
         @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             return aggregatedValues.size();
         }
@@ -146,12 +110,6 @@ public class DrillDownPieChartPaneController implements CDIJavaFxBaseController 
             return "Vorname";
         }
 
-        /**
-         * Key sollte n-dimensional sein..
-         *
-         * @param transientDemoDataRow
-         * @return
-         */
         @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getVorname();
         }
@@ -159,14 +117,6 @@ public class DrillDownPieChartPaneController implements CDIJavaFxBaseController 
 
 
     public static class NachnameAggregator extends DrillDownPieChartMapAggregator<TransientDemoDataRow> {
-
-
-        /**
-         * Calculate the Value for the PiChart.Data based on the aggregated values
-         *
-         * @param aggregatedValues
-         * @return
-         */
         @Override public double aggregateValue(List<TransientDemoDataRow> aggregatedValues) {
             return aggregatedValues.size();
         }
@@ -175,12 +125,6 @@ public class DrillDownPieChartPaneController implements CDIJavaFxBaseController 
             return "Nachname";
         }
 
-        /**
-         * Key sollte n-dimensional sein..
-         *
-         * @param transientDemoDataRow
-         * @return
-         */
         @Override public String getKeyElement(TransientDemoDataRow transientDemoDataRow) {
             return transientDemoDataRow.getNachname();
         }

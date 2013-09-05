@@ -36,26 +36,16 @@ public abstract class MapAggregator<T, K> {
 
     private @Inject @CDILogger Logger logger;
 
-//    private @Inject Instance<Map> mapInstance;
-
-
-    /**
-     * Key sollte n-dimensional sein..
-     *
-     * @param t
-     * @return
-     */
 
     public abstract K getKeyElement(T t);
 
     public Map<K, List<T>> aggregate(final Collection<T> dataCollection) {
-//        final Map<K , List<T>> result = mapInstance.get();
         final Map<K, List<T>> result = new HashMap<>();
         for (final T dataObject : dataCollection) {
             final K key = getKeyElement(dataObject);
             if (result.containsKey(key)) {
                 if (logger.isDebugEnabled()) {
-                    logger.debug("key schon vorhanden -> " + key);
+                    logger.debug("key allready available -> " + key);
                 }
             } else {
                 result.put(key, new ArrayList<T>());
