@@ -38,16 +38,16 @@ public class DemoDataBuilder {
         createRow(observableList, "Holger", "Mueller", "2013.10.02", 120.0);
         createRow(observableList, "Holger", "Mueller", "2013.10.03", 121.0);
 
-//        createRow(observableList, "Holger", "Hoppel", "2013.10.02", 120.0);
-//        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 121.0);
-//        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 122.0);
-//        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 123.0);
-//
-//        createRow(observableList, "Willi", "Hampel", "2013.10.04", 10.0);
-//        createRow(observableList, "Willi", "Hampel", "2013.10.05", 10.0);
-//
-//        createRow(observableList, "Willi", "Pampel", "2013.10.04", 11.0);
-//        createRow(observableList, "Willi", "Pampel", "2013.10.05", 11.0);
+        createRow(observableList, "Holger", "Hoppel", "2013.10.02", 120.0);
+        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 121.0);
+        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 122.0);
+        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 123.0);
+
+        createRow(observableList, "Willi", "Hampel", "2013.10.04", 10.0);
+        createRow(observableList, "Willi", "Hampel", "2013.10.05", 10.0);
+
+        createRow(observableList, "Willi", "Pampel", "2013.10.04", 11.0);
+        createRow(observableList, "Willi", "Pampel", "2013.10.05", 11.0);
 
         return observableList;
     }
