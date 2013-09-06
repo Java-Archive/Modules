@@ -21,6 +21,7 @@ import java.util.List;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
+import org.rapidpm.demo.javafx.tableview.control.cell.GenericComboBoxCell;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.logic.ContextLogic;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoDataRow;
 
@@ -32,7 +33,13 @@ import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoDataRo
 public class BetragComboBoxCell extends GenericComboBoxCell<TransientDemoDataRow, Double> {
 
     @Inject Instance<ContextLogic> contextLogicInstance;
+    @Inject
+    Instance<BetragComboBoxCell> betragComboBoxCellInstance;
 
+    @Override
+    protected GenericComboBoxCell<TransientDemoDataRow, Double> getComboBoxCellRef() {
+        return betragComboBoxCellInstance.get();
+    }
 
     @Override public boolean disableComboBox(TransientDemoDataRow row) {
         return row.getBetrag() == null || row.getBetrag().isInfinite() || row.getBetrag().isNaN();
@@ -47,4 +54,5 @@ public class BetragComboBoxCell extends GenericComboBoxCell<TransientDemoDataRow
     @Override public void workOnRowItself(TransientDemoDataRow row) {
         //nothing for this example
     }
+
 }

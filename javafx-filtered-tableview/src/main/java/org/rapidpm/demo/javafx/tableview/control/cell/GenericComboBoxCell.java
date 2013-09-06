@@ -14,14 +14,19 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.tableview.filtered.demo.controll.cell;
+package org.rapidpm.demo.javafx.tableview.control.cell;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.util.Callback;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
@@ -37,7 +42,6 @@ public abstract class GenericComboBoxCell<RT, VT> extends ComboBoxTableCell<RT, 
 
     private @Inject @CDILogger Logger logger;
     private boolean readOnlyView = false;
-
 
     @Override
     public void updateItem(VT o, boolean b) {
@@ -57,7 +61,8 @@ public abstract class GenericComboBoxCell<RT, VT> extends ComboBoxTableCell<RT, 
                 this.setDisable(true);
             } else {
 
-                getItems().addAll(createComboBoxValues(row));
+                final List<VT> comboBoxValues = createComboBoxValues(row);
+                getItems().addAll(comboBoxValues);
 
                 this.setDisable(false);
             }
@@ -65,6 +70,36 @@ public abstract class GenericComboBoxCell<RT, VT> extends ComboBoxTableCell<RT, 
         }
     }
 
+    public void associateWithCol(final TableView<RT> tableView, final String colName) {
+        final ObservableList<TableColumn<RT, ?>> columns = tableView.getColumns();
+        for (final TableColumn<RT, ?> column : columns) {
+            final String columnText = column.getText();
+            if (columnText.equals(colName)) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("associating to col " + columnText);
+                }
+                associate((TableColumn<RT, VT>) column);
+            } else {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("not binding to this col : " + columnText);
+                }
+            }
+        }
+    }
+
+    private void associate(TableColumn<RT, VT> column) {
+        column.setCellFactory(new Callback<TableColumn<RT, VT>, TableCell<RT, VT>>() {
+            @Override
+            public TableCell<RT, VT> call(TableColumn<RT, VT> rtTableColumn) {
+                final GenericComboBoxCell<RT, VT> mySelf = getComboBoxCellRef();
+                mySelf.setComboBoxEditable(false);
+                mySelf.setReadOnlyView(readOnlyView);
+                return mySelf;
+            }
+        });
+    }
+
+    protected abstract GenericComboBoxCell<RT, VT> getComboBoxCellRef();
 
     /**
      * logic to disable the combobox, for example if the value ist null or ...
@@ -72,7 +107,6 @@ public abstract class GenericComboBoxCell<RT, VT> extends ComboBoxTableCell<RT, 
      * @return
      */
     public abstract boolean disableComboBox(final RT row);
-
 
     public abstract List<VT> createComboBoxValues(final RT row);
 

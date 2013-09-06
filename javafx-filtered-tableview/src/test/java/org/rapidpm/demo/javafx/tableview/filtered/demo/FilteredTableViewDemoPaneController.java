@@ -27,9 +27,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
 import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
@@ -85,34 +83,39 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
             }
         });
 
-
         initTable();
-
 
         setI18n();
     }
 
-
-    //with Anonymous inner class
-    @Inject Instance<BetragComboBoxCell> betragComboBoxCellInstance;
+    @Inject
+    Instance<BetragComboBoxCell> betragComboBoxCellInstance;
 
     private void initTable() {
-        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
-        for (final TableColumn column : columns) {
-            if (column.getText().equals("betrag")) {
-                column.setCellFactory(new Callback<TableColumn, TableCell>() {
-                    @Override public TableCell call(TableColumn tableColumn) {
-                        final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
-                        cell.setComboBoxEditable(false);  //true if you want bidirectional dataflow
-                        return cell;
-                    }
-                });
-
-            } else {
-                //other col
-            }
-        }
+        final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
+        cell.associateWithCol(tableView, "betrag");
     }
+
+    //without typing / generics
+//    @Inject Instance<BetragComboBoxCell> betragComboBoxCellInstance;
+//
+//    private void initTable() {
+//        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
+//        for (final TableColumn column : columns) {
+//            if (column.getText().equals("betrag")) {
+//                column.setCellFactory(new Callback<TableColumn, TableCell>() {
+//                    @Override public TableCell call(TableColumn tableColumn) {
+//                        final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
+//                        cell.setComboBoxEditable(false);  //true if you want bidirectional dataflow
+//                        return cell;
+//                    }
+//                });
+//
+//            } else {
+//                //other col
+//            }
+//        }
+//    }
 
 
     //with BetragComboBoxCell
