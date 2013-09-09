@@ -389,18 +389,18 @@
         </snapshotRepository>
     </distributionManagement>
 
-    <!-- OSS Sonatype -->
+    <!--OSS Sonatype-->
     <!--<distributionManagement>-->
-    <!--<repository>-->
-    <!--<id>releases</id>-->
-    <!--<name>sonatype-nexus-staging</name>-->
-    <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
-    <!--</repository>-->
-    <!--<snapshotRepository>-->
-    <!--<id>sonatype-nexus-snapshots</id>-->
-    <!--<name>Sonatype Snapshots</name>-->
-    <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
-    <!--</snapshotRepository>-->
+        <!--<repository>-->
+            <!--<id>releases</id>-->
+            <!--<name>sonatype-nexus-staging</name>-->
+            <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>sonatype-nexus-snapshots</id>-->
+            <!--<name>Sonatype Snapshots</name>-->
+            <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
+        <!--</snapshotRepository>-->
     <!--</distributionManagement>-->
 
 
@@ -453,10 +453,10 @@
             </build>
         </profile>
         <profile>
+            <id>junit</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <id>junit</id>
             <build>
                 <plugins>
                     <plugin>
