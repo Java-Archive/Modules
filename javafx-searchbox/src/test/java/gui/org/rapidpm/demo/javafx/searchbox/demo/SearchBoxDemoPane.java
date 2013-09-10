@@ -26,9 +26,7 @@ import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
  */
 public class SearchBoxDemoPane extends CDIBaseAnchorPane<SearchBoxDemoPane, SearchBoxDemoPaneController> {
 
-
     @Override public Class<SearchBoxDemoPane> getPaneClass() {
         return SearchBoxDemoPane.class;
     }
-
 }

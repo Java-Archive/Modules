@@ -86,5 +86,4 @@ public class SearchBoxDemoPaneController implements CDIJavaFxBaseController {
         return propertyRegistryService.getRessourceForKey(keyMapper.map(key));
     }
 
-
 }

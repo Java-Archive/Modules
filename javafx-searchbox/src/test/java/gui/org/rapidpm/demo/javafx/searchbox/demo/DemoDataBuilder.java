@@ -62,5 +62,4 @@ public class DemoDataBuilder {
         observableList.add(dataRow);
     }
 
-
 }
