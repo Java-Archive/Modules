@@ -33,8 +33,7 @@ import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoDataRo
 public class BetragComboBoxCell extends GenericComboBoxCell<TransientDemoDataRow, Double> {
 
     @Inject Instance<ContextLogic> contextLogicInstance;
-    @Inject
-    Instance<BetragComboBoxCell> betragComboBoxCellInstance;
+    @Inject Instance<BetragComboBoxCell> betragComboBoxCellInstance;
 
     @Override
     protected GenericComboBoxCell<TransientDemoDataRow, Double> getComboBoxCellRef() {
