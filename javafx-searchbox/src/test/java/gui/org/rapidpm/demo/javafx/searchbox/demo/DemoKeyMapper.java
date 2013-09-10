@@ -14,31 +14,17 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.tableview.filtered.demo.logic;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+package gui.org.rapidpm.demo.javafx.searchbox.demo;
 
 /**
  * User: Sven Ruppert
- * Date: 05.09.13
- * Time: 18:45
+ * Date: 30.08.13
+ * Time: 07:29
  */
-public class ContextLogic {
+public class DemoKeyMapper {
+    private final String MODULNAME = "demo.searchbox";
 
-
-    private final Random random = new Random();
-
-    public List<Double> workOnContext(final Double input) {
-        final List<Double> result = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            result.add(input + random.nextDouble());
-        }
-        Collections.sort(result);
-        return result;
+    public String map(final String key) {
+        return MODULNAME + "." + key;
     }
-
-
 }

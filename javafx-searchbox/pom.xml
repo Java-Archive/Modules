@@ -46,8 +46,37 @@
         </dependency>
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
             <artifactId>cdi-commons-se</artifactId>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons-fx</artifactId>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons-fx</artifactId>
+            <scope>test</scope>
+            <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>javafx-commons</artifactId>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>javafx-commons</artifactId>
+            <scope>test</scope>
+            <type>test-jar</type>
         </dependency>
         <dependency>
             <groupId>com.oracle.javafx</groupId>

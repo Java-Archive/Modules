@@ -14,16 +14,21 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.searchbox.searchbox;
+package gui.org.rapidpm.demo.javafx.searchbox.demo;
+
+
+import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
 
 /**
  * User: Sven Ruppert
- * Date: 27.05.13
- * Time: 12:35
+ * Date: 30.08.13
+ * Time: 06:59
  */
-public class Main {
+public class SearchBoxDemoPane extends CDIBaseAnchorPane<SearchBoxDemoPane, SearchBoxDemoPaneController> {
 
-    public static void main(String[] args) {
 
+    @Override public Class<SearchBoxDemoPane> getPaneClass() {
+        return SearchBoxDemoPane.class;
     }
+
 }

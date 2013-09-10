@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
   ~
@@ -15,14 +14,7 @@
   ~    limitations under the License.
   -->
 
-<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com"
-             xsi:schemaLocation="http://www.zeroturnaround.com http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
-
-    <classpath>
-        <dir name="${rebel.workspace.path}/javafx-filtered-tableview/target/classes"></dir>
-        <dir name="${rebel.workspace.path}/javafx-filtered-tableview/target/test-classes">
-            <!--<dir name="C:/workspace/svenruppert/rapidpm-modules/javafx-filtered-tableview/javafx-filtered-tableview/target/classes">-->
-        </dir>
-    </classpath>
-
-</application>
+<beans xmlns="http://java.sun.com/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
+</beans>
