@@ -28,6 +28,7 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
+import org.rapidpm.demo.javafx.tableview.control.ColumnWidthOptimizer;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.AbstractFilterableTableColumn;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.ColumnFilterEvent;
 import org.rapidpm.module.se.commons.logger.Logger;
@@ -55,14 +56,15 @@ public class FilteredTableView<T extends FilteredTableDataRow> extends TableView
 
     private List<MouseClickedRowAction> mouseDoubleClickedRowActions = new ArrayList<>();
     private List<MouseClickedRowAction> mouseSingleClickedRowActions = new ArrayList<>();
-
-
     private ObservableList<T> backupItems = FXCollections.observableArrayList();
+
+    final ColumnWidthOptimizer optimizer = new ColumnWidthOptimizer();
 
     public void setTableViewData(final ObservableList<T> items) {
         super.setItems(items);
         backupItems.clear();
         backupItems.addAll(items);
+        optimizer.optimize(this);
     }
 
     public ObservableList<T> getBackupItems() {
@@ -161,28 +163,7 @@ public class FilteredTableView<T extends FilteredTableDataRow> extends TableView
             }
         });
 
-        //add contextMenue
-//        final FilteredTableContextMenu contextMenu = new FilteredTableContextMenu();
-//        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");
-//        copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent e) {
-//                final ObservableList<TableColumn<T, ?>> columns = getColumns();
-//
-//                final ObservableList<T> items = getItems();
-//                final StringBuilder clipboardString = new StringBuilder();
-//                for (final T item : items) {
-//                    clipboardString.append(item);
-//                    clipboardString.append('\n');
-//                }
-//                final ClipboardContent content = new ClipboardContent();
-//                //System.out.println(clipboardString);
-//                content.putString(clipboardString.toString());
-//                Clipboard.getSystemClipboard().setContent(content);
-//            }
-//        });
-//        contextMenu.getItems().addAll(copyTableCSV2Clipboard);
-//        setContextMenu(contextMenu);
-
+        optimizer.optimize(this);
     }
 
     private T getSelectedItem(MouseEvent mouseEvent) {

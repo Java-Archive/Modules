@@ -53,7 +53,7 @@ public class FilterContextMenu
         final CDIContainerSingleton instance = CDIContainerSingleton.getInstance();
         final FilteredTableCdiHolder cdiHolder = instance.getManagedInstance(FilteredTableCdiHolder.class);
 
-        menuItems = new ArrayList<>(30);
+        menuItems = new ArrayList<>();
         titleItem = new TitledSeparatorMenuItem(title + " Filter");
         saveItem = new MenuItem(cdiHolder.getRessource("default.save"));
         clearItem = new MenuItem(cdiHolder.getRessource("default.clear"));

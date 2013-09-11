@@ -119,7 +119,7 @@ public class Main extends Application {
 
 
         });
-
+        filteredTable.setTableMenuButtonVisible(true);
         primaryStage.setScene(new Scene(filteredTable, 600, 200));
         primaryStage.show();
     }

@@ -53,20 +53,26 @@ public abstract class GenericComboBoxCell<RT, VT> extends ComboBoxTableCell<RT, 
             //
         } else {
             final TableRow tableRow = getTableRow();
-            final RT row = (RT) tableRow.getItem();
-            getItems().clear();
-            if (disableComboBox(row)) {
-                this.setDisable(true);
-            } else if (readOnlyView) {
-                this.setDisable(true);
+            if (tableRow == null) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("getTableRow(); == null");
+                }
             } else {
+                final RT row = (RT) tableRow.getItem();
+                getItems().clear();
+                if (disableComboBox(row)) {
+                    this.setDisable(true);
+                } else if (readOnlyView) {
+                    this.setDisable(true);
+                } else {
 
-                final List<VT> comboBoxValues = createComboBoxValues(row);
-                getItems().addAll(comboBoxValues);
+                    final List<VT> comboBoxValues = createComboBoxValues(row);
+                    getItems().addAll(comboBoxValues);
 
-                this.setDisable(false);
+                    this.setDisable(false);
+                }
+                workOnRowItself(row);
             }
-            workOnRowItself(row);
         }
     }
 

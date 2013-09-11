@@ -45,9 +45,6 @@
     -fx-skin: "org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextFieldSkin";
 }
 
-{
-}
-
 root {
     display: block;
 }
