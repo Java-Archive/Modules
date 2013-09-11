@@ -101,6 +101,7 @@ somewhere to actually load the font.
 
 .filter-button-node:hover {
     -fx-background-image: url('funnel-pencil-icon.png');
+    /*-fx-background-color: #3773C9;*/
 }
 
 .filter-button-node.active {

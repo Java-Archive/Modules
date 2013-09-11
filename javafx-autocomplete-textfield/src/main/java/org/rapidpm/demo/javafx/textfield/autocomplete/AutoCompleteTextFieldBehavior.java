@@ -25,6 +25,7 @@ import com.sun.javafx.scene.control.behavior.BehaviorBase;
 public class AutoCompleteTextFieldBehavior<T extends AutoCompleteElement> extends BehaviorBase<AutoCompleteTextField<T>> {
 
     public AutoCompleteTextFieldBehavior(AutoCompleteTextField<T> textBox) {
+//        super(textBox,new ArrayList<KeyBinding>());  //for JDK8
         super(textBox);
     }
 }

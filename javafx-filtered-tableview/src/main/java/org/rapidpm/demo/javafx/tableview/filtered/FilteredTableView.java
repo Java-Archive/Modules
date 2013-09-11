@@ -28,6 +28,7 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
+import org.rapidpm.demo.javafx.tableview.control.ColumnWidthOptimizer;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.AbstractFilterableTableColumn;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.ColumnFilterEvent;
 import org.rapidpm.module.se.commons.logger.Logger;
@@ -57,10 +58,13 @@ public class FilteredTableView<T extends FilteredTableDataRow> extends TableView
     private List<MouseClickedRowAction> mouseSingleClickedRowActions = new ArrayList<>();
     private ObservableList<T> backupItems = FXCollections.observableArrayList();
 
+    final ColumnWidthOptimizer optimizer = new ColumnWidthOptimizer();
+
     public void setTableViewData(final ObservableList<T> items) {
         super.setItems(items);
         backupItems.clear();
         backupItems.addAll(items);
+        optimizer.optimize(this);
     }
 
     public ObservableList<T> getBackupItems() {
@@ -158,6 +162,8 @@ public class FilteredTableView<T extends FilteredTableDataRow> extends TableView
                 }
             }
         });
+
+        optimizer.optimize(this);
     }
 
     private T getSelectedItem(MouseEvent mouseEvent) {

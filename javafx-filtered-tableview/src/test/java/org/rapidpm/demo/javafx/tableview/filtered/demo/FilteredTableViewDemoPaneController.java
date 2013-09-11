@@ -95,7 +95,7 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
                 System.out.println("zooStyle = " + zooStyle);
                 tableView.setStyle(zooStyle);
 
-                final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
+                final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getVisibleLeafColumns();
                 for (final TableColumn<TransientDemoDataRow, ?> column : columns) {
                     column.setStyle(zooStyle);
                 }
@@ -110,13 +110,6 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
     private void initTable() {
         final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
         cell.associateWithCol(tableView, "betrag");
-
-        //set optimal size
-        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
-        for (final TableColumn<TransientDemoDataRow, ?> column : columns) {
-            column.prefWidthProperty().bind(tableView.widthProperty().divide(columns.size()));
-        }
-
 
     }
 
