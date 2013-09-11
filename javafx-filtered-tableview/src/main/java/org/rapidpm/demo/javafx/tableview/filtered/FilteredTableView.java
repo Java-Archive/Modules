@@ -55,8 +55,6 @@ public class FilteredTableView<T extends FilteredTableDataRow> extends TableView
 
     private List<MouseClickedRowAction> mouseDoubleClickedRowActions = new ArrayList<>();
     private List<MouseClickedRowAction> mouseSingleClickedRowActions = new ArrayList<>();
-
-
     private ObservableList<T> backupItems = FXCollections.observableArrayList();
 
     public void setTableViewData(final ObservableList<T> items) {
@@ -160,29 +158,6 @@ public class FilteredTableView<T extends FilteredTableDataRow> extends TableView
                 }
             }
         });
-
-        //add contextMenue
-//        final FilteredTableContextMenu contextMenu = new FilteredTableContextMenu();
-//        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");
-//        copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent e) {
-//                final ObservableList<TableColumn<T, ?>> columns = getColumns();
-//
-//                final ObservableList<T> items = getItems();
-//                final StringBuilder clipboardString = new StringBuilder();
-//                for (final T item : items) {
-//                    clipboardString.append(item);
-//                    clipboardString.append('\n');
-//                }
-//                final ClipboardContent content = new ClipboardContent();
-//                //System.out.println(clipboardString);
-//                content.putString(clipboardString.toString());
-//                Clipboard.getSystemClipboard().setContent(content);
-//            }
-//        });
-//        contextMenu.getItems().addAll(copyTableCSV2Clipboard);
-//        setContextMenu(contextMenu);
-
     }
 
     private T getSelectedItem(MouseEvent mouseEvent) {

@@ -23,10 +23,13 @@ import java.util.ResourceBundle;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
@@ -58,6 +61,7 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
     @Inject Instance<TransientDemoRowComparator> comparatorInstance;
 
     @FXML public FilteredTableView<TransientDemoDataRow> tableView;
+    @FXML private ChoiceBox zoomChoiceBox;
 
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         contextMenu.setFilteredTableView(tableView);
@@ -85,6 +89,19 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
 
         initTable();
 
+        zoomChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                final String zooStyle = "-fx-font-size: " + zoomChoiceBox.getItems().get(number2.intValue());
+                System.out.println("zooStyle = " + zooStyle);
+                tableView.setStyle(zooStyle);
+
+                final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
+                for (final TableColumn<TransientDemoDataRow, ?> column : columns) {
+                    column.setStyle(zooStyle);
+                }
+            }
+        });
+
         setI18n();
     }
 
@@ -93,6 +110,14 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
     private void initTable() {
         final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
         cell.associateWithCol(tableView, "betrag");
+
+        //set optimal size
+        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
+        for (final TableColumn<TransientDemoDataRow, ?> column : columns) {
+            column.prefWidthProperty().bind(tableView.widthProperty().divide(columns.size()));
+        }
+
+
     }
 
     private void setI18n() {

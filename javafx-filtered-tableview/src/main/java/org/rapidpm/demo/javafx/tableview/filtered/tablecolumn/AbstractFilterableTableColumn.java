@@ -46,6 +46,9 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
     private final M filterEditor;
     private final ObservableList<R> filterResults;
 
+    protected AbstractFilterableTableColumn getMyself() {
+        return this;
+    }
 
     public AbstractFilterableTableColumn(String name, final M filterEditor) {
         super(name);
@@ -55,6 +58,7 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
 
         // Display a button on the column to show the menu
         final Button filterTrigger = new Button();
+        filterTrigger.visibleProperty().bind(this.visibleProperty());
         filterTrigger.getStyleClass().add("filter-button-node");
         filterTrigger.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -64,8 +68,10 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
                 } else {
                     getContextMenu().show(filterTrigger, Side.BOTTOM, 0, 0);
                 }
+
             }
         });
+
 
         // Change the filter button icon based on filtered status
         filteredProperty().addListener(new ChangeListener<Boolean>() {
@@ -135,6 +141,7 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
             }
         });
     }
+
 
     protected M getFilterEditor() {
         return filterEditor;

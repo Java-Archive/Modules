@@ -16,7 +16,10 @@
   ~    limitations under the License.
   -->
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -30,39 +33,52 @@
     <!--<URL value="@/main.css"/>-->
     <!--</stylesheets>-->
     <children>
-        <!--Table-->
-        <AnchorPane minHeight="0.0" minWidth="0.0" VBox.vgrow="ALWAYS"
-                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0"
-                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <FilteredTableView fx:id="tableView" editable="true" VBox.vgrow="ALWAYS" style="-fx-font-size: 80%"
-                                       tableMenuButtonVisible="false">
-                        <columns>
-                            <FilterableStringTableColumn prefWidth="120.0" text="vorname">
-                                <cellValueFactory>
-                                    <PropertyValueFactory property="vorname"/>
-                                </cellValueFactory>
-                            </FilterableStringTableColumn>
-                            <FilterableStringTableColumn prefWidth="120.0" text="nachname">
-                                <cellValueFactory>
-                                    <PropertyValueFactory property="nachname"/>
-                                </cellValueFactory>
-                            </FilterableStringTableColumn>
-                            <FilterableStringTableColumn prefWidth="120.0" text="datum">
-                                <cellValueFactory>
-                                    <PropertyValueFactory property="datum"/>
-                                </cellValueFactory>
-                            </FilterableStringTableColumn>
-                            <FilterableDoubleTableColumn prefWidth="120.0" text="betrag">
-                            <cellValueFactory>
-                                    <PropertyValueFactory property="betrag"/>
-                                </cellValueFactory>
-                            </FilterableDoubleTableColumn>
-                        </columns>
-                    </FilteredTableView>
-                </ScrollPane>
-            </children>
-        </AnchorPane>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ChoiceBox fx:id="zoomChoiceBox" value="100%">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="100%"/>
+                        <String fx:value="70%"/>
+                        <String fx:value="50%"/>
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+
+
+            <AnchorPane minHeight="0.0" minWidth="0.0" VBox.vgrow="ALWAYS"
+                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0"
+                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <FilteredTableView fx:id="tableView" editable="true" VBox.vgrow="ALWAYS" style="-fx-font-size: 80%"
+                                           tableMenuButtonVisible="true">
+                            <columns>
+                                <FilterableStringTableColumn prefWidth="120.0" text="vorname">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="vorname"/>
+                                    </cellValueFactory>
+                                </FilterableStringTableColumn>
+                                <FilterableStringTableColumn prefWidth="120.0" text="nachname">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="nachname"/>
+                                    </cellValueFactory>
+                                </FilterableStringTableColumn>
+                                <FilterableStringTableColumn prefWidth="120.0" text="datum">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="datum"/>
+                                    </cellValueFactory>
+                                </FilterableStringTableColumn>
+                                <FilterableDoubleTableColumn prefWidth="120.0" text="betrag">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="betrag"/>
+                                    </cellValueFactory>
+                                </FilterableDoubleTableColumn>
+                            </columns>
+                        </FilteredTableView>
+                    </ScrollPane>
+                </children>
+            </AnchorPane>
+
+        </VBox>
     </children>
 </fx:root>
