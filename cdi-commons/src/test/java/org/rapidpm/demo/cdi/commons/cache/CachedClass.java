@@ -16,6 +16,8 @@
 
 package org.rapidpm.demo.cdi.commons.cache;
 
+import java.util.Objects;
+
 import org.rapidpm.lang.cache.generic.Cacheable;
 
 /**
@@ -37,24 +39,40 @@ public class CachedClass {
         this.txt = txt;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CachedClass)) return false;
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof CachedClass)) return false;
+//
+//        CachedClass that = (CachedClass) o;
+//
+//        if (!txt.equals(that.txt)) return false;
+//        if (!value.equals(that.value)) return false;
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = txt.hashCode();
+//        result = 31 * result + value.hashCode();
+//        return result;
+//    }
 
-        CachedClass that = (CachedClass) o;
 
-        if (!txt.equals(that.txt)) return false;
-        if (!value.equals(that.value)) return false;
-
-        return true;
+    @Override public int hashCode() {
+        return Objects.hash(txt, value);
     }
 
-    @Override
-    public int hashCode() {
-        int result = txt.hashCode();
-        result = 31 * result + value.hashCode();
-        return result;
+    @Override public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final CachedClass other = (CachedClass) obj;
+        return Objects.equals(this.txt, other.txt) && Objects.equals(this.value, other.value);
     }
 
     public Long getValue() {
