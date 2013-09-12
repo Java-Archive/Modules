@@ -26,5 +26,6 @@
         <Button onAction="#onConfirmationClicked" text="Confirmation"/>
         <Button onAction="#onWarningClicked" text="Warning"/>
         <Button onAction="#onThrowableClicked" text="Throwable"/>
+        <Button onAction="#onInfoTableViewClicked" text="InfoTableView"/>
     </VBox>
 </fx:root>

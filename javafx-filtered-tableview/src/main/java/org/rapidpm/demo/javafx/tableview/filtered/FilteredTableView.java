@@ -28,19 +28,16 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
-import org.rapidpm.demo.javafx.tableview.control.ColumnWidthOptimizer;
+import org.rapidpm.demo.javafx.commons.tableview.control.ColumnWidthOptimizer;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.AbstractFilterableTableColumn;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.ColumnFilterEvent;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
- * A {@link TableView} that identifies any {@link AbstractFilterableTableColumn}'s added to it,
- * and fires a single event when any of them have their filters changed.
- * <p/>
- * To listen for changes the table's filters, register a {@link ColumnFilterEvent#FILTER_CHANGED_EVENT}
- * with {@link #addEventFilter(javafx.event.EventType, javafx.event.EventHandler) }
- * or {@link #addEventHandler(javafx.event.EventType, javafx.event.EventHandler) }
+ * A {@link TableView} that identifies any {@link AbstractFilterableTableColumn}'s added to it, and fires a single event when any of them have their filters changed. <p/> To listen for changes the
+ * table's filters, register a {@link ColumnFilterEvent#FILTER_CHANGED_EVENT} with {@link #addEventFilter(javafx.event.EventType, javafx.event.EventHandler) } or {@link
+ * #addEventHandler(javafx.event.EventType, javafx.event.EventHandler) }
  *
  * @author Sven Ruppert
  */
