@@ -16,47 +16,54 @@
 
 package org.rapidpm.demo.javafx.tableview.filtered.demo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoDataRow;
 
 /**
- * User: Sven Ruppert
- * Date: 30.08.13
- * Time: 09:36
+ * User: Sven Ruppert Date: 30.08.13 Time: 09:36
  */
 public class DemoDataBuilder {
 
+    private @Inject @CDISimpleDateFormatter SimpleDateFormat sdf;
     private @Inject Instance<TransientDemoDataRow> rowInstance;
 
     public ObservableList<TransientDemoDataRow> create() {
         final ObservableList<TransientDemoDataRow> observableList = FXCollections.observableArrayList();
 
-        createRow(observableList, "Holger", "Mueller", "2013.10.02", 120.1);
-        createRow(observableList, "Holger", "Mueller", "2013.10.03", 121.1);
+        try {
+            createRow(observableList, "Holger", "Mueller", "2013.10.02", 120.1);
+            createRow(observableList, "Holger", "Mueller", "2013.10.03", 121.1);
 
-        createRow(observableList, "Holger", "Hoppel", "2013.10.02", 120.1);
-        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 121.1);
-        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 122.1);
-        createRow(observableList, "Holger", "Hoppel", "2013.10.01", 123.1);
+            createRow(observableList, "Holger", "Hoppel", "2013.10.02", 120.1);
+            createRow(observableList, "Holger", "Hoppel", "2013.10.01", 121.1);
+            createRow(observableList, "Holger", "Hoppel", "2013.10.01", 122.1);
+            createRow(observableList, "Holger", "Hoppel", "2013.10.01", 123.1);
 
-        createRow(observableList, "Willi", "Hampel", "2013.10.04", 10.1);
-        createRow(observableList, "Willi", "Hampel", "2013.10.05", 10.1);
+            createRow(observableList, "Willi", "Hampel", "2013.10.04", 10.1);
+            createRow(observableList, "Willi", "Hampel", "2013.10.05", 10.1);
 
-        createRow(observableList, "Willi", "Pampel", "2013.10.04", 11.1);
-        createRow(observableList, "Willi", "Pampel", "2013.10.05", 11.1);
+            createRow(observableList, "Willi", "Pampel", "2013.10.04", 11.1);
+            createRow(observableList, "Willi", "Pampel", "2013.10.05", 11.1);
+        } catch (ParseException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
         return observableList;
     }
 
-    private void createRow(ObservableList<TransientDemoDataRow> observableList, String vorname, String nachname, String datum, Double betrag) {
+    private void createRow(ObservableList<TransientDemoDataRow> observableList, String vorname, String nachname, String datum, Double betrag) throws ParseException {
         final TransientDemoDataRow dataRow = rowInstance.get();
         dataRow.setVorname(vorname);
         dataRow.setNachname(nachname);
-        dataRow.setDatum(datum);
+        dataRow.setDatum(sdf.parse(datum));
         dataRow.setBetrag(betrag);
         observableList.add(dataRow);
     }

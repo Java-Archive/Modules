@@ -14,15 +14,18 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.dialog.confirm;
+package org.rapidpm.demo.javafx.dialog;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -31,7 +34,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
@@ -43,11 +49,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import org.rapidpm.demo.javafx.commons.tableview.control.ColumnWidthOptimizer;
 
 /**
- * User: Sven Ruppert
- * Date: 24.06.13
- * Time: 12:58
+ * User: Sven Ruppert Date: 24.06.13 Time: 12:58
  */
 public class Dialog extends Stage {
 
@@ -61,15 +66,17 @@ public class Dialog extends Stage {
     protected VBox messageBox;
     protected Label messageLabel;
 
-    protected boolean stacktraceVisible;
+    protected boolean scrollPaneVisible;
     protected HBox stacktraceButtonsPanel;
     protected ToggleButton viewStacktraceButton;
     protected Button copyStacktraceButton;
+    //    protected Button mailStacktraceButton;
     protected ScrollPane scrollPane;
     protected Label stackTraceLabel;
 
     protected HBox buttonsPanel;
     protected Button okButton;
+    protected Button showAllButton;
 
     /**
      * Extracts stack trace from Throwable
@@ -93,7 +100,7 @@ public class Dialog extends Stage {
         protected static final int MESSAGE_MAX_WIDTH = 800;
         protected static final int BUTTON_WIDTH = 60;
         protected static final double MARGIN = 10;
-        protected static final String ICON_PATH = "/images/confirm/";
+//        protected static final String ICON_PATH = "/images/confirm/";
 
         protected Dialog stage;
 
@@ -121,6 +128,8 @@ public class Dialog extends Stage {
             stage.messageLabel.setMaxWidth(MESSAGE_MAX_WIDTH);
 
             stage.messageBox.getChildren().add(stage.messageLabel);
+
+
             stage.borderPanel.setCenter(stage.messageBox);
             BorderPane.setAlignment(stage.messageBox, Pos.CENTER);
             BorderPane.setMargin(stage.messageBox, new Insets(MARGIN, MARGIN, MARGIN, 2 * MARGIN));
@@ -163,12 +172,12 @@ public class Dialog extends Stage {
             return this;
         }
 
-        private void alignScrollPane() {
+        private void alignScrollPaneForStackTrace() {
             stage.setWidth(
                     stage.icon.getImage().getWidth()
                             + Math.max(
                             stage.messageLabel.getWidth(),
-                            (stage.stacktraceVisible
+                            (stage.scrollPaneVisible
                                     ? Math.max(
                                     stage.stacktraceButtonsPanel.getWidth(),
                                     stage.stackTraceLabel.getWidth())
@@ -180,7 +189,7 @@ public class Dialog extends Stage {
                             stage.icon.getImage().getHeight(),
                             stage.messageLabel.getHeight()
                                     + stage.stacktraceButtonsPanel.getHeight()
-                                    + (stage.stacktraceVisible
+                                    + (stage.scrollPaneVisible
                                     ? Math.min(
                                     stage.stackTraceLabel.getHeight(),
                                     STACKTRACE_LABEL_MAXHEIGHT)
@@ -188,13 +197,29 @@ public class Dialog extends Stage {
 
                             + stage.buttonsPanel.getHeight()
                             + 3 * MARGIN);
-            if (stage.stacktraceVisible) {
+            if (stage.scrollPaneVisible) {
                 stage.scrollPane.setPrefHeight(
                         stage.getHeight()
                                 - stage.messageLabel.getHeight()
                                 - stage.stacktraceButtonsPanel.getHeight()
                                 - 2 * MARGIN);
             }
+            stage.centerOnScreen();
+        }
+
+        private void alignScrollPaneForInfoTable() {
+//            stage.setWidth(stage.icon.getImage().getWidth() + stage.scrollPane.getPrefWidth() + 20);
+//            stage.setHeight(stage.icon.getImage().getHeight() + STACKTRACE_LABEL_MAXHEIGHT
+//                            + stage.buttonsPanel.getHeight()
+//                            + 3 * MARGIN);
+
+            stage.setWidth(500);
+            stage.scrollPane.setPrefWidth(500 - stage.icon.getImage().getWidth() - 5);
+            ((TableView) stage.scrollPane.getContent()).setPrefWidth(stage.scrollPane.getPrefWidth() - 20);
+
+            stage.setHeight(400);
+            stage.scrollPane.setPrefHeight(400 - stage.icon.getImage().getHeight() - stage.okButton.getHeight() - 5);
+            ((TableView) stage.scrollPane.getContent()).setPrefHeight(stage.scrollPane.getPrefHeight() - 20);
 
             stage.centerOnScreen();
         }
@@ -208,9 +233,13 @@ public class Dialog extends Stage {
             stage.copyStacktraceButton = new Button("Copy to clipboard"); //JIRA MOD-37 CDI i18n
             HBox.setMargin(stage.copyStacktraceButton, new Insets(0, 0, 0, MARGIN));
 
+            //maol button
+//            stage.mailStacktraceButton = new Button("mail it us"); //JIRA MOD-37 CDI i18n
+//            HBox.setMargin(stage.mailStacktraceButton, new Insets(0, 0, 0, MARGIN));
+
             stage.stacktraceButtonsPanel = new HBox();
-            stage.stacktraceButtonsPanel.getChildren().addAll(
-                    stage.viewStacktraceButton, stage.copyStacktraceButton);
+//            stage.stacktraceButtonsPanel.getChildren().addAll(stage.viewStacktraceButton, stage.copyStacktraceButton, stage.mailStacktraceButton);
+            stage.stacktraceButtonsPanel.getChildren().addAll(stage.viewStacktraceButton, stage.copyStacktraceButton);
             VBox.setMargin(stage.stacktraceButtonsPanel, new Insets(MARGIN, MARGIN, MARGIN, 0));
             stage.messageBox.getChildren().add(stage.stacktraceButtonsPanel);
 
@@ -219,14 +248,14 @@ public class Dialog extends Stage {
             stage.stackTraceLabel.widthProperty().addListener(new ChangeListener<Number>() {
 
                 public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
-                    alignScrollPane();
+                    alignScrollPaneForStackTrace();
                 }
             });
 
             stage.stackTraceLabel.heightProperty().addListener(new ChangeListener<Number>() {
 
                 public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
-                    alignScrollPane();
+                    alignScrollPaneForStackTrace();
                 }
             });
 
@@ -239,16 +268,16 @@ public class Dialog extends Stage {
             stage.viewStacktraceButton.setOnAction(new EventHandler<ActionEvent>() {
 
                 public void handle(ActionEvent t) {
-                    stage.stacktraceVisible = !stage.stacktraceVisible;
-                    if (stage.stacktraceVisible) {
+                    stage.scrollPaneVisible = !stage.scrollPaneVisible;
+                    if (stage.scrollPaneVisible) {
                         stage.messageBox.getChildren().add(stage.scrollPane);
                         stage.stackTraceLabel.setText(stage.stacktrace);
 
-                        alignScrollPane();
+                        alignScrollPaneForStackTrace();
                     } else {
                         stage.messageBox.getChildren().remove(stage.scrollPane);
 
-                        //alignScrollPane();
+                        //alignScrollPaneForStackTrace();
                         stage.setWidth(stage.originalWidth);
                         stage.setHeight(stage.originalHeight);
                         stage.stackTraceLabel.setText(null);
@@ -268,6 +297,48 @@ public class Dialog extends Stage {
                 }
             });
 
+//            stage.mailStacktraceButton.setOnAction(new EventHandler<ActionEvent>() {
+//
+//                public void handle(ActionEvent t) {
+//                    Clipboard clipboard = Clipboard.getSystemClipboard();
+//                    Map<DataFormat, Object> map = new HashMap<DataFormat, Object>();
+//                    map.put(DataFormat.PLAIN_TEXT, stage.stacktrace);
+//                    clipboard.setContent(map);
+//                    try {
+//                        final String encoded = java.net.URLEncoder.encode(clipboard.getString(), "ISO-8859-1");
+//                        final String s = encoded.replaceAll("\\+", "%20");
+//
+//                        final WritableImage snapImage = stage.getScene().snapshot(null);
+//                        final ClipboardContent content = new ClipboardContent();
+//                        content.putImage(snapImage);
+//                        Clipboard.getSystemClipboard().setContent(content);
+//
+//                        final BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapImage, null);
+//                        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//                        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+//
+//
+//                        BASE64Encoder base64Encoder = new BASE64Encoder();
+//                        final String encodedImage = base64Encoder.encode(byteArrayOutputStream.toByteArray());
+//
+//                        final String encodedImageISO = URLEncoder.encode(encodedImage, "ISO-8859-1");
+//
+//                        final URL url = new URL("mailto:sven.ruppert@rapidpm.org?subject=ErrorMessage&body="+s+"&attachment="+ encodedImageISO.replaceAll("\\+", "%20"));
+////                        final URL url = new URL("mailto:sven.ruppert@rapidpm.org?subject=ErrorMessage&body="+s);
+//                        Desktop.getDesktop().mail(url.toURI());
+//                    } catch (MalformedURLException e) {
+//                        e.printStackTrace();
+//                    } catch (URISyntaxException e) {
+//                        e.printStackTrace();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                }
+//            });
+
+
             stage.showingProperty().addListener(new ChangeListener<Boolean>() {
 
                 public void changed(ObservableValue<? extends Boolean> ov, Boolean oldValue, Boolean newValue) {
@@ -281,34 +352,64 @@ public class Dialog extends Stage {
             return this;
         }
 
+        public static interface InfoTableRow {
+            public List<String> allCols();
+        }
+
+        protected <T extends InfoTableRow> Builder setInfoTableView(List<T> messages) {
+            stage.scrollPane = new ScrollPane();
+            final TableView<T> messageTableView = new TableView<>();
+            final ObservableList<T> observableList = FXCollections.observableArrayList();
+            observableList.addAll(messages);
+
+            final T t = messages.get(0);
+            final List<String> strings = t.allCols();
+            for (final String string : strings) {
+                final TableColumn<T, String> col = new TableColumn<>(string);
+                col.setCellValueFactory(new PropertyValueFactory(string));
+                messageTableView.getColumns().add(col);
+            }
+
+            messageTableView.setItems(observableList);
+
+            //  final ContextMenu adden
+
+            final ColumnWidthOptimizer optimizer = new ColumnWidthOptimizer();
+            optimizer.optimize(messageTableView);
+            stage.scrollPane.setContent(messageTableView);
+            return this;
+        }
+
+
         protected void setIconFromResource(String resourceName) {
-//            final Image image = new Image(getClass().getResourceAsStream(resourceName));
             final Image image = new Image(getClass().getResourceAsStream(resourceName));
+//            final Image image = new Image(resourceName);
             stage.icon.setImage(image);
         }
 
         protected Builder setWarningIcon() {
-            setIconFromResource(ICON_PATH + "warningIcon.png");
+//            setIconFromResource(ICON_PATH + "warningIcon.png");
+            setIconFromResource("warningIcon.png");
             return this;
         }
 
         protected Builder setErrorIcon() {
-            setIconFromResource(ICON_PATH + "errorIcon.png");
+            setIconFromResource("errorIcon.png");
             return this;
         }
 
         protected Builder setThrowableIcon() {
-            setIconFromResource(ICON_PATH + "bugIcon.png");
+            setIconFromResource("bugIcon.png");
             return this;
         }
 
         protected Builder setInfoIcon() {
-            setIconFromResource(ICON_PATH + "infoIcon.png");
+            setIconFromResource("infoIcon.png");
             return this;
         }
 
         protected Builder setConfirmationIcon() {
-            setIconFromResource(ICON_PATH + "confirmationIcon.png");
+            setIconFromResource("confirmationIcon.png");
             return this;
         }
 
@@ -323,6 +424,31 @@ public class Dialog extends Stage {
 
             });
             stage.buttonsPanel.getChildren().add(stage.okButton);
+            return this;
+        }
+
+        protected Builder addShowAllButton() {
+            stage.showAllButton = new Button("Details"); //JIRA MOD-38 CDI i18n
+            stage.showAllButton.setPrefWidth(BUTTON_WIDTH);
+            stage.showAllButton.setOnAction(new EventHandler<ActionEvent>() {
+
+                public void handle(ActionEvent t) {
+                    stage.scrollPaneVisible = !stage.scrollPaneVisible;
+                    if (stage.scrollPaneVisible) {
+                        stage.messageBox.getChildren().add(stage.scrollPane);
+                        stage.showAllButton.setVisible(false);
+                        alignScrollPaneForInfoTable();
+                    } else {
+                        stage.messageBox.getChildren().remove(stage.scrollPane);
+                        stage.setWidth(stage.originalWidth);
+                        stage.setHeight(stage.originalHeight);
+                        stage.centerOnScreen();
+                    }
+                    stage.messageBox.layout();
+                }
+            });
+            stage.buttonsPanel.getChildren().add(stage.showAllButton);
+
             return this;
         }
 
@@ -346,6 +472,7 @@ public class Dialog extends Stage {
          * Add Yes button to confirmation dialog
          *
          * @param actionHandler action handler
+         *
          * @return
          */
         public Builder addYesButton(EventHandler actionHandler) {
@@ -356,6 +483,7 @@ public class Dialog extends Stage {
          * Add No button to confirmation dialog
          *
          * @param actionHandler action handler
+         *
          * @return
          */
         public Builder addNoButton(EventHandler actionHandler) {
@@ -366,6 +494,7 @@ public class Dialog extends Stage {
          * Add Cancel button to confirmation dialog
          *
          * @param actionHandler action handler
+         *
          * @return
          */
         public Builder addCancelButton(EventHandler actionHandler) {
@@ -430,6 +559,24 @@ public class Dialog extends Stage {
                 .setTitle(title)
                 .setWarningIcon()
                 .setMessage(message)
+                .addOkButton()
+                .build()
+                .show();
+    }
+
+    public static <T extends Builder.InfoTableRow> void showInfoTable(String title, String shortMessage, List<T> messages) {
+        showInfoTable(title, shortMessage, messages, null);
+    }
+
+    public static <T extends Builder.InfoTableRow> void showInfoTable(String title, String shortMessage, List<T> messages, Window owner) {
+        new Builder()
+                .create()
+                .setOwner(owner)
+                .setTitle(title)
+                .setInfoIcon()
+                .setMessage(shortMessage)
+                .setInfoTableView(messages)
+                .addShowAllButton()
                 .addOkButton()
                 .build()
                 .show();
@@ -512,6 +659,7 @@ public class Dialog extends Stage {
      * @param title   dialog title
      * @param message dialog message
      * @param owner   parent window
+     *
      * @return
      */
     public static Builder buildConfirmation(String title, String message, Window owner) {
@@ -528,6 +676,7 @@ public class Dialog extends Stage {
      *
      * @param title   dialog title
      * @param message dialog message
+     *
      * @return
      */
     public static Builder buildConfirmation(String title, String message) {

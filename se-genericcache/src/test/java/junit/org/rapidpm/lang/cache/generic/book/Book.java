@@ -18,6 +18,7 @@
 package junit.org.rapidpm.lang.cache.generic.book;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.rapidpm.lang.cache.generic.Cacheable;
 
@@ -83,26 +84,41 @@ public class Book {
                 '}';
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
+    @Override public int hashCode() {
+        return Objects.hash(isbn);
+    }
+
+    @Override public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-
-        final Book book = (Book) o;
-
-        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) {
-            return false;
-        }
-
-        return true;
+        final Book other = (Book) obj;
+        return Objects.equals(this.isbn, other.isbn);
     }
 
-    @Override
-    public int hashCode() {
-        return (isbn != null ? isbn.hashCode() : 0);
-    }
+    //    @Override
+//    public boolean equals(final Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (o == null || getClass() != o.getClass()) {
+//            return false;
+//        }
+//
+//        final Book book = (Book) o;
+//
+//        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) {
+//            return false;
+//        }
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return (isbn != null ? isbn.hashCode() : 0);
+//    }
 }

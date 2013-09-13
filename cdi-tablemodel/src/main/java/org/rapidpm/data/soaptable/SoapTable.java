@@ -26,6 +26,7 @@ package org.rapidpm.data.soaptable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.log4j.Logger;
 
@@ -70,48 +71,39 @@ public class SoapTable {
         public ColInfo() {
         }
 
-        @Override
-        public boolean equals(final Object o) {
-            if (this == o) {
+        @Override public int hashCode() {
+            return Objects.hash(colNr, colname, coltype);
+        }
+
+        @Override public boolean equals(Object obj) {
+            if (this == obj) {
                 return true;
             }
-            if (!(o instanceof ColInfo)) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-
-            final ColInfo colInfo = (ColInfo) o;
-
-            if (colNr != colInfo.colNr) {
-                return false;
-            }
-            if (!colname.equals(colInfo.colname)) {
-                return false;
-            }
-            if (coltype != colInfo.coltype) {
-                return false;
-            }
-
-            return true;
+            final ColInfo other = (ColInfo) obj;
+            return Objects.equals(this.colNr, other.colNr) && Objects.equals(this.colname, other.colname) && Objects.equals(this.coltype, other.coltype);
         }
 
-        @Override
-        public int hashCode() {
-            int result = colNr;
-            result = 31 * result + colname.hashCode();
-            result = 31 * result + coltype.hashCode();
-            return result;
-        }
-
-        @Override
-        public String toString() {
-            final StringBuilder sb = new StringBuilder();
-            sb.append("ColInfo");
-            sb.append("{colNr=").append(colNr);
-            sb.append(", colname='").append(colname).append('\'');
-            sb.append(", coltype=").append(coltype);
-            sb.append('}');
-            return sb.toString();
-        }
+//        @Override
+//        public int hashCode() {
+//            int result = colNr;
+//            result = 31 * result + colname.hashCode();
+//            result = 31 * result + coltype.hashCode();
+//            return result;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            final StringBuilder sb = new StringBuilder();
+//            sb.append("ColInfo");
+//            sb.append("{colNr=").append(colNr);
+//            sb.append(", colname='").append(colname).append('\'');
+//            sb.append(", coltype=").append(coltype);
+//            sb.append('}');
+//            return sb.toString();
+//        }
 
         public int getColNr() {
             return colNr;
@@ -158,43 +150,37 @@ public class SoapTable {
             public ColEntry() {
             }
 
-            @Override
-            public boolean equals(final Object o) {
-                if (this == o) {
+            @Override public int hashCode() {
+                return Objects.hash(colEntryNr, value);
+            }
+
+            @Override public boolean equals(Object obj) {
+                if (this == obj) {
                     return true;
                 }
-                if (!(o instanceof ColEntry)) {
+                if (obj == null || getClass() != obj.getClass()) {
                     return false;
                 }
-
-                final ColEntry colEntry = (ColEntry) o;
-
-                if (colEntryNr != colEntry.colEntryNr) {
-                    return false;
-                }
-                if (!value.equals(colEntry.value)) {
-                    return false;
-                }
-
-                return true;
+                final ColEntry other = (ColEntry) obj;
+                return Objects.equals(this.colEntryNr, other.colEntryNr) && Objects.equals(this.value, other.value);
             }
 
-            @Override
-            public int hashCode() {
-                int result = colEntryNr;
-                result = 31 * result + value.hashCode();
-                return result;
-            }
-
-            @Override
-            public String toString() {
-                final StringBuilder sb = new StringBuilder();
-                sb.append("ColEntry");
-                sb.append("{colEntryNr=").append(colEntryNr);
-                sb.append(", value='").append(value).append('\'');
-                sb.append('}');
-                return sb.toString();
-            }
+//            @Override
+//            public int hashCode() {
+//                int result = colEntryNr;
+//                result = 31 * result + value.hashCode();
+//                return result;
+//            }
+//
+//            @Override
+//            public String toString() {
+//                final StringBuilder sb = new StringBuilder();
+//                sb.append("ColEntry");
+//                sb.append("{colEntryNr=").append(colEntryNr);
+//                sb.append(", value='").append(value).append('\'');
+//                sb.append('}');
+//                return sb.toString();
+//            }
 
             public int getColEntryNr() {
                 return colEntryNr;
@@ -226,37 +212,34 @@ public class SoapTable {
             this.rowNr = rowNr;
         }
 
-        @Override
-        public boolean equals(final Object o) {
-            if (this == o) {
+        @Override public int hashCode() {
+            return Objects.hash(colEntryList, rowNr);
+        }
+
+        @Override public boolean equals(Object obj) {
+            if (this == obj) {
                 return true;
             }
-            if (!(o instanceof Row)) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
-
-            final Row row = (Row) o;
-
-            if (!colEntryList.equals(row.colEntryList)) {
-                return false;
-            }
-
-            return true;
+            final Row other = (Row) obj;
+            return Objects.equals(this.colEntryList, other.colEntryList) && Objects.equals(this.rowNr, other.rowNr);
         }
 
-        @Override
-        public int hashCode() {
-            return colEntryList.hashCode();
-        }
-
-        @Override
-        public String toString() {
-            final StringBuilder sb = new StringBuilder();
-            sb.append("Row");
-            sb.append("{colEntryList=").append(colEntryList);
-            sb.append('}');
-            return sb.toString();
-        }
+//        @Override
+//        public int hashCode() {
+//            return colEntryList.hashCode();
+//        }
+//
+//        @Override
+//        public String toString() {
+//            final StringBuilder sb = new StringBuilder();
+//            sb.append("Row");
+//            sb.append("{colEntryList=").append(colEntryList);
+//            sb.append('}');
+//            return sb.toString();
+//        }
 
         public List<ColEntry> getColEntryList() {
             return colEntryList;

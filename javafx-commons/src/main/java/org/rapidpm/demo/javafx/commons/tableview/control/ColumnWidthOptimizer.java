@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.tableview.control;
+package org.rapidpm.demo.javafx.commons.tableview.control;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
@@ -23,9 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 /**
- * User: Sven Ruppert
- * Date: 11.09.13
- * Time: 12:22
+ * User: Sven Ruppert Date: 11.09.13 Time: 12:22
  */
 public class ColumnWidthOptimizer {
     public void optimize(final TableView tableView) {

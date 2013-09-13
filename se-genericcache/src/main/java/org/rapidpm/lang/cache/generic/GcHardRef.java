@@ -17,6 +17,8 @@
 
 package org.rapidpm.lang.cache.generic;
 
+import java.util.Objects;
+
 public class GcHardRef<T> implements GcReference<T> {
     private final T referent;
 
@@ -30,21 +32,36 @@ public class GcHardRef<T> implements GcReference<T> {
         return referent;
     }
 
-    @Override
-    public int hashCode() {
-        return referent == null ? 0 : referent.hashCode();
+    @Override public int hashCode() {
+        return Objects.hash(referent);
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
+    @Override public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final GcHardRef<T> ref = (GcHardRef<T>) o;
-        final T otherReferent = ref.get();
-        return (referent == null && otherReferent == null) || referent.equals(otherReferent);
+        final GcHardRef other = (GcHardRef) obj;
+        return Objects.equals(this.referent, other.referent);
     }
+
+    //    @Override
+//    public int hashCode() {
+//        return referent == null ? 0 : referent.hashCode();
+//    }
+//
+//    @Override
+//    public boolean equals(final Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (o == null || getClass() != o.getClass()) {
+//            return false;
+//        }
+//        final GcHardRef<T> ref = (GcHardRef<T>) o;
+//        final T otherReferent = ref.get();
+//        return (referent == null && otherReferent == null) || referent.equals(otherReferent);
+//    }
 }

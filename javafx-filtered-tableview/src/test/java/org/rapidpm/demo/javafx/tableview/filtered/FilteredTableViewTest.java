@@ -26,9 +26,7 @@ import org.rapidpm.demo.javafx.tableview.filtered.demo.FilteredTableViewDemoPane
 import org.rapidpm.demo.javafx.tableview.filtered.demo.FilteredTableViewDemoPaneController;
 
 /**
- * User: Sven Ruppert
- * Date: 30.08.13
- * Time: 06:56
+ * User: Sven Ruppert Date: 30.08.13 Time: 06:56
  */
 public class FilteredTableViewTest extends JavaFXBaseTest {
     @Override protected Class<? extends JavaFXBaseTest> getTestClass() {
@@ -55,6 +53,8 @@ public class FilteredTableViewTest extends JavaFXBaseTest {
 
             final FilteredTableViewDemoPaneController controller = root.getController();
             controller.tableView.setTableViewData(dataBuilder.create());
+
+
         }
     }
 }
