@@ -16,6 +16,8 @@
 
 package org.rapidpm.demo.javafx.tableview.filtered.demo.model;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
@@ -23,14 +25,13 @@ import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.DemoKeyMapper;
+import org.rapidpm.demo.javafx.tableview.filtered.filter.DateFilter;
 import org.rapidpm.demo.javafx.tableview.filtered.filter.DoubleFilter;
 import org.rapidpm.demo.javafx.tableview.filtered.filter.StringFilter;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
- * User: Sven Ruppert
- * Date: 30.08.13
- * Time: 09:04
+ * User: Sven Ruppert Date: 30.08.13 Time: 09:04
  */
 public class TableFilter {
     private @Inject @CDILogger Logger logger;
@@ -67,9 +68,9 @@ public class TableFilter {
         if (logger.isDebugEnabled()) {
             logger.debug("filterOnDatum");
         }
-        final StringFilter<TransientDemoDataRow> it = new StringFilter<TransientDemoDataRow>(filteredTableView) {
+        final DateFilter<TransientDemoDataRow> it = new DateFilter<TransientDemoDataRow>(filteredTableView) {
             @Override
-            public String getValue(TransientDemoDataRow rowElement) {
+            public Date getValue(TransientDemoDataRow rowElement) {
                 return rowElement.getDatum();
             }
         };

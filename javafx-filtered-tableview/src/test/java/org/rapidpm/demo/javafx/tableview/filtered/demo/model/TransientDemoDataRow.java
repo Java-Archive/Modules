@@ -17,6 +17,7 @@
 package org.rapidpm.demo.javafx.tableview.filtered.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -25,32 +26,41 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.property.adapter.JavaBeanObjectProperty;
+import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableDataRow;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.DemoKeyMapper;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
- * User: Sven Ruppert
- * Date: 30.08.13
- * Time: 07:28
+ * User: Sven Ruppert Date: 30.08.13 Time: 07:28
  */
 public class TransientDemoDataRow implements FilteredTableDataRow, Serializable {
 
+    private @Inject @CDILogger Logger logger;
     @Inject @CDIPropertyRegistryService PropertyRegistryService propertyRegistryService;
     @Inject DemoKeyMapper keyMapper;
 
     private StringProperty vorname;
     private StringProperty nachname;
-    private StringProperty datum;
+    private JavaBeanObjectProperty<Date> datumProperty;
+    private Date datum;
     private SimpleDoubleProperty betrag;
 
     @PostConstruct
     public void init() {
         vorname = new SimpleStringProperty(this, map("vorname"));
         nachname = new SimpleStringProperty(this, map("nachname"));
-        datum = new SimpleStringProperty(this, map("datum"));
+//        datum = new SimpleStringProperty(this, map("datum"));
         betrag = new SimpleDoubleProperty(this, map("betrag"));
+        try {
+            datumProperty = JavaBeanObjectPropertyBuilder.create().bean(this).name(map("datum")).build();
+        } catch (NoSuchMethodException e) {
+            logger.error(e);
+        }
     }
 
     private String map(final String key) {
@@ -81,16 +91,16 @@ public class TransientDemoDataRow implements FilteredTableDataRow, Serializable 
         this.nachname.set(nachname);
     }
 
-    public String getDatum() {
-        return datum.get();
-    }
-
-    public StringProperty datumProperty() {
+    public Date getDatum() {
         return datum;
     }
 
-    public void setDatum(String datum) {
-        this.datum.set(datum);
+    public JavaBeanObjectProperty<Date> datumProperty() {
+        return datumProperty;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
     }
 
     public Double getBetrag() {
