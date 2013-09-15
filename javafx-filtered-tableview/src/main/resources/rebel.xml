@@ -19,8 +19,8 @@
              xsi:schemaLocation="http://www.zeroturnaround.com http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
 
     <classpath>
-        <dir name="${rebel.workspace.path}/javafx-filtered-tableview/target/classes"></dir>
-        <dir name="${rebel.workspace.path}/javafx-filtered-tableview/target/test-classes">
+        <dir name="${rebel.workspace.rapidpm.path}/javafx-filtered-tableview/target/classes"></dir>
+        <dir name="${rebel.workspace.rapidpm.path}/javafx-filtered-tableview/target/test-classes">
             <!--<dir name="C:/workspace/svenruppert/rapidpm-modules/javafx-filtered-tableview/javafx-filtered-tableview/target/classes">-->
         </dir>
     </classpath>

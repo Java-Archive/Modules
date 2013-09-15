@@ -92,7 +92,7 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
         zoomChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
                 final String zooStyle = "-fx-font-size: " + zoomChoiceBox.getItems().get(number2.intValue());
-                System.out.println("zooStyle = " + zooStyle);
+                logger.debug("zooStyle = " + zooStyle);
                 tableView.setStyle(zooStyle);
 
                 final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getVisibleLeafColumns();

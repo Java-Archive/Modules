@@ -19,7 +19,7 @@ package org.rapidpm.demo.javafx.tableview.control.cell.callback;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.enterprise.inject.Instance;
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import javafx.beans.property.ObjectProperty;
@@ -39,7 +39,8 @@ import thirdparty.eu.schudt.javafx.controls.calendar.DatePicker;
  * User: Sven Ruppert Date: 13.09.13 Time: 07:44
  */
 public class EditingDateCellFactoryCallback implements Callback<TableColumn<FilteredTableDataRow, ? extends Date>, TableCell<FilteredTableDataRow, ? extends Date>> {
-    @Override public TableCell<FilteredTableDataRow, ? extends Date> call(TableColumn<FilteredTableDataRow, ? extends Date> tTableColumn) {
+    @Override
+    public TableCell<FilteredTableDataRow, ? extends Date> call(TableColumn<FilteredTableDataRow, ? extends Date> tTableColumn) {
         final EditingCell editingCell = CDIContainerSingleton.getInstance().getManagedInstance(EditingCell.class);
         return editingCell;
 //        return editingCellInstance.get();
@@ -49,13 +50,29 @@ public class EditingDateCellFactoryCallback implements Callback<TableColumn<Filt
 
     public static class EditingCell extends TableCell<FilteredTableDataRow, Date> {
 
-        private @Inject @CDILogger Logger logger;
-        @Inject @CDISimpleDateFormatter(value = "default.yyyyMMdd") SimpleDateFormat sdf;   //TODO von aussen setzen
+        private
+        @Inject
+        @CDILogger
+        Logger logger;
+        @Inject
+        @CDISimpleDateFormatter(value = "default.yyyyMMdd")
+        SimpleDateFormat sdf;   //TODO von aussen setzen
 
-        @Inject Instance<DatePicker> datePickerInstance;
-        private DatePicker datePicker;
+        //        @Inject Instance<DatePicker> datePickerInstance;
+        private
+        @Inject
+        DatePicker datePicker;
 
         public EditingCell() {
+        }
+
+        @PostConstruct
+        public void init() {
+            if (getItem() == null) {
+
+            } else {
+                setText(sdf.format(getItem()));
+            }
         }
 
         @Override
@@ -68,26 +85,38 @@ public class EditingDateCellFactoryCallback implements Callback<TableColumn<Filt
                 createValueField();
                 setText(null);
                 setGraphic(datePicker);
+            } else {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("startEdit-> isEmpty() == true");
+                }
             }
+        }
+
+
+        @Override
+        public void commitEdit(Date date) {
+            super.commitEdit(date);
+            System.out.println("commitEdit-> date = " + date);
         }
 
         @Override
         public void cancelEdit() {
-            if (logger.isDebugEnabled()) {
-                logger.debug("cancleEdit");
-            }
             super.cancelEdit();
             final Date item = getItem();
-            setText(sdf.format(item));
+            final String format = sdf.format(item);
+            if (logger.isDebugEnabled()) {
+                logger.debug("cancelEdit->format = " + format);
+            }
+            setText(format);
             setGraphic(null);
         }
 
         @Override
         public void updateItem(Date item, boolean empty) {
-            super.updateItem(item, empty);
             if (logger.isDebugEnabled()) {
                 logger.debug("updateItem " + item);
             }
+            super.updateItem(item, empty);
             if (empty) {
                 setText(null);
                 setGraphic(null);
@@ -113,37 +142,41 @@ public class EditingDateCellFactoryCallback implements Callback<TableColumn<Filt
             if (logger.isDebugEnabled()) {
                 logger.debug("createValueField");
             }
-            datePicker = datePickerInstance.get();
+            //datePicker = datePickerInstance.get();
             datePicker.setDateFormat(sdf);
-
-            final ObjectProperty<Date> dateObjectPropertyOriginal = itemProperty();
-            final ObjectProperty<Date> dateObjectProperty = datePicker.selectedDateProperty();
-            dateObjectProperty.bindBidirectional(dateObjectPropertyOriginal);
-
             datePicker.getTextField().setText(getString());
             datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
-            datePicker.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            datePicker.getTextField().setEditable(false);
+            final ObjectProperty<Date> dateObjectProperty = datePicker.selectedDateProperty();
+            dateObjectProperty.addListener(new ChangeListener<Date>() {
                 @Override
-                public void changed(ObservableValue<? extends Boolean> arg0,
-                                    Boolean arg1, Boolean arg2) {
+                public void changed(ObservableValue<? extends Date> observableValue, Date date, Date date2) {
                     if (logger.isDebugEnabled()) {
                         logger.debug("changed");
                     }
-                    if (!arg2) {
-                        if (logger.isDebugEnabled()) {
-                            logger.debug("!arg2");
-                        }
-                        commitEdit(datePicker.getSelectedDate());
-                        setItem(datePicker.getSelectedDate());
-                    }
+                    commitEdit(datePicker.getSelectedDate());
+                    setItem(datePicker.getSelectedDate());
                 }
             });
         }
 
         private String getString() {
-            return getItem() == null ? "" : sdf.format(getItem());
+            if (logger.isDebugEnabled()) {
+                logger.debug("getString called ");
+            }
+            if (getItem() == null) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("format -> = '' ");
+                }
+                return "";
+            } else {
+                final String format = sdf.format(getItem());
+                if (logger.isDebugEnabled()) {
+                    logger.debug("format -> " + format);
+                }
+                return format;
+            }
         }
     }
-
-
 }
+

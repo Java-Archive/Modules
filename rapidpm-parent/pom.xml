@@ -231,7 +231,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>15.0.0</version>
+                <version>14.0.1</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
@@ -1067,6 +1067,7 @@
 
 
     <modules>
+        <module>rapidpm-resources</module>
         <module>../se-commons</module>
         <module>../se-genericcache</module>
         <module>../cdi-commons</module>

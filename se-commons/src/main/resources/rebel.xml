@@ -19,7 +19,7 @@
              xsi:schemaLocation="http://www.zeroturnaround.com http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
 
     <classpath>
-        <dir name="${rebel.workspace.path}/se-commons/target/classes">
+        <dir name="${rebel.workspace.rapidpm.path}/se-commons/target/classes">
         </dir>
     </classpath>
 
