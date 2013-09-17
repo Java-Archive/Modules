@@ -27,6 +27,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteElement;
 import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextField;
 import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextFieldAction;
+import org.rapidpm.demo.javafx.textfield.autocomplete.demo.model.PersistentPojo;
 import org.rapidpm.demo.javafx.textfield.autocomplete.demo.model.TransientAutoCompleteElement;
 import org.rapidpm.module.se.commons.logger.Logger;
 
@@ -47,12 +48,16 @@ public class AutoCompleteTextFieldPaneController implements CDIJavaFxBaseControl
 
         autocompleteTextField.getCustomActionsList().add(new AutoCompleteTextFieldAction() {
             @Override public void execute(AutoCompleteElement selectedItem) {
-                businessLogic.doSomething();
+                TransientAutoCompleteElement e = (TransientAutoCompleteElement) selectedItem;
+                final PersistentPojo pojo = e.getPojo();
+                businessLogic.doSomething(pojo);
             }
         });
 
         autocompleteTextField.getData().clear();
         autocompleteTextField.getData().addAll(demoDataBuilder.create());
+
+
     }
 
 

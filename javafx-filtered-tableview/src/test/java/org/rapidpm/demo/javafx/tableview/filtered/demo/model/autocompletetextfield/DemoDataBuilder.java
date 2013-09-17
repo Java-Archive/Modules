@@ -14,13 +14,10 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.textfield.autocomplete.demo;
+package org.rapidpm.demo.javafx.tableview.filtered.demo.model.autocompletetextfield;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.rapidpm.demo.javafx.textfield.autocomplete.demo.model.PersistentPojo;
-import org.rapidpm.demo.javafx.textfield.autocomplete.demo.model.TransientAutoCompleteElement;
 
 /**
  * User: Sven Ruppert Date: 17.09.13 Time: 16:15

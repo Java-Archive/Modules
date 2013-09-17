@@ -14,18 +14,18 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.textfield.autocomplete.demo;
+package org.rapidpm.demo.javafx.tableview.filtered.demo.logic;
 
 import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
-import org.rapidpm.demo.javafx.textfield.autocomplete.demo.model.PersistentPojo;
+import org.rapidpm.demo.javafx.tableview.filtered.demo.model.autocompletetextfield.PersistentPojo;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert Date: 17.09.13 Time: 15:56
  */
-public class BusinessLogic {
+public class AutoCompleteBusinessLogic {
 
     //private static final Logger logger = Logger.getLogger(BusinessLogic.class);
     private @Inject @CDILogger Logger logger;

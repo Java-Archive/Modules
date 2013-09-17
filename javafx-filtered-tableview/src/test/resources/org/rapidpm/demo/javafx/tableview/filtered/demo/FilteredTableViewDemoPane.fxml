@@ -17,12 +17,14 @@
   -->
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingAutoCompleteStringCellFactory?>
 <?import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingDateCellFactoryCallback?>
 <?import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingStringCellFactoryCallback?>
 <?import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView?>
@@ -32,9 +34,9 @@
 <fx:root type="org.rapidpm.demo.javafx.tableview.filtered.demo.FilteredTableViewDemoPane"
          fx:id="FilteredTableviewDemoPane" xmlns:fx="http://javafx.com/fxml" style="-fx-background-color:#EEEEEE">
 
-    <!--<stylesheets>-->
-    <!--<URL value="@/main.css"/>-->
-    <!--</stylesheets>-->
+    <stylesheets>
+        <URL value="@/org/rapidpm/demo/javafx/textfield/autocomplete/main.css"/>
+    </stylesheets>
     <children>
         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <ChoiceBox fx:id="zoomChoiceBox" value="100%">
@@ -58,7 +60,7 @@
                             <columns>
                                 <FilterableStringTableColumn prefWidth="120.0" text="vorname">
                                     <cellFactory>
-                                        <EditingStringCellFactoryCallback/>
+                                        <EditingAutoCompleteStringCellFactory/>
                                     </cellFactory>
                                     <cellValueFactory>
                                         <PropertyValueFactory property="vorname"/>

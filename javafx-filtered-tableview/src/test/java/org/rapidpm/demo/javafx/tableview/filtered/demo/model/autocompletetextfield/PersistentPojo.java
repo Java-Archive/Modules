@@ -14,22 +14,31 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.textfield.autocomplete.demo.model;
-
-import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteElement;
+package org.rapidpm.demo.javafx.tableview.filtered.demo.model.autocompletetextfield;
 
 /**
- * User: Sven Ruppert Date: 17.09.13 Time: 15:51
+ * User: Sven Ruppert Date: 17.09.13 Time: 15:52
  */
-public class TransientAutoCompleteElement extends AutoCompleteElement {
+public class PersistentPojo {
 
-    private PersistentPojo pojo;
+    private String text;
+    private Long id;
 
-    public PersistentPojo getPojo() {
-        return pojo;
+    public Long getId() {
+        return id;
     }
 
-    public void setPojo(PersistentPojo pojo) {
-        this.pojo = pojo;
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+
 }

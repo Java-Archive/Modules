@@ -18,6 +18,7 @@ package org.rapidpm.demo.javafx.tableview.control.cell.callback;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
@@ -34,7 +35,7 @@ public class EditingStringCellFactoryCallback implements Callback<TableColumn<Fi
 //        return new EditingCell();
     }
 
-    public static class EditingCell extends TableCell<FilteredTableDataRow, String> {
+    public static class EditingCell extends AbstractEditingCell<String> {
 
         private TextField textField;
 
@@ -42,46 +43,13 @@ public class EditingStringCellFactoryCallback implements Callback<TableColumn<Fi
         }
 
         @Override
-        public void startEdit() {
-            if (!isEmpty()) {
-                super.startEdit();
-                createTextField();
-                setText(null);
-                setGraphic(textField);
-                textField.selectAll();
-            }
-        }
-
-        @Override
         public void cancelEdit() {
             super.cancelEdit();
-
             setText(getItem());
             setGraphic(null);
         }
 
-        @Override
-        public void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty) {
-                setText(null);
-                setGraphic(null);
-            } else {
-                if (isEditing()) {
-                    if (textField != null) {
-                        textField.setText(getString());
-                    }
-                    setText(null);
-                    setGraphic(textField);
-                } else {
-                    setText(getString());
-                    setGraphic(null);
-                }
-            }
-        }
-
-        private void createTextField() {
+        public void createValueField() {
             textField = new TextField(getString());
             textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -95,8 +63,22 @@ public class EditingStringCellFactoryCallback implements Callback<TableColumn<Fi
             });
         }
 
-        private String getString() {
-            return getItem() == null ? "" : getItem().toString();
+        @Override public void updateItemIsEditing() {
+            if (textField != null) {
+                textField.setText(getString());
+            }
+        }
+
+        @Override public String getStringIfItemNotNull() {
+            return getItem();
+        }
+
+        @Override public void startEditIsNotEmptyLastActions() {
+            textField.selectAll();
+        }
+
+        @Override public Node getGraphicNode() {
+            return textField;
         }
     }
 

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.textfield.autocomplete.demo.model;
+package org.rapidpm.demo.javafx.tableview.filtered.demo.model.autocompletetextfield;
 
 import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteElement;
 
