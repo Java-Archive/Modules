@@ -14,41 +14,41 @@
  *    limitations under the License.
  */
 
-package gui.org.rapidpm.demo.javafx.dialog;
+package org.rapidpm.demo.javafx.textfield.autocomplete;
 
 import javax.inject.Inject;
 
-import gui.org.rapidpm.demo.javafx.dialog.demo.DialogDemoPane;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.rapidpm.demo.cdi.commons.fx.JavaFXBaseTest;
+import org.rapidpm.demo.javafx.textfield.autocomplete.demo.AutoCompleteTextFieldPane;
 
 /**
- * User: Sven Ruppert Date: 10.09.13 Time: 14:34
+ * User: Sven Ruppert Date: 17.09.13 Time: 15:29
  */
-public class DialogTest extends JavaFXBaseTest {
-
+public class AutoCompleteTextFieldTest extends JavaFXBaseTest {
 
     @Override protected Class<? extends JavaFXBaseTest> getTestClass() {
-        return DialogTest.class;
+        return AutoCompleteTextFieldTest.class;
     }
-
 
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
 
-        @Inject DialogDemoPane root;
+        @Inject AutoCompleteTextFieldPane root;
 
         @Override public boolean isExitAfterTest() {
             return false;
         }
 
         @Override protected Class<? extends JavaFXBaseTest> getParentTestClass() {
-            return DialogTest.class;
+            return AutoCompleteTextFieldTest.class;
         }
 
         @Override public void testImpl(Stage stage) {
-            stage.setTitle("DialogTest");  //i18n
+            stage.setTitle("AutoCompleteTextFieldTest");  //i18n
             stage.setScene(new Scene(root, 200, 300));
+
+
         }
     }
 }
