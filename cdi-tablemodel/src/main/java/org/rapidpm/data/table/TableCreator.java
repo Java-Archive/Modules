@@ -143,6 +143,7 @@ public class TableCreator<T extends BaseCellFactory> {
         }
     }
 
+    @Deprecated
     public <C> void addNextCellRawLink(final String colName, final C value, final String cellLabel) {
         if (value != null) {
             final Cell<C> newCell = cellFactory.createNewCell(value);
@@ -154,6 +155,7 @@ public class TableCreator<T extends BaseCellFactory> {
         }
     }
 
+    @Deprecated
     public <C> void addNextCellEventLink(final String colName, final C value, final String valueContext, final String cellLabel) {
         if (value != null) {
             final Cell<C> newCell = cellFactory.createNewCell(value, valueContext);
@@ -165,6 +167,7 @@ public class TableCreator<T extends BaseCellFactory> {
         }
     }
 
+    @Deprecated
     public <C> void addNextCellPageLink(final String colName, final C ctxPath, final String valueContext, final String cellLabel) {
         if (ctxPath != null) {
             final Cell<C> newCell = cellFactory.createNewCell(ctxPath, valueContext);
@@ -176,6 +179,7 @@ public class TableCreator<T extends BaseCellFactory> {
         }
     }
 
+    @Deprecated
     public <C> void addNextCellPageLink(final String colName, final Class pageClass, final String valueContext, final String cellLabel) {
         if (pageClass != null) {
             final String standardBasePagePkg = pageClass.getPackage().getName().replace(".", "/") + "/";
