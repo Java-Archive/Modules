@@ -74,8 +74,8 @@ public class EditingAutoCompleteStringCellFactory implements Callback<TableColum
         }
 
         @Override public void createValueField() {
-//            autoCompleteTextField.getTextbox().promptTextProperty().bindBidirectional();
             autoCompleteTextField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+            //TODO inject on runtime
             autoCompleteTextField.getCustomActionsList().add(new AutoCompleteTextFieldAction() {
                 @Override public void execute(AutoCompleteElement selectedItem) {
                     if (logger.isDebugEnabled()) {
@@ -84,6 +84,7 @@ public class EditingAutoCompleteStringCellFactory implements Callback<TableColum
                 }
             });
             autoCompleteTextField.getData().clear();
+            //TODO inject on runtime
             final AutoCompleteElement e = new AutoCompleteElement();
             e.setId(1L);
             e.setKey("aaa");
