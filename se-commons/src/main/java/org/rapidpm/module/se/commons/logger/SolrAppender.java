@@ -17,11 +17,14 @@
 package org.rapidpm.module.se.commons.logger;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.AppenderSkeleton;
+import org.apache.log4j.spi.LocationInfo;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer;
@@ -34,12 +37,12 @@ import org.apache.solr.common.SolrInputDocument;
  */
 public class SolrAppender extends AppenderSkeleton {
 
-    private static final int QUEUE_SIZE = 1000;
+    private static final int QUEUE_SIZE = 100;
     private static final int THREAD_COUNT = 10;
 
     private ConcurrentUpdateSolrServer solrServer;
     private String localhostname;
-
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss");
     private Random random = new Random(System.nanoTime());
 
     private void init() {
@@ -55,9 +58,13 @@ public class SolrAppender extends AppenderSkeleton {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override public void run() {
                 try {
-                    solrServer.add(liste);
-                    softCommit();
-                    solrServer.commit();
+                    if (liste.isEmpty()) {
+
+                    } else {
+                        solrServer.add(liste);
+                        softCommit();
+                        solrServer.commit();
+                    }
                     solrServer.shutdownNow();
                 } catch (SolrServerException | IOException e) {
                     e.printStackTrace();
@@ -147,9 +154,20 @@ public class SolrAppender extends AppenderSkeleton {
 
         d.addField("threadname", event.getThreadName());
         d.addField("timestamp", event.getTimeStamp());
-        d.addField("loggerclass", event.getFQNOfLoggerClass());
+        d.addField("date", sdf.format(new Date(event.getTimeStamp())));
         d.addField("level", event.getLevel());
-        d.addField("message", event.getMessage());
+        d.addField("message", event.getRenderedMessage());
+
+        final LocationInfo locationInformation = event.getLocationInformation();
+        final String className = locationInformation.getClassName();
+        d.addField("className", className);
+        final String fileName = locationInformation.getFileName();
+        d.addField("fileName", fileName);
+        final String lineNumber = locationInformation.getLineNumber();
+        d.addField("lineNumber", lineNumber);
+        final String methodName = locationInformation.getMethodName();
+        d.addField("methodName", methodName);
+
         liste.add(d);
 
         try {

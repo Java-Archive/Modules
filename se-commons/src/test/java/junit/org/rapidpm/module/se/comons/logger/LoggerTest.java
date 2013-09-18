@@ -28,7 +28,7 @@ public class LoggerTest {
         final Logger logger = Logger.getLogger(LoggerTest.class);
 
         final long start = System.nanoTime();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100; i++) {
             logger.debug("Eine DebugMeldung -> " + i);
         }
         final long stop = System.nanoTime();

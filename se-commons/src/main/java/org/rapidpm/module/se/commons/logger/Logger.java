@@ -16,6 +16,7 @@
 
 package org.rapidpm.module.se.commons.logger;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Priority;
 
 /**
@@ -41,11 +42,11 @@ public class Logger {
 
 
     public void debug(Object message, Throwable t) {
-        logger.debug(message, t);
+        logger.log(Logger.class.getCanonicalName(), Level.DEBUG, message, t);
     }
 
     public void debug(Object message) {
-        logger.debug(message);
+        logger.log(Logger.class.getCanonicalName(), Level.DEBUG, message, null);
     }
 
     public boolean isTraceEnabled() {
@@ -53,35 +54,35 @@ public class Logger {
     }
 
     public void trace(Object message, Throwable t) {
-        logger.trace(message, t);
+        logger.log(Logger.class.getCanonicalName(), Level.TRACE, message, t);
     }
 
     public void trace(Object message) {
-        logger.trace(message);
+        logger.log(Logger.class.getCanonicalName(), Level.TRACE, message, null);
     }
 
     public void error(Object message) {
-        logger.error(message);
+        logger.log(Logger.class.getCanonicalName(), Level.ERROR, message, null);
     }
 
     public void error(Object message, Throwable t) {
-        logger.error(message, t);
+        logger.log(Logger.class.getCanonicalName(), Level.ERROR, message, t);
     }
 
     public void fatal(Object message) {
-        logger.fatal(message);
+        logger.log(Logger.class.getCanonicalName(), Level.FATAL, message, null);
     }
 
     public void fatal(Object message, Throwable t) {
-        logger.fatal(message, t);
+        logger.log(Logger.class.getCanonicalName(), Level.FATAL, message, t);
     }
 
     public void info(Object message) {
-        logger.info(message);
+        logger.log(Logger.class.getCanonicalName(), Level.INFO, message, null);
     }
 
     public void info(Object message, Throwable t) {
-        logger.info(message, t);
+        logger.log(Logger.class.getCanonicalName(), Level.INFO, message, t);
     }
 
     public boolean isDebugEnabled() {
@@ -97,10 +98,10 @@ public class Logger {
     }
 
     public void warn(Object message) {
-        logger.warn(message);
+        logger.log(Logger.class.getCanonicalName(), Level.WARN, message, null);
     }
 
     public void warn(Object message, Throwable t) {
-        logger.warn(message, t);
+        logger.log(Logger.class.getCanonicalName(), Level.WARN, message, t);
     }
 }
