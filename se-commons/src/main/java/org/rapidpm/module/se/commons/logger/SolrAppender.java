@@ -103,8 +103,13 @@ public class SolrAppender extends AppenderSkeleton {
      * @since 0.8.4
      */
     @Override public void close() {
-        System.out.println("close ");
-
+        try {
+            solrServer.add(liste);
+            softCommit();
+            solrServer.commit();
+        } catch (SolrServerException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -157,10 +162,8 @@ public class SolrAppender extends AppenderSkeleton {
                 softCommit();
                 liste.clear();
             }
-        } catch (SolrServerException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (SolrServerException | IOException e) {
+            e.printStackTrace();
         }
 
 
