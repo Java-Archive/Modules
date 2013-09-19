@@ -87,7 +87,6 @@
             <systemPath>${fx.home}/jfxrt.jar</systemPath>
             <scope>system</scope>
         </dependency>
-
     </dependencies>
 
 

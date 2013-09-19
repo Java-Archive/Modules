@@ -92,25 +92,5 @@ public class AutoCompleteElement {
         return Objects.equals(this.key, other.key) && Objects.equals(this.shortinfo, other.shortinfo) && Objects.equals(this.id, other.id);
     }
 
-    //    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof AutoCompleteElement)) return false;
-//
-//        AutoCompleteElement that = (AutoCompleteElement) o;
-//
-//        if (!id.equals(that.id)) return false;
-//        if (!key.equals(that.key)) return false;
-//        if (!shortinfo.equals(that.shortinfo)) return false;
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = key.hashCode();
-//        result = 31 * result + shortinfo.hashCode();
-//        result = 31 * result + id.hashCode();
-//        return result;
-//    }
+
 }

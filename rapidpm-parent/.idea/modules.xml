@@ -14,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/../javafx-filtered-tableview/javafx-filtered-tableview.iml" filepath="$PROJECT_DIR$/../javafx-filtered-tableview/javafx-filtered-tableview.iml" />
       <module fileurl="file://$PROJECT_DIR$/../javafx-progressbartable/javafx-progressbartable.iml" filepath="$PROJECT_DIR$/../javafx-progressbartable/javafx-progressbartable.iml" />
       <module fileurl="file://$PROJECT_DIR$/../javafx-searchbox/javafx-searchbox.iml" filepath="$PROJECT_DIR$/../javafx-searchbox/javafx-searchbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rapidpm-resources/rapidpm-resources.iml" filepath="$PROJECT_DIR$/rapidpm-resources/rapidpm-resources.iml" />
       <module fileurl="file://$PROJECT_DIR$/../se-commons/se-commons.iml" filepath="$PROJECT_DIR$/../se-commons/se-commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/../se-genericcache/se-genericcache.iml" filepath="$PROJECT_DIR$/../se-genericcache/se-genericcache.iml" />
     </modules>

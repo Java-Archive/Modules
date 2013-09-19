@@ -14,12 +14,17 @@
   ~    limitations under the License.
   -->
 
-<atlassian-ide-plugin>
-    <project-configuration id="1">
-        <servers id="2"/>
-        <default-crucible-server id="3">5c538a85-b634-4384-acb2-42dde76dd5dc</default-crucible-server>
-        <default-fisheye-server id="4">5c538a85-b634-4384-acb2-42dde76dd5dc</default-fisheye-server>
-        <default-fisheye-repo>RapidPM-Modules</default-fisheye-repo>
-        <default-jira-server id="5">25b9e85d-d4da-4dff-8f8b-de44a2f90788</default-jira-server>
-    </project-configuration>
-</atlassian-ide-plugin>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.VBox?>
+<?import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextField?>
+<fx:root type="org.rapidpm.demo.javafx.textfield.autocomplete.demo.AutoCompleteTextFieldPane"
+         xmlns:fx="http://javafx.com/fxml">
+
+    <stylesheets>
+        <URL value="@/org/rapidpm/demo/javafx/textfield/autocomplete/main.css"/>
+    </stylesheets>
+    <VBox>
+        <AutoCompleteTextField fx:id="autocompleteTextField" filterModeStartsWith="true"/>
+    </VBox>
+</fx:root>

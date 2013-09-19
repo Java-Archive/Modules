@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
@@ -48,7 +49,7 @@ public class EditingDateCellFactoryCallback implements Callback<TableColumn<Filt
 
     //@Inject Instance<EditingCell> editingCellInstance;
 
-    public static class EditingCell extends TableCell<FilteredTableDataRow, Date> {
+    public static class EditingCell extends AbstractEditingCell<Date> {
 
         private
         @Inject
@@ -76,27 +77,11 @@ public class EditingDateCellFactoryCallback implements Callback<TableColumn<Filt
         }
 
         @Override
-        public void startEdit() {
-            if (logger.isDebugEnabled()) {
-                logger.debug("startEdit");
-            }
-            if (!isEmpty()) {
-                super.startEdit();
-                createValueField();
-                setText(null);
-                setGraphic(datePicker);
-            } else {
-                if (logger.isDebugEnabled()) {
-                    logger.debug("startEdit-> isEmpty() == true");
-                }
-            }
-        }
-
-
-        @Override
         public void commitEdit(Date date) {
             super.commitEdit(date);
-            System.out.println("commitEdit-> date = " + date);
+            if (logger.isDebugEnabled()) {
+                logger.debug("commitEdit-> date = " + date);
+            }
         }
 
         @Override
@@ -111,34 +96,7 @@ public class EditingDateCellFactoryCallback implements Callback<TableColumn<Filt
             setGraphic(null);
         }
 
-        @Override
-        public void updateItem(Date item, boolean empty) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("updateItem " + item);
-            }
-            super.updateItem(item, empty);
-            if (empty) {
-                setText(null);
-                setGraphic(null);
-            } else {
-                if (isEditing()) {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("isEditing == true");
-                    }
-                    if (datePicker != null) {
-                        datePicker.getTextField().setText(getString());
-                    }
-                    setText(null);
-                    setGraphic(datePicker);
-                } else {
-                    setText(getString());
-                    setGraphic(null);
-                }
-            }
-        }
-
-
-        private void createValueField() {
+        public void createValueField() {
             if (logger.isDebugEnabled()) {
                 logger.debug("createValueField");
             }
@@ -160,22 +118,23 @@ public class EditingDateCellFactoryCallback implements Callback<TableColumn<Filt
             });
         }
 
-        private String getString() {
-            if (logger.isDebugEnabled()) {
-                logger.debug("getString called ");
+
+        @Override public void updateItemIsEditing() {
+            if (datePicker != null) {
+                datePicker.getTextField().setText(getString());
             }
-            if (getItem() == null) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug("format -> = '' ");
-                }
-                return "";
-            } else {
-                final String format = sdf.format(getItem());
-                if (logger.isDebugEnabled()) {
-                    logger.debug("format -> " + format);
-                }
-                return format;
-            }
+        }
+
+        @Override public String getStringIfItemNotNull() {
+            return sdf.format(getItem());
+        }
+
+        @Override public void startEditIsNotEmptyLastActions() {
+            // nothing to do here
+        }
+
+        @Override public Node getGraphicNode() {
+            return datePicker;
         }
     }
 }
