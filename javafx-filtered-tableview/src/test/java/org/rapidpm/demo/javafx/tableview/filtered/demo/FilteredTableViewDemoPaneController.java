@@ -34,12 +34,14 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
+import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingAutoCompleteStringCellFactory;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.demo.javafx.tableview.filtered.contextmenue.FilteredTableContextMenu;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.controll.cell.BetragComboBoxCell;
@@ -124,31 +126,6 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
             final CreationalContext creationalContext = beanManager.createCreationalContext(null);
             injectionTarget.inject(cellFactory, creationalContext);
             injectionTarget.postConstruct(cellFactory);
-
-//            if(column.getText().equals("vorname")){ //mapp per propertyRegistry
-//            } else{
-
-//            }
-//            if(column.getText().equals("vorname")){ //mapp per propertyRegistry
-////                final TableColumn columnString =  column;
-////                final TableColumn<TransientDemoDataRow, String> columnString = (TableColumn<TransientDemoDataRow, String>) column;
-//                final Callback cellFactory = column.getCellFactory();
-////                final Callback<TableColumn, TableCell> cellFactory = columnString.getCellFactory();
-////                final Callback<TableColumn<TransientDemoDataRow, ?>, TableCell<TransientDemoDataRow, ?>> cellFactory = columnString.getCellFactory();
-////                final Callback<TableColumn<TransientDemoDataRow, String>, TableCell<TransientDemoDataRow, String>> cellFactory = columnString.getCellFactory();
-////                final Callback<? extends TableColumn<TransientDemoDataRow, String>, ? extends TableCell<TransientDemoDataRow,String>> cellFactory = columnString.getCellFactory();
-////                final EditingAutoCompleteStringCellFactory cellFactory = (EditingAutoCompleteStringCellFactory) column.getCellFactory();
-//                final AnnotatedType annotationType = beanManager.createAnnotatedType(cellFactory.getClass()); ///per getter from instance
-////                final AnnotatedType annotationType = beanManager.createAnnotatedType(EditingAutoCompleteStringCellFactory.class); ///per getter from instance
-////                final AnnotatedType<EditingAutoCompleteStringCellFactory> annotationType = beanManager.createAnnotatedType(EditingAutoCompleteStringCellFactory.class);
-//                final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
-////                final CreationalContext<EditingAutoCompleteStringCellFactory> creationalContext = beanManager.createCreationalContext(null);
-//                final CreationalContext creationalContext = beanManager.createCreationalContext(null);
-//                injectionTarget.inject(cellFactory, creationalContext);
-//                injectionTarget.postConstruct(cellFactory);
-//            } else{
-//                //
-//            }
         }
     }
 
