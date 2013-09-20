@@ -16,6 +16,8 @@
 
 package demo;
 
+import javax.inject.Inject;
+
 import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseGridPane;
 
 /**
@@ -26,26 +28,23 @@ import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseGridPane;
 public class LoginPane extends CDIBaseGridPane<LoginPane, LoginController> {
 
 //    private @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
-//    private @Inject LoginController controller;
+private @Inject LoginController controller;
 
     public LoginPane() {
 
     }
 
-//    @PostConstruct
-//    public void init() {
-//        final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(LoginPane.class);
-//        fxmlLoader.setRoot(this);
-//        try {
-//            fxmlLoader.setController(controller);
-//            fxmlLoader.load();
-//        } catch (IOException exception) {
-//            throw new RuntimeException(exception);
-//        }
-//    }
 
 
     @Override public Class<LoginPane> getPaneClass() {
         return LoginPane.class;
+    }
+
+    public LoginController getController() {
+        return controller;
+    }
+
+    public void setController(LoginController controller) {
+        this.controller = controller;
     }
 }

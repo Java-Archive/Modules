@@ -56,6 +56,7 @@ public class FXMLLoaderSingleton {
                 logger.debug("fxmlFileName -> " + fxmlFileName);
             }
             final URL resource = clazz.getResource(fxmlFileName);
+//            FXMLLoader loader = new CDIFXMLLoader(resource);
             FXMLLoader loader = new FXMLLoader(resource);
             loader.setClassLoader(cachingClassLoader);
             loader.setControllerFactory(new Callback<Class<?>, Object>() {

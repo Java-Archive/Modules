@@ -19,6 +19,8 @@ package org.rapidpm.demo.javafx.tableview.filtered;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -27,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
 import org.rapidpm.demo.javafx.commons.tableview.control.ColumnWidthOptimizer;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.AbstractFilterableTableColumn;
@@ -42,10 +45,8 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * @author Sven Ruppert
  */
 public class FilteredTableView<T extends FilteredTableDataRow> extends TableView<T> {
-    //private static final Logger logger = Logger.getLogger(FilteredTableView.class);
 
-    final private Logger logger = CDIContainerSingleton.getInstance().getManagedInstance(Logger.class);
-
+    private @Inject @CDILogger Logger logger;
     /**
      * List of filterable columns with a filter applied
      */
@@ -82,6 +83,7 @@ public class FilteredTableView<T extends FilteredTableDataRow> extends TableView
 
     public FilteredTableView() {
         super();
+        CDIContainerSingleton.getInstance().activateCDI(this);
 
         filteredColumns = FXCollections.observableArrayList();
 
