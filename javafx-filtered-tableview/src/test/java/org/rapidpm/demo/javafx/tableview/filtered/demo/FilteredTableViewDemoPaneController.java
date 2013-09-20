@@ -125,30 +125,6 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
             injectionTarget.inject(cellFactory, creationalContext);
             injectionTarget.postConstruct(cellFactory);
 
-//            if(column.getText().equals("vorname")){ //mapp per propertyRegistry
-//            } else{
-
-//            }
-//            if(column.getText().equals("vorname")){ //mapp per propertyRegistry
-////                final TableColumn columnString =  column;
-////                final TableColumn<TransientDemoDataRow, String> columnString = (TableColumn<TransientDemoDataRow, String>) column;
-//                final Callback cellFactory = column.getCellFactory();
-////                final Callback<TableColumn, TableCell> cellFactory = columnString.getCellFactory();
-////                final Callback<TableColumn<TransientDemoDataRow, ?>, TableCell<TransientDemoDataRow, ?>> cellFactory = columnString.getCellFactory();
-////                final Callback<TableColumn<TransientDemoDataRow, String>, TableCell<TransientDemoDataRow, String>> cellFactory = columnString.getCellFactory();
-////                final Callback<? extends TableColumn<TransientDemoDataRow, String>, ? extends TableCell<TransientDemoDataRow,String>> cellFactory = columnString.getCellFactory();
-////                final EditingAutoCompleteStringCellFactory cellFactory = (EditingAutoCompleteStringCellFactory) column.getCellFactory();
-//                final AnnotatedType annotationType = beanManager.createAnnotatedType(cellFactory.getClass()); ///per getter from instance
-////                final AnnotatedType annotationType = beanManager.createAnnotatedType(EditingAutoCompleteStringCellFactory.class); ///per getter from instance
-////                final AnnotatedType<EditingAutoCompleteStringCellFactory> annotationType = beanManager.createAnnotatedType(EditingAutoCompleteStringCellFactory.class);
-//                final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
-////                final CreationalContext<EditingAutoCompleteStringCellFactory> creationalContext = beanManager.createCreationalContext(null);
-//                final CreationalContext creationalContext = beanManager.createCreationalContext(null);
-//                injectionTarget.inject(cellFactory, creationalContext);
-//                injectionTarget.postConstruct(cellFactory);
-//            } else{
-//                //
-//            }
         }
     }
 
