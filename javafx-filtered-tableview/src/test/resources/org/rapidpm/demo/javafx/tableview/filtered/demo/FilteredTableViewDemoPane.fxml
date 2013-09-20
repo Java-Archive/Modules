@@ -27,6 +27,7 @@
 <?import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingAutoCompleteStringCellFactory?>
 <?import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingDateCellFactoryCallback?>
 <?import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingStringCellFactoryCallback?>
+<?import org.rapidpm.demo.javafx.tableview.filtered.demo.controll.cell.BetragEditingComboBoxCellFactoryCallBack?>
 <?import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView?>
 <?import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.FilterableDateTableColumn?>
 <?import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.FilterableDoubleTableColumn?>
@@ -83,6 +84,9 @@
                                     </cellValueFactory>
                                 </FilterableDateTableColumn>
                                 <FilterableDoubleTableColumn prefWidth="120.0" text="betrag">
+                                    <cellFactory>
+                                        <BetragEditingComboBoxCellFactoryCallBack/>
+                                    </cellFactory>
                                     <cellValueFactory>
                                         <PropertyValueFactory property="betrag"/>
                                     </cellValueFactory>

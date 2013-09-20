@@ -26,6 +26,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableDataRow;
 import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteElement;
 import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextField;
@@ -36,21 +37,16 @@ import org.rapidpm.demo.javafx.textfield.autocomplete.AutoCompleteTextFieldActio
  */
 public class EditingAutoCompleteStringCellFactory implements Callback<TableColumn<FilteredTableDataRow, ?>, TableCell<FilteredTableDataRow, ?>> {
 
+    public EditingAutoCompleteStringCellFactory() {
+        CDIContainerSingleton.getInstance().activateCDI(this);
+    }
+
 
     @Override public TableCell<FilteredTableDataRow, ?> call(TableColumn<FilteredTableDataRow, ?> tableColumn) {
-//        return CDIContainerSingleton.getInstance().getManagedInstance(EditingCell.class);
         return editingCellInstance.get();
     }
 
     private @Inject Instance<EditingCell> editingCellInstance;
-
-//    public String getTestValue() {
-//        return testValue;
-//    }
-//
-//    public void setTestValue(String testValue) {
-//        this.testValue = testValue;
-//    }
 
     public static class EditingCell extends AbstractEditingCell<String> {
         private @Inject @CDILogger org.rapidpm.module.se.commons.logger.Logger logger;

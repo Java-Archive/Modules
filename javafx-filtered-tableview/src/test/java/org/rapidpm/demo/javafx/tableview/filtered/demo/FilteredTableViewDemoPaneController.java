@@ -20,11 +20,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Instance;
-import javax.enterprise.inject.spi.AnnotatedType;
 import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InjectionTarget;
 import javax.inject.Inject;
 
 import javafx.beans.value.ChangeListener;
@@ -34,17 +31,13 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
 import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
-import org.rapidpm.demo.javafx.tableview.control.cell.callback.EditingAutoCompleteStringCellFactory;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.demo.javafx.tableview.filtered.contextmenue.FilteredTableContextMenu;
-import org.rapidpm.demo.javafx.tableview.filtered.demo.controll.cell.BetragComboBoxCell;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TableFilter;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoDataRow;
 import org.rapidpm.demo.javafx.tableview.filtered.demo.model.TransientDemoRowComparator;
@@ -111,22 +104,11 @@ public class FilteredTableViewDemoPaneController implements CDIJavaFxBaseControl
         setI18n();
     }
 
-    @Inject Instance<BetragComboBoxCell> betragComboBoxCellInstance;
+    //    @Inject Instance<BetragComboBoxCell> betragComboBoxCellInstance;
     @Inject BeanManager beanManager;
 
     private void initTable() {
-        final BetragComboBoxCell cell = betragComboBoxCellInstance.get();
-        cell.associateWithCol(tableView, "betrag");
 
-        final ObservableList<TableColumn<TransientDemoDataRow, ?>> columns = tableView.getColumns();
-        for (final TableColumn<TransientDemoDataRow, ?> column : columns) {
-            final Callback cellFactory = column.getCellFactory();
-            final AnnotatedType annotationType = beanManager.createAnnotatedType(cellFactory.getClass()); ///per getter from instance
-            final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
-            final CreationalContext creationalContext = beanManager.createCreationalContext(null);
-            injectionTarget.inject(cellFactory, creationalContext);
-            injectionTarget.postConstruct(cellFactory);
-        }
     }
 
 

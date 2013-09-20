@@ -30,9 +30,13 @@ import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableDataRow;
  * User: Sven Ruppert Date: 13.09.13 Time: 07:16
  */
 public class EditingStringCellFactoryCallback implements Callback<TableColumn<FilteredTableDataRow, ?>, TableCell<FilteredTableDataRow, ?>> {
+
+    public EditingStringCellFactoryCallback() {
+        CDIContainerSingleton.getInstance().activateCDI(this);
+    }
+
     @Override public TableCell<FilteredTableDataRow, ?> call(TableColumn<FilteredTableDataRow, ?> tableColumn) {
-        return CDIContainerSingleton.getInstance().getManagedInstance(EditingCell.class);
-//        return new EditingCell();
+        return new EditingCell();
     }
 
     public static class EditingCell extends AbstractEditingCell<String> {

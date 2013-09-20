@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableDataRow;
 import org.rapidpm.module.se.commons.logger.Logger;
 
@@ -30,6 +31,10 @@ import org.rapidpm.module.se.commons.logger.Logger;
 public abstract class AbstractEditingCell<T> extends TableCell<FilteredTableDataRow, T> {
 
     private @Inject @CDILogger Logger logger;
+
+    protected AbstractEditingCell() {
+        CDIContainerSingleton.getInstance().activateCDI(this);
+    }
 
     @Override
     public void startEdit() {

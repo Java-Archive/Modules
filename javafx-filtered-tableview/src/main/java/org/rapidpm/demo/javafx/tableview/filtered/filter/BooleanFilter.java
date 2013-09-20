@@ -14,31 +14,28 @@
  *    limitations under the License.
  */
 
-package gui.org.rapidpm.demo.javafx.searchbox.demo;
+package org.rapidpm.demo.javafx.tableview.filtered.filter;
 
-
-import javax.inject.Inject;
-
-import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
+import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
+import org.rapidpm.demo.javafx.tableview.filtered.operators.operation.DefaultBooleanOperation;
+import org.rapidpm.demo.javafx.tableview.filtered.operators.operation.Operation;
 
 /**
  * User: Sven Ruppert
- * Date: 30.08.13
- * Time: 06:59
+ * Date: 20.09.13
+ * Time: 16:39
  */
-public class SearchBoxDemoPane extends CDIBaseAnchorPane<SearchBoxDemoPane, SearchBoxDemoPaneController> {
+public abstract class BooleanFilter<T> extends FilteredTableViewIterator<T, Boolean> {
 
-    @Override public Class<SearchBoxDemoPane> getPaneClass() {
-        return SearchBoxDemoPane.class;
+    public BooleanFilter(FilteredTableView tableView) {
+        super(tableView);
     }
 
-    @Inject SearchBoxDemoPaneController controller;
 
-    public SearchBoxDemoPaneController getController() {
-        return controller;
-    }
-
-    public void setController(SearchBoxDemoPaneController controller) {
-        this.controller = controller;
+    /**
+     * z.B. return new DefaultStringOperation();
+     */
+    @Override public Operation getDefaultOperation() {
+        return new DefaultBooleanOperation();
     }
 }

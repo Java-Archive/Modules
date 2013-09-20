@@ -45,15 +45,13 @@ public class SolrAppender extends AppenderSkeleton {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss");
     private Random random = new Random(System.nanoTime());
 
+    //    private String solrurl = "http://localhost:8983/solr/logger";
+    private String solrurl = null;
+
     private void init() {
-        solrServer = new ConcurrentUpdateSolrServer("http://localhost:8983/solr/logger", QUEUE_SIZE, THREAD_COUNT); //REFAC mandantenfähig machen
+
+        solrServer = new ConcurrentUpdateSolrServer(solrurl, QUEUE_SIZE, THREAD_COUNT); //REFAC mandantenfähig machen
         solrServer.setParser(new XMLResponseParser());
-        try {
-            solrServer.optimize();
-            localhostname = java.net.InetAddress.getLocalHost().getHostName();
-        } catch (IOException | SolrServerException e) {
-            e.printStackTrace();
-        }
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override public void run() {
@@ -78,7 +76,7 @@ public class SolrAppender extends AppenderSkeleton {
      * Create new instance.
      */
     public SolrAppender() {
-        init();
+//        init();
     }
 
     /**
@@ -90,7 +88,7 @@ public class SolrAppender extends AppenderSkeleton {
      */
     public SolrAppender(boolean isActive) {
         super(isActive);
-        init();
+//        init();
     }
 
     /**
@@ -99,6 +97,12 @@ public class SolrAppender extends AppenderSkeleton {
      * @since 0.9.0
      */
     @Override protected void append(LoggingEvent event) {
+        if (solrServer == null) {
+            init();
+        } else {
+
+        }
+
         subAppend(event);   //TODO change per CDI
     }
 
@@ -196,4 +200,11 @@ public class SolrAppender extends AppenderSkeleton {
         updateRequest.process(solrServer);
     }
 
+    public String getSolrurl() {
+        return solrurl;
+    }
+
+    public void setSolrurl(String solrurl) {
+        this.solrurl = solrurl;
+    }
 }

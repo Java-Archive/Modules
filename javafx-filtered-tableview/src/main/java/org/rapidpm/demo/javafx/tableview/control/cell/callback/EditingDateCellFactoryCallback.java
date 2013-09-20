@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import javafx.beans.property.ObjectProperty;
@@ -40,14 +41,18 @@ import thirdparty.eu.schudt.javafx.controls.calendar.DatePicker;
  * User: Sven Ruppert Date: 13.09.13 Time: 07:44
  */
 public class EditingDateCellFactoryCallback implements Callback<TableColumn<FilteredTableDataRow, ? extends Date>, TableCell<FilteredTableDataRow, ? extends Date>> {
-    @Override
-    public TableCell<FilteredTableDataRow, ? extends Date> call(TableColumn<FilteredTableDataRow, ? extends Date> tTableColumn) {
-        final EditingCell editingCell = CDIContainerSingleton.getInstance().getManagedInstance(EditingCell.class);
-        return editingCell;
-//        return editingCellInstance.get();
+
+
+    public EditingDateCellFactoryCallback() {
+        CDIContainerSingleton.getInstance().activateCDI(this);
     }
 
-    //@Inject Instance<EditingCell> editingCellInstance;
+    @Override
+    public TableCell<FilteredTableDataRow, ? extends Date> call(TableColumn<FilteredTableDataRow, ? extends Date> tTableColumn) {
+        return editingCellInstance.get();
+    }
+
+    @Inject Instance<EditingCell> editingCellInstance;
 
     public static class EditingCell extends AbstractEditingCell<Date> {
 

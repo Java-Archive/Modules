@@ -16,6 +16,8 @@
 
 package gui.org.rapidpm.demo.javafx.dialog.demo;
 
+import javax.inject.Inject;
+
 import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
 
 /**
@@ -30,4 +32,13 @@ public class DialogDemoPane extends CDIBaseAnchorPane<DialogDemoPane, DialogDemo
     }
 
 
+    @Inject DialogDemoPaneController controller;
+
+    public DialogDemoPaneController getController() {
+        return controller;
+    }
+
+    public void setController(DialogDemoPaneController controller) {
+        this.controller = controller;
+    }
 }
