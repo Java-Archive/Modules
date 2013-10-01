@@ -60,6 +60,6 @@ public abstract class AbstractCDITransaction implements CDITransaction, Serializ
     }
 
     public void end() {
-        transactionContext.begin();
+        transactionContext.end();
     }
 }
