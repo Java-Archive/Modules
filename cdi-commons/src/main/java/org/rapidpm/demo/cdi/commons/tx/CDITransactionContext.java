@@ -135,7 +135,7 @@ public class CDITransactionContext implements Context {
                                 logger.debug("size : " + size);
                             }
                             if (size > 1) {
-                                logger.warn("mahr als eine Instanz im Cache:... nehme erste Element");
+                                logger.warn("mehr als eine Instanz im Cache:... nehme erste Element");
                             } else { /*All ok */ }
                             return (T) cacheForKey.toArray()[0];
                         } else {
