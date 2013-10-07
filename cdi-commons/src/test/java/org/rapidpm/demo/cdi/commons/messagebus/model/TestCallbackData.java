@@ -16,45 +16,47 @@
 
 package org.rapidpm.demo.cdi.commons.messagebus.model;
 
+import java.util.Objects;
+
 /**
- * User: Sven Ruppert
- * Date: 01.08.13
- * Time: 15:03
+ * User: Sven Ruppert Date: 01.08.13 Time: 15:03
  */
 public class TestCallbackData {
 
     private String valueTxt;
     private Long valueLong;
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TestCallbackData)) return false;
-
-        TestCallbackData testCallbackData = (TestCallbackData) o;
-
-        if (!valueLong.equals(testCallbackData.valueLong)) return false;
-        if (!valueTxt.equals(testCallbackData.valueTxt)) return false;
-
-        return true;
+    @Override public int hashCode() {
+        return Objects.hash(valueTxt, valueLong);
     }
 
-    @Override
-    public int hashCode() {
-        int result = valueTxt.hashCode();
-        result = 31 * result + valueLong.hashCode();
-        return result;
+    @Override public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final TestCallbackData other = (TestCallbackData) obj;
+        return Objects.equals(this.valueTxt, other.valueTxt) && Objects.equals(this.valueLong, other.valueLong);
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("TestCallbackData{");
-        sb.append("valueLong=").append(valueLong);
-        sb.append(", valueTxt='").append(valueTxt).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
+
+    //    @Override
+//    public int hashCode() {
+//        int result = valueTxt.hashCode();
+//        result = 31 * result + valueLong.hashCode();
+//        return result;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        final StringBuilder sb = new StringBuilder("TestCallbackData{");
+//        sb.append("valueLong=").append(valueLong);
+//        sb.append(", valueTxt='").append(valueTxt).append('\'');
+//        sb.append('}');
+//        return sb.toString();
+//    }
 
     public TestCallbackData valueLong(final Long valueLong) {
         this.valueLong = valueLong;

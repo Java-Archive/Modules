@@ -37,8 +37,13 @@ import org.rapidpm.module.se.commons.logger.Logger;
 @Singleton
 public class FXMLLoaderSingleton {
 
-    private @Inject @CDILogger Logger logger;
-    private @Inject Instance<CDIJavaFxBaseController> instance;
+    private
+    @Inject
+    @CDILogger
+    Logger logger;
+    private
+    @Inject
+    Instance<CDIJavaFxBaseController> instance;
 
     private final ClassLoader cachingClassLoader = new FXClassLoader(FXMLLoader.getDefaultClassLoader());
     private final Map<Class, FXMLLoader> class2LoaderMap = new HashMap<Class, FXMLLoader>();
@@ -56,15 +61,24 @@ public class FXMLLoaderSingleton {
                 logger.debug("fxmlFileName -> " + fxmlFileName);
             }
             final URL resource = clazz.getResource(fxmlFileName);
+//            FXMLLoader loader = new CDIFXMLLoader(resource);
             FXMLLoader loader = new FXMLLoader(resource);
             loader.setClassLoader(cachingClassLoader);
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {
                     final Class<CDIJavaFxBaseController> p = (Class<CDIJavaFxBaseController>) param;
-                    return instance.select(p).get();
+                    final CDIJavaFxBaseController controller = instance.select(p).get();
+                    return controller;
                 }
             });
+            try {
+                final Class<?> aClass = Class.forName(clazz.getName() + "Controller");
+                final CDIJavaFxBaseController call = (CDIJavaFxBaseController) loader.getControllerFactory().call(aClass);
+                loader.setController(call);
+            } catch (ClassNotFoundException e) {
+                logger.error(e);
+            }
             loaderMap.put(clazz, loader);
         }
         return loaderMap.get(clazz);

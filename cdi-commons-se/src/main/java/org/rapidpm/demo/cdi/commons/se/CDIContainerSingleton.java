@@ -16,8 +16,12 @@
 
 package org.rapidpm.demo.cdi.commons.se;
 
+import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.event.Event;
 import javax.enterprise.inject.Instance;
+import javax.enterprise.inject.spi.AnnotatedType;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.InjectionTarget;
 import javax.enterprise.util.AnnotationLiteral;
 
 import org.jboss.weld.environment.se.Weld;
@@ -46,6 +50,23 @@ public class CDIContainerSingleton {
         weldContainer = new Weld().initialize();
         logger = weldContainer.instance().select(Logger.class).get();  //bootstrapping but with Weld itself ;-)
     }
+
+
+    public <T> T activateCDI(T t) {
+        final BeanManager beanManager = getBeanManager();
+
+        final Class<?> aClass = t.getClass();
+        if (logger.isDebugEnabled()) {
+            logger.debug("activateCDI-> " + aClass);
+        }
+        final AnnotatedType annotationType = beanManager.createAnnotatedType(aClass);
+        final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
+        final CreationalContext creationalContext = beanManager.createCreationalContext(null);
+        injectionTarget.inject(t, creationalContext);
+        injectionTarget.postConstruct(t);
+        return t;
+    }
+
 
     public <T> T getManagedInstance(final Class<T> clazz) {
         if (logger.isDebugEnabled()) {
@@ -87,5 +108,7 @@ public class CDIContainerSingleton {
         return weldContainer.event();
     }
 
-
+    public BeanManager getBeanManager() {
+        return weldContainer.getBeanManager();
+    }
 }

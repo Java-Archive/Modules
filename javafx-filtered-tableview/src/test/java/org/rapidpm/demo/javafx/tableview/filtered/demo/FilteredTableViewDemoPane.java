@@ -25,9 +25,17 @@ import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
  */
 public class FilteredTableViewDemoPane extends CDIBaseAnchorPane<FilteredTableViewDemoPane, FilteredTableViewDemoPaneController> {
 
+//    @Inject FilteredTableViewDemoPaneController controller;
 
     @Override public Class<FilteredTableViewDemoPane> getPaneClass() {
         return FilteredTableViewDemoPane.class;
     }
 
+//    @Override public FilteredTableViewDemoPaneController getController() {
+//        return controller;
+//    }
+//
+//    @Override public void setController(FilteredTableViewDemoPaneController controller) {
+//        this.controller = controller;
+//    }
 }

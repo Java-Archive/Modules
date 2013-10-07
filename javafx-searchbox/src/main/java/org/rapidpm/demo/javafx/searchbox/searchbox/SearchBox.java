@@ -96,14 +96,11 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
 
     private final CdiHolder cdiHolder = cdiContainerSingleton.getManagedInstance(CdiHolder.class);
 
-    //Als Abstract Class in cdi-commons-se //Dokumentation
     public static class CdiHolder {
 
-        private @Inject @CDILogger
-        Logger logger;
+        private @Inject @CDILogger Logger logger;
 
-        @Inject @CDIPropertyRegistryService
-        private PropertyRegistryService propertyRegistryService;
+        private @Inject @CDIPropertyRegistryService PropertyRegistryService propertyRegistryService;
 
         private @Inject @CDILocale Locale defaultLocale;
 
@@ -150,9 +147,6 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
     }
 
 
-    //    private IndexWriter getWriter() throws IOException {
-//        return new IndexWriter(idx, new IndexWriterConfig(Version.LUCENE_43, analyzer));
-//    }
     private Semaphore sem = new Semaphore(1);
 
     //JIRA MOD-51 MappingCode muss extern liegen
@@ -162,12 +156,10 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
             this.itemListe = itemListe;
             final IndexWriter writer = new IndexWriter(idx, new IndexWriterConfig(Version.LUCENE_43, analyzer));
             writer.deleteAll();
-//            writer.commit();
             tablevalues.clear();
             for (final T item : itemListe) {
                 addElementToIndex(writer, item);
             }
-//            writer.commit();
             writer.close();
             final DirectoryReader reader = DirectoryReader.open(idx);
             indexSearcher = new IndexSearcher(reader);
@@ -428,7 +420,9 @@ public class SearchBox<T extends SearchBoxDataElement> extends Region {
             for (final Long docId : entry.getValue()) {
                 final T t = tablevalues.get(docId);
                 final String shortInfo = t.shortInfo();
-                System.out.println("shortInfo = " + shortInfo);
+                if (logger.isDebugEnabled()) {
+                    logger.debug("shortInfo = " + shortInfo);
+                }
                 final HBox hBox = new HBox();
                 hBox.setFillHeight(true);
                 Label itemLabel = new Label(shortInfo);

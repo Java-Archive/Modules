@@ -33,7 +33,7 @@ public class ContextLogic {
 
     public List<Double> workOnContext(final Double input) {
         final List<Double> result = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             result.add(input + random.nextDouble());
         }
         Collections.sort(result);

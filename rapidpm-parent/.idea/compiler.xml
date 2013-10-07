@@ -36,6 +36,7 @@
         <module name="javafx-filtered-tableview" />
         <module name="javafx-progressbartable" />
         <module name="javafx-searchbox" />
+        <module name="rapidpm-resources" />
         <module name="se-commons" />
         <module name="se-genericcache" />
         <module name="tablemodell" />
@@ -57,6 +58,7 @@
       <module name="javafx-progressbartable" target="1.7" />
       <module name="javafx-searchbox" target="1.7" />
       <module name="RapidPM Parent" target="1.7" />
+      <module name="rapidpm-resources" target="1.7" />
       <module name="se-commons" target="1.7" />
       <module name="se-genericcache" target="1.7" />
       <module name="tablemodell" target="1.7" />

@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
+import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.fx.FXMLLoaderSingleton;
 
 /**
@@ -30,10 +31,10 @@ import org.rapidpm.demo.cdi.commons.fx.FXMLLoaderSingleton;
  * Date: 30.08.13
  * Time: 07:06
  */
-public abstract class CDIBaseGridPane<T, C> extends GridPane implements CDIBaseFxComponent<T> {
+public abstract class CDIBaseGridPane<T, C extends CDIJavaFxBaseController> extends GridPane implements CDIBaseFxComponent<T> {
 
-    private @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
-    private @Inject C controller;
+    public @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
+    public C controller;
 
 
     @PostConstruct
@@ -41,8 +42,8 @@ public abstract class CDIBaseGridPane<T, C> extends GridPane implements CDIBaseF
         final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(getPaneClass());
         fxmlLoader.setRoot(this);
         try {
-            fxmlLoader.setController(controller);
             fxmlLoader.load();
+            controller = fxmlLoader.getController();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -50,5 +51,9 @@ public abstract class CDIBaseGridPane<T, C> extends GridPane implements CDIBaseF
 
     public C getController() {
         return controller;
+    }
+
+    public void setController(C controller) {
+        this.controller = controller;
     }
 }

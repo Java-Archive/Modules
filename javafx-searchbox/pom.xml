@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
+        <version>1.1.1</version>
     </parent>
     <name>javafx-searchbox</name>
     <description>A JavaFX component: a TextField with autocompletion featiures and a transient lucene index</description>
@@ -46,8 +46,37 @@
         </dependency>
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
             <artifactId>cdi-commons-se</artifactId>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons-fx</artifactId>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons-fx</artifactId>
+            <scope>test</scope>
+            <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>javafx-commons</artifactId>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>javafx-commons</artifactId>
+            <scope>test</scope>
+            <type>test-jar</type>
         </dependency>
         <dependency>
             <groupId>com.oracle.javafx</groupId>

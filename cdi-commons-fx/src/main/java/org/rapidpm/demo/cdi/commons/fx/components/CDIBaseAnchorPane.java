@@ -23,22 +23,25 @@ import javax.inject.Inject;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.fx.FXMLLoaderSingleton;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 
 /**
  * User: Sven Ruppert
  * Date: 30.08.13
  * Time: 07:03
  */
-public abstract class CDIBaseAnchorPane<T, C> extends AnchorPane implements CDIBaseFxComponent<T> {
-
-
-    private @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
-    private @Inject C controller;
+public abstract class CDIBaseAnchorPane<T, C extends CDIJavaFxBaseController> extends AnchorPane implements CDIBaseFxComponent<T> {
 
     public CDIBaseAnchorPane() {
 
     }
+
+    public
+    @Inject
+    FXMLLoaderSingleton fxmlLoaderSingleton;
+    public C controller;
 
 
     @PostConstruct
@@ -46,8 +49,8 @@ public abstract class CDIBaseAnchorPane<T, C> extends AnchorPane implements CDIB
         final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(getPaneClass());
         fxmlLoader.setRoot(this);
         try {
-            fxmlLoader.setController(controller);
             fxmlLoader.load();
+            controller = fxmlLoader.getController();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -55,5 +58,9 @@ public abstract class CDIBaseAnchorPane<T, C> extends AnchorPane implements CDIB
 
     public C getController() {
         return controller;
+    }
+
+    public void setController(C controller) {
+        this.controller = controller;
     }
 }

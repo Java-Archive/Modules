@@ -24,7 +24,6 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
@@ -43,7 +42,7 @@ public abstract class JavaFXBaseTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void testGo() {
         JavaFXTestSingleton.getInstance().setClazz(getTestClass());
         Application.launch(JavaFXTestApplication.class, "Go Test Go");
