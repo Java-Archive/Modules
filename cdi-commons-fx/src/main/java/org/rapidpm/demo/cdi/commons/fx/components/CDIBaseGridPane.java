@@ -56,8 +56,4 @@ public abstract class CDIBaseGridPane<T, C extends CDIJavaFxBaseController> exte
     public void setController(C controller) {
         this.controller = controller;
     }
-
-    //    public  abstract C getController();
-//
-//    public abstract void setController(C controller);
 }

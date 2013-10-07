@@ -1,22 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="PublishConfigData">
-    <servers>
-      <server id="5622a2c7-452b-48e2-aae2-29266374b710">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </server>
-      <server id="61a6decd-1736-476d-9b7c-cbe03e8ad045">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </server>
-    </servers>
-  </component>
-</project>
+<project version="4" />
 
