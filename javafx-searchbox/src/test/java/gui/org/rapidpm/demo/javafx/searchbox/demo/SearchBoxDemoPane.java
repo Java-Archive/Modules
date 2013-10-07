@@ -17,8 +17,6 @@
 package gui.org.rapidpm.demo.javafx.searchbox.demo;
 
 
-import javax.inject.Inject;
-
 import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
 
 /**
@@ -32,13 +30,13 @@ public class SearchBoxDemoPane extends CDIBaseAnchorPane<SearchBoxDemoPane, Sear
         return SearchBoxDemoPane.class;
     }
 
-    @Inject SearchBoxDemoPaneController controller;
-
-    public SearchBoxDemoPaneController getController() {
-        return controller;
-    }
-
-    public void setController(SearchBoxDemoPaneController controller) {
-        this.controller = controller;
-    }
+//    @Inject SearchBoxDemoPaneController controller;
+//
+//    public SearchBoxDemoPaneController getController() {
+//        return controller;
+//    }
+//
+//    public void setController(SearchBoxDemoPaneController controller) {
+//        this.controller = controller;
+//    }
 }

@@ -16,8 +16,6 @@
 
 package org.rapidpm.demo.javafx.textfield.autocomplete.demo;
 
-import javax.inject.Inject;
-
 import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
 
 /**
@@ -25,18 +23,18 @@ import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
  */
 public class AutoCompleteTextFieldPane extends CDIBaseAnchorPane<AutoCompleteTextFieldPane, AutoCompleteTextFieldPaneController> {
 
-    @Inject AutoCompleteTextFieldPaneController controller;
+//    @Inject AutoCompleteTextFieldPaneController controller;
 
     @Override public Class<AutoCompleteTextFieldPane> getPaneClass() {
         return AutoCompleteTextFieldPane.class;
     }
 
-    @Override public AutoCompleteTextFieldPaneController getController() {
-        return controller;
-    }
-
-    @Override public void setController(AutoCompleteTextFieldPaneController controller) {
-        this.controller = controller;
-
-    }
+//    @Override public AutoCompleteTextFieldPaneController getController() {
+//        return controller;
+//    }
+//
+//    @Override public void setController(AutoCompleteTextFieldPaneController controller) {
+//        this.controller = controller;
+//
+//    }
 }

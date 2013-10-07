@@ -22,5 +22,6 @@ package org.rapidpm.demo.cdi.commons.fx.components;
  * Time: 07:07
  */
 public interface CDIBaseFxComponent<T> {
+
     public abstract Class<T> getPaneClass();
 }

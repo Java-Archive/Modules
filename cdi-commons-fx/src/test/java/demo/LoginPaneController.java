@@ -32,7 +32,7 @@ import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 
 // Simple application controller that uses injected fields 
 // to delegate login process and to get default values from the command line using: --user=SomeUser
-public class LoginController implements CDIJavaFxBaseController {
+public class LoginPaneController implements CDIJavaFxBaseController {
     // Standard FXML injected fields
     @FXML TextField loginField;
     @FXML PasswordField passwordField;

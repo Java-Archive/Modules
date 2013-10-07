@@ -65,7 +65,8 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
         @CDILogger
         Logger logger;
 
-        @Inject LoginPane root;
+        @Inject
+        LoginPane root;
 
         @Override
         public void testImpl(Stage stage) {
@@ -83,7 +84,7 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
             final PasswordField passwd = (PasswordField) scene.lookup("#passwordField");
             passwd.setText("LOGIN");
 
-            final LoginController controller = root.getController();
+            final LoginPaneController controller = root.getController();
             controller.handleSubmitButtonAction(new ActionEvent());
 
             final Text feedback = (Text) scene.lookup("#feedback");

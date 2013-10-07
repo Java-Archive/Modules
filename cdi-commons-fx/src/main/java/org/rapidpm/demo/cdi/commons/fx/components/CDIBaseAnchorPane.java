@@ -34,31 +34,33 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
  */
 public abstract class CDIBaseAnchorPane<T, C extends CDIJavaFxBaseController> extends AnchorPane implements CDIBaseFxComponent<T> {
 
-    public @Inject @CDILogger org.rapidpm.module.se.commons.logger.Logger logger;
-    public @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
-
     public CDIBaseAnchorPane() {
 
     }
 
+    public
+    @Inject
+    FXMLLoaderSingleton fxmlLoaderSingleton;
+    public C controller;
+
 
     @PostConstruct
     public void init() {
-        final Class<T> paneClass = getPaneClass();
-        final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(paneClass);
+        final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(getPaneClass());
         fxmlLoader.setRoot(this);
         try {
-            if (logger.isDebugEnabled()) {
-                logger.debug("controller " + getController());
-            }
-            fxmlLoader.setController(getController());
             fxmlLoader.load();
+            controller = fxmlLoader.getController();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
     }
 
-    public abstract C getController();
+    public C getController() {
+        return controller;
+    }
 
-    public abstract void setController(C controller);
+    public void setController(C controller) {
+        this.controller = controller;
+    }
 }
