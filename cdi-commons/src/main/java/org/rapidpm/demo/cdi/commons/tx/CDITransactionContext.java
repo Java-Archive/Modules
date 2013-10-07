@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.cdi.commons.tx;
 
 import java.lang.annotation.Annotation;
@@ -14,10 +30,10 @@ import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.lang.cache.generic.Cache;
 import org.rapidpm.lang.cache.generic.Cacheable;
 import org.rapidpm.lang.cache.generic.GenericCacheThreadsave;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -68,8 +84,7 @@ public class CDITransactionContext implements Context {
      * @param contextual        the contextual type
      * @param creationalContext the context in which the new instance will be created
      * @return the contextual instance
-     * @throws javax.enterprise.context.ContextNotActiveException
-     *          if the context is not active
+     * @throws javax.enterprise.context.ContextNotActiveException if the context is not active
      */
     @Override
     public <T> T get(Contextual<T> contextual, CreationalContext<T> creationalContext) {
@@ -103,7 +118,7 @@ public class CDITransactionContext implements Context {
                     if (logger.isDebugEnabled()) {
                         logger.debug("annotationPresent = " + annotationPresent);
                     }
-                    if(annotationPresent){
+                    if (annotationPresent) {
                         final String className = t.getClass().getAnnotation(Cacheable.class).className().getName();
                         if (logger.isDebugEnabled()) {
                             logger.debug("classname " + className);
@@ -120,7 +135,7 @@ public class CDITransactionContext implements Context {
                                 logger.debug("size : " + size);
                             }
                             if (size > 1) {
-                                logger.warn("mahr als eine Instanz im Cache:... nehme erste Element");
+                                logger.warn("mehr als eine Instanz im Cache:... nehme erste Element");
                             } else { /*All ok */ }
                             return (T) cacheForKey.toArray()[0];
                         } else {
@@ -136,7 +151,7 @@ public class CDITransactionContext implements Context {
                             }
                             return t;
                         }
-                    } else{
+                    } else {
                         if (logger.isDebugEnabled()) {
                             logger.debug("t not chacheable " + t);
 
@@ -154,14 +169,13 @@ public class CDITransactionContext implements Context {
         return null;
     }
 
-     /**
+    /**
      * Return an existing instance of a certain contextual type or a null value.
      *
      * @param <T>        the type of the contextual type
      * @param contextual the contextual type
      * @return the contextual instance, or a null value
-     * @throws javax.enterprise.context.ContextNotActiveException
-     *          if the context is not active
+     * @throws javax.enterprise.context.ContextNotActiveException if the context is not active
      */
     @Override
     public <T> T get(Contextual<T> contextual) {

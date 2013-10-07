@@ -1,8 +1,36 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package thirdparty.eu.schudt.javafx.controls.calendar;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,11 +43,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableCdiHolder;
-import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableCdiHolder;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * A calendar control
@@ -43,7 +66,7 @@ public class CalendarView extends VBox {
      * Initializes a calendar with the given locale.
      * E.g. if the locale is en-US, the calendar starts the days on Sunday.
      * If it is de-DE the calendar starts the days on Monday.
-
+     * <p/>
      * Note that the Java implementation only knows {@link java.util.GregorianCalendar} and {@link sun.util.BuddhistCalendar}.
      *
      * @param locale The locale.
@@ -62,11 +85,11 @@ public class CalendarView extends VBox {
 
     /**
      * Initializes the control with the given locale and the given calendar.
-     *
+     * <p/>
      * This way, you can pass a custom calendar (e.g. you could implement the Hijri Calendar for the arabic world).
      * Or you can use an American style calendar (starting with Sunday as first day of the week)
      * together with another language.
-     *
+     * <p/>
      * The locale determines the date format.
      *
      * @param locale   The locale.
@@ -253,6 +276,7 @@ public class CalendarView extends VBox {
     public StringProperty todayButtonTextProperty() {
         return todayButtonText;
     }
+
     private String value = CDIContainerSingleton.getInstance().getManagedInstance(FilteredTableCdiHolder.class).getRessource("calendar.today");
     private StringProperty todayButtonText = new SimpleStringProperty(value);
 

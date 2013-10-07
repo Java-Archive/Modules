@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package demo;
 
 import java.text.SimpleDateFormat;
@@ -15,7 +31,7 @@ import org.junit.Assert;
 import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
 import org.rapidpm.demo.cdi.commons.fx.JavaFXBaseTest;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -34,7 +50,7 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
 
         @Override
         public boolean isExitAfterTest() {
-            return true;
+            return false;
         }
 
         @Override
@@ -49,7 +65,8 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
         @CDILogger
         Logger logger;
 
-        @Inject LoginPane root;
+        @Inject
+        LoginPane root;
 
         @Override
         public void testImpl(Stage stage) {
@@ -58,7 +75,7 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
             }
             stage.setTitle("Login");  //i18n
             stage.setScene(new Scene(root, 300, 275));
-            //stage.show();
+            stage.show();
             final Scene scene = stage.getScene();
 
             //TestCode
@@ -67,7 +84,7 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
             final PasswordField passwd = (PasswordField) scene.lookup("#passwordField");
             passwd.setText("LOGIN");
 
-            final LoginController controller = root.getController();
+            final LoginPaneController controller = root.getController();
             controller.handleSubmitButtonAction(new ActionEvent());
 
             final Text feedback = (Text) scene.lookup("#feedback");

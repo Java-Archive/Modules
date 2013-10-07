@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.javafx.tableview.filtered.filter;
 
 /**
@@ -9,11 +25,11 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableView;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.IFilterOperator;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.operation.Operation;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.IFilterableTableColumn;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,7 +41,7 @@ import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.IFilterableTableCo
  * @param <T>yp   der Typ der eine Zeile/Row beschreibt, z.B. TransientRechnung
  * @param <V>alue der den Zelleninhalt beschreibt der im vergleich verwendet werden soll.. z.B. String
  */
-//TODO die DefaultTypOperationen können per Annotation aus der Registry geholt werden.
+//JIRA MOD-57 die DefaultTypOperationen können per Annotation aus der Registry geholt werden.
 public abstract class FilteredTableViewIterator<T, V> {
     private static final Logger logger = Logger.getLogger(FilteredTableViewIterator.class);
 
@@ -49,12 +65,12 @@ public abstract class FilteredTableViewIterator<T, V> {
 
                     for (final T rowElement : data2Filter) {
                         final V value2Test = getValue(rowElement);
-                        if(value2Test == null){
+                        if (value2Test == null) {
                             if (logger.isDebugEnabled()) {
                                 logger.debug("value2Test == null -> wird behalten");
                             }
                             //remove.add(rowElement);
-                        } else{
+                        } else {
                             decide(filter, value2Test, rowElement);
                         }
                     }

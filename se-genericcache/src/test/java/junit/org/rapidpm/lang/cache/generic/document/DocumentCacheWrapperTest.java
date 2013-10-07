@@ -1,11 +1,27 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package junit.org.rapidpm.lang.cache.generic.document;
+
+import java.util.Collection;
 
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.Test;
 import org.junit.After;
 import org.junit.Before;
-
-import java.util.Collection;
 
 
 public class DocumentCacheWrapperTest {
@@ -39,7 +55,7 @@ public class DocumentCacheWrapperTest {
      */
     @org.junit.Test
     public void testPut2Cache() throws Exception {
-        //TODO: Test goes here...
+        //JIRA MOD-22 test Fehlt : testPut2Cache()
     }
 
     /**
@@ -47,7 +63,7 @@ public class DocumentCacheWrapperTest {
      */
     @org.junit.Test
     public void testRemovePerson() throws Exception {
-        //TODO: Test goes here...
+        //JIRA MOD-23 test Fehlt : testRemovePerson()
     }
 
     /**
@@ -55,11 +71,10 @@ public class DocumentCacheWrapperTest {
      */
     @org.junit.Test
     public void testGetDocument() throws Exception {
-        //TODO: Test goes here...
         for (int i = 0; i < 1000; i++) {
             final Collection<Document> documents = wrapper.getDocument(i);
             for (final Document document : documents) {
-                System.out.println("document = " + document);
+                //JIRA MOD-24 test Fehlt : testGetDocument()
             }
         }
 

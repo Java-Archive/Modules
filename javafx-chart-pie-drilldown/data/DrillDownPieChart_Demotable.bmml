@@ -1,0 +1,19 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="659" measuredH="424" mockupW="405" mockupH="321">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::DataGrid" x="254" y="103" w="-1" h="-1" measuredW="292" measuredH="321" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Vorname%20%5E%2CNachname%20%5E%2C%20Datum%20%5E%2C%20Betrag%0AHolger%2C%20M%FCller%2C%202013.10.02%2C120.0%20%0AHolger%2C%20M%FCller%2C%202013.10.03%2C121.0%0AHolger%2C%20Hoppel%2C%202013.10.02%2C120.0%0AHolger%2C%20Hoppel%2C%202013.10.01%2C121.0%0AHolger%2C%20Hoppel%2C%202013.10.01%2C122.0%0AHolger%2C%20Hoppel%2C%202013.10.01%2C123.0%0AWilli%2C%20Hampel%2C%202013.10.04%2C10.0%20%0AWilli%2C%20Hampel%2C%202013.10.05%2C10.0%0AWilli%2C%20Pampel%2C%202013.10.04%2C11.0%0AWilli%2C%20Pampel%2C%202013.10.05%2C11.0%0A%7B45L%2C%2045L%2C40L%2C%2080L%7D</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::ComboBox" x="546" y="128" w="113" h="-1" measuredW="62" measuredH="78" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>120.0%0A130.0%0A135.0%0A140.0</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::ComboBox" x="546" y="279" w="113" h="-1" measuredW="62" measuredH="78" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>123.0%0A150.0%0A155.0%0A160.0</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

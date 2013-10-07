@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<atlassian-ide-plugin>
+    <project-configuration>
+        <servers>
+            <jira>
+                <server-id>e657f127-4106-4e0c-82f6-85f42bd3d821</server-id>
+                <name>JIRA RapidPM</name>
+                <url>http://jira.rapidpm.org</url>
+                <shared>false</shared>
+            </jira>
+            <crucible>
+                <server-id>414a18e6-b27f-4403-872e-bb6bb55186eb</server-id>
+                <name>FishEye Rapidpm</name>
+                <url>http://fishEye.rapidpm.org</url>
+                <shared>false</shared>
+                <isFisheyeInstance>true</isFisheyeInstance>
+            </crucible>
+        </servers>
+        <default-jira-server>e657f127-4106-4e0c-82f6-85f42bd3d821</default-jira-server>
+    </project-configuration>
+</atlassian-ide-plugin>

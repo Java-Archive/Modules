@@ -1,11 +1,27 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.cdi.commons.messagebus;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import com.google.common.eventbus.EventBus;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -15,7 +31,7 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 @ApplicationScoped //zu hart def
 public class MessageBus {
 
-//    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());
+    //    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());
     private EventBus eventBus = new EventBus(this.getClass().getName());
 
     private
@@ -23,27 +39,26 @@ public class MessageBus {
     @CDILogger
     Logger logger;
 
-    public void registerCallBack(MessageBusCallback callBack){
+    public void registerCallBack(MessageBusCallback callBack) {
         if (logger.isDebugEnabled()) {
             logger.debug("registerCallBack " + callBack);
         }
         eventBus.register(callBack);
     }
 
-    public void destroyCallBack(MessageBusCallback callBack){
+    public void destroyCallBack(MessageBusCallback callBack) {
         if (logger.isDebugEnabled()) {
             logger.debug("destroyCallBack " + callBack);
         }
         eventBus.unregister(callBack);
     }
 
-    public void post(Message message){
+    public void post(Message message) {
         if (logger.isDebugEnabled()) {
             logger.debug("post " + message);
         }
-        eventBus.post(message.getValue());
+        eventBus.post(message);
     }
-
 
 
     //ScoringMessgae -> Cache<ScoringMessaget>
@@ -81,9 +96,6 @@ public class MessageBus {
 //        //hole aus dem Cache
 //        return null;
 //    }
-
-
-
 
 
 }

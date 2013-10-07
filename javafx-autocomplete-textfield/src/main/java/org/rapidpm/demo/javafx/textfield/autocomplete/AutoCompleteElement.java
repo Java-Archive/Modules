@@ -1,9 +1,25 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.javafx.textfield.autocomplete;
 
+import java.util.Objects;
+
 /**
- * User: Sven Ruppert
- * Date: 13.05.13
- * Time: 08:42
+ * User: Sven Ruppert Date: 13.05.13 Time: 08:42
  */
 public class AutoCompleteElement {
 
@@ -61,25 +77,20 @@ public class AutoCompleteElement {
         return sb.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AutoCompleteElement)) return false;
-
-        AutoCompleteElement that = (AutoCompleteElement) o;
-
-        if (!id.equals(that.id)) return false;
-        if (!key.equals(that.key)) return false;
-        if (!shortinfo.equals(that.shortinfo)) return false;
-
-        return true;
+    @Override public int hashCode() {
+        return Objects.hash(key, shortinfo, id);
     }
 
-    @Override
-    public int hashCode() {
-        int result = key.hashCode();
-        result = 31 * result + shortinfo.hashCode();
-        result = 31 * result + id.hashCode();
-        return result;
+    @Override public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final AutoCompleteElement other = (AutoCompleteElement) obj;
+        return Objects.equals(this.key, other.key) && Objects.equals(this.shortinfo, other.shortinfo) && Objects.equals(this.id, other.id);
     }
+
+
 }

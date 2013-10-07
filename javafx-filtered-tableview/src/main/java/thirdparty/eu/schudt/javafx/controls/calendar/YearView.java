@@ -1,4 +1,23 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package thirdparty.eu.schudt.javafx.controls.calendar;
+
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -7,9 +26,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
 
 /**
  * The year view shows the months.
@@ -85,7 +101,7 @@ final class YearView extends DatePane {
             Button button = (Button) getChildren().get(i - 1);
             button.setText(monthNames[i - 1]);
         }
-        //TODO CDI
+        //JIRA MOD-60 CDIPropertyRegistryService verwenden - updateContent
         title.set(getDateFormat("yyyy").format(calendarView.getCalendar().getTime()));
     }
 }

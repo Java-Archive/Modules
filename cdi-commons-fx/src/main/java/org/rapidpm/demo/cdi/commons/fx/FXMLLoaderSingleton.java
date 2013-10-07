@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.cdi.commons.fx;
 
 import java.net.URL;
@@ -10,8 +26,8 @@ import javax.inject.Singleton;
 
 import javafx.fxml.FXMLLoader;
 import javafx.util.Callback;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -21,8 +37,13 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 @Singleton
 public class FXMLLoaderSingleton {
 
-    private @Inject @CDILogger Logger logger;
-    private @Inject Instance<CDIJavaFxBaseController> instance;
+    private
+    @Inject
+    @CDILogger
+    Logger logger;
+    private
+    @Inject
+    Instance<CDIJavaFxBaseController> instance;
 
     private final ClassLoader cachingClassLoader = new FXClassLoader(FXMLLoader.getDefaultClassLoader());
     private final Map<Class, FXMLLoader> class2LoaderMap = new HashMap<Class, FXMLLoader>();
@@ -40,15 +61,24 @@ public class FXMLLoaderSingleton {
                 logger.debug("fxmlFileName -> " + fxmlFileName);
             }
             final URL resource = clazz.getResource(fxmlFileName);
+//            FXMLLoader loader = new CDIFXMLLoader(resource);
             FXMLLoader loader = new FXMLLoader(resource);
             loader.setClassLoader(cachingClassLoader);
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {
                     final Class<CDIJavaFxBaseController> p = (Class<CDIJavaFxBaseController>) param;
-                    return instance.select(p).get();
+                    final CDIJavaFxBaseController controller = instance.select(p).get();
+                    return controller;
                 }
             });
+            try {
+                final Class<?> aClass = Class.forName(clazz.getName() + "Controller");
+                final CDIJavaFxBaseController call = (CDIJavaFxBaseController) loader.getControllerFactory().call(aClass);
+                loader.setController(call);
+            } catch (ClassNotFoundException e) {
+                logger.error(e);
+            }
             loaderMap.put(clazz, loader);
         }
         return loaderMap.get(clazz);

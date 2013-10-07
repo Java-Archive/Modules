@@ -1,139 +1,152 @@
-
-
+<!--
+  ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html id="htmlId">
 <head>
-  <title>Coverage Report :: DateOperator</title>
-  <style type="text/css">
-    @import "../../.css/coverage.css";
-  </style>
+    <title>Coverage Report :: DateOperator</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
 </head>
 
 <body>
 <div class="header"></div>
 
 <div class="content">
-<div class="breadCrumbs">
-    [ <a href="../../index.html">all classes</a> ]
-    [ <a href="../index.html">org.rapidpm.demo.javafx.tableview.filtered.operators</a> ]
-</div>
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">org.rapidpm.demo.javafx.tableview.filtered.operators</a> ]
+    </div>
 
-<h1>Coverage Summary for Class: DateOperator (org.rapidpm.demo.javafx.tableview.filtered.operators)</h1>
+    <h1>Coverage Summary for Class: DateOperator (org.rapidpm.demo.javafx.tableview.filtered.operators)</h1>
 
-<table class="coverageStats">
-<tr>
-  <th class="name">Class</th>
-<th class="coverageStat 
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
 ">
-  Class, %
-</th>
-<th class="coverageStat 
+                Class, %
+            </th>
+            <th class="coverageStat
 ">
-  Method, %
-</th>
-<th class="coverageStat 
+                Method, %
+            </th>
+            <th class="coverageStat
 ">
-  Line, %
-</th>
-</tr>
-<tr>
-  <td class="name">DateOperator</td>
-<td class="coverageStat">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">DateOperator</td>
+            <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
     (0/ 1)
   </span>
-</td>
-<td class="coverageStat">
+            </td>
+            <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
     (0/ 4)
   </span>
-</td>
-<td class="coverageStat">
+            </td>
+            <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
     (0/ 6)
   </span>
-</td>
-</tr>
+            </td>
+        </tr>
 
-</table>
+    </table>
 
-<br/>
-<br/>
+    <br/>
+    <br/>
 
 
-<div class="sourceCode"><i>1</i>&nbsp;/*
-<i>2</i>&nbsp; * Copyright (c) 2013, jhsheets@gmail.com
-<i>3</i>&nbsp; * All rights reserved.
-<i>4</i>&nbsp; *
-<i>5</i>&nbsp; * Redistribution and use in source and binary forms, with or without
-<i>6</i>&nbsp; * modification, are permitted provided that the following conditions are met:
-<i>7</i>&nbsp; *
-<i>8</i>&nbsp; * * Redistributions of source code must retain the above copyright notice, this
-<i>9</i>&nbsp; *   list of conditions and the following disclaimer.
-<i>10</i>&nbsp; * * Redistributions in binary form must reproduce the above copyright notice,
-<i>11</i>&nbsp; *   this list of conditions and the following disclaimer in the documentation
-<i>12</i>&nbsp; *   and/or other materials provided with the distribution.
-<i>13</i>&nbsp; *
-<i>14</i>&nbsp; * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
-<i>15</i>&nbsp; * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-<i>16</i>&nbsp; * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-<i>17</i>&nbsp; * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-<i>18</i>&nbsp; * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-<i>19</i>&nbsp; * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-<i>20</i>&nbsp; * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-<i>21</i>&nbsp; * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-<i>22</i>&nbsp; * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-<i>23</i>&nbsp; * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-<i>24</i>&nbsp; * POSSIBILITY OF SUCH DAMAGE.
-<i>25</i>&nbsp; */
-<i>26</i>&nbsp;package org.rapidpm.demo.javafx.tableview.filtered.operators;
-<i>27</i>&nbsp;
-<i>28</i>&nbsp;import java.util.Date;
-<i>29</i>&nbsp;import java.util.EnumSet;
-<i>30</i>&nbsp;
-<i>31</i>&nbsp;/**
-<i>32</i>&nbsp; * @author JHS
-<i>33</i>&nbsp; */
-<i>34</i>&nbsp;public class DateOperator implements IFilterOperator&lt;Date&gt; {
-<i>35</i>&nbsp;    private final IFilterOperator.Type type;
-<i>36</i>&nbsp;    private final Date value;
-<i>37</i>&nbsp;
-<b class="nc"><i>38</i>&nbsp;    public static final EnumSet VALID_TYPES = EnumSet.of(Type.NONE, Type.EQUALS, Type.NOTEQUALS</b>
-<i>39</i>&nbsp;            , Type.AFTER, Type.AFTERON, Type.BEFORE, Type.BEFOREON);
-<i>40</i>&nbsp;
-<b class="nc"><i>41</i>&nbsp;    public DateOperator(IFilterOperator.Type type, Date value) {</b>
-<b class="nc"><i>42</i>&nbsp;        this.type = type;</b>
-<b class="nc"><i>43</i>&nbsp;        this.value = value;</b>
-<i>44</i>&nbsp;    }
-<i>45</i>&nbsp;
-<i>46</i>&nbsp;    @Override
-<i>47</i>&nbsp;    public IFilterOperator.Type getType() {
-<b class="nc"><i>48</i>&nbsp;        return type;</b>
-<i>49</i>&nbsp;    }
-<i>50</i>&nbsp;
-<i>51</i>&nbsp;    @Override
-<i>52</i>&nbsp;    public Date getValue() {
-<b class="nc"><i>53</i>&nbsp;        return value;</b>
-<i>54</i>&nbsp;    }
-<i>55</i>&nbsp;
-<i>56</i>&nbsp;
-<i>57</i>&nbsp;}
-</div>
+    <div class="sourceCode"><i>1</i>&nbsp;/*
+        <i>2</i>&nbsp; * Copyright (c) 2013, jhsheets@gmail.com
+        <i>3</i>&nbsp; * All rights reserved.
+        <i>4</i>&nbsp; *
+        <i>5</i>&nbsp; * Redistribution and use in source and binary forms, with or without
+        <i>6</i>&nbsp; * modification, are permitted provided that the following conditions are met:
+        <i>7</i>&nbsp; *
+        <i>8</i>&nbsp; * * Redistributions of source code must retain the above copyright notice, this
+        <i>9</i>&nbsp; * list of conditions and the following disclaimer.
+        <i>10</i>&nbsp; * * Redistributions in binary form must reproduce the above copyright notice,
+        <i>11</i>&nbsp; * this list of conditions and the following disclaimer in the documentation
+        <i>12</i>&nbsp; * and/or other materials provided with the distribution.
+        <i>13</i>&nbsp; *
+        <i>14</i>&nbsp; * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+        <i>15</i>&nbsp; * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        <i>16</i>&nbsp; * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+        <i>17</i>&nbsp; * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+        <i>18</i>&nbsp; * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        <i>19</i>&nbsp; * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        <i>20</i>&nbsp; * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+        <i>21</i>&nbsp; * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+        <i>22</i>&nbsp; * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+        <i>23</i>&nbsp; * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+        <i>24</i>&nbsp; * POSSIBILITY OF SUCH DAMAGE.
+        <i>25</i>&nbsp; */
+        <i>26</i>&nbsp;package org.rapidpm.demo.javafx.tableview.filtered.operators;
+        <i>27</i>&nbsp;
+        <i>28</i>&nbsp;import java.util.Date;
+        <i>29</i>&nbsp;import java.util.EnumSet;
+        <i>30</i>&nbsp;
+        <i>31</i>&nbsp;/**
+        <i>32</i>&nbsp; * @author JHS
+        <i>33</i>&nbsp; */
+        <i>34</i>&nbsp;public class DateOperator implements IFilterOperator&lt;Date&gt; {
+        <i>35</i>&nbsp; private final IFilterOperator.Type type;
+        <i>36</i>&nbsp; private final Date value;
+        <i>37</i>&nbsp;
+        <b class="nc"><i>38</i>&nbsp; public static final EnumSet VALID_TYPES = EnumSet.of(Type.NONE, Type.EQUALS, Type.NOTEQUALS</b>
+        <i>39</i>&nbsp; , Type.AFTER, Type.AFTERON, Type.BEFORE, Type.BEFOREON);
+        <i>40</i>&nbsp;
+        <b class="nc"><i>41</i>&nbsp; public DateOperator(IFilterOperator.Type type, Date value) {</b>
+        <b class="nc"><i>42</i>&nbsp; this.type = type;</b>
+        <b class="nc"><i>43</i>&nbsp; this.value = value;</b>
+        <i>44</i>&nbsp; }
+        <i>45</i>&nbsp;
+        <i>46</i>&nbsp; @Override
+        <i>47</i>&nbsp; public IFilterOperator.Type getType() {
+        <b class="nc"><i>48</i>&nbsp; return type;</b>
+        <i>49</i>&nbsp; }
+        <i>50</i>&nbsp;
+        <i>51</i>&nbsp; @Override
+        <i>52</i>&nbsp; public Date getValue() {
+        <b class="nc"><i>53</i>&nbsp; return value;</b>
+        <i>54</i>&nbsp; }
+        <i>55</i>&nbsp;
+        <i>56</i>&nbsp;
+        <i>57</i>&nbsp;}
+    </div>
 </div>
 
 <div class="footer">
-    
+
     <div style="float:right;">generated on 2013-05-03 10:23</div>
 </div>
 </body>

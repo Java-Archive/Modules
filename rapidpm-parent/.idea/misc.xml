@@ -162,7 +162,6 @@
           <content-type name="JavaScript" enabled="true" />
           <content-type name="JSP" enabled="true" />
           <content-type name="JSPx" enabled="true" />
-          <content-type name="Groovy" enabled="true" />
           <content-type name="VTL" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>
@@ -370,24 +369,19 @@
         <option value="$PROJECT_DIR$/javafx-searchbox/pom.xml" />
         <option value="$PROJECT_DIR$/javafx-autocomplete-textField/pom.xml" />
         <option value="$PROJECT_DIR$/genericcache/pom.xml" />
-        <option value="$PROJECT_DIR$/../se-genericcache/pom.xml" />
-        <option value="$PROJECT_DIR$/../cdi-commons/pom.xml" />
-        <option value="$PROJECT_DIR$/../cdi-commons-fx/pom.xml" />
-        <option value="$PROJECT_DIR$/../cdi-commons-se/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-autocomplete-textfield/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-dialog/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-filtered-tableview/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-progressbartable/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-searchbox/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-commons/pom.xml" />
+        <option value="$PROJECT_DIR$/../se-tablemodel/pom.xml" />
+        <option value="$PROJECT_DIR$/../javafx-chart-pie-drilldown/pom.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectKey">
-    <option name="state" value="https://svenruppert@bitbucket.org/svenruppert/rapidpm-parent.git" />
+    <option name="state" value="https://svenruppert@bitbucket.org/rapidpm/modules.git" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="TaskProjectConfiguration">
+    <server type="JIRA" url="http://jira.rapidpm.org" />
   </component>
 </project>
 

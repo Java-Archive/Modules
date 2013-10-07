@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.javafx.tableview.filtered;
 
 import java.util.ArrayList;
@@ -5,7 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 import javafx.application.Application;
-import javafx.beans.property.*;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -74,7 +93,7 @@ public class Main extends Application {
         filteredTable.getColumns().setAll(idColumn, valColumn, typeColumn, dateColumn, boolColumn);
 
         // Listen for changes to the table's filters
-            filteredTable.addEventHandler(ColumnFilterEvent.FILTER_CHANGED_EVENT, new EventHandler<ColumnFilterEvent>() {
+        filteredTable.addEventHandler(ColumnFilterEvent.FILTER_CHANGED_EVENT, new EventHandler<ColumnFilterEvent>() {
             @Override
             public void handle(ColumnFilterEvent t) {
                 System.out.println("Filtered column count: " + filteredTable.getFilteredColumns().size());
@@ -90,7 +109,7 @@ public class Main extends Application {
         });
 
         //MouseClickedRowAction
-        filteredTable.getMouseDoubleClickedRowActions().add(filteredTable.new MouseClickedRowAction(){
+        filteredTable.getMouseDoubleClickedRowActions().add(filteredTable.new MouseClickedRowAction() {
 
             @Override
             public void workOnSelecteditem(ExampleItem selectedItem) {
@@ -100,7 +119,7 @@ public class Main extends Application {
 
 
         });
-
+        filteredTable.setTableMenuButtonVisible(true);
         primaryStage.setScene(new Scene(filteredTable, 600, 200));
         primaryStage.show();
     }
@@ -207,7 +226,7 @@ public class Main extends Application {
         );
     }
 
-    static public class ExampleItem {
+    static public class ExampleItem implements FilteredTableDataRow {
         private final SimpleIntegerProperty id;
         private final SimpleStringProperty val;
         private final SimpleObjectProperty<ExampleType> type;
@@ -293,6 +312,10 @@ public class Main extends Application {
 
         public SimpleBooleanProperty boolProperty() {
             return bool;
+        }
+
+        @Override public String convertToCSV() {
+            return null;
         }
     }
 }

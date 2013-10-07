@@ -1,10 +1,40 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package thirdparty.eu.schudt.javafx.controls.calendar;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.StringBinding;
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,23 +49,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Popup;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * @author Christian Schudt
  */
 public class DatePicker extends HBox {
 
-
     private static final String CSS_DATE_PICKER_VALID = "datepicker-valid";
     private static final String CSS_DATE_PICKER_INVALID = "datepicker-invalid";
-
 
     /**
      * Initializes the date picker with the default locale.
@@ -69,7 +89,8 @@ public class DatePicker extends HBox {
         calendarView.selectedDateProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                selectedDate.set(calendarView.selectedDateProperty().get());
+//                selectedDate.set(calendarView.selectedDateProperty().get());  //set -> setValue
+                selectedDate.bind(calendarView.selectedDateProperty());
                 hidePopup();
             }
         });
@@ -179,14 +200,14 @@ public class DatePicker extends HBox {
             }
         });
 
-//        textField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent keyEvent) {
-//                if (keyEvent.getCode() == KeyCode.DOWN) {
-//                    showPopup();
-//                }
-//            }
-//        });
+        textField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.DOWN) {
+                    showPopup();
+                }
+            }
+        });
 
         final Button button = new Button(">");
         button.getStyleClass().add("calendar-popup-button");
@@ -221,13 +242,13 @@ public class DatePicker extends HBox {
         try {
             // Double parse the date here, since e.g. 01.01.1 is parsed as year 1, and then formatted as 01.01.01 and then parsed as year 2001.
             // This might lead to an undesired date.
-            DateFormat dateFormat = getActualDateFormat();
+            DateFormat dateFormat = getActualDateFormat(); //TODO Formatter einbauen und Validatoren
             String text = textField.getText();
-            if(text.length() == 8 && !text.contains(".")){
+            if (text.length() == 8 && !text.contains(".")) {
                 final String days = text.substring(0, 2);
                 final String month = text.substring(2, 4);
                 final String year = text.substring(4);
-                text =  days + "."+ month +"."+ year;
+                text = days + "." + month + "." + year;
             } else {
 
             }
@@ -412,5 +433,9 @@ public class DatePicker extends HBox {
         double posY = calendarBounds.getMinY() + bounds.getHeight() + bounds.getMinY() + getScene().getY() + getScene().getWindow().getY();
 
         popup.show(this, posX, posY);
+    }
+
+    public TextField getTextField() {
+        return textField;
     }
 }

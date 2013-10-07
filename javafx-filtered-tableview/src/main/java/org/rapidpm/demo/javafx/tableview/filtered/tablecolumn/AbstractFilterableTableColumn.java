@@ -1,28 +1,19 @@
 /*
- * Copyright (c) 2013, jhsheets@gmail.com
- * All rights reserved.
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
+ *        http://www.apache.org/licenses/LICENSE-2.0
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
+
 package org.rapidpm.demo.javafx.tableview.filtered.tablecolumn;
 
 import javafx.beans.property.BooleanProperty;
@@ -36,9 +27,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.rapidpm.demo.javafx.tableview.filtered.operators.IFilterOperator;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.editor.IFilterEditor;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
@@ -64,6 +55,9 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
 
         // Display a button on the column to show the menu
         final Button filterTrigger = new Button();
+
+        filterTrigger.visibleProperty().bind(this.visibleProperty());
+
         filterTrigger.getStyleClass().add("filter-button-node");
         filterTrigger.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -73,8 +67,10 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
                 } else {
                     getContextMenu().show(filterTrigger, Side.BOTTOM, 0, 0);
                 }
+
             }
         });
+
 
         // Change the filter button icon based on filtered status
         filteredProperty().addListener(new ChangeListener<Boolean>() {
@@ -145,6 +141,7 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
         });
     }
 
+
     protected M getFilterEditor() {
         return filterEditor;
     }
@@ -164,17 +161,5 @@ public class AbstractFilterableTableColumn<S, T, R extends IFilterOperator, M ex
         return filterEditor.isFiltered();
     }
 
-    //public void setFilters(R filters) {
-    //    // TODO
-    //}
-    //public boolean isFilterable() {
-    //    // TODO
-    //}
-    //public void setFilterable(boolean filterable) {
-    //    // TODO
-    //}
-    //public SimpleBooleanProperty filterableProperty() {
-    //    // TODO
-    //}
 
 }

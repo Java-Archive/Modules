@@ -1,67 +1,52 @@
 /*
- * Copyright (c) 2013, jhsheets@gmail.com
- * All rights reserved.
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
+ *        http://www.apache.org/licenses/LICENSE-2.0
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
+
 package org.rapidpm.demo.javafx.tableview.filtered;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
-import org.rapidpm.demo.cdi.commons.logger.Logger;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
+import org.rapidpm.demo.javafx.commons.tableview.control.ColumnWidthOptimizer;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.AbstractFilterableTableColumn;
 import org.rapidpm.demo.javafx.tableview.filtered.tablecolumn.ColumnFilterEvent;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
- * A {@link TableView} that identifies any {@link AbstractFilterableTableColumn}'s added to it,
- * and fires a single event when any of them have their filters changed.
- *
- * To listen for changes the table's filters, register a {@link ColumnFilterEvent#FILTER_CHANGED_EVENT}
- * with {@link #addEventFilter(javafx.event.EventType, javafx.event.EventHandler) }
- * or {@link #addEventHandler(javafx.event.EventType, javafx.event.EventHandler) }
+ * A {@link TableView} that identifies any {@link AbstractFilterableTableColumn}'s added to it, and fires a single event when any of them have their filters changed. <p/> To listen for changes the
+ * table's filters, register a {@link ColumnFilterEvent#FILTER_CHANGED_EVENT} with {@link #addEventFilter(javafx.event.EventType, javafx.event.EventHandler) } or {@link
+ * #addEventHandler(javafx.event.EventType, javafx.event.EventHandler) }
  *
  * @author Sven Ruppert
  */
-public class FilteredTableView<T> extends TableView<T> {
-    //private static final Logger logger = Logger.getLogger(FilteredTableView.class);
+public class FilteredTableView<T extends FilteredTableDataRow> extends TableView<T> {
 
-    final private Logger logger = CDIContainerSingleton.getInstance().getManagedInstance(Logger.class);
-
+    private @Inject @CDILogger Logger logger;
     /**
      * List of filterable columns with a filter applied
      */
@@ -69,23 +54,24 @@ public class FilteredTableView<T> extends TableView<T> {
 
     private List<MouseClickedRowAction> mouseDoubleClickedRowActions = new ArrayList<>();
     private List<MouseClickedRowAction> mouseSingleClickedRowActions = new ArrayList<>();
-
-
     private ObservableList<T> backupItems = FXCollections.observableArrayList();
 
-    public void setTableViewData(final ObservableList<T> items){
+    final ColumnWidthOptimizer optimizer = new ColumnWidthOptimizer();
+
+    public void setTableViewData(final ObservableList<T> items) {
         super.setItems(items);
         backupItems.clear();
         backupItems.addAll(items);
+        optimizer.optimize(this);
     }
 
-    public ObservableList<T> getBackupItems(){
+    public ObservableList<T> getBackupItems() {
         final ObservableList<T> copy = FXCollections.observableArrayList();
         copy.addAll(backupItems);
         return copy;
     }
 
-    public void resetTableViewDataFromBackup(){
+    public void resetTableViewDataFromBackup() {
         super.setItems(getBackupItems());
     }
 
@@ -97,6 +83,7 @@ public class FilteredTableView<T> extends TableView<T> {
 
     public FilteredTableView() {
         super();
+        CDIContainerSingleton.getInstance().activateCDI(this);
 
         filteredColumns = FXCollections.observableArrayList();
 
@@ -160,13 +147,14 @@ public class FilteredTableView<T> extends TableView<T> {
                     for (final MouseClickedRowAction clickedRowAction : mouseDoubleClickedRowActions) {
                         clickedRowAction.workOnSelecteditem(selectedItem);
                     }
-                } if(mouseEvent.getClickCount() == 1){
+                }
+                if (mouseEvent.getClickCount() == 1) {
                     final T selectedItem = getSelectedItem(mouseEvent);
                     for (final MouseClickedRowAction clickedRowAction : mouseSingleClickedRowActions) {
                         clickedRowAction.workOnSelecteditem(selectedItem);
                     }
 
-                }else {
+                } else {
                     if (logger.isDebugEnabled()) {
                         logger.debug("ClickCount <= 1 " + mouseEvent);
                     }
@@ -174,28 +162,7 @@ public class FilteredTableView<T> extends TableView<T> {
             }
         });
 
-        //add contextMenue
-//        final ContextMenu contextMenu = new ContextMenu();
-//        MenuItem copyTableCSV2Clipboard = new MenuItem("Copy Table selected as CSV to Clipboard");  //TODO i18n
-//        copyTableCSV2Clipboard.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent e) {
-//                final ObservableList<TableColumn<T, ?>> columns = getColumns();
-//
-//                final ObservableList<T> items = getItems();
-//                final StringBuilder clipboardString = new StringBuilder();
-//                for (final T item : items) {
-//                    clipboardString.append(item);
-//                    clipboardString.append('\n');
-//                }
-//                final ClipboardContent content = new ClipboardContent();
-//                //System.out.println(clipboardString);
-//                content.putString(clipboardString.toString());
-//                Clipboard.getSystemClipboard().setContent(content);
-//            }
-//        });
-//        contextMenu.getItems().addAll(copyTableCSV2Clipboard);
-//        setContextMenu(contextMenu);
-
+        optimizer.optimize(this);
     }
 
     private T getSelectedItem(MouseEvent mouseEvent) {

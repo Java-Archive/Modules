@@ -1,3 +1,19 @@
+/*
+ * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package org.rapidpm.demo.cdi.commons.async;
 
 import java.util.concurrent.Future;
@@ -6,21 +22,22 @@ import java.util.concurrent.TimeUnit;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
-import org.rapidpm.demo.cdi.commons.logger.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 /**
  * User: Sven Ruppert
  * Date: 31.07.13
@@ -77,20 +94,16 @@ public class AsyncTest {
     private Event<AsyncTestEvent> asyncEvent;
 
     @Test @Ignore
-    public void testAsyncService1()
-    {
+    public void testAsyncService1() {
         assertNotNull(testService1);
 
         testService1.call();
 
         assertFalse(testService1.isCalled());
 
-        try
-        {
+        try {
             TestService1.TEST_LATCH.await(5, TimeUnit.SECONDS);
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             fail();
         }
 
@@ -98,20 +111,16 @@ public class AsyncTest {
     }
 
     @Test @Ignore
-    public void testAsyncService2()
-    {
+    public void testAsyncService2() {
         assertNotNull(testService2);
 
         Future<Boolean> result = testService2.call();
 
         assertFalse(testService2.isCalled());
 
-        try
-        {
+        try {
             assertTrue(result.get(10, TimeUnit.SECONDS));
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             fail();
         }
         assertTrue(result.isDone());
@@ -121,8 +130,7 @@ public class AsyncTest {
     @Test @Ignore
     //@Ignore //works with owb 1.2+ and versions of tomee which are based on it
     //owb 1.1.x uses Method#isAccessible instead of Modifier.isPublic(method.getModifiers()) to check if the (interceptor-)proxy should be used
-    public void testAsyncEvent()
-    {
+    public void testAsyncEvent() {
         assertNotNull(testObserver);
         assertNotNull(asyncEvent);
 
@@ -130,14 +138,11 @@ public class AsyncTest {
 
         assertFalse(testObserver.isCalled());
 
-        try
-        {
+        try {
             TestObserver.TEST_LATCH.await(10, TimeUnit.SECONDS);
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             if (logger.isDebugEnabled()) {
-                logger.debug(" InterruptedException e "+ e);
+                logger.debug(" InterruptedException e " + e);
             }
             fail();
         }
