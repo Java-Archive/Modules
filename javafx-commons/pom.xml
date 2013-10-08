@@ -54,6 +54,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons-se</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.oracle.javafx</groupId>
             <artifactId>javafx</artifactId>
             <version>2.2</version>
