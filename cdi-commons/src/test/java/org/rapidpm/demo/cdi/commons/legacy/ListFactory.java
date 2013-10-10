@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
+import org.rapidpm.demo.cdi.commons.ContextResolver;
 
 /**
  * Created by Sven Ruppert on 02.08.13.

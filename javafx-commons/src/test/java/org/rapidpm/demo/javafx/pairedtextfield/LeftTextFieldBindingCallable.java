@@ -25,6 +25,7 @@ import javax.inject.Inject;
  * Time: 15:45
  */
 public class LeftTextFieldBindingCallable extends CDICallable<String> {
+
     @Inject Instance<DemoLogic> demoLogic;
 
     @Override public String call() throws Exception {

@@ -14,29 +14,17 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.cdi.commons.legacy;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InjectionPoint;
-
-import org.rapidpm.demo.cdi.commons.CDICommons;
-import org.rapidpm.demo.cdi.commons.ContextResolver;
+package org.rapidpm.demo.javafx.commons.textfield.pairedtextfield.percentvalue;
 
 /**
  * User: Sven Ruppert
- * Date: 02.08.13
- * Time: 07:15
+ * Date: 09.10.13
+ * Time: 13:37
  */
-public class ListProducer {
+public class PercentageFormatter {
 
-    @Produces @CDILegacyTest
-    public List createList(InjectionPoint injectionPoint, BeanManager beanManager, @CDICommons ContextResolver contextResolver) {
-        //treffen der Entscheidungen...
 
-        return new ArrayList();
+    public String format(double v) {
+        return v + "";
     }
 }

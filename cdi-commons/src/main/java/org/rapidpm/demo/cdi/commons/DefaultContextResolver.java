@@ -18,7 +18,6 @@ package org.rapidpm.demo.cdi.commons;
 
 import javax.enterprise.util.AnnotationLiteral;
 
-import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.CDIPropertyRegistryFileBased;
 import org.rapidpm.module.se.commons.logger.Logger;
@@ -44,7 +43,7 @@ public class DefaultContextResolver implements ContextResolver {
             };
         }
 
-
-        return null;
+        return new AnnotationLiteral<CDICommons>() {
+        };  //as Default Implementation
     }
 }

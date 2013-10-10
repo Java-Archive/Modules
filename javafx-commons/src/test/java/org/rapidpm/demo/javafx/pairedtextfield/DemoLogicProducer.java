@@ -16,7 +16,6 @@
 
 package org.rapidpm.demo.javafx.pairedtextfield;
 
-import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 
@@ -27,10 +26,11 @@ import javax.enterprise.inject.spi.InjectionPoint;
  */
 public class DemoLogicProducer {
 
-    @Produces
+    // @Produces
     public DemoLogic create(BeanManager beanManager, InjectionPoint injectionPoint) {
         //decide which implementation to use...
         //here simple version..
+        System.out.println(" create DemoLogic = ");
         return new DemoLogic();
     }
 

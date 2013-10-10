@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.cdi.commons.registry;
+package org.rapidpm.demo.cdi.commons;
 
 import javax.enterprise.util.AnnotationLiteral;
 

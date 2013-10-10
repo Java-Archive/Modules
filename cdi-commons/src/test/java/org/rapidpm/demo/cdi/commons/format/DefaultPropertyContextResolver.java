@@ -20,8 +20,8 @@ import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.CDINotMapped;
+import org.rapidpm.demo.cdi.commons.ContextResolver;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
-import org.rapidpm.demo.cdi.commons.registry.ContextResolver;
 import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.CDIPropertyRegistryFileBased;
 import org.rapidpm.module.se.commons.logger.Logger;

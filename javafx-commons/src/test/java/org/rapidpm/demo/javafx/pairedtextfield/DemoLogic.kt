@@ -14,29 +14,11 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.cdi.commons.legacy;
+package org.rapidpm.demo.javafx.pairedtextfield
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InjectionPoint;
-
-import org.rapidpm.demo.cdi.commons.CDICommons;
-import org.rapidpm.demo.cdi.commons.ContextResolver;
-
-/**
- * User: Sven Ruppert
- * Date: 02.08.13
- * Time: 07:15
- */
-public class ListProducer {
-
-    @Produces @CDILegacyTest
-    public List createList(InjectionPoint injectionPoint, BeanManager beanManager, @CDICommons ContextResolver contextResolver) {
-        //treffen der Entscheidungen...
-
-        return new ArrayList();
+public open class DemoLogic() {
+    public open fun doIt(): String? {
+        return System.nanoTime().toString()  ;
     }
 }

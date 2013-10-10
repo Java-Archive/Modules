@@ -21,7 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.junit.Test;
-import org.rapidpm.demo.javafx.commons.textfield.pairedtextfield.PairedTextField;
+import org.rapidpm.demo.javafx.pairedtextfield.PairedTextField;
 
 /**
  * User: Sven Ruppert
