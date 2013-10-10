@@ -20,15 +20,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!--for release only-->
-    <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-    </parent>
+    <!--<parent>-->
+    <!--<groupId>org.sonatype.oss</groupId>-->
+    <!--<artifactId>oss-parent</artifactId>-->
+    <!--<version>7</version>-->
+    <!--</parent>-->
 
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-parent</artifactId>
-    <version>1.1.1</version>
+    <version>1.2-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>rapidpm-parent</name>
@@ -209,6 +209,8 @@
                 <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
+
+
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
@@ -311,6 +313,12 @@
             </dependency>
 
 
+            <!--<dependency>-->
+            <!--<groupId>org.jetbrains.kotlin</groupId>-->
+            <!--<artifactId>kotlin-stdlib</artifactId>-->
+            <!--<version>0.6.602</version>-->
+            <!--</dependency>-->
+
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -328,7 +336,10 @@
             <artifactId>log4j</artifactId>
             <scope>compile</scope>
         </dependency>
-
+        <!--<dependency>-->
+        <!--<groupId>org.jetbrains.kotlin</groupId>-->
+        <!--<artifactId>kotlin-stdlib</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -429,29 +440,65 @@
                     <!--<forkMode>always</forkMode>-->
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-repository-plugin</artifactId>
-                <version>2.3.1</version>
-            </plugin>
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-repository-plugin</artifactId>-->
+            <!--<version>2.3.1</version>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+            <!--<artifactId>kotlin-maven-plugin</artifactId>-->
+            <!--<groupId>org.jetbrains.kotlin</groupId>-->
+            <!--<version>0.6.602</version>-->
 
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>compile</id>-->
+            <!--<phase>compile</phase>-->
+            <!--<goals> <goal>compile</goal> </goals>-->
+            <!--</execution>-->
 
+            <!--<execution>-->
+            <!--<id>test-compile</id>-->
+            <!--<phase>test-compile</phase>-->
+            <!--<goals> <goal>test-compile</goal> </goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+            <!--<artifactId>kotlin-maven-plugin</artifactId>-->
+            <!--<groupId>org.jetbrains.kotlin</groupId>-->
+            <!--<version>0.6.602</version>-->
+
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>compile</id>-->
+            <!--<phase>process-sources</phase>-->
+            <!--<goals> <goal>compile</goal> </goals>-->
+            <!--</execution>-->
+
+            <!--<execution>-->
+            <!--<id>test-compile</id>-->
+            <!--<phase>process-test-sources</phase>-->
+            <!--<goals> <goal>test-compile</goal> </goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
     <!--for dvelopment of features/develop branch-->
-    <!--<distributionManagement>-->
-        <!--<repository>-->
-            <!--<id>releases</id>-->
-            <!--<name>RapidPM Releases</name>-->
-            <!--<url>http://${nexus.ip}/nexus/content/repositories/releases</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>snapshots</id>-->
-            <!--<name>RapidPM Snapshots</name>-->
-            <!--<url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>-->
-        <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>RapidPM Releases</name>
+            <url>http://${nexus.ip}/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>RapidPM Snapshots</name>
+            <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
     <profiles>
         <profile>
             <activation>
@@ -629,503 +676,7 @@
             </build>
         </profile>
 
-        <profile>
-            <id>arquillian_openwebbeans-embedded-1</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-openwebbeans-embedded-1</artifactId>
-                    <version>1.0.0.CR2</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-spi</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-impl</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-el_2.2_spec</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-jta_1.1_spec</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-validation_1.0_spec</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-interceptor_1.1_spec</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-jcdi_1.0_spec</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-atinject_1.0_spec</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-servlet_3.0_spec</artifactId>
-                    <version>1.0</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-ejb_3.1_spec</artifactId>
-                    <version>1.0.2</version>
-                </dependency>
-            </dependencies>
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.openwebbeans</groupId>
-                        <artifactId>openwebbeans</artifactId>
-                        <version>1.1.3</version>
-                        <type>pom</type>
-                        <scope>import</scope>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!--<includes>-->
-                            <!--<include>**/junit/**</include>-->
-                            <!--<include>**/cdi/**</include>-->
-                            <!--</includes>-->
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_tomee-remote-1.5</id>
-            <properties>
-                <tomee.version>1.5.0</tomee.version>
-                <tomee.classifier>plus</tomee.classifier>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!--<includes>-->
-                            <!--<include>**/junit/**</include>-->
-                            <!--<include>**/cdi/**</include>-->
-                            <!--<include>**/servlet/**</include>-->
-                            <!--</includes>-->
-                            <systemPropertyVariables>
-                                <tomee.httpPort>8080</tomee.httpPort>
-                                <tomee.stopPort>0</tomee.stopPort>
-                                <tomee.classifier>${tomee.classifier}</tomee.classifier>
-                                <tomee.version>${tomee.version}</tomee.version>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.openejb</groupId>
-                    <artifactId>arquillian-tomee-remote</artifactId>
-                    <version>${tomee.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>arquillian_tomee-embedded-1.5</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.openejb</groupId>
-                    <artifactId>arquillian-tomee-embedded</artifactId>
-                    <version>1.5.0</version>
-                    <scope>provided</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!--<includes>-->
-                            <!--<include>**/junit/**</include>-->
-                            <!--<include>**/cdi/**</include>-->
-                            <!--<include>**/servlet/**</include>-->
-                            <!--</includes>-->
-                            <systemPropertyVariables>
-                                <tomee.httpPort>8080</tomee.httpPort>
-                                <tomee.stopPort>0</tomee.stopPort>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_openejb-embedded-3.1</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-openejb-embedded-3.1</artifactId>
-                    <version>1.0.0.Alpha5</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.openejb</groupId>
-                    <artifactId>openejb-core</artifactId>
-                    <version>4.5.2</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-cdi_1.0_spec</artifactId>
-                    <version>1.0-SNAPSHOT</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!--<includes>-->
-                            <!--<include>**/junit/**</include>-->
-                            <!--<include>**/ejb/**</include>-->
-                            <!--</includes>-->
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_openwebbeans-openejb-embedded-3.1</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-openwebbeans-embedded-1</artifactId>
-                    <version>1.0.0.CR2</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.openejb</groupId>
-                    <artifactId>openejb-core</artifactId>
-                    <version>3.1.4</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-spi</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-impl</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-openejb</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-jcdi_1.0_spec</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-atinject_1.0_spec</artifactId>
-                </dependency>
-            </dependencies>
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.openwebbeans</groupId>
-                        <artifactId>openwebbeans</artifactId>
-                        <version>1.1.3</version>
-                        <type>pom</type>
-                        <scope>import</scope>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!--<includes>-->
-                            <!--<include>**/junit/**</include>-->
-                            <!--<include>**/ejb/**</include>-->
-                            <!--<include>**/cdi/**</include>-->
-                            <!--</includes>-->
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_jetty-embedded</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.eclipse.jetty.aggregate</groupId>
-                    <artifactId>jetty-all</artifactId>
-                    <version>8.1.7.v20120910</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-jetty-embedded-7</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-servlet_3.0_spec</artifactId>
-                    <version>1.0</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-jcdi_1.0_spec</artifactId>
-                    <version>1.0</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-atinject_1.0_spec</artifactId>
-                    <version>1.0</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-ejb_3.1_spec</artifactId>
-                    <version>1.0.2</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!--<includes>-->
-                            <!--<include>**/junit/**</include>-->
-                            <!--<include>**/servlet/**</include>-->
-                            <!--</includes>-->
-                            <argLine>-DjettyMode</argLine>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_tomcat-embedded</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-tomcat-embedded-7</artifactId>
-                    <version>1.0.0.CR4</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-core</artifactId>
-                    <version>7.0.19</version>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-jasper</artifactId>
-                    <version>7.0.19</version>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.jdt.core.compiler</groupId>
-                    <artifactId>ecj</artifactId>
-                    <version>3.7</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <!--<configuration>-->
-                        <!--<includes>-->
-                        <!--<include>**/junit/**</include>-->
-                        <!--<include>**/servlet/**</include>-->
-                        <!--</includes>-->
-                        <!--</configuration>-->
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_glassfish-embedded-3.1</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>1.0.0.CR3</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>3.1.2</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <!--<configuration>-->
-                        <!--<includes>-->
-                        <!--<include>**/junit/**</include>-->
-                        <!--<include>**/ejb/**</include>-->
-                        <!--<include>**/cdi/**</include>-->
-                        <!--<include>**/servlet/**</include>-->
-                        <!--</includes>-->
-                        <!--</configuration>-->
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_jbossas-embedded-6</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-jbossas-embedded-6</artifactId>
-                    <version>1.0.0.CR3</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.jbossas</groupId>
-                    <artifactId>jboss-as-depchain</artifactId>
-                    <version>6.0.0.Final</version>
-                    <type>pom</type>
-                </dependency>
-            </dependencies>
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jboss.jbossas</groupId>
-                        <artifactId>jboss-as-depchain</artifactId>
-                        <version>6.0.0.Final</version>
-                        <type>pom</type>
-                        <scope>import</scope>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${env.JBOSS6_HOME}/client/jbossws-native-client.jar</additionalClasspathElement>
-                                <!-- jbossweb.sar contains shared web.xml, which must be                             visible
-                                    from same CL as TomcatDeployer.class.getClassLoader In addition, use the
-                                    one from your specific profile.       -->
 
-                                <additionalClasspathElement>${env.JBOSS6_HOME}/server/${env.JBOSS6_PROFILE}/deploy/jbossweb.sar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            <redirectTestOutputToFile>true</redirectTestOutputToFile>
-                            <trimStackTrace>false</trimStackTrace>
-                            <printSummary>true</printSummary>
-                            <forkMode>once</forkMode>
-                            <!-- This is essentially the same JVM setup as you would see in the
-                                default managed JVM. Tweak as your testing sees fit.                      -->
-                            <argLine>-Xmx512m -XX:MaxPermSize=256m
-                                -Djava.net.preferIPv4Stack=true
-                                -Djava.util.logging.manager=org.jboss.logmanager.LogManager
-                                -Djava.endorsed.dirs=${env.JBOSS_HOME}/lib/endorsed
-                                -Djboss.home=${env.JBOSS_HOME}
-                                -Djboss.boot.server.log.dir=${env.JBOSS_HOME}
-                            </argLine>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arquillian_tomcat-6-embedded</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-tomcat-embedded-6</artifactId>
-                    <version>1.0.0.CR2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>catalina</artifactId>
-                    <version>6.0.29</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>coyote</artifactId>
-                    <version>6.0.29</version>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.tomcat</groupId>
-                    <artifactId>jasper</artifactId>
-                    <version>6.0.29</version>
-                    <scope>provided</scope>
-                </dependency>
-                <!-- Weld servlet, EL and JSP required for testing CDI injections -->
-                <dependency>
-                    <groupId>org.glassfish.web</groupId>
-                    <artifactId>el-impl</artifactId>
-                    <version>2.2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>javax.servlet.jsp</groupId>
-                    <artifactId>jsp-api</artifactId>
-                    <version>2.2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-servlet_3.0_spec</artifactId>
-                    <version>1.0</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-jcdi_1.0_spec</artifactId>
-                    <version>1.0</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-atinject_1.0_spec</artifactId>
-                    <version>1.0</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.geronimo.specs</groupId>
-                    <artifactId>geronimo-ejb_3.1_spec</artifactId>
-                    <version>1.0.2</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <!--<configuration>-->
-                        <!--<includes>-->
-                        <!--<include>**/junit/**</include>-->
-                        <!--<include>**/ejb/**</include>-->
-                        <!--<include>**/servlet/**</include>-->
-                        <!--</includes>-->
-                        <!--</configuration>-->
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
     </profiles>
 
 

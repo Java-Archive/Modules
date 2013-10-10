@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.2-SNAPSHOT</version>
     </parent>
     <name>javafx-progressbartable</name>
     <description>A JavaFX component: a TableView to show progress of different threads</description>
