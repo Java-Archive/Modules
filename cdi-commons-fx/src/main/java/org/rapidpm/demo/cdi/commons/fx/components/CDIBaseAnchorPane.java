@@ -35,7 +35,10 @@ import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 public abstract class CDIBaseAnchorPane<T, C extends CDIJavaFxBaseController> extends AnchorPane implements CDIBaseFxComponent<T> {
 
     public CDIBaseAnchorPane() {
-
+        AnchorPane.setBottomAnchor(this,0.0);
+        AnchorPane.setTopAnchor(this,0.0);
+        AnchorPane.setLeftAnchor(this,0.0);
+        AnchorPane.setRightAnchor(this,0.0);
     }
 
     public

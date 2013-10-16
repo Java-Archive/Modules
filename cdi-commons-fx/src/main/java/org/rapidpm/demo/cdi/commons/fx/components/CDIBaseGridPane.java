@@ -22,6 +22,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
 import org.rapidpm.demo.cdi.commons.fx.FXMLLoaderSingleton;
@@ -36,6 +37,12 @@ public abstract class CDIBaseGridPane<T, C extends CDIJavaFxBaseController> exte
     public @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
     public C controller;
 
+    protected CDIBaseGridPane() {
+        AnchorPane.setBottomAnchor(this, 0.0);
+        AnchorPane.setTopAnchor(this,0.0);
+        AnchorPane.setLeftAnchor(this,0.0);
+        AnchorPane.setRightAnchor(this,0.0);
+    }
 
     @PostConstruct
     public void init() {
