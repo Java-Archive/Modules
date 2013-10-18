@@ -14,25 +14,24 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.pairedtextfield;
+package org.rapidpm.demo.javafx.pairedtextfield.demologic.context_b;
 
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic;
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogicContext;
+import javax.inject.Qualifier;
 
 /**
  * User: Sven Ruppert
- * Date: 08.10.13
- * Time: 15:45
+ * Date: 16.10.13
+ * Time: 17:23
  */
-public class LeftTextFieldBindingCallable extends CDICallable<String> {
 
-    @Inject @DemoLogicContext Instance<DemoLogic> demoLogic;
 
-    @Override public String call() throws Exception {
-        final String s = "l - " + demoLogic.get().doIt();
-        return s;
-    }
+@Qualifier
+@Retention(value = RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
+public @interface DemoLogicContextB {
 }

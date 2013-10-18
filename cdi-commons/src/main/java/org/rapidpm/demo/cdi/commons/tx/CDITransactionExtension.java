@@ -16,10 +16,14 @@
 
 package org.rapidpm.demo.cdi.commons.tx;
 
+import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;
+import javax.enterprise.inject.spi.AnnotatedType;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
+import javax.enterprise.inject.spi.InjectionTarget;
+import javax.inject.Inject;
 
 
 /**
@@ -29,10 +33,21 @@ import javax.enterprise.inject.spi.Extension;
  */
 public class CDITransactionExtension implements Extension {
 
+
     public void afterBeanDiscovery(@Observes AfterBeanDiscovery event, BeanManager manager) {
+        System.out.println("CDITransactionExtension->event = " + event);
+
+        final AnnotatedType annotationType = manager.createAnnotatedType(CDITransactionContext.class);
+        final InjectionTarget injectionTarget = manager.createInjectionTarget(annotationType);
+        final CreationalContext creationalContext = manager.createCreationalContext(null);
         final CDITransactionContext context = new CDITransactionContext();
+        injectionTarget.inject(context, creationalContext);
+        injectionTarget.postConstruct(CDITransactionContext.class);
+
+        System.out.println("context = " + context);
         context.setBeanManager(manager);
         event.addContext(context);
     }
+
 
 }

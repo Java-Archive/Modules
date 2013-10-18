@@ -14,24 +14,19 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.pairedtextfield;
+package org.rapidpm.demo.javafx.pairedtextfield.demologic.context_b;
 
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InjectionPoint;
+import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic;
 
 /**
  * User: Sven Ruppert
- * Date: 08.10.13
- * Time: 16:34
+ * Date: 16.10.13
+ * Time: 17:27
  */
-public class DemoLogicProducer {
+public class DemoLogicB implements DemoLogic {
 
-    // @Produces
-    public DemoLogic create(BeanManager beanManager, InjectionPoint injectionPoint) {
-        //decide which implementation to use...
-        //here simple version..
-        System.out.println(" create DemoLogic = ");
-        return new DemoLogic();
+
+    @Override public String doIt() {
+        return System.nanoTime()+"-B";
     }
-
 }

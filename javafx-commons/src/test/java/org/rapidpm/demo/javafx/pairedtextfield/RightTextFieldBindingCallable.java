@@ -19,15 +19,21 @@ package org.rapidpm.demo.javafx.pairedtextfield;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
+import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic;
+import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogicContext;
+
 /**
  * User: Sven Ruppert
  * Date: 08.10.13
  * Time: 15:45
  */
 public class RightTextFieldBindingCallable extends CDICallable<String> {
-    @Inject Instance<DemoLogic> demoLogic;
+
+    @Inject @DemoLogicContext Instance<DemoLogic> demoLogic;
+
 
     @Override public String call() throws Exception {
-        return "rightTextField - " + demoLogic.get().doIt();
+        final String s = "r - " + demoLogic.get().doIt();
+        return s;
     }
 }

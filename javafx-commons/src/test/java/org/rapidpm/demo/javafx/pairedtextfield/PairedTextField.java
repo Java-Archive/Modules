@@ -16,6 +16,8 @@
 
 package org.rapidpm.demo.javafx.pairedtextfield;
 
+import java.util.concurrent.Callable;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -31,70 +33,33 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
+import org.rapidpm.demo.javafx.commons.textfield.pairedtextfield.BasePairedTextField;
+import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoContext;
 
 /**
  * User: Sven Ruppert
  * Date: 08.10.13
  * Time: 14:44
  */
-public class PairedTextField extends Pane {
-
-    private final TextField leftTextField = new TextField();
-    private final TextField rightTextField = new TextField();
-
-    private final HBox hb = new HBox();
-    private int spacing = 10;
+public class PairedTextField extends BasePairedTextField {
 
     @Inject Instance<LeftTextFieldBindingCallable> leftTextFieldBindingCallableInstance;
     @Inject Instance<RightTextFieldBindingCallable> rightTextFieldBindingCallableInstance;
 
+    @Inject DemoContext demoContext;
 
     public PairedTextField() {
-        setAnchors(hb, 0.0);
-        hb.getChildren().addAll(leftTextField, rightTextField);
-        hb.setSpacing(spacing);
-        getChildren().add(hb);
-        setPadding(new Insets(0, 10, 0, 10));
-
-        CDIContainerSingleton.getInstance().activateCDI(this);
-
+        super();
     }
 
-    @PostConstruct
-    public void init() {
-        final StringBinding leftTextFieldBinding = Bindings.createStringBinding(leftTextFieldBindingCallableInstance.get(), leftTextField.textProperty());
-
-        final StringBinding rigthTextFieldBinding = Bindings.createStringBinding(rightTextFieldBindingCallableInstance.get(), rightTextField.textProperty());
-
-
-        leftTextField.setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override public void handle(KeyEvent keyEvent) {
-                rightTextField.textProperty().bind(leftTextFieldBinding);
-            }
-        });
-        leftTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override public void handle(KeyEvent keyEvent) {
-                rightTextField.textProperty().unbind();
-            }
-        });
-
-        rightTextField.setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override public void handle(KeyEvent keyEvent) {
-                leftTextField.textProperty().bind(rigthTextFieldBinding);
-            }
-        });
-        rightTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override public void handle(KeyEvent keyEvent) {
-                leftTextField.textProperty().unbind();
-            }
-        });
+    @Override public Callable<String> getCallableForLeftToRightTransformation() {
+        final LeftTextFieldBindingCallable callable = leftTextFieldBindingCallableInstance.get();
+        return callable;
     }
 
-
-    private void setAnchors(Node node, Double anchor) {
-        AnchorPane.setBottomAnchor(node, anchor);
-        AnchorPane.setLeftAnchor(node, anchor);
-        AnchorPane.setRightAnchor(node, anchor);
-        AnchorPane.setTopAnchor(node, anchor);
+    @Override public Callable<String> getCallableForRightToLeftTransformation() {
+        final RightTextFieldBindingCallable callable = rightTextFieldBindingCallableInstance.get();
+        return callable;
     }
+
 }

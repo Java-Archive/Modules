@@ -14,25 +14,12 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.pairedtextfield;
-
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic;
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogicContext;
+package org.rapidpm.demo.cdi.commons.format.number;
 
 /**
  * User: Sven Ruppert
- * Date: 08.10.13
- * Time: 15:45
+ * Date: 09.10.13
+ * Time: 13:46
  */
-public class LeftTextFieldBindingCallable extends CDICallable<String> {
-
-    @Inject @DemoLogicContext Instance<DemoLogic> demoLogic;
-
-    @Override public String call() throws Exception {
-        final String s = "l - " + demoLogic.get().doIt();
-        return s;
-    }
+public class PercentageFormatter {
 }

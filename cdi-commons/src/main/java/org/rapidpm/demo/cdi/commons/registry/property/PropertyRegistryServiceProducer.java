@@ -50,20 +50,6 @@ public class PropertyRegistryServiceProducer {
         final Class<PropertyRegistryService> beanType = PropertyRegistryService.class;
         final AnnotationLiteral annotationLiteral = contextResolver.resolveContext(beanType);
         final PropertyRegistryService propertyRegistryService = creator.getManagedInstance(beanType, annotationLiteral);
-//        final Set<Bean<?>> beanSet = beanManager.getBeans(beanType, annotationLiteral);
-//        for (final Bean<?> bean : beanSet) {
-//            final Set<Type> types = bean.getTypes();
-//            for (final Type type : types) {
-//                if (type.equals(beanType)) {
-//                    final Bean<PropertyRegistryService> registry = (Bean<PropertyRegistryService>) bean;
-//                    propertyRegistryService = registry.create(beanManager.createCreationalContext(registry));
-//                } else {
-//                    if (logger.isDebugEnabled()) {
-//                        logger.debug("! type.equals(beanType) " + type);
-//                    }
-//                }
-//            }
-//        }
         //return Default
         if (logger.isInfoEnabled()) {
             logger.info("PropertyRegistryService - Using default filebased implementation ");

@@ -14,25 +14,14 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.pairedtextfield;
+package org.rapidpm.demo.javafx.pairedtextfield.demologic.kotlin
 
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
+import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic
 
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic;
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogicContext;
-
-/**
- * User: Sven Ruppert
- * Date: 08.10.13
- * Time: 15:45
- */
-public class LeftTextFieldBindingCallable extends CDICallable<String> {
-
-    @Inject @DemoLogicContext Instance<DemoLogic> demoLogic;
-
-    @Override public String call() throws Exception {
-        final String s = "l - " + demoLogic.get().doIt();
-        return s;
+public open class KotlinDemoLogic() : DemoLogic {
+    public override fun doIt(): String? {
+        return "Something from kotlin";
     }
+
+
 }

@@ -16,12 +16,82 @@
 
 package org.rapidpm.demo.cdi.commons.tx;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.spi.Context;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.rapidpm.demo.cdi.commons.ManagedInstanceCreator;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.lang.cache.generic.Cacheable;
+import org.rapidpm.module.se.commons.logger.Logger;
+
 /**
  * User: Sven Ruppert
  * Date: 12.07.13
  * Time: 16:17
  */
+@Cacheable(primaryKeyAttributeName = "txNumber",className =CDITransaction.class )
+@Named
+public class CDITransaction
+{
+    private String txNumber = System.nanoTime() + "";
 
-public interface CDITransaction {
-    public void execute();
+     private @Inject BeanManager beanManager;
+    private @Inject @CDILogger  Logger logger;
+
+//    @Inject CDITransactionContext transactionContext;
+    private CDITransactionContext transactionContext;
+    @Inject ManagedInstanceCreator managedInstanceCreator;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("transactionContext = " + transactionContext);
+        transactionContext = (CDITransactionContext) beanManager.getContext(CDITransactionScope.class);
+    }
+
+    private final List<CDITransactionStep> stepList = new ArrayList<>();
+    public void execute() {
+        begin();
+        System.out.println("stepList = " + stepList.size());
+        for (final CDITransactionStep cdiTransactionStep : stepList) {
+            final CDITransactionStep step = managedInstanceCreator.activateCDI(cdiTransactionStep);
+            step.doIt();
+        }
+        end();
+    }
+
+    private void begin() {
+        System.out.println(" begin -> " + txNumber);
+        System.out.println("transactionContext = " + transactionContext);
+        transactionContext.begin();
+    }
+
+    private void end() {
+        System.out.println(" end -> " + txNumber);
+        System.out.println("transactionContext = " + transactionContext);
+        transactionContext.end();
+    }
+
+    public String getTxNumber() {
+        return txNumber;
+    }
+
+    public void addCDITransactionStep(final CDITransactionStep step){
+        stepList.add(step);
+    }
+    public static abstract class CDITransactionStep {
+
+        protected CDITransactionStep() {
+
+        }
+
+        public abstract void doIt();
+    }
+
+
 }

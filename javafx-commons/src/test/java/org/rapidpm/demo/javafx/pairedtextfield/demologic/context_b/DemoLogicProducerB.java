@@ -14,25 +14,25 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.pairedtextfield;
+package org.rapidpm.demo.javafx.pairedtextfield.demologic.context_b;
 
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
+import javax.enterprise.inject.New;
+import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.InjectionPoint;
 
 import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic;
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogicContext;
 
 /**
  * User: Sven Ruppert
- * Date: 08.10.13
- * Time: 15:45
+ * Date: 16.10.13
+ * Time: 17:21
  */
-public class LeftTextFieldBindingCallable extends CDICallable<String> {
+public class DemoLogicProducerB {
 
-    @Inject @DemoLogicContext Instance<DemoLogic> demoLogic;
-
-    @Override public String call() throws Exception {
-        final String s = "l - " + demoLogic.get().doIt();
-        return s;
+    @Produces @DemoLogicContextB
+    public DemoLogic create(BeanManager beanManager, InjectionPoint injectionPoint, @New DemoLogicB demoLogicB) {
+        return demoLogicB;
     }
+
 }

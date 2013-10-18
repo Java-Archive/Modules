@@ -19,6 +19,8 @@ package org.rapidpm.demo.javafx.commons.textfield.pairedtextfield;
 import java.util.concurrent.Callable;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.spi.CDI;
+import javax.inject.Inject;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
@@ -30,7 +32,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
+import org.rapidpm.demo.javafx.commons.textfield.LabledTextField;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
  * User: Sven Ruppert
@@ -38,20 +43,18 @@ import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
  * Time: 12:46
  */
 public abstract class BasePairedTextField extends Pane {
-    protected final TextField leftTextField = new TextField();
-    protected final TextField rightTextField = new TextField();
+//    protected final TextField leftTextField = new TextField();
+//    protected final TextField leftTextField = new TextField();
+    protected @Inject LabledTextField leftTextField ;
+    protected @Inject LabledTextField rightTextField ;
+
+    private @Inject @CDILogger Logger logger;
 
     private final HBox hb = new HBox();
     private int spacing = 10;
 
 
     public BasePairedTextField() {
-        setAnchors(hb, 0.0);
-        hb.getChildren().addAll(leftTextField, rightTextField);
-        hb.setSpacing(spacing);
-        getChildren().add(hb);
-        setPadding(new Insets(0, 10, 0, 10));
-
         CDIContainerSingleton.getInstance().activateCDI(this);
     }
 
@@ -61,30 +64,49 @@ public abstract class BasePairedTextField extends Pane {
 
     @PostConstruct
     public void init() {
-        final StringBinding leftTextFieldBinding = Bindings.createStringBinding(getCallableForLeftToRightTransformation(), leftTextField.textProperty());
+        setAnchors(hb, 0.0);
+        hb.getChildren().addAll(leftTextField, rightTextField);
+        hb.setSpacing(spacing);
+        getChildren().add(hb);
+        setPadding(new Insets(0, 10, 0, 10));
 
-        final StringBinding rigthTextFieldBinding = Bindings.createStringBinding(getCallableForRightToLeftTransformation(), rightTextField.textProperty());
+//        final StringBinding leftTextFieldBinding = Bindings.createStringBinding(getCallableForLeftToRightTransformation(), leftTextField.textProperty());
+//        final StringBinding rigthTextFieldBinding = Bindings.createStringBinding(getCallableForRightToLeftTransformation(), rightTextField.textProperty());
+        final StringBinding leftTextFieldBinding = Bindings.createStringBinding(getCallableForLeftToRightTransformation(), leftTextField.getTextField().textProperty());
+        final StringBinding rigthTextFieldBinding = Bindings.createStringBinding(getCallableForRightToLeftTransformation(), rightTextField.getTextField().textProperty());
 
 
         leftTextField.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override public void handle(KeyEvent keyEvent) {
-                rightTextField.textProperty().bind(leftTextFieldBinding);
+                if (logger.isDebugEnabled()) {
+                    logger.debug("handle-> binding right to left ");
+                }
+                rightTextField.getTextField().textProperty().bind(leftTextFieldBinding);
             }
         });
         leftTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override public void handle(KeyEvent keyEvent) {
-                rightTextField.textProperty().unbind();
+                if (logger.isDebugEnabled()) {
+                    logger.debug("handle-> unbinding right to left ");
+                }
+                rightTextField.getTextField().textProperty().unbind();
             }
         });
 
         rightTextField.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override public void handle(KeyEvent keyEvent) {
-                leftTextField.textProperty().bind(rigthTextFieldBinding);
+                if (logger.isDebugEnabled()) {
+                    logger.debug("handle-> binding left to right ");
+                }
+                leftTextField.getTextField().textProperty().bind(rigthTextFieldBinding);
             }
         });
         rightTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override public void handle(KeyEvent keyEvent) {
-                leftTextField.textProperty().unbind();
+                if (logger.isDebugEnabled()) {
+                    logger.debug("handle-> unbinding left to right ");
+                }
+                leftTextField.getTextField().textProperty().unbind();
             }
         });
     }

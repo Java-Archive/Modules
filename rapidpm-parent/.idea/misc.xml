@@ -348,6 +348,7 @@
   </component>
   <component name="EclipseCodeFormatter">
     <option name="defaultSettings" value="true" />
+    <option name="formatter" value="ECLIPSE" />
     <option name="id" value="1366097979231" />
     <option name="name" value="default" />
   </component>
@@ -375,7 +376,7 @@
     </option>
   </component>
   <component name="ProjectKey">
-    <option name="state" value="https://svenruppert@bitbucket.org/rapidpm/modules.git" />
+    <option name="state" value="http://stash.rapidpm.org/scm/mod/modules.git" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

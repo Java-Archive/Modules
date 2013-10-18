@@ -42,6 +42,8 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public class CDITransactionContext implements Context {
 
+    private final long contextNr = System.nanoTime();
+
     //Context kann nicht gemaneged werden -> CDI Extension -> CDITransactionExtension
     private static final Logger logger = new Logger(CDITransactionContext.class);
 
@@ -53,11 +55,11 @@ public class CDITransactionContext implements Context {
     //set by the Extension
     private BeanManager beanManager;
 
-    public void begin() {
+    public void begin(final String txNumber) {
         classCacheMap.clear();
     }
 
-    public void end() {
+    public void end(final String txNumber) {
         classCacheMap.clear();
     }
 
@@ -88,6 +90,7 @@ public class CDITransactionContext implements Context {
      */
     @Override
     public <T> T get(Contextual<T> contextual, CreationalContext<T> creationalContext) {
+        System.out.println("long " + this);
         if (creationalContext == null) {
             if (logger.isDebugEnabled()) {
                 logger.debug("erzeuge creationalContext");
@@ -153,7 +156,7 @@ public class CDITransactionContext implements Context {
                         }
                     } else {
                         if (logger.isDebugEnabled()) {
-                            logger.debug("t not chacheable " + t);
+                            logger.debug("t not cacheable " + t);
 
                         }
                     }
@@ -179,6 +182,7 @@ public class CDITransactionContext implements Context {
      */
     @Override
     public <T> T get(Contextual<T> contextual) {
+        System.out.println("short " + this);
 //        System.out.println("get () contextual = " + contextual);
         Bean<T> bean = (Bean<T>) contextual;
 //        final Class<?> beanClass = bean.getBeanClass();
@@ -218,7 +222,7 @@ public class CDITransactionContext implements Context {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CDITransactionContext{");
+        final StringBuilder sb = new StringBuilder("CDITransactionContext{ nr="+contextNr+" ");
         sb.append("classCacheMap=").append(classCacheMap);
         sb.append('}');
         return sb.toString();

@@ -52,29 +52,35 @@ public class CDITransactionTest {
     }
 
 
-    @Inject Instance<CDITransactionA> cdiTransactionAInstance;
-    @Inject Instance<CDITransactionB> cdiTransactionBInstance;
+//    @Inject Instance<CDITransactionA> cdiTransactionAInstance;
+//    @Inject Instance<CDITransactionB> cdiTransactionBInstance;
+//    @Inject Instance<CDITransactionC> cdiTransactionCInstance;
 
-    public static class CDITransactionA extends AbstractCDITransaction {
+    @Inject Instance<CDITransaction> cdiTransactionInstance;
 
-        @Inject @New Instance<DemoClassA> convClassAInstance;
+//    @CDITransactionScope
+//    public static class CDITransactionA extends CDITransaction.CDITransactionStep {
+//
+//        @Inject @New Instance<DemoClassA> convClassAInstance;
+//
+//        public void doIt() {
+//            final DemoClassA a = convClassAInstance.get();
+//            final DemoClassA b = convClassAInstance.get();
+//
+//            Assert.assertNotNull(a);
+//            Assert.assertNotNull(b);
+//
+//            Assert.assertNotEquals(a.getVersion(), b.getVersion());
+//        }
+//    }
 
-        @Override
-        public void doIt() {
-            final DemoClassA a = convClassAInstance.get();
-            final DemoClassA b = convClassAInstance.get();
-
-            Assert.assertNotNull(a);
-            Assert.assertNotNull(b);
-
-            Assert.assertNotEquals(a.getVersion(), b.getVersion());
-        }
-    }
-
-    public static class CDITransactionB extends AbstractCDITransaction {
+    @CDITransactionScope
+    public static class CDITransactionB extends CDITransaction.CDITransactionStep {
 
         @Inject Instance<DemoClassA> convClassBInstance;
         @Inject @New Instance<DemoClassA> convClassBInstanceNonTX;
+
+        private String version;
 
         @Override
         public void doIt() {
@@ -83,27 +89,149 @@ public class CDITransactionTest {
             Assert.assertNotNull(a);
             Assert.assertNotNull(b);
 
-            Assert.assertEquals(a.getVersion(), b.getVersion());
+            final String aVersion = a.getVersion();
+            final String bVersion = b.getVersion();
+            Assert.assertEquals(aVersion, bVersion);
+            version = aVersion;
 
             final DemoClassA c = convClassBInstanceNonTX.get();
             Assert.assertNotNull(c);
-            Assert.assertNotEquals(a.getVersion(), c.getVersion());
-            Assert.assertNotEquals(c.getVersion(), b.getVersion());
+            final String cVersion = c.getVersion();
+            Assert.assertNotEquals(aVersion, cVersion);
+            Assert.assertNotEquals(cVersion, bVersion);
+        }
+
+        public String getVersion() {
+            return version;
         }
     }
+//
+//    public static class CDITransactionC extends CDITransaction.CDITransactionStep {
+//
+//        @Inject Instance<DemoClassA> convClassBInstanceA;
+//        @Inject Instance<DemoClassA> convClassBInstanceB;
+//        @Inject @New Instance<DemoClassA> convClassBInstanceNonTX;
+//
+//        @Override
+//        public void doIt() {
+//            final DemoClassA a = convClassBInstanceA.get();
+//            final DemoClassA b = convClassBInstanceB.get();
+//            Assert.assertNotNull(a);
+//            Assert.assertNotNull(b);
+//
+//            Assert.assertEquals(a.getVersion(), b.getVersion());
+//
+//            final DemoClassA c = convClassBInstanceNonTX.get();
+//            Assert.assertNotNull(c);
+//            Assert.assertNotEquals(a.getVersion(), c.getVersion());
+//            Assert.assertNotEquals(c.getVersion(), b.getVersion());
+//        }
+//    }
+
+//    @Test
+//    public void testNonTxScope() throws Exception {
+//        final CDITransactionA tx = cdiTransactionAInstance.get();
+//        tx.execute();
+//    }
+
+
+//    @Test
+//    public void testTxScope() throws Exception {
+//        final CDITransaction cdiTransaction = cdiTransactionInstance.get();
+//        final CDITransaction.CDITransactionStep step = new CDITransaction.CDITransactionStep() {
+//
+//            @Inject @New Instance<DemoClassA> convClassAInstance;
+//
+//            public void doIt() {
+//                final DemoClassA a = convClassAInstance.get();
+//                final DemoClassA b = convClassAInstance.get();
+//
+//                Assert.assertNotNull(a);
+//                Assert.assertNotNull(b);
+//
+//                Assert.assertNotEquals(a.getVersion(), b.getVersion());
+//            }
+//        };
+//        cdiTransaction.addCDITransactionStep(step);
+//        cdiTransaction.execute();
+//    }
+
+//    @Test
+//    public void testTxTwoScopes001() throws Exception {
+//        final CDITransactionB txA = cdiTransactionBInstance.get();
+//        final CDITransactionB txB = cdiTransactionBInstance.get();
+//        txA.execute();
+//        txB.execute();
+//        Assert.assertNotEquals(txA.getTxNumber(), txB.getTxNumber());
+//        Assert.assertNotEquals(txA.getVersion(), txB.getVersion());
+//    }
+//    @Test
+//    public void testTxTwoScopes002() throws Exception {
+//        final CDITransactionA txA = cdiTransactionAInstance.get();
+//        final CDITransactionA txB = cdiTransactionAInstance.get();
+//        txA.execute();
+//        txB.execute();
+//        Assert.assertNotEquals(txA.txNumber, txB.txNumber);
+//        Assert.assertNotEquals(txA.getVersion(), txB.getVersion());
+//    }
+//
+//    @Test
+//    public void testTxTwoScopes003() throws Exception {
+//        final CDITransactionC txA = cdiTransactionCInstance.get();
+//        final CDITransactionC txB = cdiTransactionCInstance.get();
+//        txA.execute();
+//        txB.execute();
+//        Assert.assertNotEquals(txA.txNumber, txB.txNumber);
+//        Assert.assertNotEquals(txA.getVersion(), txB.getVersion());
+//    }
 
     @Test
-    public void testNonTxScope() throws Exception {
-        final CDITransactionA tx = cdiTransactionAInstance.get();
-        tx.execute();
+    public void testMultipleTransactions() throws Exception {
+        final CDITransaction cdiTransactionA = cdiTransactionInstance.get();
+        final CDITransaction cdiTransactionB = cdiTransactionInstance.get();
+
+        String versionA = "";
+        String versionB = "";
+
+        final CDITransaction.CDITransactionStep step = new CDITransaction.CDITransactionStep() {
+            @Inject Instance<DemoClassA> convClassBInstance;
+            @Inject @New Instance<DemoClassA> convClassBInstanceNonTX;
+
+            private String version;
+
+            @Override
+            public void doIt() {
+                final DemoClassA a = convClassBInstance.get();
+                final DemoClassA b = convClassBInstance.get();
+                Assert.assertNotNull(a);
+                Assert.assertNotNull(b);
+
+                final String aVersion = a.getVersion();
+                final String bVersion = b.getVersion();
+                Assert.assertEquals(aVersion, bVersion);
+                version = aVersion;
+                System.out.println("version von A = " + version);
+                final DemoClassA c = convClassBInstanceNonTX.get();
+                Assert.assertNotNull(c);
+                final String cVersion = c.getVersion();
+                Assert.assertNotEquals(aVersion, cVersion);
+                Assert.assertNotEquals(cVersion, bVersion);
+            }
+
+            public String getVersion() {
+                return version;
+            }
+        };
+        cdiTransactionA.addCDITransactionStep(step);
+        cdiTransactionB.addCDITransactionStep(step);
+
+
+//        final CDITransactionB txA = cdiTransactionBInstance.get();
+//        final CDITransactionB txB = cdiTransactionBInstance.get();
+        cdiTransactionA.execute();
+        cdiTransactionB.execute();
+
+//        Assert.assertNotEquals(txA.getVersion(), txB.getVersion());
     }
-
-
-    @Test
-    public void testTxScope() throws Exception {
-        final CDITransactionB tx = cdiTransactionBInstance.get();
-        tx.execute();
-    }
-
 
 }

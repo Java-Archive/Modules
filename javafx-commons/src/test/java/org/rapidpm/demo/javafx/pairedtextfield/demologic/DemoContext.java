@@ -14,11 +14,24 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.pairedtextfield
+package org.rapidpm.demo.javafx.pairedtextfield.demologic;
 
+import javax.inject.Singleton;
 
-public open class DemoLogic() {
-    public open fun doIt(): String? {
-        return System.nanoTime().toString()  ;
+/**
+ * User: Sven Ruppert
+ * Date: 16.10.13
+ * Time: 17:49
+ */
+
+@Singleton
+public class DemoContext {
+
+    public boolean toggle = false;
+
+    public boolean getContextInfo(){
+        //example simple logic from system state ;-)
+        return toggle;
     }
+
 }
