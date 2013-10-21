@@ -16,12 +16,9 @@
 
 package org.rapidpm.demo.cdi.commons.se;
 
-import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.event.Event;
 import javax.enterprise.inject.Instance;
-import javax.enterprise.inject.spi.AnnotatedType;
 import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InjectionTarget;
 import javax.enterprise.util.AnnotationLiteral;
 
 import org.jboss.weld.environment.se.Weld;
@@ -51,12 +48,12 @@ public class CDIContainerSingleton {
     private CDIContainerSingleton() {
         weldContainer = new Weld().initialize();
         logger = weldContainer.instance().select(Logger.class).get();  //bootstrapping but with Weld itself ;-)
-        managedInstanceCreator =  weldContainer.instance().select(ManagedInstanceCreator.class).get();
+        managedInstanceCreator = weldContainer.instance().select(ManagedInstanceCreator.class).get();
     }
 
 
     public <T> T activateCDI(T t) {
-       return  managedInstanceCreator.activateCDI(t);
+        return managedInstanceCreator.activateCDI(t);
     }
 
 

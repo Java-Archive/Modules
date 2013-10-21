@@ -20,10 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.spi.Context;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.rapidpm.demo.cdi.commons.ManagedInstanceCreator;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
@@ -35,55 +33,62 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * Date: 12.07.13
  * Time: 16:17
  */
-@Cacheable(primaryKeyAttributeName = "txNumber",className =CDITransaction.class )
-@Named
-public class CDITransaction
-{
+@Cacheable(primaryKeyAttributeName = "txNumber", className = CDITransaction.class)
+public class CDITransaction {
     private String txNumber = System.nanoTime() + "";
 
-     private @Inject BeanManager beanManager;
-    private @Inject @CDILogger  Logger logger;
+    private @Inject BeanManager beanManager;
+    private @Inject @CDILogger Logger logger;
+    private @Inject ManagedInstanceCreator managedInstanceCreator;
 
-//    @Inject CDITransactionContext transactionContext;
     private CDITransactionContext transactionContext;
-    @Inject ManagedInstanceCreator managedInstanceCreator;
 
     @PostConstruct
     public void init() {
-        System.out.println("transactionContext = " + transactionContext);
+        if (logger.isDebugEnabled()) {
+            logger.debug(" transactionContext = " + transactionContext);
+        }
         transactionContext = (CDITransactionContext) beanManager.getContext(CDITransactionScope.class);
     }
 
     private final List<CDITransactionStep> stepList = new ArrayList<>();
+
     public void execute() {
-        begin();
-        System.out.println("stepList = " + stepList.size());
+        begin(txNumber);
+        if (logger.isInfoEnabled()) {
+            logger.info("stepList = " + stepList.size());
+        }
         for (final CDITransactionStep cdiTransactionStep : stepList) {
             final CDITransactionStep step = managedInstanceCreator.activateCDI(cdiTransactionStep);
             step.doIt();
         }
-        end();
+        end(txNumber);
     }
 
-    private void begin() {
-        System.out.println(" begin -> " + txNumber);
-        System.out.println("transactionContext = " + transactionContext);
-        transactionContext.begin();
+    private void begin(final String txNummber) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(" begin -> " + txNumber);
+            logger.debug(" transactionContext = " + transactionContext);
+        }
+        transactionContext.begin(txNummber);
     }
 
-    private void end() {
-        System.out.println(" end -> " + txNumber);
-        System.out.println("transactionContext = " + transactionContext);
-        transactionContext.end();
+    private void end(final String txNummber) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("  end -> " + txNumber);
+            logger.debug(" transactionContext = " + transactionContext);
+        }
+        transactionContext.end(txNummber);
     }
 
     public String getTxNumber() {
         return txNumber;
     }
 
-    public void addCDITransactionStep(final CDITransactionStep step){
+    public void addCDITransactionStep(final CDITransactionStep step) {
         stepList.add(step);
     }
+
     public static abstract class CDITransactionStep {
 
         protected CDITransactionStep() {

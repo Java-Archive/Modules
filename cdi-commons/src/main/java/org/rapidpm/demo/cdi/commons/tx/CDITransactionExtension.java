@@ -23,7 +23,8 @@ import javax.enterprise.inject.spi.AnnotatedType;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.InjectionTarget;
-import javax.inject.Inject;
+
+import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
@@ -34,9 +35,9 @@ import javax.inject.Inject;
 public class CDITransactionExtension implements Extension {
 
 
-    public void afterBeanDiscovery(@Observes AfterBeanDiscovery event, BeanManager manager) {
-        System.out.println("CDITransactionExtension->event = " + event);
+    private static final Logger logger = Logger.getLogger(CDITransactionExtension.class);
 
+    public void afterBeanDiscovery(@Observes AfterBeanDiscovery event, BeanManager manager) {
         final AnnotatedType annotationType = manager.createAnnotatedType(CDITransactionContext.class);
         final InjectionTarget injectionTarget = manager.createInjectionTarget(annotationType);
         final CreationalContext creationalContext = manager.createCreationalContext(null);
@@ -44,7 +45,10 @@ public class CDITransactionExtension implements Extension {
         injectionTarget.inject(context, creationalContext);
         injectionTarget.postConstruct(CDITransactionContext.class);
 
-        System.out.println("context = " + context);
+        if (logger.isDebugEnabled()) {
+            logger.debug("afterBeanDiscovery -> context " + context);
+        }
+
         context.setBeanManager(manager);
         event.addContext(context);
     }
