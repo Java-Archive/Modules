@@ -27,10 +27,7 @@ import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
-import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
-import org.rapidpm.demo.cdi.commons.registry.property.impl.file.CDIPropertyRegistryFileBased;
 import org.rapidpm.module.se.commons.logger.Logger;
-import sun.util.logging.resources.logging_de;
 
 /**
  * User: Sven Ruppert
@@ -65,32 +62,71 @@ public class DefaultContextResolver implements ContextResolver {
       return resultSet;
     }
 
+    public Set<ContextResolver> gettAllMockedContextResolver() {
+        final Set<ContextResolver> resultSet = new HashSet<>();
+        final Set<Bean<?>> allBeans = beanManager.getBeans(ContextResolver.class, new AnnotationLiteral<CDICommonsMocked>() {
+        });
+        for (final Bean<?> bean : allBeans) {
+            final Set<Type> types = bean.getTypes();
+            for (final Type type : types) {
+                if (type.equals(ContextResolver.class)) {
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("type (added) = " + type);
+                    }
+                    final ContextResolver t = ((Bean<ContextResolver>) bean).create(beanManager.createCreationalContext((Bean<ContextResolver>) bean));
+                    resultSet.add(t);
+                } else {
+                    //
+                }
+            }
+        }
+        return resultSet;
+    }
+
 
     @Override
     public AnnotationLiteral resolveContext(Class<?> targetClass) {
 
-        final Set<ContextResolver> contextResolvers = gettAllContextResolver();
-
-        for (final ContextResolver contextResolver : contextResolvers) {
-            final AnnotationLiteral annotationLiteral = contextResolver.resolveContext(targetClass);
+        final Set<ContextResolver> mockedContextResolvers = gettAllMockedContextResolver();
+        for (final ContextResolver mockedContextResolver : mockedContextResolvers) {
+            final AnnotationLiteral annotationLiteral = mockedContextResolver.resolveContext(targetClass);
             if(annotationLiteral == null){
-
+                //noop
             } else{
                 return annotationLiteral;
             }
         }
 
 
-        final String name = targetClass.getName();
-        if (name.equals(Logger.class.getName())) {
-            return new AnnotationLiteral<CDINotMapped>() {
-            };
-        } else if (name.equals(PropertyRegistryService.class.getName())) {
-            return new AnnotationLiteral<CDIPropertyRegistryFileBased>() {
-            };
+        final Set<ContextResolver> contextResolvers = gettAllContextResolver();
+
+        for (final ContextResolver contextResolver : contextResolvers) {
+            final boolean annotationPresent = contextResolver.getClass().isAnnotationPresent(CDICommonsMocked.class);
+            if (annotationPresent) {
+                //noop
+            } else {
+                final AnnotationLiteral annotationLiteral = contextResolver.resolveContext(targetClass);
+                if (annotationLiteral == null) {
+
+                } else {
+                    return annotationLiteral;
+                }
+            }
         }
 
-        return new AnnotationLiteral<CDICommons>() {
-        };  //as Default Implementation
+
+//        final String name = targetClass.getName();
+//        if (name.equals(PropertyRegistryService.class.getName())) {
+//            return new AnnotationLiteral<CDIPropertyRegistryFileBased>() {
+//            };
+//        }
+
+//        if (name.equals(Logger.class.getName())) {
+//            return new AnnotationLiteral<CDINotMapped>() {
+//            };
+//        } else
+
+        //return new AnnotationLiteral<CDICommons>() {};  //as Default Implementation
+        return null;
     }
 }
