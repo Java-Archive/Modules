@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.cdi.commons;
+package org.rapidpm.demo.cdi.commons.contextresolver;
 
 import java.lang.reflect.Type;
 import java.util.HashSet;
@@ -26,6 +26,8 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
+import org.rapidpm.demo.cdi.commons.CDICommons;
+import org.rapidpm.demo.cdi.commons.CDICommonsMocked;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 

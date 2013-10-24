@@ -23,7 +23,7 @@ import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.CDICommons;
-import org.rapidpm.demo.cdi.commons.ContextResolver;
+import org.rapidpm.demo.cdi.commons.contextresolver.ContextResolver;
 import org.rapidpm.demo.cdi.commons.ManagedInstanceCreator;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.CDIPropertyRegistryFileBased;

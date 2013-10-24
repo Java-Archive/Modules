@@ -24,7 +24,7 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 
 import org.rapidpm.demo.cdi.commons.CDICommons;
-import org.rapidpm.demo.cdi.commons.ContextResolver;
+import org.rapidpm.demo.cdi.commons.contextresolver.ContextResolver;
 
 /**
  * User: Sven Ruppert

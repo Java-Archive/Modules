@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.cdi.commons;
+package org.rapidpm.demo.cdi.commons.contextresolver;
 
 import javax.enterprise.util.AnnotationLiteral;
 
@@ -25,6 +25,7 @@ import javax.enterprise.util.AnnotationLiteral;
  */
 public interface ContextResolver {
 
+    @CheckMockedContext
     public AnnotationLiteral resolveContext(final Class<?> targetClass);
 
 

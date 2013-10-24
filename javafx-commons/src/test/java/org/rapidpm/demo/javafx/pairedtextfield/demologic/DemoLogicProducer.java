@@ -16,13 +16,12 @@
 
 package org.rapidpm.demo.javafx.pairedtextfield.demologic;
 
-import javax.enterprise.inject.New;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.CDICommons;
-import org.rapidpm.demo.cdi.commons.ContextResolver;
+import org.rapidpm.demo.cdi.commons.contextresolver.ContextResolver;
 import org.rapidpm.demo.cdi.commons.ManagedInstanceCreator;
 
 /**
