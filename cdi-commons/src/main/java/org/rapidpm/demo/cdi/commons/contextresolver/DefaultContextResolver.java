@@ -107,11 +107,15 @@ public class DefaultContextResolver implements ContextResolver {
             if (annotationPresent) {
                 //noop
             } else {
-                final AnnotationLiteral annotationLiteral = contextResolver.resolveContext(targetClass);
-                if (annotationLiteral == null) {
-
+                if (contextResolver.getClass().equals(this.getClass())) {
+                    //stop recursive
                 } else {
-                    return annotationLiteral;
+                    final AnnotationLiteral annotationLiteral = contextResolver.resolveContext(targetClass);
+                    if (annotationLiteral == null) {
+
+                    } else {
+                        return annotationLiteral;
+                    }
                 }
             }
         }
