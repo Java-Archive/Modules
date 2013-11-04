@@ -26,6 +26,8 @@
         <processorPath useClasspath="true" />
         <module name="autocomplete-textfield" />
         <module name="cdi-commons" />
+        <module name="cdi-commons (1)" />
+        <module name="cdi-commons (2)" />
         <module name="cdi-commons-fx" />
         <module name="cdi-commons-se" />
         <module name="cdi-tablemodel" />
@@ -46,6 +48,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
       <module name="cdi-commons" target="1.7" />
+      <module name="cdi-commons (2)" target="1.7" />
       <module name="cdi-commons-fx" target="1.7" />
       <module name="cdi-commons-se" target="1.7" />
       <module name="cdi-tablemodel" target="1.7" />

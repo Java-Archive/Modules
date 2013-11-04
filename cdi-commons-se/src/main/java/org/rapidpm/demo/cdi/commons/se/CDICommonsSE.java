@@ -14,14 +14,22 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.javafx.pairedtextfield.demologic.kotlin
+package org.rapidpm.demo.cdi.commons.se;
 
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.DemoLogic
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public open class KotlinDemoLogic() : DemoLogic {
-    public override fun doIt(): String? {
-        return "Something from kotlin";
-    }
+import javax.inject.Qualifier;
 
-
+/**
+ * User: Sven Ruppert
+ * Date: 12.08.13
+ * Time: 10:53
+ */
+@Qualifier
+@Retention(value = RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
+public @interface CDICommonsSE {
 }

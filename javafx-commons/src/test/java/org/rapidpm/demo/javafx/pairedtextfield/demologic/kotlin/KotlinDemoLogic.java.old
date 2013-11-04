@@ -1,9 +1,0 @@
-package org.rapidpm.demo.javafx.pairedtextfield.demologic.kotlin;
-
-/**
- * User: Sven Ruppert
- * Date: 16.10.13
- * Time: 17:29
- */
-public class KotlinDemoLogic {
-}
