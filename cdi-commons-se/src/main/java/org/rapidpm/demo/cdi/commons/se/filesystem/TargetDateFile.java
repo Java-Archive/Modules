@@ -17,6 +17,7 @@
 package org.rapidpm.demo.cdi.commons.se.filesystem;
 
 import java.io.File;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -43,7 +44,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * 12
  * 30 this file would be given back.
  */
-public class TargetDateFile {
+public class TargetDateFile implements Serializable{
 
     private @Inject @CDILogger Logger logger;
 

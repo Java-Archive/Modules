@@ -19,10 +19,12 @@ package org.rapidpm.module.se.commons.logger;
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 
+import java.io.Serializable;
+
 /**
  * User: Sven Ruppert Date: 18.09.13 Time: 14:22
  */
-public class HazelcastAppender extends AppenderSkeleton {
+public class HazelcastAppender extends AppenderSkeleton implements Serializable {
 
 
     /**

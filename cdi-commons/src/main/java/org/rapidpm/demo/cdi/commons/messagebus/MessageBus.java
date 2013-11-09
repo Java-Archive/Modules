@@ -23,13 +23,15 @@ import com.google.common.eventbus.EventBus;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
+import java.io.Serializable;
+
 /**
  * User: Sven Ruppert
  * Date: 31.07.13
  * Time: 10:16
  */
 @ApplicationScoped //zu hart def
-public class MessageBus {
+public class MessageBus implements Serializable {
 
     //    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());
     private EventBus eventBus = new EventBus(this.getClass().getName());

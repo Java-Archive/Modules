@@ -19,10 +19,12 @@ package org.rapidpm.module.se.commons.logger;
 import org.apache.log4j.Level;
 import org.apache.log4j.Priority;
 
+import java.io.Serializable;
+
 /**
  * Created by Sven Ruppert on 01.08.13.
  */
-public class Logger {
+public class Logger implements Serializable {
 
 
     private Class<?> declaringClass;

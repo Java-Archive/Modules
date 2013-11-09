@@ -21,6 +21,7 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 
-public class GenericCacheThreadsave<T> implements Cache<T> {
+public class GenericCacheThreadsave<T> implements Cache<T>,Serializable {
     private static final Logger logger = Logger.getLogger(GenericCacheThreadsave.class);
 
     // maps the attribute names of the cacheable to a map, that maps the attribute
