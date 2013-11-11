@@ -17,9 +17,10 @@
 
 package org.rapidpm.lang.cache.generic;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class CacheFinder<C, T> {
+public class CacheFinder<C, T> implements Serializable{
     private final Cache<C> cache;
     private final String attributeName;
 

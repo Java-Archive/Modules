@@ -26,12 +26,14 @@ import org.rapidpm.demo.cdi.commons.registry.property.impl.file.registries.Class
 import org.rapidpm.demo.cdi.commons.registry.property.impl.file.registries.ModulFilePropertyRegistry;
 import org.rapidpm.module.se.commons.logger.Logger;
 
+import java.io.Serializable;
+
 /**
  * User: Sven Ruppert
  * Date: 20.06.13
  * Time: 09:50
  */
-public class FileBasedPropertyRegistryService extends PropertyRegistryService {
+public class FileBasedPropertyRegistryService extends PropertyRegistryService implements Serializable {
 
     private @Inject @CDILogger
     Logger logger;

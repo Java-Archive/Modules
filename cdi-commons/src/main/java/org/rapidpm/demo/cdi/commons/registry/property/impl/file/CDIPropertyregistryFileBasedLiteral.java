@@ -17,6 +17,7 @@
 package org.rapidpm.demo.cdi.commons.registry.property.impl.file;
 
 import javax.enterprise.util.AnnotationLiteral;
+import java.io.Serializable;
 
 /**
  * User: Sven Ruppert
@@ -25,7 +26,7 @@ import javax.enterprise.util.AnnotationLiteral;
  */
 public class CDIPropertyregistryFileBasedLiteral
         extends AnnotationLiteral<CDIPropertyRegistryFileBased>
-        implements CDIPropertyRegistryFileBased {
+        implements CDIPropertyRegistryFileBased, Serializable{
 
 
 }

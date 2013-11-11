@@ -21,6 +21,8 @@ import javax.inject.Inject;
 import org.rapidpm.demo.cdi.commons.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
+import java.io.Serializable;
+
 /**
  * User: Sven Ruppert
  * Date: 10.06.13
@@ -31,7 +33,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * <p/>
  * For example the file based implementations.
  */
-public abstract class PropertyRegistryService {
+public abstract class PropertyRegistryService implements Serializable {
 
     private @Inject @CDILogger Logger logger;
 

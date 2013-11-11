@@ -16,6 +16,7 @@
 
 package org.rapidpm.demo.cdi.commons.registry.property.impl.file.registries;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -33,7 +34,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * Date: 20.06.13
  * Time: 07:35
  */
-public class ModulFilePropertyRegistry implements ModulPropertyRegistry {
+public class ModulFilePropertyRegistry implements ModulPropertyRegistry, Serializable {
 
     private ResourceBundle messages;
     private @Inject
