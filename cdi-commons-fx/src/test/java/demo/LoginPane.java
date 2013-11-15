@@ -16,7 +16,7 @@
 
 package demo;
 
-import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseGridPane;
+import org.rapidpm.commons.cdi.fx.components.CDIBaseGridPane;
 
 /**
  * User: Sven Ruppert

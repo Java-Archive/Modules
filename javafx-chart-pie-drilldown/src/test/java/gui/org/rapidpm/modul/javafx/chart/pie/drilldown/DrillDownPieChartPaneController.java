@@ -25,7 +25,7 @@ import javax.inject.Inject;
 
 import gui.org.rapidpm.modul.javafx.chart.pie.drilldown.model.TransientDemoDataRow;
 import javafx.fxml.FXML;
-import org.rapidpm.demo.cdi.commons.fx.CDIJavaFxBaseController;
+import org.rapidpm.commons.cdi.fx.CDIJavaFxBaseController;
 import org.rapidpm.modul.javafx.chart.pie.drilldown.DrillDownPieChartMapAggregator;
 
 /**

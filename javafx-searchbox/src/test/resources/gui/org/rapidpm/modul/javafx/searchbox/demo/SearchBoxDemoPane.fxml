@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<?import java.net.URL?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.rapidpm.modul.javafx.searchbox.searchbox.SearchBox?>
+<fx:root type="gui.org.rapidpm.modul.javafx.searchbox.demo.SearchBoxDemoPane"
+         fx:id="SearchBoxDemoPane" xmlns:fx="http://javafx.com/fxml" style="-fx-background-color:#EEEEEE">
+    <stylesheets>
+        <URL value="@/main.css"/>
+    </stylesheets>
+    <children>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox maxHeight="24.00" maxWidth="Infinity" VBox.vgrow="NEVER">
+                <SearchBox fx:id="SearchBox" visible="true" minHeight="24.00" prefWidth="5000.0" maxWidth="-Infinity"/>
+            </HBox>
+            <AnchorPane minHeight="0.0" minWidth="0.0" VBox.vgrow="ALWAYS"
+                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0"
+                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tableView" editable="true" VBox.vgrow="ALWAYS" style="-fx-font-size: 80%"
+                                   tableMenuButtonVisible="true">
+                            <columns>
+                                <TableColumn prefWidth="120.0" text="id">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="ID"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="120.0" text="vorname">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="vorname"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="120.0" text="nachname">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="nachname"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="120.0" text="datum">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="datum"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="120.0" text="betrag">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="betrag"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </ScrollPane>
+                </children>
+            </AnchorPane>
+        </VBox>
+    </children>
+</fx:root>

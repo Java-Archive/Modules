@@ -22,7 +22,7 @@ import gui.org.rapidpm.modul.javafx.chart.pie.drilldown.model.TransientDemoDataR
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.rapidpm.demo.cdi.commons.fx.JavaFXBaseTest;
+import org.rapidpm.commons.cdi.fx.JavaFXBaseTest;
 
 /**
  * User: Sven Ruppert

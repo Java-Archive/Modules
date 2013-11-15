@@ -78,37 +78,33 @@
             <scope>test</scope>
             <type>test-jar</type>
         </dependency>
-        <dependency>
-            <groupId>com.oracle.javafx</groupId>
-            <artifactId>javafx</artifactId>
-            <version>2.2</version>
-            <systemPath>${fx.home}/jfxrt.jar</systemPath>
-            <scope>system</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle.javafx</groupId>-->
+            <!--<artifactId>javafx</artifactId>-->
+            <!--<version>2.2</version>-->
+            <!--<systemPath>${fx.home}/jfxrt.jar</systemPath>-->
+            <!--<scope>system</scope>-->
+        <!--</dependency>-->
 
         <!-- Lucene f SearchBox-->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
-            <version>4.3.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-analyzers-common</artifactId>
-            <version>4.3.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-queryparser</artifactId>
-            <version>4.3.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-queries</artifactId>
-            <version>4.3.0</version>
             <scope>compile</scope>
         </dependency>
         <!-- Lucene f SearchBox-->

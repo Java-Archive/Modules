@@ -41,8 +41,8 @@ import javafx.scene.control.Control;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import org.rapidpm.demo.cdi.commons.se.CDIContainerSingleton;
-import org.rapidpm.demo.javafx.tableview.filtered.FilteredTableCdiHolder;
+import org.rapidpm.commons.cdi.se.CDIContainerSingleton;
+import org.rapidpm.modul.javafx.tableview.filtered.FilteredTableCdiHolder;
 
 /**
  * A calendar control

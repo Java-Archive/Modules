@@ -15,4 +15,4 @@
 #
 
 
-org.rapidpm.demo.cdi.commons.tx.CDITransactionExtension
+org.rapidpm.commons.cdi.tx.CDITransactionExtension

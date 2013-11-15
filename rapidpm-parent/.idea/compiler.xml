@@ -44,22 +44,22 @@
         <module name="tablemodell" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7">
-      <module name="cdi-commons" target="1.7" />
-      <module name="cdi-commons-fx" target="1.7" />
-      <module name="cdi-commons-se" target="1.7" />
-      <module name="cdi-tablemodel" target="1.7" />
-      <module name="javafx-autocomplete-textfield" target="1.7" />
-      <module name="javafx-chart-pie-drilldown" target="1.7" />
-      <module name="javafx-commons" target="1.7" />
-      <module name="javafx-dialog" target="1.7" />
-      <module name="javafx-filtered-tableview" target="1.7" />
-      <module name="javafx-progressbartable" target="1.7" />
-      <module name="javafx-searchbox" target="1.7" />
-      <module name="RapidPM Parent" target="1.7" />
-      <module name="rapidpm-resources" target="1.7" />
-      <module name="se-commons" target="1.7" />
-      <module name="se-genericcache" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="cdi-commons" target="1.8" />
+      <module name="cdi-commons-fx" target="1.8" />
+      <module name="cdi-commons-se" target="1.8" />
+      <module name="cdi-tablemodel" target="1.8" />
+      <module name="javafx-autocomplete-textfield" target="1.8" />
+      <module name="javafx-chart-pie-drilldown" target="1.8" />
+      <module name="javafx-commons" target="1.8" />
+      <module name="javafx-dialog" target="1.8" />
+      <module name="javafx-filtered-tableview" target="1.8" />
+      <module name="javafx-progressbartable" target="1.8" />
+      <module name="javafx-searchbox" target="1.8" />
+      <module name="RapidPM Parent" target="1.8" />
+      <module name="rapidpm-resources" target="1.8" />
+      <module name="se-commons" target="1.8" />
+      <module name="se-genericcache" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
