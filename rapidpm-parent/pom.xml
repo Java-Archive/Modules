@@ -313,12 +313,12 @@
             </dependency>
 
 
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-stdlib</artifactId>
-                <version>0.6.602</version>
-                <scope>test</scope>
-            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>org.jetbrains.kotlin</groupId>-->
+            <!--<artifactId>kotlin-stdlib</artifactId>-->
+            <!--<version>0.6.602</version>-->
+            <!--<scope>test</scope>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>junit</groupId>
@@ -332,12 +332,7 @@
                 <version>3.2.0</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>com.cenqua.clover</groupId>
-                <artifactId>clover</artifactId>
-                <version>3.2.0</version>
-                <scope>compile</scope>
-            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
@@ -348,10 +343,10 @@
             <artifactId>log4j</artifactId>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-stdlib</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.jetbrains.kotlin</groupId>-->
+        <!--<artifactId>kotlin-stdlib</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -367,11 +362,7 @@
             <artifactId>clover</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.cenqua.clover</groupId>
-            <artifactId>clover</artifactId>
-            <scope>compile</scope>
-        </dependency>
+
         <!--Arquillian-->
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -466,30 +457,30 @@
                 <artifactId>maven-repository-plugin</artifactId>
                 <version>2.3.1</version>
             </plugin>
-            <plugin>
-                <groupId>com.atlassian.maven.plugins</groupId>
-                <artifactId>maven-clover2-plugin</artifactId>
-                <version>3.1.12</version>
-            </plugin>
-            <plugin>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <version>0.6.602</version>
+            <!--<plugin>-->
+            <!--<groupId>com.atlassian.maven.plugins</groupId>-->
+            <!--<artifactId>maven-clover2-plugin</artifactId>-->
+            <!--<version>3.1.12</version>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+            <!--<artifactId>kotlin-maven-plugin</artifactId>-->
+            <!--<groupId>org.jetbrains.kotlin</groupId>-->
+            <!--<version>0.6.602</version>-->
 
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>process-sources</phase>
-                        <goals> <goal>compile</goal> </goals>
-                    </execution>
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>compile</id>-->
+            <!--<phase>process-sources</phase>-->
+            <!--<goals> <goal>compile</goal> </goals>-->
+            <!--</execution>-->
 
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>process-test-sources</phase>
-                        <goals> <goal>test-compile</goal> </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<execution>-->
+            <!--<id>test-compile</id>-->
+            <!--<phase>process-test-sources</phase>-->
+            <!--<goals> <goal>test-compile</goal> </goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 

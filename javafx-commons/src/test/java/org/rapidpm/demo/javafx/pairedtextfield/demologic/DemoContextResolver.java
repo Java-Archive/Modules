@@ -21,7 +21,6 @@ import javax.inject.Inject;
 
 import org.rapidpm.demo.cdi.commons.contextresolver.ContextResolver;
 import org.rapidpm.demo.javafx.pairedtextfield.demologic.context_b.DemoLogicContextB;
-import org.rapidpm.demo.javafx.pairedtextfield.demologic.kotlin.KotlinDemoLogicContext;
 
 /**
  * User: Sven Ruppert
@@ -35,7 +34,9 @@ public class DemoContextResolver implements ContextResolver {
     @Override public AnnotationLiteral resolveContext(Class<?> targetClass) {
 
         if(demoContext.getContextInfo()){
-            return new AnnotationLiteral<KotlinDemoLogicContext>() {};
+//            return new AnnotationLiteral<KotlinDemoLogicContext>() {};
+            return new AnnotationLiteral<DemoLogicContextB>() {
+            };
         } else{
             return new AnnotationLiteral<DemoLogicContextB>() {};
         }
