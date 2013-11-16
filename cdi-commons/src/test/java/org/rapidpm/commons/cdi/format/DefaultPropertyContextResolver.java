@@ -35,11 +35,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
 
 public class DefaultPropertyContextResolver implements ContextResolver {
 
-    //private static final Logger logger = Logger.getLogger(DefaultPropertyContextResolver.class);
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     public AnnotationLiteral resolveContext(final Class<?> targetClass) {
         if (targetClass.getName().equals(PropertyRegistryService.class.getName())) {
@@ -49,8 +45,8 @@ public class DefaultPropertyContextResolver implements ContextResolver {
             if (logger.isDebugEnabled()) {
                 logger.debug("class not mapped " + targetClass);
             }
-            return new AnnotationLiteral<CDINotMapped>() {
-            };
+            //return new AnnotationLiteral<CDINotMapped>() {};
+            return null;
         }
     }
 }

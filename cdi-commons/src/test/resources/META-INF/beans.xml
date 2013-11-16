@@ -18,6 +18,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
     <interceptors>
+        <class>org.rapidpm.commons.cdi.contextresolver.MockedInterceptor</class>
         <class>org.rapidpm.commons.cdi.async.AsyncInterceptor</class>
     </interceptors>
 </beans>

@@ -16,11 +16,12 @@
 
 package org.rapidpm.commons.cdi.format;
 
+import java.lang.annotation.Annotation;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 
@@ -43,33 +44,56 @@ public class SimpleDateFormatterProducer {
         return new SimpleDateFormat(ressource, defaultLocale);
     }
 
-    private @Inject @CDIPropertyRegistryService
+    private
+    @Inject
+    @CDIPropertyRegistryService
     PropertyRegistryService propertyRegistryService;
 
-    private @Inject @CDILocale Locale defaultLocale;
+    private
+    @Inject
+    @CDILocale
+    Locale defaultLocale;
 
 
     /**
      * es fehlt noch die auflösung des Locale
      *
-     * @param injectionPoint
+     * @param ip
      * @return
      */
     @Produces
     @CDISimpleDateFormatter
-    public SimpleDateFormat produceSimpleDateFormatter(InjectionPoint injectionPoint) {
-        final Annotated annotated = injectionPoint.getAnnotated();
-        if (annotated.isAnnotationPresent(CDISimpleDateFormatter.class)) {
-            final CDISimpleDateFormatter annotation = annotated.getAnnotation(CDISimpleDateFormatter.class);
-            final String ressourceKey = annotation.value();
-            final String ressource = propertyRegistryService.getRessourceForKey(ressourceKey);
-            if (ressource.equals("###" + ressourceKey + "###")) {
-                return createDefault(injectionPoint);
+    public SimpleDateFormat produceSimpleDateFormatter(InjectionPoint ip) {
+
+        final Set<Annotation> qualifiers = ip.getQualifiers();
+        for (final Annotation qualifier : qualifiers) {
+            if (qualifier instanceof CDISimpleDateFormatter) {
+                final String ressourceKey = ((CDISimpleDateFormatter) qualifier).value();
+                final String ressource = propertyRegistryService.getRessourceForKey(ressourceKey);
+                if (ressource.equals("###" + ressourceKey + "###")) {
+                    return createDefault(ip);
+                } else {
+//                    final Locale locale = propertyRegistryService.resolveLocale();
+                    return new SimpleDateFormat(ressource, defaultLocale);
+                }
             } else {
-                return new SimpleDateFormat(ressource, defaultLocale);
+
             }
-        } else {
-            return createDefault(injectionPoint);
         }
+
+        return createDefault(ip);
+//        final Annotated annotated = injectionPoint.getAnnotated();
+//        if (annotated.isAnnotationPresent(CDISimpleDateFormatter.class)) {
+//            final CDISimpleDateFormatter annotation = annotated.getAnnotation(CDISimpleDateFormatter.class);
+//            final String ressourceKey = annotation.value();
+//            final String ressource = propertyRegistryService.getRessourceForKey(ressourceKey);
+//            if (ressource.equals("###" + ressourceKey + "###")) {
+//                return createDefault(injectionPoint);
+//            } else {
+//                return new SimpleDateFormat(ressource, defaultLocale);
+//            }
+//        } else {
+//            return createDefault(injectionPoint);
+//        }
     }
 }

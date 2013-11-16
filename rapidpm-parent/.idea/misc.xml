@@ -162,6 +162,7 @@
           <content-type name="JavaScript" enabled="true" />
           <content-type name="JSP" enabled="true" />
           <content-type name="JSPx" enabled="true" />
+          <content-type name="Groovy" enabled="true" />
           <content-type name="VTL" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>
@@ -348,7 +349,6 @@
   </component>
   <component name="EclipseCodeFormatter">
     <option name="defaultSettings" value="true" />
-    <option name="formatter" value="ECLIPSE" />
     <option name="id" value="1366097979231" />
     <option name="name" value="default" />
   </component>
@@ -356,6 +356,193 @@
     <entry_points version="2.0" />
   </component>
   <component name="IdProvider" IDEtalkID="6E23AAA04A74D9DF331A1982CBCF6575" />
+  <component name="JavaDocConfiguration_1.0.5">
+    <GENERAL>
+      <MODE>UPDATE</MODE>
+      <OVERRIDDEN_METHODS>false</OVERRIDDEN_METHODS>
+      <SPLITTED_CLASS_NAME>true</SPLITTED_CLASS_NAME>
+      <LEVELS>
+        <LEVEL>TYPE</LEVEL>
+        <LEVEL>FIELD</LEVEL>
+        <LEVEL>METHOD</LEVEL>
+      </LEVELS>
+      <VISIBILITIES>
+        <VISIBILITY>PUBLIC</VISIBILITY>
+        <VISIBILITY>PROTECTED</VISIBILITY>
+      </VISIBILITIES>
+    </GENERAL>
+    <TEMPLATES>
+      <CLASSES>
+        <CLASS>
+          <KEY>^.*(public|protected|private)*.+interface\s+\w+.*</KEY>
+          <VALUE>/**\n
+ * The interface $name.\n
+ */</VALUE>
+        </CLASS>
+        <CLASS>
+          <KEY>^.*(public|protected|private)*.+enum\s+\w+.*</KEY>
+          <VALUE>/**\n
+ * The enum $name.\n
+ */</VALUE>
+        </CLASS>
+        <CLASS>
+          <KEY>^.*(public|protected|private)*.+class\s+\w+.*</KEY>
+          <VALUE>/**\n
+ * The type $name.\n
+ */</VALUE>
+        </CLASS>
+        <CLASS>
+          <KEY>.+</KEY>
+          <VALUE>/**\n
+ * The type $name.\n
+ */</VALUE>
+        </CLASS>
+      </CLASSES>
+      <CONSTRUCTORS>
+        <CONSTRUCTOR>
+          <KEY>.+</KEY>
+          <VALUE>/**\n
+ * Instantiates a new $name.\n
+
+     #if(!$element.parameterList.parameters.isEmpty())
+         *\n
+     #end
+     #foreach($parameter in $element.parameterList.parameters)
+         * @param $parameter.name the $paramNames[$parameter.name]\n
+     #end
+
+     #if(!$element.throwsList.referenceElements.isEmpty())
+         *\n
+     #end
+     #foreach($exception in $element.throwsList.referenceElements)
+         * @throws $exception.referenceName the $exceptionNames[$exception.referenceName]\n
+     #end
+
+ */</VALUE>
+        </CONSTRUCTOR>
+      </CONSTRUCTORS>
+      <METHODS>
+        <METHOD>
+          <KEY>^.*(public|protected|private)*\s*.*(\w(\s*&lt;.+&gt;)*)+\s+get\w+\s*\(.*\).+</KEY>
+          <VALUE>/**\n
+ * Gets $partName.\n
+
+     #if(!$element.parameterList.parameters.isEmpty())
+         *\n
+     #end
+     #foreach($parameter in $element.parameterList.parameters)
+         * @param $parameter.name the $paramNames[$parameter.name]\n
+     #end
+
+     #if($isNotVoid)
+         *\n
+         * @return the $partName\n
+     #end
+
+     #if(!$element.throwsList.referenceElements.isEmpty())
+         *\n
+     #end
+     #foreach($exception in $element.throwsList.referenceElements)
+         * @throws $exception.referenceName the $exceptionNames[$exception.referenceName]\n
+     #end
+
+ */</VALUE>
+        </METHOD>
+        <METHOD>
+          <KEY>^.*(public|protected|private)*\s*.*(void|\w(\s*&lt;.+&gt;)*)+\s+set\w+\s*\(.*\).+</KEY>
+          <VALUE>/**\n
+ * Sets $partName.\n
+
+     #if(!$element.parameterList.parameters.isEmpty())
+         *\n
+     #end
+     #foreach($parameter in $element.parameterList.parameters)
+         * @param $parameter.name the $paramNames[$parameter.name]\n
+     #end
+
+     #if($isNotVoid)
+         *\n
+         * @return the $partName\n
+     #end
+
+     #if(!$element.throwsList.referenceElements.isEmpty())
+         *\n
+     #end
+     #foreach($exception in $element.throwsList.referenceElements)
+         * @throws $exception.referenceName the $exceptionNames[$exception.referenceName]\n
+     #end
+
+ */</VALUE>
+        </METHOD>
+        <METHOD>
+          <KEY>^.*((public\s+static)|(static\s+public))\s+void\s+main\s*\(\s*String\s*(\[\s*\]|\.\.\.)\s+\w+\s*\).+</KEY>
+          <VALUE>/**\n
+ * The entry point of application.\n
+
+     #if(!$element.parameterList.parameters.isEmpty())
+         *\n
+     #end
+
+     * @param $element.parameterList.parameters[0].name the input arguments\n
+
+     #if(!$element.throwsList.referenceElements.isEmpty())
+         *\n
+     #end
+     #foreach($exception in $element.throwsList.referenceElements)
+         * @throws $exception.referenceName the $exceptionNames[$exception.referenceName]\n
+     #end
+
+ */</VALUE>
+        </METHOD>
+        <METHOD>
+          <KEY>.+</KEY>
+          <VALUE>/**\n
+ * $name#if($partName.isEmpty()) $return#end.\n
+
+     #if(!$element.parameterList.parameters.isEmpty())
+         *\n
+     #end
+     #foreach($parameter in $element.parameterList.parameters)
+         * @param $parameter.name the $paramNames[$parameter.name]\n
+     #end
+
+     #if($isNotVoid)
+         *\n
+         * @return the $return\n
+     #end
+
+     #if(!$element.throwsList.referenceElements.isEmpty())
+         *\n
+     #end
+     #foreach($exception in $element.throwsList.referenceElements)
+         * @throws $exception.referenceName the $exceptionNames[$exception.referenceName]\n
+     #end
+
+ */</VALUE>
+        </METHOD>
+      </METHODS>
+      <FIELDS>
+        <FIELD>
+          <KEY>^.*(public|protected|private)*.+static.*(\w\s\w)+.+</KEY>
+          <VALUE>/**\n
+ * The constant $element.getName().\n
+ */</VALUE>
+        </FIELD>
+        <FIELD>
+          <KEY>^.*(public|protected|private)*.*(\w\s\w)+.+</KEY>
+          <VALUE>/**\n
+ * The $name.\n
+ */</VALUE>
+        </FIELD>
+        <FIELD>
+          <KEY>.+</KEY>
+          <VALUE>/**\n
+ * The $name.\n
+ */</VALUE>
+        </FIELD>
+      </FIELDS>
+    </TEMPLATES>
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -371,7 +558,6 @@
         <option value="$PROJECT_DIR$/javafx-autocomplete-textField/pom.xml" />
         <option value="$PROJECT_DIR$/genericcache/pom.xml" />
         <option value="$PROJECT_DIR$/../se-tablemodel/pom.xml" />
-        <option value="$PROJECT_DIR$/../javafx-chart-pie-drilldown/pom.xml" />
       </list>
     </option>
   </component>

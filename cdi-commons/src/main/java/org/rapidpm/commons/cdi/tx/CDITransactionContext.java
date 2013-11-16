@@ -48,19 +48,21 @@ public class CDITransactionContext implements Context {
     private static final Logger logger = new Logger(CDITransactionContext.class);
 
 
-    //TxKey-> Map<Class, GenericCache>
-//    private Map<Class<? extends Cacheable>, Cache> classCacheMap = new HashMap<>(); // per init immer neu setzen..
+    //    TxKey-> Map<Class, Object>
+//    private Map<String, Map<Class, Object>> classCacheMap = new HashMap<>(); // per init immer neu setzen..
     private Map<String, Cache> classCacheMap = new HashMap<>(); // per init immer neu setzen..
 
     //set by the Extension
     private BeanManager beanManager;
 
     public void begin(final String txNumber) {
-        classCacheMap.clear();
+        classCacheMap.remove(txNumber);
+//        classCacheMap.put(txNumber, new HashMap<Class, Object>());
+
     }
 
     public void end(final String txNumber) {
-        classCacheMap.clear();
+        classCacheMap.remove(txNumber);
     }
 
     public void destroy() {
@@ -126,11 +128,15 @@ public class CDITransactionContext implements Context {
                         if (logger.isDebugEnabled()) {
                             logger.debug("classname " + className);
                         }
+
+                        //pruefe die txNumber
+
                         //cache..
                         if (classCacheMap.containsKey(className)) {
                             if (logger.isDebugEnabled()) {
                                 logger.debug("contains Key " + className);
                             }
+//                            final Map<Class, Object> classObjectMap = classCacheMap.get(className);
                             final Cache cache = classCacheMap.get(className);
                             final Collection cacheForKey = cache.getAllFromCache();
                             final int size = cacheForKey.size();
@@ -222,7 +228,7 @@ public class CDITransactionContext implements Context {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CDITransactionContext{ nr="+contextNr+" ");
+        final StringBuilder sb = new StringBuilder("CDITransactionContext{ nr=" + contextNr + " ");
         sb.append("classCacheMap=").append(classCacheMap);
         sb.append('}');
         return sb.toString();
