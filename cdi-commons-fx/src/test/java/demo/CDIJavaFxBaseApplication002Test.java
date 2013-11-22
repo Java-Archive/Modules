@@ -27,9 +27,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.junit.Assert;
-import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
-import org.rapidpm.demo.cdi.commons.fx.JavaFXBaseTest;
-import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.commons.cdi.format.CDISimpleDateFormatter;
+import org.rapidpm.commons.cdi.fx.JavaFXBaseTest;
+import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 /**

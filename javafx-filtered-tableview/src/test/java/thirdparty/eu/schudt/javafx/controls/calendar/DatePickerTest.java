@@ -25,9 +25,9 @@ import javax.inject.Inject;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.rapidpm.demo.cdi.commons.format.CDISimpleDateFormatter;
-import org.rapidpm.demo.cdi.commons.fx.JavaFXBaseTest;
-import org.rapidpm.demo.cdi.commons.logger.CDILogger;
+import org.rapidpm.commons.cdi.format.CDISimpleDateFormatter;
+import org.rapidpm.commons.cdi.fx.JavaFXBaseTest;
+import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 /**

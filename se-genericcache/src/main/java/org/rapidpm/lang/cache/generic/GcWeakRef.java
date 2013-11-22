@@ -17,10 +17,11 @@
 
 package org.rapidpm.lang.cache.generic;
 
+import java.io.Serializable;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
 
-public class GcWeakRef<T> extends WeakReference<T> implements GcReference<T> {
+public class GcWeakRef<T> extends WeakReference<T> implements GcReference<T>,Serializable {
 
     public GcWeakRef(final T referent, final ReferenceQueue<? super T> queue) {
         super(referent, queue);

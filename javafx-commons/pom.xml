@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.2</version>
     </parent>
     <name>javafx-commons</name>
     <description>JavaFX common components</description>
@@ -54,12 +54,17 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.oracle.javafx</groupId>
-            <artifactId>javafx</artifactId>
-            <version>2.2</version>
-            <systemPath>${fx.home}/jfxrt.jar</systemPath>
-            <scope>system</scope>
+            <groupId>org.rapidpm.modul</groupId>
+            <artifactId>cdi-commons-se</artifactId>
+            <scope>compile</scope>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle.javafx</groupId>-->
+            <!--<artifactId>javafx</artifactId>-->
+            <!--<version>2.2</version>-->
+            <!--<systemPath>${fx.home}/jfxrt.jar</systemPath>-->
+            <!--<scope>system</scope>-->
+        <!--</dependency>-->
 
     </dependencies>
 

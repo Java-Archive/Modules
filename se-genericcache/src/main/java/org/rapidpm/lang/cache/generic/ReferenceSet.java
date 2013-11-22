@@ -17,6 +17,7 @@
 
 package org.rapidpm.lang.cache.generic;
 
+import java.io.Serializable;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.util.Collection;
@@ -24,7 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
 
-public class ReferenceSet<T> {
+public class ReferenceSet<T> implements Serializable{
     private final boolean weakRefs;
     private final Set<GcReference<T>> set = new HashSet<>();
     private final ReferenceQueue<T> queue = new ReferenceQueue<>();

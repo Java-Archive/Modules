@@ -28,9 +28,9 @@ import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import org.rapidpm.demo.cdi.commons.logger.CDILogger;
-import org.rapidpm.demo.cdi.commons.registry.property.CDIPropertyRegistryService;
-import org.rapidpm.demo.cdi.commons.registry.property.PropertyRegistryService;
+import org.rapidpm.commons.cdi.logger.CDILogger;
+import org.rapidpm.commons.cdi.registry.property.CDIPropertyRegistryService;
+import org.rapidpm.commons.cdi.registry.property.PropertyRegistryService;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 /**

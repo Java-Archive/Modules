@@ -75,7 +75,7 @@ public class PackageClassLoader {
      *
      * @param packageName The base package
      * @return The classes
-     * @throws java.io.IOException if an io-error occurs.
+     *
      */
     public List<Class> getClasses(final String packageName) {
         final ClassLoader startClassLoader = Thread.currentThread().getContextClassLoader();
@@ -211,7 +211,7 @@ public class PackageClassLoader {
      * @param directory   The base directory
      * @param packageName The package name for classes found inside the base directory
      * @return The classes
-     * @throws ClassNotFoundException
+     *
      */
     private List<Class> findClassesInDirectories(final File directory, final String packageName) {
         final List<Class> classes = new ArrayList<>();

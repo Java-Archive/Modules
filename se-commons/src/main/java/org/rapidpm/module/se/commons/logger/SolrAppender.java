@@ -17,6 +17,7 @@
 package org.rapidpm.module.se.commons.logger;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +36,7 @@ import org.apache.solr.common.SolrInputDocument;
 /**
  * User: Sven Ruppert Date: 18.09.13 Time: 10:03
  */
-public class SolrAppender extends AppenderSkeleton {
+public class SolrAppender extends AppenderSkeleton implements Serializable {
 
     private static final int QUEUE_SIZE = 100;
     private static final int THREAD_COUNT = 10;

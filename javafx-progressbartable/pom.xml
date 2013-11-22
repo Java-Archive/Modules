@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.2</version>
     </parent>
     <name>javafx-progressbartable</name>
     <description>A JavaFX component: a TableView to show progress of different threads</description>
@@ -59,13 +59,13 @@
             <artifactId>weld-se</artifactId>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.oracle.javafx</groupId>
-            <artifactId>javafx</artifactId>
-            <version>2.2</version>
-            <systemPath>${fx.home}/jfxrt.jar</systemPath>
-            <scope>system</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle.javafx</groupId>-->
+            <!--<artifactId>javafx</artifactId>-->
+            <!--<version>2.2</version>-->
+            <!--<systemPath>${fx.home}/jfxrt.jar</systemPath>-->
+            <!--<scope>system</scope>-->
+        <!--</dependency>-->
 
     </dependencies>
 

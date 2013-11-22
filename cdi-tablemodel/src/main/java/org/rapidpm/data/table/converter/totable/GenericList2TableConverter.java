@@ -34,16 +34,16 @@ import org.rapidpm.data.table.TableCreator;
  *
  * @author Sven Ruppert
  * @version 0.1
- *          <p/>
+ *          <p></p>
  *          This Source Code is part of the www.svenruppert.de project.
  *          please contact sven.ruppert@me.com
  * @since 22.06.2010
  * Time: 23:21:55
- * <p/>
- * <p/>
+ * <p></p>
+ * <p></p>
  * Dieser Converter kann NICHT einfacheDatentypen wie int und char verarbeiten.
  * Des weiteren werden einfache Lsiten von z.B. Date dazu führen, das der Date in seine Einzelteile zerpflückt wird.
- * <p/>
+ * <p></p>
  * Also nur komplexe Klassen..
  */
 

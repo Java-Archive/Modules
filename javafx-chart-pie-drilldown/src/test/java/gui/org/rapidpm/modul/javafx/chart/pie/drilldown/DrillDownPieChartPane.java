@@ -16,7 +16,7 @@
 
 package gui.org.rapidpm.modul.javafx.chart.pie.drilldown;
 
-import org.rapidpm.demo.cdi.commons.fx.components.CDIBaseAnchorPane;
+import org.rapidpm.commons.cdi.fx.components.CDIBaseAnchorPane;
 
 /**
  * User: Sven Ruppert

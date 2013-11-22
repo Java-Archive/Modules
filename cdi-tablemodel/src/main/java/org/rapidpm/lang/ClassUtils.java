@@ -30,7 +30,7 @@ public class ClassUtils {
     private static final Logger logger = Logger.getLogger(ClassUtils.class);
 
     /**
-     * Ermittelt den primitiven Datentyp einer boxed Klasse (z.B. <code>Integer -> int</code>).
+     * Ermittelt den primitiven Datentyp einer boxed Klasse (z.B. <code>Integer auf int</code>).
      *
      * @param boxedType Boxed Klasse.
      * @return Der primitive Datentyp zur boxed Klasse oder der Datentyp der boxed Klasse,
@@ -60,7 +60,7 @@ public class ClassUtils {
     }};
 
     /**
-     * Ermittelt den boxed Datentyp einer primitiven Klasse (z.B. <code>int -> Integer</code>).
+     * Ermittelt den boxed Datentyp einer primitiven Klasse (z.B. <code>int auf Integer</code>).
      *
      * @param primitiveType Primitive Klasse.
      * @return Der boxed Datentyp zur primitiven Klasse oder der Datentyp der boxed Klasse,

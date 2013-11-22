@@ -18,7 +18,7 @@ package org.rapidpm.modul.javafx.chart.pie.drilldown;
 
 import java.util.List;
 
-import org.rapidpm.demo.cdi.commons.aggregator.MapAggregator;
+import org.rapidpm.commons.cdi.aggregator.MapAggregator;
 
 /**
  * User: Sven Ruppert

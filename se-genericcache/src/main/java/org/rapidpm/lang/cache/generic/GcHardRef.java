@@ -17,9 +17,10 @@
 
 package org.rapidpm.lang.cache.generic;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class GcHardRef<T> implements GcReference<T> {
+public class GcHardRef<T> implements GcReference<T>, Serializable {
     private final T referent;
 
     public GcHardRef(final T referent) {
