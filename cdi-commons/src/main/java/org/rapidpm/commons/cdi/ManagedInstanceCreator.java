@@ -18,6 +18,7 @@ package org.rapidpm.commons.cdi;
 
 import java.lang.reflect.Type;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.AnnotatedType;
@@ -46,21 +47,43 @@ public class ManagedInstanceCreator {
         T result = null;
 
         final Set<Bean<?>> beanSet = beanManager.getBeans(beanType, annotationLiteral);
-        for (final Bean<?> bean : beanSet) {
-            final Set<Type> types = bean.getTypes();
-            for (final Type type : types) {
-                if (type.equals(beanType)) {
-                    final Bean<T> beanTyped = (Bean<T>) bean;
-                    result = beanTyped.create(beanManager.createCreationalContext(beanTyped));
-                } else {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("! type.equals(beanType) " + type);
-                    }
-                }
-            }
-        }
+        result = beanSet.stream()
+                .map((b)-> b.getTypes()
+                                .stream()
+                                .filter(t -> t.equals(beanType))
+                                .findFirst()
+                                .map((bean) -> {
+                                    final Bean<T> beanTyped = (Bean<T>) bean;
+                                    return beanTyped.create(beanManager.createCreationalContext(beanTyped));
+                                })
+                                .get())
+                .findFirst()
+                .get();
+
+
+
+
+//        for (final Bean<?> bean : beanSet) {
+//            final Set<Type> types = bean.getTypes();
+//            for (final Type type : types) {
+//                if (type.equals(beanType)) {
+//                    final Bean<T> beanTyped = (Bean<T>) bean;
+//                    result = beanTyped.create(beanManager.createCreationalContext(beanTyped));
+//                } else {
+//                    if (logger.isDebugEnabled()) {
+//                        logger.debug("! type.equals(beanType) " + type);
+//                    }
+//                }
+//            }
+//        }
+
         return result;
     }
+
+
+
+
+
 
     public <T> T activateCDI(T t) {
 

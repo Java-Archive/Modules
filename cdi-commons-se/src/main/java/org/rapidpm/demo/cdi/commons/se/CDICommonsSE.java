@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.commons.cdi.se;
+package org.rapidpm.demo.cdi.commons.se;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
