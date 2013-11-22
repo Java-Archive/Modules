@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <version>1.2</version>
     </parent>
     <name>javafx-searchbox</name>
     <description>A JavaFX component: a TextField with autocompletion featiures and a transient lucene index</description>

@@ -32,10 +32,10 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * User: Sven Ruppert
  * Date: 09.06.13
  * Time: 17:33
- * <p/>
+ * <p></p>
  * TargetFile based on the given date. The File will be in an dir
  * with the following structure.
- * <p/>
+ * <p></p>
  * yyyy
  * MM
  * dd

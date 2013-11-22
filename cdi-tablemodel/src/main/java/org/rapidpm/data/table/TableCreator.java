@@ -35,28 +35,28 @@ import org.rapidpm.data.table.validator.RowValidator;
  *
  * @author Sven Ruppert
  * @version 0.1
- *          <p/>
+ *          <p></p>
  *          This Source Code is part of the www.svenruppert.de project.
  *          please contact sven.ruppert@me.com
  * @since 28.03.2010
  * Time: 20:03:24
- * <p/>
- * <p/>
+ * <p></p>
+ * <p></p>
  * BeispielCode:
  * final TableCreator creator = new TableCreator(); //refac verwende TableCreatorExecuter
  * creator.createNewTableInstance();
  * creator.addNextColInfo(TEST_COL01, String.class);
  * creator.addNextColInfo(TEST_COL02, String.class);
- * <p/>
+ * <p></p>
  * creator.addNewRow();
- * <p/>
+ * <p></p>
  * creator.addNextCell(TEST_COL01, CellTypeEnum.RawData, "TestString f TestCol1 row 1", "testLabel");
  * creator.addNextCell(TEST_COL02, CellTypeEnum.RawData, "TestString f TestCol2 row 1", "testLabel");
- * <p/>
+ * <p></p>
  * creator.addNewRow();
  * creator.addNextCell(TEST_COL01, CellTypeEnum.RawData, "TestString f TestCol1 row 2", "testLabel");
  * creator.addNextCell(TEST_COL02, CellTypeEnum.RawData, "TestString f TestCol2 row 2", "testLabel");
- * <p/>
+ * <p></p>
  * final Table table = creator.getTable();
  * table.reorderCellsInAllRows();
  */

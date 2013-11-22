@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
  *
  * @author Sven Ruppert
  * @version 0.1
- *          <p/>
+ *          <p></p>
  *          This Source Code is part of the www.svenruppert.de project.
  *          please contact sven.ruppert@me.com
  * @since 27.04.2010

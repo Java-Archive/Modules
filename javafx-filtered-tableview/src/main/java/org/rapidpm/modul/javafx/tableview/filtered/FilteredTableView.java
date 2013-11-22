@@ -38,7 +38,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
 
 
 /**
- * A {@link TableView} that identifies any {@link AbstractFilterableTableColumn}'s added to it, and fires a single event when any of them have their filters changed. <p/> To listen for changes the
+ * A {@link TableView} that identifies any {@link AbstractFilterableTableColumn}'s added to it, and fires a single event when any of them have their filters changed. <p></p> To listen for changes the
  * table's filters, register a {@link ColumnFilterEvent#FILTER_CHANGED_EVENT} with {@link #addEventFilter(javafx.event.EventType, javafx.event.EventHandler) } or {@link
  * #addEventHandler(javafx.event.EventType, javafx.event.EventHandler) }
  *

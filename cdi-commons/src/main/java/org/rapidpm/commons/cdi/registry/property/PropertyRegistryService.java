@@ -27,10 +27,10 @@ import java.io.Serializable;
  * User: Sven Ruppert
  * Date: 10.06.13
  * Time: 07:34
- * <p/>
+ * <p></p>
  * The PropertyRegistryService will decide
  * what kind of registry-implementations will be used here.
- * <p/>
+ * <p></p>
  * For example the file based implementations.
  */
 public abstract class PropertyRegistryService implements Serializable {

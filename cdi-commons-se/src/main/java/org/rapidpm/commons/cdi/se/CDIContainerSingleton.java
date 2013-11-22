@@ -31,7 +31,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * User: Sven Ruppert
  * Date: 05.06.13
  * Time: 22:07
- * <p/>
+ * <p></p>
  * A Singleton for the SE Applikation.
  */
 public class CDIContainerSingleton {

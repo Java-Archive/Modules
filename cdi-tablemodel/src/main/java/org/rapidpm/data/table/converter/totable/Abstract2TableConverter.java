@@ -25,7 +25,7 @@ import org.rapidpm.data.table.TableCreator;
  *
  * @author Sven Ruppert
  * @version 0.1
- *          <p/>
+ *          <p></p>
  *          This Source Code is part of the www.svenruppert.de project.
  *          please contact sven.ruppert@me.com
  * @since 03.06.2010

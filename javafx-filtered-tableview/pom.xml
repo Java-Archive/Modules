@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <version>1.2</version>
     </parent>
     <name>javafx-filtered-tableview</name>
     <description>A JavaFX component: a TableView with komplex filters on each col</description>

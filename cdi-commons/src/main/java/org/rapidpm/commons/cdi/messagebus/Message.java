@@ -22,7 +22,7 @@ import javax.enterprise.util.AnnotationLiteral;
  * User: Sven Ruppert
  * Date: 31.07.13
  * Time: 10:19
- * <p/>
+ * <p></p>
  * q : AnnotationLiteral from the modul, like a Scope f communication
  * t: type that is handled by the message
  */

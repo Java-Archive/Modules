@@ -66,7 +66,7 @@ public class CalendarView extends VBox {
      * Initializes a calendar with the given locale.
      * E.g. if the locale is en-US, the calendar starts the days on Sunday.
      * If it is de-DE the calendar starts the days on Monday.
-     * <p/>
+     * <p></p>
      * Note that the Java implementation only knows {@link java.util.GregorianCalendar} and {@link sun.util.BuddhistCalendar}.
      *
      * @param locale The locale.
@@ -85,11 +85,11 @@ public class CalendarView extends VBox {
 
     /**
      * Initializes the control with the given locale and the given calendar.
-     * <p/>
+     * <p></p>
      * This way, you can pass a custom calendar (e.g. you could implement the Hijri Calendar for the arabic world).
      * Or you can use an American style calendar (starting with Sunday as first day of the week)
      * together with another language.
-     * <p/>
+     * <p></p>
      * The locale determines the date format.
      *
      * @param locale   The locale.
