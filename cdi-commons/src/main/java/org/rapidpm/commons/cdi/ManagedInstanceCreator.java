@@ -16,9 +16,7 @@
 
 package org.rapidpm.commons.cdi;
 
-import java.lang.reflect.Type;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.AnnotatedType;
@@ -53,7 +51,7 @@ public class ManagedInstanceCreator {
                                 .filter(t -> t.equals(beanType))
                                 .findFirst()
                                 .map((bean) -> {
-                                    final Bean<T> beanTyped = (Bean<T>) bean;
+                                    final Bean<T> beanTyped = (Bean<T>) b;
                                     return beanTyped.create(beanManager.createCreationalContext(beanTyped));
                                 })
                                 .get())
@@ -86,8 +84,7 @@ public class ManagedInstanceCreator {
 
 
     public <T> T activateCDI(T t) {
-
-        final Class<?> aClass = t.getClass();
+        final Class aClass = t.getClass();
         if (logger.isDebugEnabled()) {
             logger.debug("activateCDI-> " + aClass);
         }

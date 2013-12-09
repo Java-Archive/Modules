@@ -19,6 +19,7 @@ package org.rapidpm.commons.cdi;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.spi.Bean;
@@ -45,24 +46,25 @@ public class DefaultContextResolver implements ContextResolver {
     @Inject BeanManager beanManager;
 
 
-    public Set<ContextResolver> gettAllContextResolver(){
+    public Set<ContextResolver> gettAllContextResolver() {
         final Set<ContextResolver> resultSet = new HashSet<>();
-        final Set<Bean<?>> allBeans = beanManager.getBeans(ContextResolver.class, new AnnotationLiteral<Any>() {});
+        final Set<Bean<?>> allBeans = beanManager.getBeans(ContextResolver.class, new AnnotationLiteral<Any>() {
+        });
         for (final Bean<?> bean : allBeans) {
             final Set<Type> types = bean.getTypes();
             for (final Type type : types) {
-                if(type.equals(ContextResolver.class)){
+                if (type.equals(ContextResolver.class)) {
                     if (logger.isDebugEnabled()) {
                         logger.debug("type (added) = " + type);
                     }
                     final ContextResolver t = ((Bean<ContextResolver>) bean).create(beanManager.createCreationalContext((Bean<ContextResolver>) bean));
                     resultSet.add(t);
-                } else{
+                } else {
                     //
                 }
             }
         }
-      return resultSet;
+        return resultSet;
     }
 
     public Set<ContextResolver> gettAllMockedContextResolver() {
@@ -89,47 +91,48 @@ public class DefaultContextResolver implements ContextResolver {
 
     @Override
     public AnnotationLiteral resolveContext(Class<?> targetClass) {
+        final Stream<ContextResolver> contextResolversMocked = gettAllMockedContextResolver().stream();
+        final Stream<ContextResolver> contextResolvers = gettAllContextResolver().stream();
 
-        final Set<ContextResolver> mockedContextResolvers = gettAllMockedContextResolver();
-        for (final ContextResolver mockedContextResolver : mockedContextResolvers) {
-            final AnnotationLiteral annotationLiteral = mockedContextResolver.resolveContext(targetClass);
-            if(annotationLiteral == null){
-                //noop
-            } else{
-                return annotationLiteral;
-            }
-        }
-
-
-        final Set<ContextResolver> contextResolvers = gettAllContextResolver();
-
-        for (final ContextResolver contextResolver : contextResolvers) {
-            final boolean annotationPresent = contextResolver.getClass().isAnnotationPresent(CDICommonsMocked.class);
-            if (annotationPresent) {
-                //noop
-            } else {
-                final AnnotationLiteral annotationLiteral = contextResolver.resolveContext(targetClass);
-                if (annotationLiteral == null) {
-
-                } else {
-                    return annotationLiteral;
-                }
-            }
-        }
+        return contextResolversMocked
+                .filter(r -> (r.resolveContext(targetClass) != null))
+                .map(r -> r.resolveContext(targetClass))
+                .findFirst()
+                .orElse(
+                        contextResolvers
+                                .filter(r -> !r.getClass().isAnnotationPresent(CDICommonsMocked.class))
+                                .filter(r -> (r.resolveContext(targetClass) != null))
+                                .map(r -> r.resolveContext(targetClass))
+                                .findFirst()
+                                .orElse(null)
+                );
 
 
-//        final String name = targetClass.getName();
-//        if (name.equals(PropertyRegistryService.class.getName())) {
-//            return new AnnotationLiteral<CDIPropertyRegistryFileBased>() {
-//            };
+//        final Set<ContextResolver> mockedContextResolvers = gettAllMockedContextResolver();
+//        for (final ContextResolver mockedContextResolver : mockedContextResolvers) {
+//            final AnnotationLiteral annotationLiteral = mockedContextResolver.resolveContext(targetClass);
+//            if(annotationLiteral == null){
+//                noop
+//            } else{
+//                return annotationLiteral;
+//            }
 //        }
 
-//        if (name.equals(Logger.class.getName())) {
-//            return new AnnotationLiteral<CDINotMapped>() {
-//            };
-//        } else
+//        final Set<ContextResolver> contextResolvers = gettAllContextResolver();
+//        for (final ContextResolver contextResolver : contextResolvers) {
+//            final boolean annotationPresent = contextResolver.getClass().isAnnotationPresent(CDICommonsMocked.class);
+//            if (annotationPresent) {
+//                //noop
+//            } else {
+//                final AnnotationLiteral annotationLiteral = contextResolver.resolveContext(targetClass);
+//                if (annotationLiteral == null) {
+//
+//                } else {
+//                    return annotationLiteral;
+//                }
+//            }
+//        }
 
-        //return new AnnotationLiteral<CDICommons>() {};  //as Default Implementation
-        return null;
+//        return null;
     }
 }
