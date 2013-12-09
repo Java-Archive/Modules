@@ -50,20 +50,28 @@ public class DefaultContextResolver implements ContextResolver {
         final Set<ContextResolver> resultSet = new HashSet<>();
         final Set<Bean<?>> allBeans = beanManager.getBeans(ContextResolver.class, new AnnotationLiteral<Any>() {
         });
-        for (final Bean<?> bean : allBeans) {
-            final Set<Type> types = bean.getTypes();
-            for (final Type type : types) {
-                if (type.equals(ContextResolver.class)) {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("type (added) = " + type);
-                    }
-                    final ContextResolver t = ((Bean<ContextResolver>) bean).create(beanManager.createCreationalContext((Bean<ContextResolver>) bean));
-                    resultSet.add(t);
-                } else {
-                    //
-                }
-            }
-        }
+
+        allBeans.forEach(b-> b.getTypes().stream()
+                .filter(t -> t.equals(ContextResolver.class))
+                .forEach(t -> {
+                    final ContextResolver cr = ((Bean<ContextResolver>) b).create(beanManager.createCreationalContext((Bean<ContextResolver>) b));
+                    resultSet.add(cr);
+                }));
+
+//        for (final Bean<?> bean : allBeans) {
+//            final Set<Type> types = bean.getTypes();
+//            for (final Type type : types) {
+//                if (type.equals(ContextResolver.class)) {
+//                    if (logger.isDebugEnabled()) {
+//                        logger.debug("type (added) = " + type);
+//                    }
+//                    final ContextResolver t = ((Bean<ContextResolver>) bean).create(beanManager.createCreationalContext((Bean<ContextResolver>) bean));
+//                    resultSet.add(t);
+//                } else {
+//                    //
+//                }
+//            }
+//        }
         return resultSet;
     }
 
