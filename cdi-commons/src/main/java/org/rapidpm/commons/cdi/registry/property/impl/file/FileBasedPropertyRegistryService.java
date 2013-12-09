@@ -16,9 +16,11 @@
 
 package org.rapidpm.commons.cdi.registry.property.impl.file;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.rapidpm.commons.cdi.logger.CDILogger;
+import org.rapidpm.commons.cdi.registry.property.PropertyRegistry;
 import org.rapidpm.commons.cdi.registry.property.PropertyRegistryService;
 import org.rapidpm.commons.cdi.registry.property.impl.file.registries.ClassFilePropertyRegistry;
 import org.rapidpm.commons.cdi.registry.property.impl.file.registries.ModulFilePropertyRegistry;
@@ -27,6 +29,8 @@ import org.rapidpm.commons.cdi.registry.property.impl.file.registries.Applicatio
 import org.rapidpm.module.se.commons.logger.Logger;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: Sven Ruppert
@@ -50,28 +54,53 @@ public class FileBasedPropertyRegistryService extends PropertyRegistryService im
     private @Inject @CDIPropertyRegistryFileBased
     ClassFilePropertyRegistry classFilePropertyRegistry;
 
+
+    private List<PropertyRegistry> registries = new ArrayList<>();
+
+    @PostConstruct
+    public void init(){
+        registries.clear();
+        registries.add(classFilePropertyRegistry);
+        registries.add(modulFilePropertyRegistry);
+        registries.add(applicationFilePropertyRegistry);
+        registries.add(companyPropertyRegistry);
+    }
+
     @Override
     public String getRessourceForKey(String ressourceKey) {
-        if (classFilePropertyRegistry.hasProperty(ressourceKey)) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("classFilePropertyRegistry found Property " + ressourceKey);
-            }
-            return classFilePropertyRegistry.getProperty(ressourceKey);
-        } else if (modulFilePropertyRegistry.hasProperty(ressourceKey)) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("modulFilePropertyRegistry found Property " + ressourceKey);
-            }
-            return modulFilePropertyRegistry.getProperty(ressourceKey);
-        } else if (applicationFilePropertyRegistry.hasProperty(ressourceKey)) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("applicationFilePropertyRegistry found Property " + ressourceKey);
-            }
-            return applicationFilePropertyRegistry.getProperty(ressourceKey);
-        } else {
-            if (logger.isDebugEnabled()) {
-                logger.debug("companyPropertyRegistry must have Property " + ressourceKey);
-            }
-            return companyPropertyRegistry.getProperty(ressourceKey);
-        }
+
+        return registries.stream()
+                .filter(r->r.hasProperty(ressourceKey))
+                .map(r -> {
+                    if (logger.isDebugEnabled()) {
+                        System.out.println("r.getClass().getSimpleName() = " + r.getClass().getSimpleName());
+                        logger.debug(r.getClass().getSimpleName() + " found Property " + ressourceKey);
+                    }
+                    return r.getProperty(ressourceKey);
+                })
+                .findFirst()
+                .orElse("###" + ressourceKey + "###");
+
+//        if (classFilePropertyRegistry.hasProperty(ressourceKey)) {
+//            if (logger.isDebugEnabled()) {
+//                logger.debug("classFilePropertyRegistry found Property " + ressourceKey);
+//            }
+//            return classFilePropertyRegistry.getProperty(ressourceKey);
+//        } else if (modulFilePropertyRegistry.hasProperty(ressourceKey)) {
+//            if (logger.isDebugEnabled()) {
+//                logger.debug("modulFilePropertyRegistry found Property " + ressourceKey);
+//            }
+//            return modulFilePropertyRegistry.getProperty(ressourceKey);
+//        } else if (applicationFilePropertyRegistry.hasProperty(ressourceKey)) {
+//            if (logger.isDebugEnabled()) {
+//                logger.debug("applicationFilePropertyRegistry found Property " + ressourceKey);
+//            }
+//            return applicationFilePropertyRegistry.getProperty(ressourceKey);
+//        } else {
+//            if (logger.isDebugEnabled()) {
+//                logger.debug("companyPropertyRegistry must have Property " + ressourceKey);
+//            }
+//            return companyPropertyRegistry.getProperty(ressourceKey);
+//        }
     }
 }

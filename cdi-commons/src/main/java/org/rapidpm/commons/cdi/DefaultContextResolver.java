@@ -101,6 +101,7 @@ public class DefaultContextResolver implements ContextResolver {
                 .orElse(
                         contextResolvers
                                 .filter(r -> !r.getClass().isAnnotationPresent(CDICommonsMocked.class))
+                                .filter(r -> !r.getClass().equals(DefaultContextResolver.class))
                                 .filter(r -> (r.resolveContext(targetClass) != null))
                                 .map(r -> r.resolveContext(targetClass))
                                 .findFirst()

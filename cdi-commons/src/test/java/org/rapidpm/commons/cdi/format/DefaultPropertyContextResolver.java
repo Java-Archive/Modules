@@ -39,8 +39,8 @@ public class DefaultPropertyContextResolver implements ContextResolver {
 
     public AnnotationLiteral resolveContext(final Class<?> targetClass) {
         if (targetClass.getName().equals(PropertyRegistryService.class.getName())) {
-            return new AnnotationLiteral<CDIPropertyRegistryFileBased>() {
-            };
+
+            return new AnnotationLiteral<CDIPropertyRegistryFileBased>() {};
         } else {
             if (logger.isDebugEnabled()) {
                 logger.debug("class not mapped " + targetClass);
