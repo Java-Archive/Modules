@@ -70,6 +70,7 @@
             <groupId>org.rapidpm.modul</groupId>
             <artifactId>javafx-commons</artifactId>
             <scope>test</scope>
+            <type>test-jar</type>
         </dependency>
 
         <!--<dependency>-->

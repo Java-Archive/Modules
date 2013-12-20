@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.loadui.testfx.GuiTest;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
@@ -33,60 +34,40 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * Date: 24.07.13
  * Time: 11:37
  */
-public abstract class JavaFXBaseTest {
-
+public abstract class JavaFXBaseTest extends GuiTest {
 
     @Before
     public void beforeTest() {
 //        JavaFXTestSingleton.getInstance().getSemaphore().acquireUninterruptibly();
     }
 
-    @Test
-    //@Ignore
-    public void testGo() {
-        JavaFXTestSingleton.getInstance().setClazz(getTestClass());
-        Application.launch(JavaFXTestApplication.class, "Go Test Go");
-    }
 
     protected abstract Class<? extends JavaFXBaseTest> getTestClass();
 
     @After
     public void afterTest() {
-//        JavaFXTestSingleton.getInstance().getSemaphore().release();
+
     }
 
 
-    public static abstract class JavaFXBaseTestImpl {
+    public static abstract class JavaFXBaseTestImpl extends GuiTest.TestFxApp{
 
         public abstract boolean isExitAfterTest();
 
         protected abstract Class<? extends JavaFXBaseTest> getParentTestClass();
 
-        @Inject
-        @CDILogger
-        Logger logger;
+        @Inject @CDILogger Logger logger;
 
-        @Inject
-        public FXMLLoaderSingleton fxmlLoaderSingleton;
+        @Inject public FXMLLoaderSingleton fxmlLoaderSingleton;
 
         public void launchJavaFXApplication(@Observes @CDIStartupScene Stage stage) {
-            final String simpleName = JavaFXTestSingleton.getInstance().getClazz().getSimpleName();
-            logger.debug("JavaFXTestSingleton.simpleName = " + simpleName);
-            final String testClassName = getParentTestClass().getSimpleName();
-            if (simpleName.equals(testClassName)) {
-                testImpl(stage);
-                if (isExitAfterTest()) {
-                    stage.close();
-                    Platform.exit();
-                } else {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("isExitAfterTest -> " + isExitAfterTest());
-                    }
-                    stage.show();
-                }
-            } else {
-                logger.debug("JavaFXTestSingleton.simpleName (nicht aktiv)= " + testClassName);
+
+            try {
+                super.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
         }
 
         public abstract void testImpl(final Stage stage);
