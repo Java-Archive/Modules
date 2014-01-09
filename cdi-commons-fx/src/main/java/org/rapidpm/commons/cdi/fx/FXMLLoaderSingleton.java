@@ -72,7 +72,7 @@ public class FXMLLoaderSingleton {
                     return controller;
                 }
             });
-            try {
+            try {  //verpacken in Dynamic Proxy
                 final Class<?> aClass = Class.forName(clazz.getName() + "Controller");
                 final CDIJavaFxBaseController call = (CDIJavaFxBaseController) loader.getControllerFactory().call(aClass);
                 loader.setController(call);

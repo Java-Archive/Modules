@@ -14,16 +14,14 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.commons.cdi.fx;
+package org.rapidpm.commons.cdi.se;
 
-import javafx.fxml.Initializable;
+import javax.enterprise.util.AnnotationLiteral;
 
 /**
- * User: Sven Ruppert
- * Date: 09.07.13
- * Time: 11:41
+ * Created by Sven Ruppert on 26.12.13.
  */
-public interface CDIJavaFxBaseController extends Initializable {
+public class CDICommonsSEQualifier extends AnnotationLiteral<CDICommonsSE> implements CDICommonsSE {
 
-    //add dynamic Proxy
+
 }

@@ -14,16 +14,29 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.commons.cdi.fx;
+package org.rapidpm.commons.cdi.format;
 
-import javafx.fxml.Initializable;
+import javax.enterprise.util.AnnotationLiteral;
 
 /**
- * User: Sven Ruppert
- * Date: 09.07.13
- * Time: 11:41
+ * Created by Sven Ruppert on 26.12.13.
  */
-public interface CDIJavaFxBaseController extends Initializable {
+public class CDISimpleDateFormatterQualifier
+        extends AnnotationLiteral<CDISimpleDateFormatter>
+        implements CDISimpleDateFormatter{
 
-    //add dynamic Proxy
+    private String value ="";
+
+    @Override
+    public String value() {
+        return value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }

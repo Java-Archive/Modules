@@ -56,6 +56,7 @@
                 <version>2.1.0.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
+
             </dependency>
             <dependency>
                 <groupId>org.jboss.weld.se</groupId>
@@ -234,10 +235,16 @@
                 <artifactId>poi-scratchpad</artifactId>
                 <version>3.9</version>
             </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.google.guava</groupId>-->
+                <!--<artifactId>guava</artifactId>-->
+                <!--<version>15.0</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
             <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>15.0</version>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>1.1</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
@@ -347,6 +354,11 @@
             <artifactId>log4j</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <scope>compile</scope>
+        </dependency>
         <!--<dependency>-->
         <!--<groupId>org.jetbrains.kotlin</groupId>-->
         <!--<artifactId>kotlin-stdlib</artifactId>-->
@@ -355,6 +367,11 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -651,31 +668,31 @@
                     <scope>provided</scope>
                 </dependency>
             </dependencies>
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jboss.weld</groupId>
-                        <artifactId>weld-core-bom</artifactId>
-                        <version>2.1.0.Final</version>
-                        <type>pom</type>
-                        <scope>import</scope>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!--<includes>-->
-                            <!--<include>**/junit/**</include>-->
-                            <!--<include>**/cdi/**</include>-->
-                            <!--</includes>-->
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <!--<dependencyManagement>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.jboss.weld</groupId>-->
+                        <!--<artifactId>weld-core-bom</artifactId>-->
+                        <!--<version>2.1.0.Final</version>-->
+                        <!--<type>pom</type>-->
+                        <!--<scope>import</scope>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+            <!--</dependencyManagement>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.apache.maven.plugins</groupId>-->
+                        <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                        <!--<configuration>-->
+                            <!--&lt;!&ndash;<includes>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<include>**/junit/**</include>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<include>**/cdi/**</include>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</includes>&ndash;&gt;-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
         </profile>
 
 
@@ -687,7 +704,7 @@
         <module>../se-commons</module>
         <module>../se-genericcache</module>
         <module>../cdi-commons</module>
-        <module>../cdi-tablemodel</module>
+        <!--<module>../cdi-tablemodel</module>-->
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
         <module>../javafx-commons</module>

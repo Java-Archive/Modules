@@ -20,13 +20,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.rapidpm.commons.cdi.format.CDISimpleDateFormatter;
+import org.rapidpm.commons.cdi.format.CDISimpleDateFormatterQualifier;
 import org.rapidpm.commons.cdi.se.CDIContainerSingleton;
 
 /**
@@ -71,10 +70,12 @@ public class SimpleDateFormatTest {
      * Method: getManagedInstance(final Class<T> clazz)
      */
     @Test
+
     public void testGetManagedInstance() throws Exception {
         final CDIContainerSingleton instance = CDIContainerSingleton.getInstance();
         Assert.assertNotNull(instance);
-        final SimpleDateFormat simpleDateFormat = instance.getManagedInstance(SimpleDateFormat.class);
+//        final SimpleDateFormat simpleDateFormat = instance.getManagedInstance(new AnnotationLiteral<CDISimpleDateFormatter>() { },SimpleDateFormat.class);
+        final SimpleDateFormat simpleDateFormat = instance.getManagedInstance(new CDISimpleDateFormatterQualifier(),SimpleDateFormat.class);
         Assert.assertNotNull(simpleDateFormat);
     }
 

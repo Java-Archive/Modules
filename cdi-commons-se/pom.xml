@@ -62,6 +62,7 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+
         <!-- testing stuff -->
 
 
