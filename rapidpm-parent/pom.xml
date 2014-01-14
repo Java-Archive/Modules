@@ -714,20 +714,19 @@
     <modules>
         <!--  <module>../javafx-searchbox</module>
         -->
-        <module>rapidpm-resources</module>
-        <module>../se-commons</module>
-        <module>../se-genericcache</module>
-        <module>../cdi-commons</module>
-        <module>../cdi-tablemodel</module>
-        <module>../cdi-commons-se</module>
-        <module>../cdi-commons-fx</module>
-        <module>../javafx-commons</module>
-        <module>../javafx-chart-pie-drilldown</module>
-        <module>../javafx-autocomplete-textfield</module>
-        <module>../javafx-dialog</module>
-        <module>../javafx-filtered-tableview</module>
-        <module>../javafx-progressbartable</module>
-
+        <!--<module>rapidpm-resources</module>-->
+        <!--<module>../se-commons</module>-->
+        <!--<module>../se-genericcache</module>-->
+        <!--<module>../cdi-commons</module>-->
+        <!--<module>../cdi-tablemodel</module>-->
+        <!--<module>../cdi-commons-se</module>-->
+        <!--<module>../cdi-commons-fx</module>-->
+        <!--<module>../javafx-commons</module>-->
+        <!--<module>../javafx-chart-pie-drilldown</module>-->
+        <!--<module>../javafx-autocomplete-textfield</module>-->
+        <!--<module>../javafx-filtered-tableview</module>-->
+        <!--<module>../javafx-progressbartable</module>-->
+<!---->
     </modules>
 
 

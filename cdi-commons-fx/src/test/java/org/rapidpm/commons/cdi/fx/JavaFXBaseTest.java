@@ -16,33 +16,27 @@
 
 package org.rapidpm.commons.cdi.fx;
 
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
-
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
-import org.loadui.testfx.GuiTest;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
+
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 
 /**
  * User: Sven Ruppert
  * Date: 24.07.13
  * Time: 11:37
  */
-public abstract class JavaFXBaseTest extends GuiTest {
+public abstract class JavaFXBaseTest  {
 
     @Before
     public void beforeTest() {
-//        JavaFXTestSingleton.getInstance().getSemaphore().acquireUninterruptibly();
     }
 
 
-    protected abstract Class<? extends JavaFXBaseTest> getTestClass();
 
     @After
     public void afterTest() {
@@ -50,24 +44,17 @@ public abstract class JavaFXBaseTest extends GuiTest {
     }
 
 
-    public static abstract class JavaFXBaseTestImpl extends GuiTest.TestFxApp{
+    public static abstract class JavaFXBaseTestImpl {
 
         public abstract boolean isExitAfterTest();
 
-        protected abstract Class<? extends JavaFXBaseTest> getParentTestClass();
 
         @Inject @CDILogger Logger logger;
 
         @Inject public FXMLLoaderSingleton fxmlLoaderSingleton;
 
         public void launchJavaFXApplication(@Observes @CDIStartupScene Stage stage) {
-
-            try {
-                super.start(stage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            testImpl(stage);
         }
 
         public abstract void testImpl(final Stage stage);

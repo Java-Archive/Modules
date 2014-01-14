@@ -34,9 +34,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * User: Sven Ruppert Date: 14.08.13 Time: 10:51
  */
 public class DatePickerTest extends JavaFXBaseTest {
-    @Override protected Class<? extends JavaFXBaseTest> getTestClass() {
-        return DatePickerTest.class;
-    }
+
 
 
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
@@ -44,9 +42,7 @@ public class DatePickerTest extends JavaFXBaseTest {
             return false;
         }
 
-        @Override protected Class<? extends JavaFXBaseTest> getParentTestClass() {
-            return DatePickerTest.class;
-        }
+
 
         @Inject
         @CDISimpleDateFormatter(value = "date.yyyyMMdd")

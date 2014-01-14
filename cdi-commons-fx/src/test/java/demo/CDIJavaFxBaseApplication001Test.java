@@ -41,10 +41,10 @@ import org.rapidpm.module.se.commons.logger.Logger;
 
 public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
 
-    @Override
-    protected Class<? extends JavaFXBaseTest> getTestClass() {
-        return CDIJavaFxBaseApplication001Test.class;
-    }
+//    @Override
+//    protected Class<? extends JavaFXBaseTest> getTestClass() {
+//        return CDIJavaFxBaseApplication001Test.class;
+//    }
 
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
 
@@ -53,10 +53,10 @@ public class CDIJavaFxBaseApplication001Test extends JavaFXBaseTest {
             return false;
         }
 
-        @Override
-        protected Class<? extends JavaFXBaseTest> getParentTestClass() {
-            return CDIJavaFxBaseApplication001Test.class;
-        }
+//        @Override
+//        protected Class<? extends JavaFXBaseTest> getParentTestClass() {
+//            return CDIJavaFxBaseApplication001Test.class;
+//        }
 
         @Inject
         @CDISimpleDateFormatter(value = "date.yyyyMMdd")

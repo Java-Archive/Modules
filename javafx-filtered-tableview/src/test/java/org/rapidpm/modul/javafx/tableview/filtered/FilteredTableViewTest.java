@@ -29,9 +29,7 @@ import org.rapidpm.modul.javafx.tableview.filtered.demo.FilteredTableViewDemoPan
  * User: Sven Ruppert Date: 30.08.13 Time: 06:56
  */
 public class FilteredTableViewTest extends JavaFXBaseTest {
-    @Override protected Class<? extends JavaFXBaseTest> getTestClass() {
-        return FilteredTableViewTest.class;
-    }
+
 
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
 
@@ -42,10 +40,6 @@ public class FilteredTableViewTest extends JavaFXBaseTest {
 
         @Override public boolean isExitAfterTest() {
             return false;
-        }
-
-        @Override protected Class<? extends JavaFXBaseTest> getParentTestClass() {
-            return FilteredTableViewTest.class;
         }
 
         @Override public void testImpl(Stage stage) {
