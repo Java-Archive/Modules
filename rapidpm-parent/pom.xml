@@ -370,7 +370,7 @@
         <dependency>
             <groupId>com.cenqua.clover</groupId>
             <artifactId>clover</artifactId>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
         <!--Arquillian-->
         <dependency>
@@ -638,6 +638,7 @@
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
                     <version>1.0.0.Final-SNAPSHOT</version>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.weld</groupId>
@@ -714,13 +715,13 @@
     <modules>
         <!--  <module>../javafx-searchbox</module>
         -->
-        <!--<module>rapidpm-resources</module>-->
-        <!--<module>../se-commons</module>-->
-        <!--<module>../se-genericcache</module>-->
-        <!--<module>../cdi-commons</module>-->
-        <!--<module>../cdi-tablemodel</module>-->
-        <!--<module>../cdi-commons-se</module>-->
-        <!--<module>../cdi-commons-fx</module>-->
+        <module>rapidpm-resources</module>
+        <module>../se-commons</module>
+        <module>../se-genericcache</module>
+        <module>../cdi-commons</module>
+        <module>../cdi-tablemodel</module>
+        <module>../cdi-commons-se</module>
+        <module>../cdi-commons-fx</module>
         <!--<module>../javafx-commons</module>-->
         <!--<module>../javafx-chart-pie-drilldown</module>-->
         <!--<module>../javafx-autocomplete-textfield</module>-->
