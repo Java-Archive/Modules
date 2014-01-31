@@ -16,6 +16,7 @@
 
 package junit.org.rapidpm.module.se.comons.logger;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidpm.module.se.commons.logger.Logger;
 
@@ -23,7 +24,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * User: Sven Ruppert Date: 18.09.13 Time: 11:05
  */
 public class LoggerTest {
-    @Test
+    @Test  @Ignore
     public void testLoggerAppender() throws Exception {
         final Logger logger = Logger.getLogger(LoggerTest.class);
 

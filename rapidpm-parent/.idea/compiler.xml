@@ -30,12 +30,7 @@
         <module name="cdi-commons-se" />
         <module name="cdi-tablemodel" />
         <module name="genericcache" />
-        <module name="javafx-autocomplete-textfield" />
-        <module name="javafx-chart-pie-drilldown" />
-        <module name="javafx-commons" />
         <module name="javafx-comomns" />
-        <module name="javafx-filtered-tableview" />
-        <module name="javafx-progressbartable" />
         <module name="rapidpm-resources" />
         <module name="se-commons" />
         <module name="se-genericcache" />

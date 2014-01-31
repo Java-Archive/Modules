@@ -63,7 +63,7 @@ public class PersonCacheWrapperThreadTest extends TestCase {
                             final Person person = new Person("1name" + loop, "2name" + loop, dateFormat.parse("04.04.1974"),
                                     loop);
                             personCache.put2Cache(person);
-                            System.out.println(this.getName() + " : " + person);
+//                            System.out.println(this.getName() + " : " + person);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -87,7 +87,7 @@ public class PersonCacheWrapperThreadTest extends TestCase {
                     for (int loop = 0; loop < LOOPS; loop++) {
                         final Collection<Person> foundPersons = personCache.getPersons4FirstName("1name" + loop);
                         for (final Person person : foundPersons) {
-                            System.out.println(this.getName() + " : " + person);
+//                            System.out.println(this.getName() + " : " + person);
                         }
                         try {
                             sleep(READ_DELAY);

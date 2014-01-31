@@ -35,10 +35,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.symbolic.name>cdi-commons</project.symbolic.name>
-
-        <!--<version.weld-servlet>1.1.9.Final</version.weld-servlet>-->
-        <!--<org.arquillian.bom.version>1.0.2.Final</org.arquillian.bom.version>-->
-        <!--<project.version>1.1</project.version>-->
     </properties>
 
     <dependencies>
@@ -52,17 +48,14 @@
             <artifactId>se-genericcache</artifactId>
             <scope>compile</scope>
         </dependency>
-        <!-- testing stuff -->
         <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-            <scope>test</scope>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

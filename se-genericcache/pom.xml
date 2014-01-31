@@ -38,8 +38,8 @@
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
             <artifactId>se-commons</artifactId>
-            <scope>compile</scope>
         </dependency>
+
     </dependencies>
 
     <profiles>
