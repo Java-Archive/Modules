@@ -23,8 +23,6 @@ import org.junit.Test;
 import org.rapidpm.module.se.commons.proxy.Concurrency;
 import org.rapidpm.module.se.commons.proxy.ProxyGenerator;
 
-import java.lang.reflect.Modifier;
-
 /**
  * Created by ts40 on 19.02.14.
  */
@@ -65,6 +63,22 @@ public class ProxyGeneratorTest {
 //        demoClassA.demoClassB.demoClassC = new DemoClassC();
 //        demoClassA.demoClassB.demoClassC.setValue("DumDiDum");
 
+        final DemoClassA demo = proxy(demoClassA);
+
+
+        final DemoClassB demoClassB = demo.getDemoClassB();
+        System.out.println("demoClassB = " + demoClassB);
+        final DemoClassC demoClassC = demoClassB.getDemoClassC();
+        System.out.println("demoClassC = " + demoClassC);
+        final String value = demoClassB.getValue();
+        System.out.println("value = " + value);
+
+        System.out.println("demoClassC = " + demoClassC);
+        final String value1 = demoClassC.getValue();
+        System.out.println("value1 = " + value1);
+    }
+
+    private DemoClassA proxy(DemoClassA demoClassA) {
         final Class<DemoClassA> aClass = (Class<DemoClassA>) demoClassA.getClass();
         final DemoClassA demo = ProxyGenerator.make(aClass, aClass, Concurrency.OnExistingObject);
 
@@ -74,31 +88,17 @@ public class ProxyGeneratorTest {
         } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
             e.printStackTrace();
         }
-
-
-        final DemoClassB demoClassB = demo.getDemoClassB();
-        System.out.println("demoClassB = " + demoClassB);
-        final String value = demoClassB.getValue();
-        System.out.println("value = " + value);
-
-        final DemoClassC demoClassC = demoClassB.getDemoClassC();
-        System.out.println("demoClassC = " + demoClassC);
-        final String value1 = demoClassC.getValue();
-        System.out.println("value1 = " + value1);
+        return demo;
     }
 
 
     @Test
     public void testGenerator00X() throws  Exception {
-        FinalDemoLogic l = new FinalDemoLogic();
+        DemoClassA demoClassA = new DemoClassA();
+        demoClassA.demoClassB = null;
 
-        final Class<DemoLogic> DemoLogicClass = DemoLogic.class;
-        try {
-            DemoLogicClass.getDeclaredField("value").set(l, "HuHu");
-        } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-            e.printStackTrace();
-        }
-        System.out.println("l = " + l);
+        final String value = proxy(demoClassA).getDemoClassB().getDemoClassC().getValue();
+        System.out.println("value = " + value);
 
     }
 

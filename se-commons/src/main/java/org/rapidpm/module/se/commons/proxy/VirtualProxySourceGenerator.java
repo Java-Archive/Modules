@@ -94,6 +94,7 @@ public abstract class VirtualProxySourceGenerator {
         if (subject.isInterface()) {
             out.println();
             out.println(" public String toString() {");
+            out.println(" if(realSubject() == null ) return \"NullObjectHolder in \" + this.getClass() ;");
             out.println(" return realSubject().toString();");
             out.println(" }");
         }
@@ -109,22 +110,20 @@ public abstract class VirtualProxySourceGenerator {
     private void addProxiedMethod(PrintWriter out, Method m) {
         if (Modifier.isFinal(m.getModifiers())) return;
         addMethodSignature(out, m);
-        addMethodBody(out, m);
+        addMethodBody(out, m);   //NPE da val ger getter gefuellt wird
 
         final Class<?> returnType = m.getReturnType();
         if (returnType == void.class) out.printf(");%n }%n");
         else {
             out.printf(");%n");  //end of orig method.. start proxy additional stuff
             final boolean aFinal = Modifier.isFinal(returnType.getModifiers());
-            if (!returnType.isPrimitive() && !returnType.isArray() && ! aFinal  ){
-                out.printf(" if (val == null) { System.out.println(\" val == null for method  + " +m.getName()+ "\");} %n");
+            if (!returnType.isPrimitive() && !returnType.isArray() && ! aFinal ){
                 final String typeName = returnType.getTypeName();
-                out.printf("final Class<"+typeName+"> aClass = (Class<"+typeName+">) val.getClass(); %n");
-
                 final String proxyGenerator = "org.rapidpm.module.se.commons.proxy.ProxyGenerator";
                 final String concurrency = "org.rapidpm.module.se.commons.proxy.Concurrency";
-                out.printf(typeName + " proxyObj = " + proxyGenerator+ ".make(aClass, aClass, " +concurrency+"."+type.toString()+"); %n");
-                //setze val in Proxy
+                out.printf(" if (val == null) { System.out.println(\" val == null for method  + " +m.getName()+ "\");} %n");
+                out.printf(typeName + " proxyObj = " + proxyGenerator+ ".make("+typeName+".class, "+typeName+".class, " +concurrency+"."+type.toString()+"); %n");
+
                 if (type.equals(Concurrency.OnExistingObject)){
                     out.printf("try { %n");
                     out.printf("    proxyObj.getClass().getDeclaredField(\"realSubject\").set(proxyObj, val);  %n");
@@ -132,7 +131,6 @@ public abstract class VirtualProxySourceGenerator {
                     out.printf("    e.printStackTrace(); %n");
                     out.printf("}  %n");
                 }
-                //return proxy
                 out.printf(" return proxyObj; %n");
             } else {
                 out.printf(" return val; %n");
@@ -162,21 +160,28 @@ public abstract class VirtualProxySourceGenerator {
         addMethodBodyDelegatingToRealSubject(out, m);
     }
 
-    //    private void addReturnKeyword(PrintWriter out, Method m) {
-//        if (m.getReturnType() != void.class) {
-//            out.print("return ");
-//        }
-//    }
     private void addMethodBodyDelegatingToRealSubject(PrintWriter out, Method m) {
         //hole result
         final Class<?> returnType = m.getReturnType();
-        if (m.getReturnType() == void.class) out.printf("realSubject().%s(", m.getName());
-        else {
-
+        if (returnType == void.class) out.printf("realSubject().%s(", m.getName());
+        else if(m.getName().equals("toString")){
+            out.println("String val;");
+            out.println(" if(realSubject() == null ) val = \"NullObjectHolder in \" + this.getClass() ; ");
+            out.printf(" else val = realSubject().%s(", m.getName());
+        } else if(m.getName().startsWith("get") && ! returnType.isPrimitive()){
             String name;
             if (returnType.isArray()) name = returnType.getSimpleName();
             else name = returnType.getName();
-            out.printf(name + " val = realSubject().%s(", m.getName());
+            out.println(name + " val;");
+            out.println(" if(realSubject() == null ) val = null ; ");
+            out.printf(" else val = realSubject().%s(", m.getName());   //NPE
+        } else {
+            String name;
+            if (returnType.isArray()) name = returnType.getSimpleName();
+            else name = returnType.getName();
+            out.println(name + " val;");
+            out.printf("val = realSubject().%s(", m.getName());   //NPE
+
         }
         addMethodCall(out, m);
     }
