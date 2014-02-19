@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package junit.org.rapidpm.module.se.comons.logger;
+package junit.org.rapidpm.module.se.commons.logger;
 
 import org.junit.Ignore;
 import org.junit.Test;
