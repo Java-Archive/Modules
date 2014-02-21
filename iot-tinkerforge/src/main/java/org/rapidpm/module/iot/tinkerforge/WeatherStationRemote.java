@@ -19,10 +19,7 @@ package org.rapidpm.module.iot.tinkerforge;
 
 import org.rapidpm.module.iot.tinkerforge.actor.LCD20x4;
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.sensor.Barometer;
-import org.rapidpm.module.iot.tinkerforge.sensor.Humidity;
-import org.rapidpm.module.iot.tinkerforge.sensor.Light;
-import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
+import org.rapidpm.module.iot.tinkerforge.sensor.*;
 
 /**
  * Created by Sven Ruppert on 15.02.14.
@@ -43,19 +40,31 @@ public class WeatherStationRemote {
                 lcd20x4.printLine(0, text);
             }
         }).start();
-        new Thread(new Barometer("jY4", callbackPeriod, 4223, "192.168.0.200") {
+
+
+//        @Override
+//        public void workOnSensorValueAirPressure(int airPressure) {
+//            final String text = "Air   : " + airPressure / 1000.0 + " mbar";
+//            lcd20x4.printLine(1, text);
+//        }
+//
+//        @Override
+//        public void workOnSensorValueAltitude(int altitude) {
+//            final String text = "Alt   : " + altitude / 100.0 + " m";
+////                lcd20x4.printLine(2, text);
+//        }
+
+
+        final Barometer barometer = new Barometer("jY4", callbackPeriod, 4223, "192.168.0.200");
+
+        barometer.actionAirPressure = new TinkerForgeSensor.SensorValueAction() {
             @Override
-            public void workOnSensorValueAirPressure(int airPressure) {
-                final String text = "Air   : " + airPressure / 1000.0 + " mbar";
+            public void workOnValue(int sensorvalue) {
+                final String text = "Air   : " + sensorvalue / 1000.0 + " mbar";
                 lcd20x4.printLine(1, text);
             }
-
-            @Override
-            public void workOnSensorValueAltitude(int altitude) {
-                final String text = "Alt   : " + altitude / 100.0 + " m";
-//                lcd20x4.printLine(2, text);
-            }
-        }).start();
+        };
+        new Thread(barometer).start();
 
 
         new Thread(new Light("jy2", callbackPeriod,4223,"192.168.0.200"){

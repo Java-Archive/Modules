@@ -23,39 +23,29 @@ import java.io.IOException;
 /**
  * Created by Sven Ruppert on 09.02.14.
  */
-public abstract class Barometer implements Runnable {
+public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
 
-    private String UID;
-    private int callbackPeriod;
-
-    private int port;
-    private String host;
-
-    public Barometer(final String UID, int callbackPeriod, int port, String host) {
-        this.UID = UID;
-        this.callbackPeriod = callbackPeriod;
-        this.port = port;
-        this.host = host;
+    protected BrickletBarometer getBrickletInstance() {
+        return new BrickletBarometer(UID, ipcon);
     }
 
-    public abstract void workOnSensorValueAirPressure(int airPressure);
-    public abstract void workOnSensorValueAltitude(int altitude);
+    public Barometer(String UID, int callbackPeriod, int port, String host) {
+        super(UID, callbackPeriod, port, host);
+    }
 
-    @Override
-    public void run() {
-        IPConnection ipcon = new IPConnection();
-        BrickletBarometer b = new BrickletBarometer(UID, ipcon);
+    public SensorValueAction actionAirPressure = new SensorValueAction(){};
+    public SensorValueAction actionAltitude = new SensorValueAction(){};
 
+    public void initBricklet() {
         try {
-            ipcon.connect(host, port);
-            b.setAirPressureCallbackPeriod(callbackPeriod);
-            b.setAltitudeCallbackPeriod(callbackPeriod);
-            b.addAirPressureListener(this::workOnSensorValueAirPressure);
-
-            b.addAltitudeListener(this::workOnSensorValueAltitude);
-
-        } catch (IOException | AlreadyConnectedException | TimeoutException | NotConnectedException e) {
+            bricklet.setAirPressureCallbackPeriod(callbackPeriod);
+            bricklet.setAltitudeCallbackPeriod(callbackPeriod);
+        } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
+
+        bricklet.addAirPressureListener(actionAirPressure::workOnValue);
+        bricklet.addAltitudeListener(actionAltitude::workOnValue);
     }
+
 }
