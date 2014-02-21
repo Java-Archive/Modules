@@ -65,35 +65,6 @@
             </dependency>
 
 
-            <dependency>
-                <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                <artifactId>shrinkwrap-resolver-bom</artifactId>
-                <version>2.1.0-alpha-1</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.shrinkwrap</groupId>
-                <artifactId>shrinkwrap-depchain</artifactId>
-                <version>1.2.0</version>
-                <type>pom</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.1.0.Final</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-                <artifactId>shrinkwrap-descriptors-bom</artifactId>
-                <version>2.0.0-alpha-5</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
 
 
             <dependency>
@@ -151,20 +122,20 @@
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>cdi-tablemodel</artifactId>
-                <version>${project.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>cdi-tablemodel</artifactId>
-                <version>${project.version}</version>
-                <type>test-jar</type>
-                <scope>test</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>cdi-tablemodel</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<type>jar</type>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>cdi-tablemodel</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<type>test-jar</type>-->
+                <!--<scope>test</scope>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-commons</artifactId>
@@ -625,6 +596,40 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <id>arquillian_weld-ee-embedded-11</id>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                        <artifactId>shrinkwrap-resolver-bom</artifactId>
+                        <version>2.1.0-alpha-1</version>
+                        <scope>test</scope>
+                        <type>pom</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap</groupId>
+                        <artifactId>shrinkwrap-depchain</artifactId>
+                        <version>1.2.0</version>
+                        <type>pom</type>
+                        <scope>test</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.arquillian</groupId>
+                        <artifactId>arquillian-bom</artifactId>
+                        <version>1.1.0.Final</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                        <artifactId>shrinkwrap-descriptors-bom</artifactId>
+                        <version>2.0.0-alpha-5</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+
+                </dependencies>
+            </dependencyManagement>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -656,6 +661,40 @@
         </profile>
         <profile>
             <id>arquillian_weld-se-embedded-11</id>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                        <artifactId>shrinkwrap-resolver-bom</artifactId>
+                        <version>2.1.0-alpha-1</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap</groupId>
+                        <artifactId>shrinkwrap-depchain</artifactId>
+                        <version>1.2.0</version>
+                        <type>pom</type>
+                        <scope>test</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.arquillian</groupId>
+                        <artifactId>arquillian-bom</artifactId>
+                        <version>1.1.0.Final</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                        <artifactId>shrinkwrap-descriptors-bom</artifactId>
+                        <version>2.0.0-alpha-5</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+
+                </dependencies>
+            </dependencyManagement>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>

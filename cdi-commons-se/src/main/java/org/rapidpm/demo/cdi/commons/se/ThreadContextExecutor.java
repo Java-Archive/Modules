@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 import org.jboss.weld.environment.se.contexts.ThreadScoped;
 import org.rapidpm.commons.cdi.ManagedInstanceCreator;
+import org.rapidpm.commons.cdi.se.CDICommonsSE;
 
 /**
  * User: Sven Ruppert
