@@ -40,21 +40,11 @@ import org.rapidpm.module.se.commons.logger.Logger;
 
 public class CDIJavaFxBaseApplication002Test extends JavaFXBaseTest {
 
-    @Override
-    protected Class<? extends JavaFXBaseTest> getTestClass() {
-        return CDIJavaFxBaseApplication002Test.class;
-    }
-
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
 
         @Override
         public boolean isExitAfterTest() {
             return true;
-        }
-
-        @Override
-        protected Class<? extends JavaFXBaseTest> getParentTestClass() {
-            return CDIJavaFxBaseApplication002Test.class;
         }
 
         @Inject

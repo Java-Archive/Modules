@@ -28,9 +28,6 @@ import org.rapidpm.modul.javafx.textfield.autocomplete.demo.AutoCompleteTextFiel
  */
 public class AutoCompleteTextFieldTest extends JavaFXBaseTest {
 
-    @Override protected Class<? extends JavaFXBaseTest> getTestClass() {
-        return AutoCompleteTextFieldTest.class;
-    }
 
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
 
@@ -39,10 +36,6 @@ public class AutoCompleteTextFieldTest extends JavaFXBaseTest {
 
         @Override public boolean isExitAfterTest() {
             return false;
-        }
-
-        @Override protected Class<? extends JavaFXBaseTest> getParentTestClass() {
-            return AutoCompleteTextFieldTest.class;
         }
 
         @Override public void testImpl(Stage stage) {

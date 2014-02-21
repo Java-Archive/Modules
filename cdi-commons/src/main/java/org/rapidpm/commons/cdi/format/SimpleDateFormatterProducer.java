@@ -87,7 +87,7 @@ public class SimpleDateFormatterProducer {
                 })
                 .get();
 
-
+        return sdf;
 
 
         //Version ohne Transferobject
@@ -110,7 +110,7 @@ public class SimpleDateFormatterProducer {
 //                .get();
 
 
-         return sdf;
+
 
 //        for (final Annotation qualifier : qualifiers) {
 //            if (qualifier instanceof CDISimpleDateFormatter) {

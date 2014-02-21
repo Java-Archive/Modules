@@ -162,8 +162,8 @@
           <content-type name="JavaScript" enabled="true" />
           <content-type name="JSP" enabled="true" />
           <content-type name="JSPx" enabled="true" />
-          <content-type name="Groovy" enabled="true" />
           <content-type name="VTL" enabled="true" />
+          <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>
       </qualified-text-editor>
@@ -560,6 +560,11 @@
         <option value="$PROJECT_DIR$/../se-tablemodel/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../javafx-dialog/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectKey">
     <option name="state" value="https://github.com/RapidPM/Modules.git" />
@@ -569,6 +574,9 @@
   </component>
   <component name="TaskProjectConfiguration">
     <server type="JIRA" url="http://jira.rapidpm.org" />
+  </component>
+  <component name="ZipChangesCommitExecutor">
+    <option name="PATCH_PATH" value="" />
   </component>
 </project>
 

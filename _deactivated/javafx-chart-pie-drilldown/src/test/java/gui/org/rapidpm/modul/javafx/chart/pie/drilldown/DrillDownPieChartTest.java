@@ -32,9 +32,7 @@ import org.rapidpm.commons.cdi.fx.JavaFXBaseTest;
 public class DrillDownPieChartTest extends JavaFXBaseTest {
 
 
-    @Override protected Class<? extends JavaFXBaseTest> getTestClass() {
-        return DrillDownPieChartTest.class;
-    }
+
 
     public static class TestImpl extends JavaFXBaseTest.JavaFXBaseTestImpl {
 
@@ -46,9 +44,7 @@ public class DrillDownPieChartTest extends JavaFXBaseTest {
             return false;
         }
 
-        @Override protected Class<? extends JavaFXBaseTest> getParentTestClass() {
-            return DrillDownPieChartTest.class;
-        }
+
 
         @Override public void testImpl(Stage stage) {
             stage.setTitle("DrillDownPieChartTest");  //i18n
