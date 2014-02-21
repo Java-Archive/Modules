@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BuildServerSettings">
+    <option name="LOGIN" value="" />
+    <option name="SERVER_URL" value="http://buildserver" />
+    <option name="PASSWORD" />
+    <option name="REMEMBER_ME" value="true" />
+    <option name="USE_IDEA_PROXY_SETTINGS" value="true" />
+    <option name="INSPECTIONS_BUILD_TYPE_IDS" />
+    <option name="DUPLICATES_BUILD_TYPE_IDS" />
+    <option name="COVERAGE_SETTINGS" />
+    <option name="TEST_STATUS_ENABLED" value="true" />
+    <option name="TEST_STATUS_SHOW_SUCCESSFUL" value="false" />
+    <option name="ARTIFACTS_BUILD_TYPE_IDS" />
+    <option name="PERFORM_COMMIT_IF_SUCCESSFUL" value="true" />
+    <option name="PERFORM_COMMIT_IF_NO_NEW_FAILED_TESTS" value="false" />
+    <option name="REQUEST_CONFIRMATON" value="false" />
+    <option name="PRE_TESTED_COMMIT" value="true" />
+    <option name="PROJECT_STATUS_DIALOG_SPLITTER_DIVIDER_LOCATION" value="500" />
+    <option name="CHANGES_STATUS_DIALOG_SPLITTER_DIVIDER_LOCATION" value="500" />
+    <option name="FILTER_BY_STATUS" value="false" />
+    <option name="FILTER_MARKED_AS_FIXED" value="false" />
+    <option name="SHOW_CLOSE_PROMPT" value="true" />
+    <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
+    <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\workspace\svenruppert\Demos\javafx-dialog\.idea\libraries\Maven__org_rapidpm_demo_cdi_commons_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\workspace\svenruppert\Demos\javafx-dialog\.idea\libraries\Maven__org_rapidpm_demo_cdi_commons_se_1_0.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javafx-dialog.iml" afterPath="$PROJECT_DIR$/javafx-dialog.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+    </list>
+    <ignored path="javafx-dialog-confirm.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/pom.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1374503000131" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/pom.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372072369830" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/view/sub/edit/RechnungseingangsbuchEditController.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372331060501" ignored="false" />
+    <file path="/RechnungseingangsbuchEditController.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372331034388" ignored="false" />
+    <file path="/Dialog.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372326485116" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/common/javafx/TextFieldValueValidator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372175188398" ignored="false" />
+    <file path="/TextFieldValueValidator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372172708679" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/test/java/siteos/leasware/client/gui/rechnungseingangsbuch/Main.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372074233439" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/common/javafx/textfield/NumberTextField.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372163446484" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/common/javafx/textfield/CurrencyTextField.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372163434575" ignored="false" />
+    <file path="/CurrencyTextField.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372163431112" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/view/sub/edit/RechnungseingangsbuchEditPane.fxml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372075080896" ignored="false" />
+    <file path="/RechnungseingangsbuchEditPane.fxml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372074821923" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/view/RechnungseingangsbuchController.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372328533199" ignored="false" />
+    <file path="/RechnungseingangsbuchController.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372328518245" ignored="false" />
+    <file path="/a.dummy" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1373543157528" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/common/javafx/tabel/cell/CurrencyCallback.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372150318135" ignored="false" />
+    <file path="/CurrencyCallback.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078080139" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/view/ro/RechnungseingangsbuchROController.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078124426" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnung/RechnungsPanel.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327035064" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/TankkartenManagerImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372144143925" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/scheduler/JobScheduler.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/resources/META-INF/mandant0-hibernate.cfg.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372148412534" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.common/src/main/java/siteos/leasware/model/rechnung/ReRechnung.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/resources/META-INF/mandant2-hibernate.cfg.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372148412534" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/RefiManagerImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/resources/META-INF/mandant1-hibernate.cfg.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372148412534" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/VerdienstreportJobImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/administration/LeasingobjektVerwaltungsPanel.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/AutobankExportJobImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/rmi/BeanCallerPool.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/RechnungslaufJobImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/TankkartenAbrechnungslaufJobImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/hibernate/HibernateUtil.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/BuchungsimportJobImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/WartungJobImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/administration/job/VerdienstreportPanel.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078282579" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/infos/changelog.txt" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078402619" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/rmi/RefiManagerBeanCaller.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372078759987" ignored="false" />
+    <file path="/Dummy.txt" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1374502812824" ignored="false" />
+    <file path="dbtable:/d1965932/a3628c8a-f4ff-4a4e-91f8-9c66b60a4b1a/.LEASWARE_DSK.RE_EINGANGSBUCH" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372164407082" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/pom.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372321776237" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/Main.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372081042846" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/Operation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/GesamtrestwertOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/impl/RestwertOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372081042846" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Vertrag.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/ProvisionBasis.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Servicekomponente.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Soa.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Provision.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Einmalkosten.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/ProzentEuroPair.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Deckungsbeitrag.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Zahlungsart.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/ProvisionMaster.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372081042846" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Fahrzeug.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/mapper/OperationParam.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/mapper/VertragOperationParam.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/FahrzeuglistenpreisOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/MszOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323162033" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/FahrzeugrestwertOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/BarzahlungOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323447958" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/MbglOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/Operation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372081042846" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/GesamtlistenpreisOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/GlrOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/EinmalkostenOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/RabattOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/EinstandskostenOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372315175323" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/FlrOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372324070604" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/impl/MszOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372081042846" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/util/RateOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372081042846" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/Workflow.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372322910540" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/ParamRegistry.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/ResultRegistry.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/BasicOperationResult.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/ProzentMaster.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/Nachruestung.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/config/SetupFile.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372144143925" ignored="false" />
+    <file path="/fragment.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323314018" ignored="false" />
+    <file path="/RechnungseingangsbuchManagerBean.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372167690961" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/rechnungseingangsbuch/impl/RechnungseingangsbuchManagerBean.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327097235" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/rechnungseingangsbuch/rmi/RechnungseingangsbuchManagerImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372168299111" ignored="false" />
+    <file path="/RechnungseingangsbuchManagerImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372168113071" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/hibernate/impl/PostLoadListener.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372149753166" ignored="false" />
+    <file path="/PostLoadListener.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372149747283" ignored="false" />
+    <file path="dbtable:/d1965932/a3628c8a-f4ff-4a4e-91f8-9c66b60a4b1a/.LEASWARE_DSK.RE_EINGANGSBUCH_AUD" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372150040242" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/TimeCounterExecutor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372165273938" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/common/javafx/DatePickerValueValidator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372171768553" ignored="false" />
+    <file path="/DatePickerValueValidator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372171691423" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/test/java/siteos/leasware/client/gui/TextFieldValueValidatorTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372176808682" ignored="false" />
+    <file path="/TextFieldValueValidatorTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372170745836" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/userdata/leasware-client.log" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372242136614" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.ejb/src/main/java/siteos/leasware/ejb/rechnungseingangsbuch/rmi/RechnungseingangsbuchManagerCommon.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372168117028" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/rmi/RechnungseingangsbuchManagerBeanCaller.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372168254142" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/view/TableFilter.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372328638950" ignored="false" />
+    <file path="/TableFilter.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372328642334" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/RechnungseingangsbuchConstants.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372168807195" ignored="false" />
+    <file path="/RechnungseingangsbuchConstants.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372168805306" ignored="false" />
+    <file path="db-console:/d1965932/a3628c8a-f4ff-4a4e-91f8-9c66b60a4b1a/" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372174361690" ignored="false" />
+    <file path="/LeaseOS - DSK" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372174351234" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/rechnungseingangsbuch/model/Json2TransientRechnungMapper.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372176519217" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/userdata/leasware-client.log" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372176821949" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/gui/common/AutoCompleteTextField.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372241964368" ignored="false" />
+    <file path="/AutoCompleteTextField.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372241829342" ignored="false" />
+    <file path="$PROJECT_DIR$/../javafx-searchbox/src/main/java/org/rapidpm/demo/javafx/searchbox/searchbox/SearchBox.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372326386361" ignored="false" />
+    <file path="/SearchBox.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372242876517" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/logger/Logger.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372246727580" ignored="false" />
+    <file path="/Logger.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372246726336" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/logger/CDILogger.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372248092392" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/format/SimpleDateFormatterProducer.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372260124817" ignored="false" />
+    <file path="/SimpleDateFormatterProducer.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372256718755" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/PropertyRegistryImpl.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249149991" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/impl/file/CDIFileBased.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249247904" ignored="false" />
+    <file path="/CDIFileBased.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249122954" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/impl/file/CDIPropertyRegistryFileBased.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249284448" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/PropertyRegistryServiceProducer.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249284448" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/impl/file/FileBasedRegistriesProducer.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249284448" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/impl/file/FileBasedPropertyRegistryService.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249284448" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/clazz/PackageClassLoader.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372249428581" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/impl/file/CDIPropertyregistryFileBasedLiteral.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372250858068" ignored="false" />
+    <file path="/CDIPropertyregistryFileBasedLiteral.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372250177968" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/ContextResolver.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372256589266" ignored="false" />
+    <file path="/ContextResolver.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372256587807" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons/src/main/java/org/rapidpm/demo/cdi/commons/registry/property/impl/DefaultPropertyContextResolver.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372256755614" ignored="false" />
+    <file path="/DefaultPropertyContextResolver.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372256601967" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/VertragBuilder.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/workflows/TestWorkflow.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372324124511" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/GesamtProvisionOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372316166618" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/GesamtDeckungsbeitragOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372316166618" ignored="false" />
+    <file path="/Operation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372311203645" ignored="false" />
+    <file path="/Workflow.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372322870886" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/RegistryHolder.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="/RegistryHolder.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372311394324" ignored="false" />
+    <file path="/ResultRegistry.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372311476845" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/BarzahlungOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323307657" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/workflow/KalkulationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323718551" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/DeploymentContainer.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/EinmalkostenOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323312090" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/EinstandskostenOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323320570" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/FahrzeuglistenpreisOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323324730" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/FahrzeugrestwertOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323329178" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/GesamtlistenpreisOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323334624" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/GesamtrestwertOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323339008" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/MbglOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323343016" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/OperationTree.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../cdi-commons-se/pom.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372313924874" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/basis/RateOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323297427" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/IProvisionParameter.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/basis/ZinsOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372318234118" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/basis/RateOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/basis/BarwertOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323528578" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/resources/META-INF/beans.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/basis/ZinsOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323301594" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/data/ProvisionDeckungsbeitragMaster.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/java/junit/de/siteos/operationtree/basis/BarwertOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323525095" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/IOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/basis/RateOperation2.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/resources/arquillian.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/atlassian-ide-plugin.xml" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372314328141" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/main/java/de/siteos/operationtree/operations/basis/RestwertOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372318386391" ignored="false" />
+    <file path="/RestwertOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372318377629" ignored="false" />
+    <file path="/BarwertOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372318304116" ignored="false" />
+    <file path="/ZinsOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372318219168" ignored="false" />
+    <file path="/EinstandskostenOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372315155490" ignored="false" />
+    <file path="/GesamtDeckungsbeitragOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372315718072" ignored="false" />
+    <file path="/GesamtProvisionOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372315875388" ignored="false" />
+    <file path="/FlrOperation.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372315962260" ignored="false" />
+    <file path="/BarzahlungOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372316373342" ignored="false" />
+    <file path="/KalkulationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323716129" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../operationtree/src/test/resources/log4j.properties" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372322008325" ignored="false" />
+    <file path="/BarwertOperationTest.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372323511464" ignored="false" />
+    <file path="/RechnungsPanel.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327034064" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../leaseos/siteos.leaseos.client.swing/src/main/java/siteos/leasware/client/ClientCdiHolder.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327144846" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableDateTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableDoubleTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableStringTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableEnumTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableLongTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableFloatTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableBooleanTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableBigIntTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableBigDecimalTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableShortTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/AbstractFilterableNumberTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/IFilterableTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableByteTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/ColumnFilterEvent.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/AbstractFilterableTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/AbstractFilterEditor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/TextFilterEditor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/FilterContextMenu.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/EnumFilterEditor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/IFilterEditor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/DateFilterEditor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/NumberFilterEditor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/editor/BooleanFilterEditor.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/FilteredTableView.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/control/CheckBoxMenuItem.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/control/TextFieldMenuItem.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/control/TitledSeparatorMenuItem.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/control/ComboBoxMenuItem.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/control/DateMenuItem.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/operators/NumberOperator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/operators/DateOperator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/operators/StringOperator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/operators/EnumOperator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/operators/IFilterOperator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/operators/BooleanOperator.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <file path="$PROJECT_DIR$/../filtered-tableview/src/main/java/org/rapidpm/demo/javafx/tableview/filtered/tablecolumn/FilterableIntegerTableColumn.java" changelist="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" time="1372327867617" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules />
+    <ui_properties />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="javafx-dialog-confirm" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="117" column="0" selection-start="4334" selection-end="5297" vertical-scroll-proportion="0.35353535">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="66" selection-end="66" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dialog.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="217" column="91" selection-start="8041" selection-end="8041" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="beans.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/beans.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="8" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="mavenHome" value="C:\opt\apache-maven-3.0.5" />
+        <option name="printErrorStackTraces" value="true" />
+        <option name="usePluginRegistry" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="enabledProfiles">
+      <list>
+        <option value="javafx" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="javafx-dialog" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="javafx-dialog" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Profiles" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProfilesNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="1.7" />
+    <option name="vmOptions" value="-Xmx128m" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1923" />
+    <option name="y" value="3" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confirm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javafx-dialog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confirm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Revu" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="options.lastSelected" value="MavenSettings" />
+    <property name="FullScreen" value="false" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../javafx-searchbox" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+  </component>
+  <component name="PsiViewer.ProjectComponent">
+    <option name="HIGHLIGHT" value="false" />
+    <option name="FILTER_WHITESPACE" value="false" />
+    <option name="SHOW_PROPERTIES" value="true" />
+    <option name="SPLIT_DIVIDER_POSITION" value="300" />
+    <option name="AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="AUTOSCROLL_FROM_SOURCE" value="false" />
+  </component>
+  <component name="PublishConfig">
+    <servers>
+      <server id="5622a2c7-452b-48e2-aae2-29266374b710">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </server>
+      <server id="61a6decd-1736-476d-9b7c-cbe03e8ad045">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </server>
+    </servers>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\svenruppert\Demos\javafx-dialog\src\main\resources" />
+      <recent name="C:\workspace\svenruppert\Demos\javafx-dialog" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\svenruppert\Demos\javafx-dialog-confirm\src\main\resources\images\confirm" />
+      <recent name="C:\workspace\svenruppert\Demos\javafx-dialog-confirm\src\main\resources\org\rapidpm\demo\javafx\dialog\confirm" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cfffc70f-c3aa-4a55-badb-9c7b68dd6cb0" name="Default" comment="" />
+      <created>1372071336977</created>
+      <updated>1372071336977</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1923" y="3" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3275488" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23344018" sideWeight="0.6724512" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Sonar" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="reVu" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19337606" sideWeight="0.6724512" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="PsiViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TeamCity" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286334" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="299" column="62" selection-start="11132" selection-end="11132" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="84" selection-start="756" selection-end="756" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="66" selection-end="66" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="335" column="44" selection-start="12332" selection-end="12332" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="93" selection-start="756" selection-end="756" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="355" column="86" selection-start="12993" selection-end="12993" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="355" column="86" selection-start="12993" selection-end="12993" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="268" column="20" selection-start="10079" selection-end="10079" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="66" selection-end="66" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/rapidpm/demo/javafx/dialog/confirm/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="217" column="91" selection-start="8041" selection-end="8041" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/beans.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="8" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="0" selection-start="4334" selection-end="5297" vertical-scroll-proportion="0.35353535">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>scala-compiler</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>javafx-dialog</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.cal10n:cal10n-api:0.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+

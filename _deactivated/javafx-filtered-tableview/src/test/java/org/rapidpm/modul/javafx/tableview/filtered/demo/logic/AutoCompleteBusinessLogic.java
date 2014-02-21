@@ -27,7 +27,6 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public class AutoCompleteBusinessLogic {
 
-    //private static final Logger logger = Logger.getLogger(BusinessLogic.class);
     private @Inject @CDILogger Logger logger;
 
     public void doSomething(PersistentPojo pojo) {

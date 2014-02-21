@@ -179,36 +179,39 @@
                 <scope>test</scope>
                 <type>test-jar</type>
             </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>javafx-dialog</artifactId>
-                <version>${project.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>javafx-searchbox</artifactId>
-                <version>${project.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>javafx-filtered-tableview</artifactId>
-                <version>${project.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>javafx-autocomplete-textfield</artifactId>
-                <version>${project.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>javafx-progressbartable</artifactId>
-                <version>${project.version}</version>
-                <scope>compile</scope>
-            </dependency>
+
+
+            <!--deactivated-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-dialog</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-searchbox</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-filtered-tableview</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-autocomplete-textfield</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-progressbartable</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
 
 
             <dependency>
@@ -256,66 +259,66 @@
 
 
             <!-- Lucene f SearchBox-->
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-core</artifactId>
-                <version>4.5.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-analyzers-common</artifactId>
-                <version>4.5.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-queryparser</artifactId>
-                <version>4.5.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-queries</artifactId>
-                <version>4.5.1</version>
-                <scope>compile</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-core</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-analyzers-common</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-queryparser</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-queries</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
             <!-- Lucene f SearchBox-->
             <!--Solr-->
-            <dependency>
-                <groupId>org.apache.solr</groupId>
-                <artifactId>solr-solrj</artifactId>
-                <version>4.5.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpcore</artifactId>
-                <version>4.3</version>
-                <scope>compile</scope>
-                <type>jar</type>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.3.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpmime</artifactId>
-                <version>4.3.1</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>1.8</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.solr</groupId>-->
+                <!--<artifactId>solr-solrj</artifactId>-->
+                <!--<version>4.5.1</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.httpcomponents</groupId>-->
+                <!--<artifactId>httpcore</artifactId>-->
+                <!--<version>4.3</version>-->
+                <!--<scope>compile</scope>-->
+                <!--<type>jar</type>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.httpcomponents</groupId>-->
+                <!--<artifactId>httpclient</artifactId>-->
+                <!--<version>4.3.1</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.httpcomponents</groupId>-->
+                <!--<artifactId>httpmime</artifactId>-->
+                <!--<version>4.3.1</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>commons-codec</groupId>-->
+                <!--<artifactId>commons-codec</artifactId>-->
+                <!--<version>1.8</version>-->
+            <!--</dependency>-->
             <!--Solr-->
 
-            <dependency>
-                <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast</artifactId>
-                <version>3.0.1</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.hazelcast</groupId>-->
+                <!--<artifactId>hazelcast</artifactId>-->
+                <!--<version>3.0.1</version>-->
+            <!--</dependency>-->
 
 
             <!--<dependency>-->
@@ -378,33 +381,12 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.cenqua.clover</groupId>
-            <artifactId>clover</artifactId>
-            <scope>compile</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.cenqua.clover</groupId>-->
+            <!--<artifactId>clover</artifactId>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
         <!--Arquillian-->
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-depchain</artifactId>
-            <type>pom</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap</groupId>
-            <artifactId>shrinkwrap-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap</groupId>
-            <artifactId>shrinkwrap-impl-base</artifactId>
-            <scope>test</scope>
-        </dependency>
 
 
     </dependencies>
@@ -751,16 +733,22 @@
         <module>../se-commons</module>
         <module>../se-genericcache</module>
         <module>../cdi-commons</module>
-        <!--<module>../cdi-tablemodel</module>-->
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
         <module>../javafx-commons</module>
-        <module>../javafx-chart-pie-drilldown</module>
-        <module>../javafx-autocomplete-textfield</module>
-        <module>../javafx-dialog</module>
-        <module>../javafx-filtered-tableview</module>
-        <module>../javafx-progressbartable</module>
-        <module>../javafx-searchbox</module>
+
+
+
+
+
+
+        <!--deactivated-->
+        <!--<module>../cdi-tablemodel</module>-->
+        <!--<module>../javafx-chart-pie-drilldown</module>-->
+        <!--<module>../javafx-autocomplete-textfield</module>-->
+        <!--<module>../javafx-filtered-tableview</module>-->
+        <!--<module>../javafx-progressbartable</module>-->
+        <!--<module>../javafx-searchbox</module>-->
     </modules>
 
 

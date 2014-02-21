@@ -42,7 +42,7 @@ public abstract class DrillDownPieChart<T> extends PieChart {
 
     private @Inject @CDILogger Logger logger;
 
-    private @Inject @CDIPropertyRegistryService PropertyRegistryService registryService;
+//    private @Inject @CDIPropertyRegistryService PropertyRegistryService registryService;
     private @Inject DrillDownModulKeyMapper keyMapper;
 
     private ObservableList<PieChart.Data> rootDataList;
