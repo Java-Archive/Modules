@@ -299,6 +299,35 @@
                 <!--<scope>test</scope>-->
             <!--</dependency>-->
 
+
+            <!--arangodb-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-joda</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <!--arangodb-->
+
             <dependency>
                 <groupId>org.loadui</groupId>
                 <artifactId>testFx</artifactId>
@@ -775,7 +804,7 @@
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
         <module>../javafx-commons</module>
-
+        <module>../iot-tinkerforge</module>
 
 
 
