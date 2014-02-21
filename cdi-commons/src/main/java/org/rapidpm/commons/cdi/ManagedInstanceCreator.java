@@ -78,11 +78,6 @@ public class ManagedInstanceCreator {
         return result;
     }
 
-
-
-
-
-
     public <T> T activateCDI(T t) {
         final Class aClass = t.getClass();
         if (logger.isDebugEnabled()) {

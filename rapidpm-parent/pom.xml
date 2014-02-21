@@ -56,7 +56,6 @@
                 <version>2.1.0.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
-
             </dependency>
             <dependency>
                 <groupId>org.jboss.weld.se</groupId>
@@ -235,12 +234,6 @@
                 <artifactId>poi-scratchpad</artifactId>
                 <version>3.9</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>com.google.guava</groupId>-->
-                <!--<artifactId>guava</artifactId>-->
-                <!--<version>15.0</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
@@ -333,6 +326,12 @@
             <!--</dependency>-->
 
             <dependency>
+                <groupId>org.loadui</groupId>
+                <artifactId>testFx</artifactId>
+                <version>2.7.5</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.11</version>
@@ -410,12 +409,52 @@
 
     </dependencies>
 
+
+
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.16</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-repository-plugin</artifactId>
+                    <version>2.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.atlassian.maven.plugins</groupId>
+                    <artifactId>maven-clover2-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -426,7 +465,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
                 <executions>
                     <execution>
                         <goals>
@@ -439,7 +477,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <goals>
@@ -453,7 +490,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
                 <!--<dependencies>-->
                 <!--<dependency>-->
                 <!--<groupId>org.apache.maven.surefire</groupId>-->
@@ -462,6 +498,7 @@
                 <!--</dependency>-->
                 <!--</dependencies>-->
                 <configuration>
+                    <forkMode>always</forkMode>
                     <!--<skipTests>true</skipTests>-->
                     <!--<forkCount>2.5C</forkCount>-->
                     <!--<forkCount>1</forkCount>-->
@@ -476,12 +513,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-repository-plugin</artifactId>
-                <version>2.3.1</version>
             </plugin>
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
                 <artifactId>maven-clover2-plugin</artifactId>
-                <version>3.2.0</version>
             </plugin>
             <!--<plugin>-->
                 <!--<artifactId>kotlin-maven-plugin</artifactId>-->
@@ -529,7 +564,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
                         <configuration>
                             <aggregate>true</aggregate>
                             <show>private</show>
@@ -547,12 +581,10 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-release-plugin</artifactId>
-                        <version>2.4.2</version>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.4</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -577,6 +609,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
+                            <forkMode>always</forkMode>
                             <!--<includes>-->
                             <!--<include>**/junit/**</include>-->
                             <!--</includes>-->
@@ -693,6 +726,20 @@
                     <!--</plugin>-->
                 <!--</plugins>-->
             <!--</build>-->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <!--<includes>-->
+                            <!--<include>**/junit/**</include>-->
+                            <!--<include>**/cdi/**</include>-->
+                            <!--</includes>-->
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
 
