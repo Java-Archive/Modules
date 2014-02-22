@@ -30,7 +30,7 @@ public class ArangoDBRemote {
 
     static {
         try {
-            client = new ArangoDbHttpClient.Builder().host("192.168.0.200") //TODO IP dynamisch zuweisen
+            client = new ArangoDbHttpClient.Builder().host("192.168.0.106") //TODO IP dynamisch zuweisen
                     .port(8529)
                     .username("root")
                     .password("")

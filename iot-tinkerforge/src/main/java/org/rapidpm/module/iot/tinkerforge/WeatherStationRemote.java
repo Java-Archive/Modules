@@ -33,7 +33,7 @@ public class WeatherStationRemote {
 
     public static void main(String args[]) throws Exception {
         new Thread(new Temperature("dXj", callbackPeriod, 4223, "192.168.0.200") {
-            @Override
+
             public void workOnSensorValue(int temperature) {
                 final double tempNorm = temperature / 100.0;
                 final String text = "Temp  : " + tempNorm + " °C";

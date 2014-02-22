@@ -17,19 +17,31 @@
 package org.rapidpm.module.iot.tinkerforge.persistence.arangodb;
 
 import data.SensorDataElement;
+import org.arangodb.objectmapper.ArangoDb4JException;
 import org.arangodb.objectmapper.ArangoDbRepository;
 import org.arangodb.objectmapper.Database;
+import org.rapidpm.module.iot.tinkerforge.persistence.ISensorDataRepository;
 
 /**
  * Created by Sven Ruppert on 16.02.14.
  */
-public class SensorDataRepository extends ArangoDbRepository<SensorDataElement> {
+public class SensorDataRepository extends ArangoDbRepository<SensorDataElement> implements ISensorDataRepository<SensorDataElement> {
     /**
      * Constructor
      *
-     * @param database  the ArangoDB database
+     * @param database the ArangoDB database
      */
     public SensorDataRepository(Database database) {
         super(database, SensorDataElement.class);
+    }
+
+    @Override
+    public SensorDataElement create(SensorDataElement data) {
+        try {
+            return super.create(data);
+        } catch (ArangoDb4JException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
