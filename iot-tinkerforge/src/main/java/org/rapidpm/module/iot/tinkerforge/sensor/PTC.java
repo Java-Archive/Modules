@@ -16,31 +16,37 @@
 
 package org.rapidpm.module.iot.tinkerforge.sensor;
 
-import com.tinkerforge.BrickletTemperature;
+import com.tinkerforge.BrickletPTC;
 import com.tinkerforge.NotConnectedException;
 import com.tinkerforge.TimeoutException;
 
 /**
- * Created by Sven Ruppert on 09.02.14.
+ * Created by Sven Ruppert on 22.02.14.
  */
-public class Temperature extends TinkerForgeSensor<BrickletTemperature> {
+public class PTC extends TinkerForgeSensor<BrickletPTC>{
 
-    protected BrickletTemperature getBrickletInstance() {
-        return new BrickletTemperature(UID, ipcon);
-    }
-
-    public Temperature(String UID, int callbackPeriod, int port, String host) {
+    public PTC(String UID, int callbackPeriod, int port, String host) {
         super(UID, callbackPeriod, port, host);
     }
 
+
+    public SensorValueAction actionResistance = new SensorValueAction(){};
     public SensorValueAction actionTemperature = new SensorValueAction(){};
 
+    @Override
     public void initBricklet() {
         try {
+            bricklet.setResistanceCallbackPeriod(callbackPeriod);
             bricklet.setTemperatureCallbackPeriod(callbackPeriod);
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
+        bricklet.addResistanceListener(actionResistance::workOnValue);
         bricklet.addTemperatureListener(actionTemperature::workOnValue);
+    }
+
+    @Override
+    protected BrickletPTC getBrickletInstance() {
+        return new BrickletPTC(UID,ipcon);
     }
 }
