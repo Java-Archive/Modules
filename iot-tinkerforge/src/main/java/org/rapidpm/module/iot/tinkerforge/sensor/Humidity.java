@@ -23,36 +23,26 @@ import java.io.IOException;
 /**
  * Created by Sven Ruppert on 15.02.14.
  */
-public abstract class Humidity implements Runnable {
+public abstract class Humidity extends TinkerForgeSensor<BrickletHumidity> {
 
-    private String UID;
-    private int callbackPeriod;
-    private int port;
-    private String host;
-    private BrickletHumidity bricklet;
-
-
-    public Humidity(final String UID, int callbackPeriod, int port, String host) {
-        this.UID = UID;
-        this.callbackPeriod = callbackPeriod;
-        this.port = port;
-        this.host = host;
+    protected BrickletHumidity getBrickletInstance() {
+        return new BrickletHumidity(UID, ipcon);
     }
 
-    public abstract void workOnSensorValue(int humidity);
+    public Humidity(String UID, int callbackPeriod, int port, String host) {
+        super(UID, callbackPeriod, port, host);
+    }
 
-    @Override
-    public void run() {
-        IPConnection ipcon = new IPConnection();
-        bricklet = new BrickletHumidity(UID, ipcon);
+    public SensorValueAction actionHumidity = new SensorValueAction(){};
 
+    public void initBricklet(){
         try {
-            ipcon.connect(host, port);
-            ipcon.setAutoReconnect(true);
             bricklet.setHumidityCallbackPeriod(callbackPeriod);
-            bricklet.addHumidityListener(this::workOnSensorValue);
-        } catch (IOException | AlreadyConnectedException | TimeoutException | NotConnectedException e) {
+            bricklet.addHumidityListener(actionHumidity::workOnValue);
+        } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
     }
+
+
 }

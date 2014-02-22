@@ -21,25 +21,31 @@ import org.rapidpm.module.iot.tinkerforge.actor.LCD20x4;
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
 import org.rapidpm.module.iot.tinkerforge.sensor.*;
 
+import static org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor.SensorValueAction;
+
 /**
  * Created by Sven Ruppert on 15.02.14.
  */
 public class WeatherStationRemote {
 
+    public static final String HOST = "192.168.0.200";
+    public static final int PORT = 4223;
     private static int callbackPeriod = 10000;
 
     private static final LCD20x4 lcd20x4 = new LCD20x4("jvX");
 
 
     public static void main(String args[]) throws Exception {
-        new Thread(new Temperature("dXj", callbackPeriod, 4223, "192.168.0.200") {
+        final Temperature temperature = new Temperature("dXj", callbackPeriod, PORT, HOST);
+        temperature.actionTemperature = new SensorValueAction() {
             @Override
-            public void workOnSensorValue(int temperature) {
-                final double tempNorm = temperature / 100.0;
+            public void workOnValue(int sensorvalue) {
+                final double tempNorm = sensorvalue / 100.0;
                 final String text = "Temp  : " + tempNorm + " °C";
                 lcd20x4.printLine(0, text);
             }
-        }).start();
+        };
+        new Thread(temperature).start();
 
 
 //        @Override
@@ -55,9 +61,9 @@ public class WeatherStationRemote {
 //        }
 
 
-        final Barometer barometer = new Barometer("jY4", callbackPeriod, 4223, "192.168.0.200");
+        final Barometer barometer = new Barometer("jY4", callbackPeriod, PORT, HOST);
 
-        barometer.actionAirPressure = new TinkerForgeSensor.SensorValueAction() {
+        barometer.actionAirPressure = new SensorValueAction() {
             @Override
             public void workOnValue(int sensorvalue) {
                 final String text = "Air   : " + sensorvalue / 1000.0 + " mbar";
@@ -67,7 +73,7 @@ public class WeatherStationRemote {
         new Thread(barometer).start();
 
 
-        new Thread(new Light("jy2", callbackPeriod,4223,"192.168.0.200"){
+        new Thread(new Light("jy2", callbackPeriod, PORT, HOST) {
             @Override
             public void workOnSensorValue(int illuminance) {
                 final double lux = illuminance / 10.0;
@@ -76,7 +82,7 @@ public class WeatherStationRemote {
             }
         }).start();
 
-        new Thread(new Humidity("kfd", callbackPeriod, 4223, "192.168.0.200") {
+        new Thread(new Humidity("kfd", callbackPeriod, PORT, HOST) {
             @Override
             public void workOnSensorValue(int humidity) {
                 final double tempNorm = humidity / 10.0;

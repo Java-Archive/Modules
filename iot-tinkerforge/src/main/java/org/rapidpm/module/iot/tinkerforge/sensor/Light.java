@@ -23,38 +23,25 @@ import java.io.IOException;
 /**
  * Created by Sven Ruppert on 09.02.14.
  */
-public abstract class Light implements Runnable {
+public abstract class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
 
-    private String UID;
-    private int callbackPeriod;
-
-    private int port;
-    private String host;
-
-    public BrickletAmbientLight bricklet;
-
-
-    public Light(final String UID, int callbackPeriod, int port, String host) {
-        this.UID = UID;
-        this.callbackPeriod = callbackPeriod;
-        this.port = port;
-        this.host = host;
+    public Light(String UID, int callbackPeriod, int port, String host) {
+        super(UID, callbackPeriod, port, host);
     }
 
-    public abstract void workOnSensorValue(int illuminance);
+    protected BrickletAmbientLight getBrickletInstance() {
+        return new BrickletAmbientLight(UID, ipcon);
+    }
 
-    @Override
-    public void run() {
-        IPConnection ipcon = new IPConnection();
-        bricklet = new BrickletAmbientLight(UID, ipcon);
+    public SensorValueAction actionAmbientLight = new SensorValueAction(){};
+
+    public void initBricklet(){
         try {
-            ipcon.connect(host, port);
             bricklet.setIlluminanceCallbackPeriod(callbackPeriod);
-            bricklet.addIlluminanceListener(this::workOnSensorValue);
-        } catch (IOException
-                | AlreadyConnectedException
-                | TimeoutException | NotConnectedException e) {
+        } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
+        bricklet.addIlluminanceListener(actionAmbientLight::workOnValue);
     }
+
 }
