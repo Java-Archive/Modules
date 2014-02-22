@@ -1,0 +1,190 @@
+23:56:03,058 DEBUG [logging] Logging Provider: org.jboss.logging.Log4jLoggerProvider
+23:56:03,063 INFO  [Version] WELD-000900: 2.1.0 (Final)
+23:56:03,311 DEBUG [Bootstrap] WELD-000124: Using 2 threads for bootstrap
+23:56:03,504 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|ApplicationContext
+23:56:03,517 DEBUG [Reflection] WELD-000601: interface javax.inject.Singleton is missing @Target. Weld will use this annotation, however this may make the application unportable.
+23:56:03,518 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|SingletonContext
+23:56:03,528 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|BoundSessionContext
+23:56:03,531 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|BoundConversationContext
+23:56:03,534 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|BoundRequestContext
+23:56:03,534 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|RequestContext
+23:56:03,538 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|DependentContext
+23:56:03,543 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|HttpSessionContext
+23:56:03,546 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|HttpSessionDestructionContext
+23:56:03,547 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|HttpConversationContext
+23:56:03,547 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|HttpRequestContext
+23:56:03,548 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|deployment|EjbRequestContext
+23:56:03,553 WARN  [Bootstrap] WELD-000135: Legacy deployment metadata provided by the integrator. Certain functionality will not be available.
+23:56:03,603 DEBUG [Bootstrap] WELD-000106: Bean: Built-in Bean [javax.enterprise.inject.spi.BeanManager] with qualifiers [@Default]
+23:56:03,604 DEBUG [Bootstrap] WELD-000106: Bean: Built-in Bean [org.jboss.weld.manager.BeanManagerImpl] with qualifiers [@Default]
+23:56:03,618 WARN  [Logger] Class with static Logger definition class org.rapidpm.commons.cdi.tx.CDITransactionExtension
+23:56:03,671 DEBUG [Bootstrap] WELD-000106: Bean: Extension [class org.rapidpm.commons.cdi.tx.CDITransactionExtension] with qualifiers [@Default]; file:/Users/Alexander Bischof/Development/stash_modules/cdi-commons/target/test-classes/META-INF/services/javax.enterprise.inject.spi.Extension@17
+23:56:03,688 DEBUG [Bootstrap] WELD-000106: Bean: Extension [class org.jboss.weld.environment.se.WeldSEBeanRegistrant] with qualifiers [@Default]; jar:file:/Users/Alexander Bischof/.m2/repository/org/jboss/weld/se/weld-se/2.1.0.Final/weld-se-2.1.0.Final.jar!/META-INF/services/javax.enterprise.inject.spi.Extension@1
+23:56:03,690 DEBUG [Bootstrap] WELD-000106: Bean: Built-in Bean [javax.enterprise.inject.spi.BeanManager] with qualifiers [@Default]
+23:56:03,690 DEBUG [Bootstrap] WELD-000106: Bean: Built-in Bean [org.jboss.weld.manager.BeanManagerImpl] with qualifiers [@Default]
+23:56:04,005 DEBUG [Bootstrap] WELD-000103: Enabled alternatives for Weld BeanManager for 1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar [bean count=4]: (empty collection)
+23:56:04,006 DEBUG [Bootstrap] WELD-000104: Enabled decorator types for Weld BeanManager for 1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar [bean count=4]: (empty collection)
+23:56:04,006 DEBUG [Bootstrap] WELD-000105: Enabled interceptor types for Weld BeanManager for 1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar [bean count=4]: (empty collection)
+23:56:04,408 DEBUG [Bootstrap] WELD-000108: Decorator: Decorator [class org.jboss.weld.environment.se.threading.RunnableDecorator] decorates [Runnable] with delegate type [Runnable] and delegate qualifiers [@Default]
+23:56:04,408 DEBUG [Bootstrap] WELD-000107: Interceptor: Interceptor [class org.rapidpm.commons.cdi.contextresolver.MockedInterceptor intercepts @CheckMockedContext]
+23:56:04,409 DEBUG [Bootstrap] WELD-000107: Interceptor: Interceptor [class org.rapidpm.commons.cdi.async.AsyncInterceptor intercepts @Async]
+23:56:04,416 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [DemoLogic] with qualifiers [@DynamicDecoratorTest @Any] declared as [[BackedAnnotatedMethod] @Produces @DynamicDecoratorTest public org.rapidpm.commons.cdi.dynamicdecorator.DemoLogicProducer.create(ManagedInstanceCreator)]
+23:56:04,417 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.jboss.weld.environment.se.WeldContainer] with qualifiers [@Any @Default]
+23:56:04,417 DEBUG [Bootstrap] WELD-000106: Bean: @New Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.CompanyFilePropertyRegistry] with qualifiers [@New]
+23:56:04,417 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.contextresolver.ContextResolverMockedTest] with qualifiers [@Any @Default]
+23:56:04,418 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.format.SimpleDateFormatterProducerTest] with qualifiers [@Any @Default]
+23:56:04,418 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [SimpleDateFormat] with qualifiers [@CDISimpleDateFormatter @Any] declared as [[BackedAnnotatedMethod] @Produces @CDISimpleDateFormatter public org.rapidpm.commons.cdi.format.SimpleDateFormatterProducer.produceSimpleDateFormatter(InjectionPoint)]
+23:56:04,418 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.spi.EventMetadata] with qualifiers [@Default]
+23:56:04,418 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|HttpConversationContext
+23:56:04,418 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.locale.LocaleProducer] with qualifiers [@Any @Default]
+23:56:04,419 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.event.Event] with qualifiers [@Default]
+23:56:04,419 DEBUG [Bootstrap] WELD-000106: Bean: Built-in Bean [javax.transaction.UserTransaction] with qualifiers [@Default]
+23:56:04,419 DEBUG [Bootstrap] WELD-000106: Bean: @New Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.ApplicationFilePropertyRegistry] with qualifiers [@New]
+23:56:04,419 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|SingletonContext
+23:56:04,419 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.DefaultContextResolver] with qualifiers [@CDICommons @Any]
+23:56:04,420 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.format.number.PercentageFormatter] with qualifiers [@Any @Default]
+23:56:04,420 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.tx.DemoClassA] with qualifiers [@Default @Any @Named]
+23:56:04,420 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.format.DefaultPropertyContextResolver] with qualifiers [@Any @Default]
+23:56:04,420 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.contextresolver.TestContext] with qualifiers [@Any @Default]
+23:56:04,421 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.format.CDISimpleDateFormatterQualifier] with qualifiers [@Any @Default]
+23:56:04,421 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.async.TestService1] with qualifiers [@Any @Default]
+23:56:04,427 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [MessageBus] with qualifiers [@CDIMessageBus @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIMessageBus public org.rapidpm.commons.cdi.messagebus.MessageBusProducer.create(MessageBus)]
+23:56:04,427 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.async.TestObserver] with qualifiers [@Any @Default]
+23:56:04,427 DEBUG [Bootstrap] WELD-000106: Bean: @New Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.FileBasedPropertyRegistryService] with qualifiers [@New]
+23:56:04,428 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.tx.CDITransactionContext] with qualifiers [@Any @Default]
+23:56:04,429 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.dynamicdecorator.Context] with qualifiers [@Any @Default]
+23:56:04,429 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.dynamicdecorator.DemoLogicProducer] with qualifiers [@Any @Default]
+23:56:04,429 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.ApplicationFilePropertyRegistry] with qualifiers [@Any @Default]
+23:56:04,429 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|DependentContext
+23:56:04,430 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [PropertyRegistryService] with qualifiers [@CDIPropertyRegistryService @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIPropertyRegistryService public org.rapidpm.commons.cdi.registry.property.PropertyRegistryServiceProducer.create(InjectionPoint, @CDICommons ContextResolver)]
+23:56:04,430 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.messagebus.MessageBusProducer] with qualifiers [@Any @Default]
+23:56:04,430 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.lang.String2Number] with qualifiers [@Any @Default]
+23:56:04,431 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.dynamicdecorator.DynamicObjectAdapterFactory] with qualifiers [@Any @Default]
+23:56:04,431 DEBUG [Bootstrap] WELD-000106: Bean: @New Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.ClassFilePropertyRegistry] with qualifiers [@New]
+23:56:04,431 DEBUG [Bootstrap] WELD-000106: Bean: @New Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.ModulFilePropertyRegistry] with qualifiers [@New]
+23:56:04,431 DEBUG [Bootstrap] WELD-000106: Bean: Built-in Bean [java.security.Principal] with qualifiers [@Default]
+23:56:04,432 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.dynamicdecorator.DemoLogicTest] with qualifiers [@Any @Default]
+23:56:04,432 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.jboss.weld.environment.se.beans.ParametersFactory] with qualifiers [@Any @Default]
+23:56:04,432 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.PropertyRegistryServiceProducer] with qualifiers [@Any @Default]
+23:56:04,432 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|BoundRequestContext
+23:56:04,432 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.tx.CDITransactionTest] with qualifiers [@Any @Default]
+23:56:04,433 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.spi.Bean] with qualifiers [@Intercepted]
+23:56:04,433 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|HttpSession
+23:56:04,450 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.cache.GenericCacheProducerTest] with qualifiers [@Any @Default]
+23:56:04,451 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.cache.GenericCacheProducer] with qualifiers [@Any @Default]
+23:56:04,451 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|HttpServletRequest
+23:56:04,451 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.lang.String2NumberTest] with qualifiers [@Any @Default]
+23:56:04,451 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [ApplicationFilePropertyRegistry] with qualifiers [@CDIPropertyRegistryFileBased @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIPropertyRegistryFileBased public org.rapidpm.commons.cdi.registry.property.impl.file.registries.FileBasedRegistriesProducer.createApplicationPropertyRegistry(@New ApplicationFilePropertyRegistry)]
+23:56:04,452 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [ClassFilePropertyRegistry] with qualifiers [@CDIPropertyRegistryFileBased @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIPropertyRegistryFileBased public org.rapidpm.commons.cdi.registry.property.impl.file.registries.FileBasedRegistriesProducer.createClassPropertyRegistry(@New ClassFilePropertyRegistry)]
+23:56:04,453 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|ApplicationContext
+23:56:04,453 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.logger.LoggerProducer] with qualifiers [@Any @Default]
+23:56:04,453 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.logger.LoggerProducerTest] with qualifiers [@Any @Default]
+23:56:04,454 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [CompanyFilePropertyRegistry] with qualifiers [@CDIPropertyRegistryFileBased @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIPropertyRegistryFileBased public org.rapidpm.commons.cdi.registry.property.impl.file.registries.FileBasedRegistriesProducer.createCompayPropertyRegistry(@New CompanyFilePropertyRegistry)]
+23:56:04,454 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [ModulFilePropertyRegistry] with qualifiers [@CDIPropertyRegistryFileBased @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIPropertyRegistryFileBased public org.rapidpm.commons.cdi.registry.property.impl.file.registries.FileBasedRegistriesProducer.createModulPropertyRegistry(@New ModulFilePropertyRegistry)]
+23:56:04,455 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.cache.CachedClass] with qualifiers [@Any @Default]
+23:56:04,455 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.messagebus.Message] with qualifiers [@Any @Default]
+23:56:04,456 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|EjbRequestContext
+23:56:04,456 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|HttpSessionDestructionContext
+23:56:04,456 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.spi.InjectionPoint] with qualifiers [@Default]
+23:56:04,456 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|Conversation
+23:56:04,463 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|ServletContext
+23:56:04,466 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.legacy.ListFactory] with qualifiers [@Any @Default]
+23:56:04,466 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.messagebus.model.TestCallbackData] with qualifiers [@Any @Default]
+23:56:04,466 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.clazz.PackageClassLoader] with qualifiers [@Any @Default]
+23:56:04,467 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.spi.Bean] with qualifiers [@Decorated]
+23:56:04,467 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|RequestContext
+23:56:04,467 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.async.TestService2] with qualifiers [@Any @Default]
+23:56:04,467 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.CompanyFilePropertyRegistry] with qualifiers [@Any @Default]
+23:56:04,467 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.legacy.ListProducer] with qualifiers [@Any @Default]
+23:56:04,467 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.ModulFilePropertyRegistry] with qualifiers [@Any @Default]
+23:56:04,468 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.spi.Bean] with qualifiers [@Default]
+23:56:04,468 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [Cache<Object>] with qualifiers [@CDIGenericCache @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIGenericCache public org.rapidpm.commons.cdi.cache.GenericCacheProducer.createCache(BeanManager, InjectionPoint)]
+23:56:04,469 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|HttpRequestContext
+23:56:04,469 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|BoundSessionContext
+23:56:04,469 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.tx.CDITransactionTest$CDITransactionB] with qualifiers [@Any @Default]
+23:56:04,469 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [Logger] with qualifiers [@CDILogger @Any] declared as [[BackedAnnotatedMethod] @Produces @CDILogger public org.rapidpm.commons.cdi.logger.LoggerProducer.produceLog4JLogger(InjectionPoint, BeanManager)]
+23:56:04,469 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.ManagedInstanceCreator] with qualifiers [@Any @Default]
+23:56:04,470 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.dynamicdecorator.CDIInvocationHandler] with qualifiers [@Any @Default]
+23:56:04,470 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.Instance] with qualifiers [@Default]
+23:56:04,470 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [Locale] with qualifiers [@CDILocale @Any] declared as [[BackedAnnotatedMethod] @Produces @CDILocale public org.rapidpm.commons.cdi.locale.LocaleProducer.createDefaultLocale()]
+23:56:04,470 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.CDIPropertyregistryFileBasedLiteral] with qualifiers [@Any @Default]
+23:56:04,471 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.format.SimpleDateFormatterProducer$HolderClass] with qualifiers [@Any @Default]
+23:56:04,471 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.messagebus.MessageBus] with qualifiers [@Any @Default]
+23:56:04,471 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [PropertyRegistryService] with qualifiers [@CDIPropertyRegistryFileBased @Any] declared as [[BackedAnnotatedMethod] @Produces @CDIPropertyRegistryFileBased private org.rapidpm.commons.cdi.registry.property.impl.file.FileBasedPropertyRegistryServiceProducer.createFileBased(@New FileBasedPropertyRegistryService)]
+23:56:04,472 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.FileBasedPropertyRegistryServiceProducer] with qualifiers [@Any @Default]
+23:56:04,472 DEBUG [Bootstrap] WELD-000106: Bean: @New Managed Bean [class org.rapidpm.commons.cdi.tx.DemoClassA] with qualifiers [@New]
+23:56:04,472 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.contextresolver.TestContextResolver] with qualifiers [@Any @Default]
+23:56:04,477 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [List<String>] with qualifiers [@Parameters @Any] declared as [[UnbackedAnnotatedMethod] @Produces @Parameters public org.jboss.weld.environment.se.beans.ParametersFactory.getArgs()]
+23:56:04,477 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.tx.CDITransaction] with qualifiers [@Any @Default]
+23:56:04,477 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.ClassFilePropertyRegistry] with qualifiers [@Any @Default]
+23:56:04,477 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [String[]] with qualifiers [@Parameters @Any] declared as [[UnbackedAnnotatedMethod] @Produces @Parameters public org.jboss.weld.environment.se.beans.ParametersFactory.getArgsAsArray()]
+23:56:04,477 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.dynamicdecorator.DemoLogicAdapter_A] with qualifiers [@CDINotMapped @Any]
+23:56:04,478 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.spi.Interceptor] with qualifiers [@Default]
+23:56:04,478 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.async.AsyncTest] with qualifiers [@Any @Default]
+23:56:04,478 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.registries.FileBasedRegistriesProducer] with qualifiers [@Any @Default]
+23:56:04,478 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.format.SimpleDateFormatterProducer] with qualifiers [@Any @Default]
+23:56:04,478 DEBUG [Bootstrap] WELD-000106: Bean: Implicit Bean [javax.enterprise.inject.spi.Decorator] with qualifiers [@Default]
+23:56:04,478 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.async.AsyncTestEvent] with qualifiers [@Any @Default]
+23:56:04,479 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.messagebus.MessageBusTest] with qualifiers [@Any @Default]
+23:56:04,479 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|BoundConversationContext
+23:56:04,479 DEBUG [Bootstrap] WELD-000106: Bean: WELD|AbstractSyntheticBean|1ae7628c-4026-44ed-b6fc-5f9e00f5a246.jar|HttpSessionContext
+23:56:04,479 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.legacy.ListFactoryTest] with qualifiers [@Any @Default]
+23:56:04,479 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.rapidpm.commons.cdi.registry.property.impl.file.FileBasedPropertyRegistryService] with qualifiers [@Any @Default]
+23:56:04,480 DEBUG [Bootstrap] WELD-000106: Bean: Producer Method [List<Object>] with qualifiers [@CDILegacyTest @Any] declared as [[BackedAnnotatedMethod] @Produces @CDILegacyTest public org.rapidpm.commons.cdi.legacy.ListProducer.createList(InjectionPoint, BeanManager, @CDICommons ContextResolver)]
+23:56:04,480 DEBUG [Bootstrap] WELD-000106: Bean: Managed Bean [class org.jboss.weld.environment.se.beans.InstanceManager] with qualifiers [@Any @Default]
+23:56:04,481 DEBUG [Bootstrap] WELD-000109: ObserverMethod: [BackedAnnotatedMethod] @Async public org.rapidpm.commons.cdi.async.TestObserver.observeAsync(@Observes AsyncTestEvent)
+23:56:04,487 DEBUG [CDITransactionExtension] afterBeanDiscovery -> context CDITransactionContext{ nr=1393023364486252000 classCacheMap={}}
+23:56:04,513 DEBUG [Reflection] WELD-000601: interface javax.inject.Named is missing @Target. Weld will use this annotation, however this may make the application unportable.
+23:56:04,607 DEBUG [Bootstrap] WELD-000100: Weld initialized. Validating beans
+23:56:04,873 DEBUG [CDITransaction]  transactionContext = null
+23:56:04,876 DEBUG [CDITransaction]  transactionContext = null
+23:56:04,876 DEBUG [CDITransaction]  begin -> 1393023364867707000
+23:56:04,876 DEBUG [CDITransaction]  transactionContext = CDITransactionContext{ nr=1393023364486252000 classCacheMap={}}
+23:56:04,877 INFO  [CDITransaction] stepList = 1
+23:56:04,877 DEBUG [ManagedInstanceCreator] activateCDI-> class org.rapidpm.commons.cdi.tx.CDITransactionTest$1
+23:56:04,878 WARN  [Bean] WELD-001533: An InjectionTarget is created for a non-static inner class org.rapidpm.commons.cdi.tx.CDITransactionTest$1. It will not be possible to produce instances of this type!
+23:56:04,903 DEBUG [CDITransactionContext] bean Class class org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:04,904 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Default()
+23:56:04,904 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Any()
+23:56:04,905 DEBUG [CDITransactionContext] annotation @javax.inject.Named(value="demoClassA")
+23:56:04,906 DEBUG [CDITransactionContext] resolve = Managed Bean [class org.rapidpm.commons.cdi.tx.DemoClassA] with qualifiers [@Default @Any @Named]
+23:56:04,906 DEBUG [CDITransactionContext] annotationPresent = true
+23:56:04,906 DEBUG [CDITransactionContext] classname org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:04,906 DEBUG [CDITransactionContext] Key not found org.rapidpm.commons.cdi.tx.DemoClassA class cacheable -> will create a new cached instance DemoClassA{version='1393023364906333000'}
+23:56:05,072 WARN  [Logger] Class with static Logger definition class org.rapidpm.lang.cache.generic.GenericCacheThreadsave
+23:56:05,200 DEBUG [CDITransactionContext] bean Class class org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,200 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Default()
+23:56:05,200 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Any()
+23:56:05,200 DEBUG [CDITransactionContext] annotation @javax.inject.Named(value="demoClassA")
+23:56:05,248 DEBUG [CDITransactionContext] resolve = Managed Bean [class org.rapidpm.commons.cdi.tx.DemoClassA] with qualifiers [@Default @Any @Named]
+23:56:05,249 DEBUG [CDITransactionContext] annotationPresent = true
+23:56:05,252 DEBUG [CDITransactionContext] classname org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,257 DEBUG [CDITransactionContext] contains Key org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,258 DEBUG [CDITransactionContext] size : 1
+23:56:05,259 DEBUG [CDITransaction]   end -> 1393023364867707000
+23:56:05,261 DEBUG [CDITransaction]  transactionContext = CDITransactionContext{ nr=1393023364486252000 classCacheMap={org.rapidpm.commons.cdi.tx.DemoClassA=org.rapidpm.lang.cache.generic.GenericCacheThreadsave@7e4204e2}}
+23:56:05,261 DEBUG [CDITransaction]  begin -> 1393023364875339000
+23:56:05,262 DEBUG [CDITransaction]  transactionContext = CDITransactionContext{ nr=1393023364486252000 classCacheMap={org.rapidpm.commons.cdi.tx.DemoClassA=org.rapidpm.lang.cache.generic.GenericCacheThreadsave@7e4204e2}}
+23:56:05,262 INFO  [CDITransaction] stepList = 1
+23:56:05,262 DEBUG [ManagedInstanceCreator] activateCDI-> class org.rapidpm.commons.cdi.tx.CDITransactionTest$1
+23:56:05,262 WARN  [Bean] WELD-001533: An InjectionTarget is created for a non-static inner class org.rapidpm.commons.cdi.tx.CDITransactionTest$1. It will not be possible to produce instances of this type!
+23:56:05,274 DEBUG [CDITransactionContext] bean Class class org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,275 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Default()
+23:56:05,275 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Any()
+23:56:05,276 DEBUG [CDITransactionContext] annotation @javax.inject.Named(value="demoClassA")
+23:56:05,276 DEBUG [CDITransactionContext] resolve = Managed Bean [class org.rapidpm.commons.cdi.tx.DemoClassA] with qualifiers [@Default @Any @Named]
+23:56:05,277 DEBUG [CDITransactionContext] annotationPresent = true
+23:56:05,277 DEBUG [CDITransactionContext] classname org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,277 DEBUG [CDITransactionContext] contains Key org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,278 DEBUG [CDITransactionContext] size : 1
+23:56:05,283 DEBUG [CDITransactionContext] bean Class class org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,283 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Default()
+23:56:05,283 DEBUG [CDITransactionContext] annotation @javax.enterprise.inject.Any()
+23:56:05,284 DEBUG [CDITransactionContext] annotation @javax.inject.Named(value="demoClassA")
+23:56:05,284 DEBUG [CDITransactionContext] resolve = Managed Bean [class org.rapidpm.commons.cdi.tx.DemoClassA] with qualifiers [@Default @Any @Named]
+23:56:05,285 DEBUG [CDITransactionContext] annotationPresent = true
+23:56:05,285 DEBUG [CDITransactionContext] classname org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,285 DEBUG [CDITransactionContext] contains Key org.rapidpm.commons.cdi.tx.DemoClassA
+23:56:05,287 DEBUG [CDITransactionContext] size : 1
+23:56:05,288 DEBUG [CDITransaction]   end -> 1393023364875339000
+23:56:05,290 DEBUG [CDITransaction]  transactionContext = CDITransactionContext{ nr=1393023364486252000 classCacheMap={org.rapidpm.commons.cdi.tx.DemoClassA=org.rapidpm.lang.cache.generic.GenericCacheThreadsave@7e4204e2}}

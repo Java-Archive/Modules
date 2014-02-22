@@ -16,42 +16,32 @@
 
 package org.rapidpm.module.iot.tinkerforge.sensor;
 
-import com.tinkerforge.*;
-
-import java.io.IOException;
+import com.tinkerforge.BrickletTemperature;
+import com.tinkerforge.NotConnectedException;
+import com.tinkerforge.TimeoutException;
 
 /**
  * Created by Sven Ruppert on 09.02.14.
  */
-public abstract class Temperature implements Runnable {
+public class Temperature extends TinkerForgeSensor<BrickletTemperature> {
 
-    private String UID;
-    private int callbackPeriod;
-
-    private int port;
-    private String host;
-
-    public Temperature(final String UID, int callbackPeriod, int port, String host) {
-        this.UID = UID;
-        this.callbackPeriod = callbackPeriod;
-        this.port = port;
-        this.host = host;
+    protected BrickletTemperature getBrickletInstance() {
+        return new BrickletTemperature(UID, ipcon);
     }
 
-    public abstract void workOnSensorValue(int temperature);
+    public Temperature(String UID, int callbackPeriod, int port, String host) {
+        super(UID, callbackPeriod, port, host);
+    }
 
-    @Override
-    public void run() {
-        IPConnection ipcon = new IPConnection();
-        BrickletTemperature temp = new BrickletTemperature(UID, ipcon);
+    public SensorValueAction actionTemperature = new SensorValueAction(){};
 
+    public void initBricklet() {
         try {
-            ipcon.connect(host, port);
-            ipcon.setAutoReconnect(true);
-            temp.setTemperatureCallbackPeriod(callbackPeriod);
-            temp.addTemperatureListener(this::workOnSensorValue);
-        } catch (IOException | AlreadyConnectedException | TimeoutException | NotConnectedException e) {
+            bricklet.setTemperatureCallbackPeriod(callbackPeriod);
+        } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
+
+        bricklet.addTemperatureListener(actionTemperature::workOnValue);
     }
 }
