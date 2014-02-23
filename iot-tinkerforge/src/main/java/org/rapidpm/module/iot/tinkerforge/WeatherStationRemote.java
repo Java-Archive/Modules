@@ -17,9 +17,17 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 
+import com.tinkerforge.Device;
+import com.tinkerforge.NotConnectedException;
+import com.tinkerforge.TimeoutException;
+import data.SensorDataElement;
 import org.rapidpm.module.iot.tinkerforge.actor.LCD20x4;
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.ArangoDBLocalhost;
+import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.SensorDataRepository;
 import org.rapidpm.module.iot.tinkerforge.sensor.*;
+
+import java.util.Date;
 
 import static org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor.SensorValueAction;
 
@@ -28,12 +36,12 @@ import static org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor.Sensor
  */
 public class WeatherStationRemote {
 
-    public static final String HOST = "192.168.0.200";
+    public static final String HOST = "192.168.0.200";  //wetterstation
     public static final int PORT = 4223;
     private static int callbackPeriod = 10000;
 
-    private static final LCD20x4 lcd20x4 = new LCD20x4("jvX");
-
+    private static final LCD20x4 lcd20x4 = new LCD20x4("jvX", "localhost", PORT);
+    private static final SensorDataRepository repo = new SensorDataRepository(ArangoDBLocalhost.database);
 
     public static void main(String args[]) throws Exception {
         final Temperature temperature = new Temperature("dXj", callbackPeriod, PORT, HOST);
@@ -43,16 +51,27 @@ public class WeatherStationRemote {
                 final double tempNorm = sensorvalue / 100.0;
                 final String text = "Temp  : " + tempNorm + " °C";
                 lcd20x4.printLine(0, text);
+//                try {
+//                    final Device.Identity identity = temperature.getBrickletInstance().getIdentity();
+//                    final SensorDataElement data = new SensorDataElement();
+//                    data.setMasterUID("6k297L");
+//                    data.setBrickletUID(identity.uid);
+//                    data.setBrickletType(identity.deviceIdentifier + "");
+//                    data.setDate(new Date());
+//                    data.setSensorValue(illuminance);
+//                    System.out.println(data);
+//                    repo.create(data);
+//
+//                } catch (TimeoutException | NotConnectedException e) {
+//                    e.printStackTrace();
+//                }
+
+
+
             }
         };
         new Thread(temperature).start();
 
-
-//        @Override
-//        public void workOnSensorValueAirPressure(int airPressure) {
-//            final String text = "Air   : " + airPressure / 1000.0 + " mbar";
-//            lcd20x4.printLine(1, text);
-//        }
 //
 //        @Override
 //        public void workOnSensorValueAltitude(int altitude) {
@@ -62,34 +81,37 @@ public class WeatherStationRemote {
 
 
         final Barometer barometer = new Barometer("jY4", callbackPeriod, PORT, HOST);
-
         barometer.actionAirPressure = new SensorValueAction() {
             @Override
             public void workOnValue(int sensorvalue) {
-                final String text = "Air   : " + sensorvalue / 1000.0 + " mbar";
+            final String text = "Air   : " + sensorvalue / 1000.0 + " mbar";
                 lcd20x4.printLine(1, text);
             }
         };
         new Thread(barometer).start();
 
-
-        new Thread(new Light("jy2", callbackPeriod, PORT, HOST) {
+        final Light light = new Light("jy2", callbackPeriod, PORT, HOST);
+        light.actionAmbientLight = new SensorValueAction() {
             @Override
-            public void workOnSensorValue(int illuminance) {
-                final double lux = illuminance / 10.0;
+            public void workOnValue(int sensorvalue) {
+                final double lux = sensorvalue / 10.0;
                 final String text = "Lux   : " + lux + " Lux";
                 lcd20x4.printLine(3, text);
             }
-        }).start();
+        };
 
-        new Thread(new Humidity("kfd", callbackPeriod, PORT, HOST) {
+        new Thread(light).start();
+
+        final Humidity humidity = new Humidity("kfd", callbackPeriod, PORT, HOST);
+        humidity.actionHumidity = new SensorValueAction() {
             @Override
-            public void workOnSensorValue(int humidity) {
-                final double tempNorm = humidity / 10.0;
+            public void workOnValue(int sensorvalue) {
+                final double tempNorm = sensorvalue / 10.0;
                 final String text = "RelHum: " + tempNorm + " %RH";
                 lcd20x4.printLine(2, text);
             }
-        }).start();
+        };
+        new Thread(humidity).start();
 
         WaitForQ.waitForQ();
     }

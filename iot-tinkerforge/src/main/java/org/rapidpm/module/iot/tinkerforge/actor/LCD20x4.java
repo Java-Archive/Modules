@@ -17,7 +17,6 @@
 package org.rapidpm.module.iot.tinkerforge.actor;
 
 import com.tinkerforge.*;
-import org.rapidpm.module.iot.tinkerforge.Localhost;
 
 import java.io.IOException;
 
@@ -28,11 +27,11 @@ public class LCD20x4 {
 
     private BrickletLCD20x4 lcd;
 
-    public LCD20x4(final String UID) {
+    public LCD20x4(final String UID, String host, int port) {
         IPConnection ipcon = new IPConnection();
         lcd = new BrickletLCD20x4(UID, ipcon);
         try {
-            ipcon.connect(Localhost.HOST, Localhost.PORT);
+            ipcon.connect(host, port);
             lcd.backlightOn();
             lcd.clearDisplay();
             lcd.setDefaultText((short)0,utf16ToKS0066U("bereite mich vor.."));
@@ -136,5 +135,9 @@ public class LCD20x4 {
             ks0066u += c;
         }
         return ks0066u;
+    }
+
+    public BrickletLCD20x4 getLcd() {
+        return lcd;
     }
 }

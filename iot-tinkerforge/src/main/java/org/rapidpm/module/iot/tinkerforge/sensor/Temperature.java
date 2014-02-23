@@ -25,7 +25,7 @@ import com.tinkerforge.TimeoutException;
  */
 public class Temperature extends TinkerForgeSensor<BrickletTemperature> {
 
-    protected BrickletTemperature getBrickletInstance() {
+    public BrickletTemperature getBrickletInstance() {
         return new BrickletTemperature(UID, ipcon);
     }
 

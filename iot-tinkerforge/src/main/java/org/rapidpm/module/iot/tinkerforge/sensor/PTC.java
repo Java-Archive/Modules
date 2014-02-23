@@ -29,7 +29,6 @@ public class PTC extends TinkerForgeSensor<BrickletPTC>{
         super(UID, callbackPeriod, port, host);
     }
 
-
     public SensorValueAction actionResistance = new SensorValueAction(){};
     public SensorValueAction actionTemperature = new SensorValueAction(){};
 
@@ -46,7 +45,7 @@ public class PTC extends TinkerForgeSensor<BrickletPTC>{
     }
 
     @Override
-    protected BrickletPTC getBrickletInstance() {
+    public BrickletPTC getBrickletInstance() {
         return new BrickletPTC(UID,ipcon);
     }
 }

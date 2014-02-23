@@ -25,7 +25,7 @@ import java.io.IOException;
  */
 public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
 
-    protected BrickletBarometer getBrickletInstance() {
+    public BrickletBarometer getBrickletInstance() {
         return new BrickletBarometer(UID, ipcon);
     }
 

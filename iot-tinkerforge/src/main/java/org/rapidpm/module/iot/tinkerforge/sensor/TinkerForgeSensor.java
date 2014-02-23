@@ -55,7 +55,7 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable{
 
     public abstract void initBricklet();
 
-    protected abstract T getBrickletInstance();
+    public abstract T getBrickletInstance();
 
     public static interface SensorValueAction {
         public default void workOnValue(int sensorvalue){}

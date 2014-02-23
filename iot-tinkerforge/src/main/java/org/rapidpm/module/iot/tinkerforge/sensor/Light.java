@@ -23,13 +23,13 @@ import java.io.IOException;
 /**
  * Created by Sven Ruppert on 09.02.14.
  */
-public abstract class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
+public  class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
 
     public Light(String UID, int callbackPeriod, int port, String host) {
         super(UID, callbackPeriod, port, host);
     }
 
-    protected BrickletAmbientLight getBrickletInstance() {
+    public BrickletAmbientLight getBrickletInstance() {
         return new BrickletAmbientLight(UID, ipcon);
     }
 
