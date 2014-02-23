@@ -100,7 +100,7 @@ public class SensorDialog extends Stage {
             else disconnectSensor();
         });
 
-        tabB_stack.getChildren().addAll(tb2, createLineChart("Temperature", seriesTemp));
+        tabB_stack.getChildren().addAll(tb2, createLineChart(sensor.getConnectionClass().getSimpleName(), seriesTemp));
 
         tabB.setContent(tabB_stack);
         tabPane.getTabs().add(tabB);
@@ -127,8 +127,6 @@ public class SensorDialog extends Stage {
                 @Override
                 public void workOnValue(int sensorvalue) {
                     double correctedSensorValue = sensorvalue / 100.0;
-                    final String text = "Temperatur   : " + correctedSensorValue + " °C";
-                    //System.out.println("text = " + text);
                     final XYChart.Data data = new XYChart.Data(new Date(), correctedSensorValue);
                     Platform.runLater(() -> seriesData.add(data));
                 }
@@ -139,8 +137,6 @@ public class SensorDialog extends Stage {
                 @Override
                 public void workOnValue(int sensorvalue) {
                     double correctedSensorValue = sensorvalue / 1000.0;
-                    final String text = "Barometer   : " + correctedSensorValue + " °C";
-                   // System.out.println("text = " + text);
                     final XYChart.Data data = new XYChart.Data(new Date(), correctedSensorValue);
                     Platform.runLater(() -> seriesData.add(data));
                 }
