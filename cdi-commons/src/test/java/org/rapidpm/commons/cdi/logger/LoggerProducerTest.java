@@ -28,7 +28,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 
