@@ -28,6 +28,7 @@ import org.rapidpm.commons.javafx.pairedtextfield.demologic.kotlin.KotlinDemoLog
  * Date: 16.10.13
  * Time: 17:22
  */
+@DemoLogicContext
 public class DemoContextResolver implements ContextResolver {
 
     @Inject DemoContext demoContext;

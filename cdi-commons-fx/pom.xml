@@ -84,11 +84,11 @@
         </dependency>
         <!-- testing stuff -->
 
-        <dependency>
-            <groupId>org.loadui</groupId>
-            <artifactId>testFx</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.loadui</groupId>-->
+            <!--<artifactId>testFx</artifactId>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
     </dependencies>
 

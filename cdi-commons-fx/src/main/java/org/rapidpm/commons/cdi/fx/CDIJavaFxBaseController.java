@@ -24,4 +24,6 @@ import javafx.fxml.Initializable;
  * Time: 11:41
  */
 public interface CDIJavaFxBaseController extends Initializable {
+
+    //add dynamic Proxy
 }

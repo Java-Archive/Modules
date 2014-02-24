@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RapidPM Parent.iml" filepath="$PROJECT_DIR$/RapidPM Parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/../cdi-commons/cdi-commons.iml" filepath="$PROJECT_DIR$/../cdi-commons/cdi-commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/../cdi-commons-fx/cdi-commons-fx.iml" filepath="$PROJECT_DIR$/../cdi-commons-fx/cdi-commons-fx.iml" />
       <module fileurl="file://$PROJECT_DIR$/../cdi-commons-se/cdi-commons-se.iml" filepath="$PROJECT_DIR$/../cdi-commons-se/cdi-commons-se.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../cdi-tablemodel/cdi-tablemodel.iml" filepath="$PROJECT_DIR$/../cdi-tablemodel/cdi-tablemodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../iot-tinkerforge/iot-tinkerforge.iml" filepath="$PROJECT_DIR$/../iot-tinkerforge/iot-tinkerforge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javafx-commons/javafx-commons.iml" filepath="$PROJECT_DIR$/../javafx-commons/javafx-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rapidpm-parent.iml" filepath="$PROJECT_DIR$/rapidpm-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/rapidpm-resources/rapidpm-resources.iml" filepath="$PROJECT_DIR$/rapidpm-resources/rapidpm-resources.iml" />
       <module fileurl="file://$PROJECT_DIR$/../se-commons/se-commons.iml" filepath="$PROJECT_DIR$/../se-commons/se-commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/../se-genericcache/se-genericcache.iml" filepath="$PROJECT_DIR$/../se-genericcache/se-genericcache.iml" />

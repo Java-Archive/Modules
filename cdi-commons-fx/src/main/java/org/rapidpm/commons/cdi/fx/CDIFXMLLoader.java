@@ -46,7 +46,7 @@ public class CDIFXMLLoader extends FXMLLoader {
 
     public <T> T activateCDI(T t) {
         final BeanManager beanManager = cdi.getBeanManager();
-        final Class<?> aClass = t.getClass();
+        final Class aClass = t.getClass();
         final AnnotatedType annotationType = beanManager.createAnnotatedType(aClass);
         final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
         final CreationalContext creationalContext = beanManager.createCreationalContext(null);

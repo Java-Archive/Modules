@@ -16,27 +16,12 @@
 
 package org.rapidpm.module.se.commons.logger;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import org.apache.log4j.AppenderSkeleton;
-import org.apache.log4j.spi.LocationInfo;
-import org.apache.log4j.spi.LoggingEvent;
-import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer;
-import org.apache.solr.client.solrj.impl.XMLResponseParser;
-import org.apache.solr.client.solrj.request.UpdateRequest;
-import org.apache.solr.common.SolrInputDocument;
-
 /**
  * User: Sven Ruppert Date: 18.09.13 Time: 10:03
  */
-public class SolrAppender extends AppenderSkeleton implements Serializable {
+public class SolrAppender {
+        /*
+        extends AppenderSkeleton implements Serializable {
 
     private static final int QUEUE_SIZE = 100;
     private static final int THREAD_COUNT = 10;
@@ -73,30 +58,16 @@ public class SolrAppender extends AppenderSkeleton implements Serializable {
 
     }
 
-    /**
-     * Create new instance.
-     */
     public SolrAppender() {
 //        init();
     }
 
-    /**
-     * Create new instance. Provided for compatibility with log4j 1.3.
-     *
-     * @param isActive true if appender is ready for use upon construction. Not used in log4j 1.2.x.
-     *
-     * @since 1.2.15
-     */
     public SolrAppender(boolean isActive) {
         super(isActive);
 //        init();
     }
 
-    /**
-     * Subclasses of <code>AppenderSkeleton</code> should implement this method to perform actual logging. See also {@link #doAppend AppenderSkeleton.doAppend} method.
-     *
-     * @since 0.9.0
-     */
+
     @Override protected void append(LoggingEvent event) {
         if (solrServer == null) {
             init();
@@ -107,13 +78,7 @@ public class SolrAppender extends AppenderSkeleton implements Serializable {
         subAppend(event);   //TODO change per CDI
     }
 
-    /**
-     * Release any resources allocated within the appender such as file handles, network connections, etc.
-     *
-     * <p>It is a programming error to append to a closed appender.
-     *
-     * @since 0.8.4
-     */
+
     @Override public void close() {
         try {
             solrServer.add(liste);
@@ -125,15 +90,6 @@ public class SolrAppender extends AppenderSkeleton implements Serializable {
     }
 
 
-    /**
-     * Configurators call this method to determine if the appender requires a layout. If this method returns <code>true</code>, meaning that layout is required, then the configurator will configure an
-     * layout using the configuration information at its disposal.  If this method returns <code>false</code>, meaning that a layout is not required, then layout configuration will be skipped even if
-     * there is available layout configuration information at the disposal of the configurator..
-     *
-     * <p>In the rather exceptional case, where the appender implementation admits a layout but can also work without it, then the appender should return <code>true</code>.
-     *
-     * @since 0.8.4
-     */
     @Override public boolean requiresLayout() {
         return true;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -208,4 +164,6 @@ public class SolrAppender extends AppenderSkeleton implements Serializable {
     public void setSolrurl(String solrurl) {
         this.solrurl = solrurl;
     }
+
+    */
 }

@@ -4,26 +4,8 @@
     <file url="file://$PROJECT_DIR$/../cdi-commons" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../cdi-commons-fx" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../cdi-commons-se" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../cdi-tablemodel" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../javafx-autocomplete-textfield" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../javafx-chart-pie-drilldown" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../iot-tinkerforge" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../javafx-commons" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../javafx-commons/src/main/java/org/rapidpm/commons/javafx/textfield/LabledTextField.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/main/java/org/rapidpm/modul/javafx/tableview/control/cell/ButtonCell.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/main/java/org/rapidpm/modul/javafx/tableview/filtered/contextmenue/FilteredTableContextMenu.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/test/java/org/rapidpm/modul/javafx/tableview/filtered/demo/controll/cell/deletebutton/DeleteButtonCell.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/test/java/org/rapidpm/modul/javafx/tableview/filtered/demo/controll/cell/deletebutton/DeleteButtonCellFactory.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/test/java/org/rapidpm/modul/javafx/tableview/filtered/demo/controll/cell/deletebutton/DeleteButtonCellValueFactory.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-filtered-tableview/src/test/java/org/rapidpm/modul/javafx/tableview/filtered/demo/controll/cell/deletebutton/DeleteButtonLogic.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-progressbartable" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../javafx-searchbox" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/../javafx-searchbox/src/test/resources/images/info-tooltip.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-searchbox/src/test/resources/images/search-box.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-searchbox/src/test/resources/images/search-clear-over.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-searchbox/src/test/resources/images/search-clear.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-searchbox/src/test/resources/images/search-text.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/../javafx-searchbox/src/test/resources/images/search.png" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rapidpm-resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../se-commons" charset="UTF-8" />

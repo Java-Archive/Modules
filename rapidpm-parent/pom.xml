@@ -44,6 +44,7 @@
 
         <jboss-javaee-all-6.0.version>3.0.2.Final</jboss-javaee-all-6.0.version>
         <jboss-as-version>7.1.1.Final</jboss-as-version>
+        <arquillian-glassfish-version>1.0.0.CR4</arquillian-glassfish-version>
 
     </properties>
 
@@ -52,14 +53,9 @@
             <dependency>
                 <groupId>org.jboss.weld</groupId>
                 <artifactId>weld-core-bom</artifactId>
-                <version>2.1.1.Final</version>
+                <version>2.1.0.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.weld</groupId>
-                <artifactId>weld-core</artifactId>
-                <version>2.1.1.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.weld.se</groupId>
@@ -126,20 +122,69 @@
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>cdi-tablemodel</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<type>jar</type>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>cdi-tablemodel</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<type>test-jar</type>-->
+                <!--<scope>test</scope>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
-                <artifactId>cdi-tablemodel</artifactId>
+                <artifactId>javafx-commons</artifactId>
                 <version>${project.version}</version>
-                <type>jar</type>
                 <scope>compile</scope>
+                <type>jar</type>
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
-                <artifactId>cdi-tablemodel</artifactId>
+                <artifactId>javafx-commons</artifactId>
                 <version>${project.version}</version>
-                <type>test-jar</type>
                 <scope>test</scope>
+                <type>test-jar</type>
             </dependency>
+
+
+            <!--deactivated-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-dialog</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-searchbox</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-filtered-tableview</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-autocomplete-textfield</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.rapidpm.modul</groupId>-->
+                <!--<artifactId>javafx-progressbartable</artifactId>-->
+                <!--<version>${project.version}</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+
+
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
@@ -167,12 +212,6 @@
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
                 <version>1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>15.0</version>
-                <classifier>cdi1.0</classifier>
                 <scope>compile</scope>
             </dependency>
             <dependency>
@@ -191,64 +230,108 @@
 
 
             <!-- Lucene f SearchBox-->
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-core</artifactId>
-                <version>4.6.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-analyzers-common</artifactId>
-                <version>4.6.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-queryparser</artifactId>
-                <version>4.6.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-queries</artifactId>
-                <version>4.6.1</version>
-                <scope>compile</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-core</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-analyzers-common</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-queryparser</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.lucene</groupId>-->
+                <!--<artifactId>lucene-queries</artifactId>-->
+                <!--<version>4.5.1</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
             <!-- Lucene f SearchBox-->
             <!--Solr-->
-            <dependency>
-                <groupId>org.apache.solr</groupId>
-                <artifactId>solr-solrj</artifactId>
-                <version>4.6.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpcore</artifactId>
-                <version>4.3.1</version>
-                <scope>compile</scope>
-                <type>jar</type>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.solr</groupId>-->
+                <!--<artifactId>solr-solrj</artifactId>-->
+                <!--<version>4.5.1</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.httpcomponents</groupId>-->
+                <!--<artifactId>httpcore</artifactId>-->
+                <!--<version>4.3</version>-->
+                <!--<scope>compile</scope>-->
+                <!--<type>jar</type>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.httpcomponents</groupId>-->
+                <!--<artifactId>httpclient</artifactId>-->
+                <!--<version>4.3.1</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.httpcomponents</groupId>-->
+                <!--<artifactId>httpmime</artifactId>-->
+                <!--<version>4.3.1</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>commons-codec</groupId>-->
+                <!--<artifactId>commons-codec</artifactId>-->
+                <!--<version>1.8</version>-->
+            <!--</dependency>-->
+            <!--Solr-->
+
+            <!--<dependency>-->
+                <!--<groupId>com.hazelcast</groupId>-->
+                <!--<artifactId>hazelcast</artifactId>-->
+                <!--<version>3.0.1</version>-->
+            <!--</dependency>-->
+
+
+            <!--<dependency>-->
+                <!--<groupId>org.jetbrains.kotlin</groupId>-->
+                <!--<artifactId>kotlin-stdlib</artifactId>-->
+                <!--<version>0.6.602</version>-->
+                <!--<scope>test</scope>-->
+            <!--</dependency>-->
+
+
+            <!--arangodb-->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.3.1</version>
+                <version>4.2.3</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpmime</artifactId>
-                <version>4.3.1</version>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-joda</artifactId>
+                <version>2.2.0</version>
             </dependency>
             <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>1.8</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.2.0</version>
             </dependency>
-            <!--Solr-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <!--arangodb-->
+
             <dependency>
                 <groupId>org.loadui</groupId>
                 <artifactId>testFx</artifactId>
-                <version>3.1.0</version>
+                <version>2.7.5</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -257,6 +340,13 @@
                 <version>4.11</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.cenqua.clover</groupId>
+                <artifactId>clover</artifactId>
+                <version>3.2.0</version>
+                <scope>compile</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -267,8 +357,22 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.jetbrains.kotlin</groupId>-->
+        <!--<artifactId>kotlin-stdlib</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -276,6 +380,15 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.cenqua.clover</groupId>-->
+            <!--<artifactId>clover</artifactId>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+        <!--Arquillian-->
+
+
     </dependencies>
 
 
@@ -307,6 +420,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-repository-plugin</artifactId>
                     <version>2.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.atlassian.maven.plugins</groupId>
+                    <artifactId>maven-clover2-plugin</artifactId>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -378,6 +496,29 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-repository-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-clover2-plugin</artifactId>
+            </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>kotlin-maven-plugin</artifactId>-->
+                <!--<groupId>org.jetbrains.kotlin</groupId>-->
+                <!--<version>0.6.602</version>-->
+
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>compile</id>-->
+                        <!--<phase>process-sources</phase>-->
+                        <!--<goals> <goal>compile</goal> </goals>-->
+                    <!--</execution>-->
+
+                    <!--<execution>-->
+                        <!--<id>test-compile</id>-->
+                        <!--<phase>process-test-sources</phase>-->
+                        <!--<goals> <goal>test-compile</goal> </goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
@@ -394,7 +535,6 @@
             <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-
     <profiles>
         <profile>
             <activation>
@@ -485,73 +625,14 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <id>arquillian_weld-ee-embedded-11</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
-                    <version>1.0.0.CR7</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.weld</groupId>
-                    <artifactId>weld-core</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.weld</groupId>
-                    <artifactId>weld-api</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.ejb3</groupId>
-                    <artifactId>jboss-ejb3-api</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-simple</artifactId>
-                </dependency>
-                <!--Arquillian-->
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                    <type>pom</type>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.junit</groupId>
-                    <artifactId>arquillian-junit-container</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap</groupId>
-                    <artifactId>shrinkwrap-api</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.shrinkwrap</groupId>
-                    <artifactId>shrinkwrap-impl-base</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
             <dependencyManagement>
                 <dependencies>
-                    <dependency>
-                        <groupId>org.jboss.weld</groupId>
-                        <artifactId>weld-core-bom</artifactId>
-                        <version>1.1.0.Final</version>
-                        <type>pom</type>
-                        <scope>import</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.ejb3</groupId>
-                        <artifactId>jboss-ejb3-api</artifactId>
-                        <version>3.1.0</version>
-                        <scope>test</scope>
-                    </dependency>
                     <dependency>
                         <groupId>org.jboss.shrinkwrap.resolver</groupId>
                         <artifactId>shrinkwrap-resolver-bom</artifactId>
                         <version>2.1.0-alpha-1</version>
-                        <type>pom</type>
                         <scope>test</scope>
+                        <type>pom</type>
                     </dependency>
                     <dependency>
                         <groupId>org.jboss.shrinkwrap</groupId>
@@ -563,7 +644,7 @@
                     <dependency>
                         <groupId>org.jboss.arquillian</groupId>
                         <artifactId>arquillian-bom</artifactId>
-                        <version>1.1.2.Final</version>
+                        <version>1.1.0.Final</version>
                         <scope>import</scope>
                         <type>pom</type>
                     </dependency>
@@ -572,47 +653,77 @@
                         <groupId>org.jboss.shrinkwrap.descriptors</groupId>
                         <artifactId>shrinkwrap-descriptors-bom</artifactId>
                         <version>2.0.0-alpha-5</version>
-                        <scope>test</scope>
+                        <scope>import</scope>
                         <type>pom</type>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                        <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                        <version>2.0.1</version>
-                        <type>pom</type>
-                        <scope>test</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.arquillian.junit</groupId>
-                        <artifactId>arquillian-junit-container</artifactId>
-                        <version>1.1.2.Final</version>
-                        <scope>test</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.shrinkwrap</groupId>
-                        <artifactId>shrinkwrap-api</artifactId>
-                        <version>1.2.0</version>
-                        <scope>test</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                        <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-                        <version>2.0.1</version>
-                        <scope>test</scope>
-                    </dependency>
-
-                    <dependency>
-                        <groupId>org.jboss.shrinkwrap</groupId>
-                        <artifactId>shrinkwrap-impl-base</artifactId>
-                        <version>1.2.0</version>
-                        <scope>test</scope>
                     </dependency>
 
                 </dependencies>
             </dependencyManagement>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+                    <version>1.0.0.Final-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.weld</groupId>
+                    <artifactId>weld-core</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.weld</groupId>
+                    <artifactId>weld-api</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-6.0</artifactId>
+                    <version>1.0.0.Final</version>
+                    <type>pom</type>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+
+
         </profile>
         <profile>
             <id>arquillian_weld-se-embedded-11</id>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                        <artifactId>shrinkwrap-resolver-bom</artifactId>
+                        <version>2.1.0-alpha-1</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap</groupId>
+                        <artifactId>shrinkwrap-depchain</artifactId>
+                        <version>1.2.0</version>
+                        <type>pom</type>
+                        <scope>test</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jboss.arquillian</groupId>
+                        <artifactId>arquillian-bom</artifactId>
+                        <version>1.1.0.Final</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                        <artifactId>shrinkwrap-descriptors-bom</artifactId>
+                        <version>2.0.0-alpha-5</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+
+                </dependencies>
+            </dependencyManagement>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -640,6 +751,31 @@
                     <scope>provided</scope>
                 </dependency>
             </dependencies>
+            <!--<dependencyManagement>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.jboss.weld</groupId>-->
+                        <!--<artifactId>weld-core-bom</artifactId>-->
+                        <!--<version>2.1.0.Final</version>-->
+                        <!--<type>pom</type>-->
+                        <!--<scope>import</scope>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+            <!--</dependencyManagement>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.apache.maven.plugins</groupId>-->
+                        <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                        <!--<configuration>-->
+                            <!--&lt;!&ndash;<includes>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<include>**/junit/**</include>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<include>**/cdi/**</include>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</includes>&ndash;&gt;-->
+                        <!--</configuration>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
             <build>
                 <plugins>
                     <plugin>
@@ -665,11 +801,22 @@
         <module>../se-commons</module>
         <module>../se-genericcache</module>
         <module>../cdi-commons</module>
-
-
-        <module>../cdi-tablemodel</module>
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
+        <module>../javafx-commons</module>
+        <module>../iot-tinkerforge</module>
+
+
+
+
+
+        <!--deactivated-->
+        <!--<module>../cdi-tablemodel</module>-->
+        <!--<module>../javafx-chart-pie-drilldown</module>-->
+        <!--<module>../javafx-autocomplete-textfield</module>-->
+        <!--<module>../javafx-filtered-tableview</module>-->
+        <!--<module>../javafx-progressbartable</module>-->
+        <!--<module>../javafx-searchbox</module>-->
     </modules>
 
 
