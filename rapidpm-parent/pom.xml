@@ -32,40 +32,26 @@
 
     <packaging>pom</packaging>
     <name>rapidpm-parent</name>
-    <description>Parent POM for the RapidPM-Projects</description>
+    <description>Parent POM for the RapidPM-Modules-Projects</description>
 
     <properties>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.symbolic.name>rapidpm-parent</project.symbolic.name>
-
-        <mockito-all.version>1.9.5</mockito-all.version>
-        <junit.version>4.11</junit.version>
 
         <jboss-javaee-all-6.0.version>3.0.2.Final</jboss-javaee-all-6.0.version>
         <jboss-as-version>7.1.1.Final</jboss-as-version>
         <arquillian-glassfish-version>1.0.0.CR4</arquillian-glassfish-version>
-
     </properties>
 
     <dependencyManagement>
-        <dependencies>            <!-- Weld Container -->
+        <dependencies>
             <dependency>
-                <groupId>org.jboss.weld</groupId>
-                <artifactId>weld-core-bom</artifactId>
-                <version>2.1.0.Final</version>
+                <groupId>org.rapidpm</groupId>
+                <artifactId>rapidpm-dependicies</artifactId>
+                <version>2.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.jboss.weld.se</groupId>
-                <artifactId>weld-se</artifactId>
-                <version>2.1.0.Final</version>
-                <scope>compile</scope>
-            </dependency>
-
-
-
 
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
@@ -122,20 +108,6 @@
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>org.rapidpm.modul</groupId>-->
-                <!--<artifactId>cdi-tablemodel</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<type>jar</type>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.rapidpm.modul</groupId>-->
-                <!--<artifactId>cdi-tablemodel</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<type>test-jar</type>-->
-                <!--<scope>test</scope>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
                 <artifactId>javafx-commons</artifactId>
@@ -150,203 +122,6 @@
                 <scope>test</scope>
                 <type>test-jar</type>
             </dependency>
-
-
-            <!--deactivated-->
-            <!--<dependency>-->
-                <!--<groupId>org.rapidpm.modul</groupId>-->
-                <!--<artifactId>javafx-dialog</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.rapidpm.modul</groupId>-->
-                <!--<artifactId>javafx-searchbox</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.rapidpm.modul</groupId>-->
-                <!--<artifactId>javafx-filtered-tableview</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.rapidpm.modul</groupId>-->
-                <!--<artifactId>javafx-autocomplete-textfield</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.rapidpm.modul</groupId>-->
-                <!--<artifactId>javafx-progressbartable</artifactId>-->
-                <!--<version>${project.version}</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-
-
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-simple</artifactId>
-                <version>1.7.5</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>3.9</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-scratchpad</artifactId>
-                <version>3.9</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.enterprise</groupId>
-                <artifactId>cdi-api</artifactId>
-                <version>1.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>commons-validator</groupId>
-                <artifactId>commons-validator</artifactId>
-                <version>1.2.0</version>
-                <scope>compile</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.1.0.Final</version>
-                <scope>compile</scope>
-            </dependency>
-
-
-            <!-- Lucene f SearchBox-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.lucene</groupId>-->
-                <!--<artifactId>lucene-core</artifactId>-->
-                <!--<version>4.5.1</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.lucene</groupId>-->
-                <!--<artifactId>lucene-analyzers-common</artifactId>-->
-                <!--<version>4.5.1</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.lucene</groupId>-->
-                <!--<artifactId>lucene-queryparser</artifactId>-->
-                <!--<version>4.5.1</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.lucene</groupId>-->
-                <!--<artifactId>lucene-queries</artifactId>-->
-                <!--<version>4.5.1</version>-->
-                <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-            <!-- Lucene f SearchBox-->
-            <!--Solr-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.solr</groupId>-->
-                <!--<artifactId>solr-solrj</artifactId>-->
-                <!--<version>4.5.1</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.httpcomponents</groupId>-->
-                <!--<artifactId>httpcore</artifactId>-->
-                <!--<version>4.3</version>-->
-                <!--<scope>compile</scope>-->
-                <!--<type>jar</type>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.httpcomponents</groupId>-->
-                <!--<artifactId>httpclient</artifactId>-->
-                <!--<version>4.3.1</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.httpcomponents</groupId>-->
-                <!--<artifactId>httpmime</artifactId>-->
-                <!--<version>4.3.1</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>commons-codec</groupId>-->
-                <!--<artifactId>commons-codec</artifactId>-->
-                <!--<version>1.8</version>-->
-            <!--</dependency>-->
-            <!--Solr-->
-
-            <!--<dependency>-->
-                <!--<groupId>com.hazelcast</groupId>-->
-                <!--<artifactId>hazelcast</artifactId>-->
-                <!--<version>3.0.1</version>-->
-            <!--</dependency>-->
-
-
-            <!--<dependency>-->
-                <!--<groupId>org.jetbrains.kotlin</groupId>-->
-                <!--<artifactId>kotlin-stdlib</artifactId>-->
-                <!--<version>0.6.602</version>-->
-                <!--<scope>test</scope>-->
-            <!--</dependency>-->
-
-
-            <!--arangodb-->
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-joda</artifactId>
-                <version>2.2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>2.2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.2.0</version>
-            </dependency>
-            <!--arangodb-->
-
-            <dependency>
-                <groupId>org.loadui</groupId>
-                <artifactId>testFx</artifactId>
-                <version>2.7.5</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.11</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.cenqua.clover</groupId>
-                <artifactId>clover</artifactId>
-                <version>3.2.0</version>
-                <scope>compile</scope>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -361,10 +136,6 @@
             <artifactId>guava</artifactId>
             <scope>compile</scope>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.jetbrains.kotlin</groupId>-->
-        <!--<artifactId>kotlin-stdlib</artifactId>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -390,8 +161,6 @@
 
 
     </dependencies>
-
-
 
     <build>
         <pluginManagement>
@@ -805,11 +574,6 @@
         <module>../cdi-commons-fx</module>
         <module>../javafx-commons</module>
         <module>../iot-tinkerforge</module>
-
-
-
-
-
         <!--deactivated-->
         <!--<module>../cdi-tablemodel</module>-->
         <!--<module>../javafx-chart-pie-drilldown</module>-->
