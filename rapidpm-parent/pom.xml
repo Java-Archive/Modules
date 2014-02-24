@@ -580,14 +580,14 @@
 
 
     <modules>
-        <!--<module>rapidpm-resources</module>-->
-        <!--<module>../se-commons</module>-->
-        <!--<module>../se-genericcache</module>-->
-        <!--<module>../cdi-commons</module>-->
-        <!--<module>../cdi-commons-se</module>-->
-        <!--<module>../cdi-commons-fx</module>-->
-        <!--<module>../javafx-commons</module>-->
-        <!--<module>../iot-tinkerforge</module>-->
+        <module>rapidpm-resources</module>
+        <module>../se-commons</module>
+        <module>../se-genericcache</module>
+        <module>../cdi-commons</module>
+        <module>../cdi-commons-se</module>
+        <module>../cdi-commons-fx</module>
+        <module>../javafx-commons</module>
+        <module>../iot-tinkerforge</module>
         <!--deactivated-->
         <!--<module>../cdi-tablemodel</module>-->
         <!--<module>../javafx-chart-pie-drilldown</module>-->
