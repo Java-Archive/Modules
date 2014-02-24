@@ -122,6 +122,20 @@
                 <scope>test</scope>
                 <type>test-jar</type>
             </dependency>
+           <dependency>
+                <groupId>org.rapidpm.modul</groupId>
+                <artifactId>iot-tinkerforge</artifactId>
+                <version>${project.version}</version>
+                <scope>compile</scope>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.rapidpm.modul</groupId>
+                <artifactId>iot-tinkerforge</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
+                <type>test-jar</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
