@@ -20,6 +20,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidpm.commons.javafx.pairedtextfield.PairedTextField;
 
@@ -40,7 +41,7 @@ public class PairedTextFieldTest {
         }
     }
 
-    @Test
+    @Test @Ignore
     public void testPairedTextField001() throws Exception {
         Application.launch(MainWindow.class);
     }
