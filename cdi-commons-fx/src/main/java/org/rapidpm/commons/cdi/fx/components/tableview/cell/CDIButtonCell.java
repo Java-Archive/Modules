@@ -35,7 +35,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * Date: 02.10.13
  * Time: 13:58
  */
-public abstract class ButtonCell<T> extends TableCell<T, Boolean> {
+public abstract class CDIButtonCell<T> extends TableCell<T, Boolean> {
 
     public Button cellButton;
 
@@ -46,14 +46,14 @@ public abstract class ButtonCell<T> extends TableCell<T, Boolean> {
     private @Inject @CDILogger
     Logger logger;
 
-    public ButtonCell() {
+    public CDIButtonCell() {
 
     }
 
     @PostConstruct
     public void init() {
         if (logger.isDebugEnabled()) {
-            logger.debug("ButtonCell->init");
+            logger.debug("CDIButtonCell->init");
         }
         cellButton = new Button(getButtonLabelText());
         cellButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -63,7 +63,7 @@ public abstract class ButtonCell<T> extends TableCell<T, Boolean> {
                     if (logger.isDebugEnabled()) {
                         logger.debug("execute buttonCellAction-> " + buttonCellAction);
                     }
-                    buttonCellAction.execute(ButtonCell.this, t);
+                    buttonCellAction.execute(CDIButtonCell.this, t);
                 }
             }
         });
@@ -78,7 +78,7 @@ public abstract class ButtonCell<T> extends TableCell<T, Boolean> {
     }
 
     public static abstract class ButtonCellAction<T> {
-        public abstract void execute(ButtonCell<T> buttonCell, ActionEvent t);
+        public abstract void execute(CDIButtonCell<T> CDIButtonCell, ActionEvent t);
     }
 
 
