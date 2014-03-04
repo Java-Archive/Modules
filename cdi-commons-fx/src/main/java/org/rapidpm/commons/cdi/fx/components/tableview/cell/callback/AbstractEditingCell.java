@@ -29,8 +29,7 @@ import javax.inject.Inject;
  */
 public abstract class AbstractEditingCell<S,T> extends TableCell<S, T> {
 
-    private @Inject @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     protected AbstractEditingCell() {
         CDIContainerSingleton.getInstance().activateCDI(this);

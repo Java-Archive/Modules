@@ -25,5 +25,5 @@ import javafx.fxml.Initializable;
  */
 public interface CDIJavaFxBaseController extends Initializable {
 
-    //add dynamic Proxy
+    //add dynamic static Proxy
 }

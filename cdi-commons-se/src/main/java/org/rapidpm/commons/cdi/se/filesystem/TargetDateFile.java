@@ -65,18 +65,14 @@ public class TargetDateFile implements Serializable{
         final File yyyy = new File(baseDir, sdfYYYY.format(date));
         final File mm = new File(yyyy, sdfMM.format(date));
         final File dd = new File(mm, sdfdd.format(date));
-        if (yyyy.exists()) {
+        if (!yyyy.exists()) {
             //
-        } else {
             yyyy.mkdir();
         }
-
-        if (mm.exists()) {
-        } else {
+        if (! mm.exists()) {
             mm.mkdir();
         }
-        if (dd.exists()) {
-        } else {
+        if (! dd.exists()) {
             dd.mkdir();
         }
         return dd;

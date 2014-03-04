@@ -31,7 +31,7 @@ public class LocaleProducer {
     @Produces
     @CDILocale
     public Locale createDefaultLocale() {
-        return new Locale("de", "DE"); //JIRA MOD-46 Definition der default Locale
+        return new Locale("de", "DE");
     }
 
 }

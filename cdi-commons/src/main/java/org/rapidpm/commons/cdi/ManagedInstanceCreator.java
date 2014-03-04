@@ -58,23 +58,6 @@ public class ManagedInstanceCreator {
                 .findFirst()
                 .get();
 
-
-
-
-//        for (final Bean<?> bean : beanSet) {
-//            final Set<Type> types = bean.getTypes();
-//            for (final Type type : types) {
-//                if (type.equals(beanType)) {
-//                    final Bean<T> beanTyped = (Bean<T>) bean;
-//                    result = beanTyped.create(beanManager.createCreationalContext(beanTyped));
-//                } else {
-//                    if (logger.isDebugEnabled()) {
-//                        logger.debug("! type.equals(beanType) " + type);
-//                    }
-//                }
-//            }
-//        }
-
         return result;
     }
 

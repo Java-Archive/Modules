@@ -36,7 +36,6 @@ public class AsyncExecutor implements Callable<Future<Object>> {
     //    AsyncExecutor(InvocationContext invocationContext, Instance<ContextControl> contextControlInstance)
     public AsyncExecutor(InvocationContext invocationContext) {
         this.invocationContext = invocationContext;
-
     }
 
     @Override

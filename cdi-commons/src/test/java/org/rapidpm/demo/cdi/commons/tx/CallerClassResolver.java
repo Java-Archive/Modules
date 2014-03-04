@@ -34,17 +34,12 @@ public class CallerClassResolver {
         return null;
     }
 
-
     public static void main(String[] args) {
         final ClassA classA = new ClassA();
         classA.doIt();
     }
 
-
-
-
     public static class ClassA {
-
         public void doIt(){
             System.out.println("getCallerClassName() = " + getCallerClassName());
             final ClassB b = new ClassB();
@@ -60,8 +55,6 @@ public class CallerClassResolver {
             final ClassC c = new ClassC();
             c.doIt();
         }
-
-
     }
     public static class ClassC {
 

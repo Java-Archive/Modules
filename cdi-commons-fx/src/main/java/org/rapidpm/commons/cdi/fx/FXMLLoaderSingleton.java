@@ -37,13 +37,8 @@ import org.rapidpm.module.se.commons.logger.Logger;
 @Singleton
 public class FXMLLoaderSingleton {
 
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
-    private
-    @Inject
-    Instance<CDIJavaFxBaseController> instance;
+    private @Inject @CDILogger Logger logger;
+    private @Inject Instance<CDIJavaFxBaseController> instance;
 
     private final ClassLoader cachingClassLoader = new FXClassLoader(FXMLLoader.getDefaultClassLoader());
     private final Map<Class, FXMLLoader> class2LoaderMap = new HashMap<Class, FXMLLoader>();

@@ -43,8 +43,7 @@ public abstract class CDIButtonCell<T> extends TableCell<T, Boolean> {
 
     private List<ButtonCellAction<T>> actionList = new ArrayList<>();
 
-    private @Inject @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     public CDIButtonCell() {
 
@@ -56,15 +55,12 @@ public abstract class CDIButtonCell<T> extends TableCell<T, Boolean> {
             logger.debug("CDIButtonCell->init");
         }
         cellButton = new Button(getButtonLabelText());
-        cellButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                for (final ButtonCellAction<T> buttonCellAction : actionList) {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("execute buttonCellAction-> " + buttonCellAction);
-                    }
-                    buttonCellAction.execute(CDIButtonCell.this, t);
+        cellButton.setOnAction(t -> {
+            for (final ButtonCellAction<T> buttonCellAction : actionList) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("execute buttonCellAction-> " + buttonCellAction);
                 }
+                buttonCellAction.execute(CDIButtonCell.this, t);
             }
         });
     }
@@ -77,10 +73,11 @@ public abstract class CDIButtonCell<T> extends TableCell<T, Boolean> {
         }
     }
 
-    public static abstract class ButtonCellAction<T> {
+
+    @FunctionalInterface
+    public static interface ButtonCellAction<T> {
         public abstract void execute(CDIButtonCell<T> CDIButtonCell, ActionEvent t);
     }
-
 
     public List<ButtonCellAction<T>> getActionList() {
         return actionList;

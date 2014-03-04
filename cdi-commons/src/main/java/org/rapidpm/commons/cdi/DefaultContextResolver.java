@@ -40,9 +40,8 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 @CDICommons
 public class DefaultContextResolver implements ContextResolver {
-//public class DefaultContextResolver  {
 
-    private @Inject @CDILogger Logger logger;
+    @Inject @CDILogger Logger logger;
     @Inject BeanManager beanManager;
 
 
@@ -79,20 +78,17 @@ public class DefaultContextResolver implements ContextResolver {
         final Set<ContextResolver> resultSet = new HashSet<>();
         final Set<Bean<?>> allBeans = beanManager.getBeans(ContextResolver.class, new AnnotationLiteral<CDICommonsMocked>() {
         });
-        for (final Bean<?> bean : allBeans) {
-            final Set<Type> types = bean.getTypes();
-            for (final Type type : types) {
-                if (type.equals(ContextResolver.class)) {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("type (added) = " + type);
-                    }
-                    final ContextResolver t = ((Bean<ContextResolver>) bean).create(beanManager.createCreationalContext((Bean<ContextResolver>) bean));
-                    resultSet.add(t);
-                } else {
-                    //
+        allBeans.forEach(b-> b.getTypes().forEach(type->{
+            if (type.equals(ContextResolver.class)) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("type (added) = " + type);
                 }
+                final ContextResolver t = ((Bean<ContextResolver>) b).create(beanManager.createCreationalContext((Bean<ContextResolver>) b));
+                resultSet.add(t);
+            } else {
+                //
             }
-        }
+        }));
         return resultSet;
     }
 

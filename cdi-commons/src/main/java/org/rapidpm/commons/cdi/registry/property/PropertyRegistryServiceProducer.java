@@ -37,14 +37,12 @@ import org.rapidpm.module.se.commons.logger.Logger;
 public class PropertyRegistryServiceProducer {
 
     private @Inject @CDILogger Logger logger;
-    private @Inject @CDIPropertyRegistryFileBased
-    PropertyRegistryService defaultRegistry;
+    private @Inject @CDIPropertyRegistryFileBased PropertyRegistryService defaultRegistry;
     private @Inject BeanManager beanManager;
     private @Inject ManagedInstanceCreator creator;
-    @Produces
-    @CDIPropertyRegistryService
-    public PropertyRegistryService create(InjectionPoint injectionPoint,
-                                          @CDICommons ContextResolver contextResolver) {
+
+    @Produces @CDIPropertyRegistryService
+    public PropertyRegistryService create(@CDICommons ContextResolver contextResolver) {
         if (logger.isDebugEnabled()) {
             logger.debug("used ContextResolver - " + contextResolver.getClass().getName());
         }

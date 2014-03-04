@@ -56,7 +56,7 @@ public class ClassFilePropertyRegistry implements ClassPropertyRegistry, Seriali
         if (contains) {
             return messages.getString(key);
         } else {
-            return "###" + key + "###";  //JIRA MOD-45 write to separat log file that this key is missing
+            return "###" + key + "###";
         }
     }
 

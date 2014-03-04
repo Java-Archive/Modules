@@ -16,8 +16,6 @@
 
 package org.rapidpm.commons.cdi.fx.components.tableview.cell.callback;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -57,13 +55,9 @@ public class EditingStringCellFactoryCallback<S> implements Callback<TableColumn
         public void createValueField() {
             textField = new TextField(getString());
             textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
-            textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-                @Override
-                public void changed(ObservableValue<? extends Boolean> arg0,
-                                    Boolean arg1, Boolean arg2) {
-                    if (!arg2) {
-                        commitEdit(textField.getText());
-                    }
+            textField.focusedProperty().addListener((arg0, arg1, arg2) -> {
+                if (!arg2) {
+                    commitEdit(textField.getText());
                 }
             });
         }

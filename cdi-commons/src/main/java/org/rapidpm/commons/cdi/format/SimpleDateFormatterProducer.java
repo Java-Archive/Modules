@@ -158,10 +158,8 @@ public class SimpleDateFormatterProducer {
     }
 
     private static class HolderClass {
-
         public String ressourcenKey;
         public String mappedKey;
-
     }
 
 

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.cdi.commons.se;
+package org.rapidpm.commons.cdi.se;
 
 import java.util.ArrayList;
 import java.util.List;

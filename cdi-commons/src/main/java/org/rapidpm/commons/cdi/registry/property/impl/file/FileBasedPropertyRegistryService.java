@@ -39,8 +39,7 @@ import java.util.List;
  */
 public class FileBasedPropertyRegistryService extends PropertyRegistryService implements Serializable {
 
-    private @Inject @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     private @Inject @CDIPropertyRegistryFileBased
     CompanyPropertyRegistry companyPropertyRegistry;
@@ -73,34 +72,11 @@ public class FileBasedPropertyRegistryService extends PropertyRegistryService im
                 .filter(r->r.hasProperty(ressourceKey))
                 .map(r -> {
                     if (logger.isDebugEnabled()) {
-                        System.out.println("r.getClass().getSimpleName() = " + r.getClass().getSimpleName());
                         logger.debug(r.getClass().getSimpleName() + " found Property " + ressourceKey);
                     }
                     return r.getProperty(ressourceKey);
                 })
                 .findFirst()
                 .orElse("###" + ressourceKey + "###");
-
-//        if (classFilePropertyRegistry.hasProperty(ressourceKey)) {
-//            if (logger.isDebugEnabled()) {
-//                logger.debug("classFilePropertyRegistry found Property " + ressourceKey);
-//            }
-//            return classFilePropertyRegistry.getProperty(ressourceKey);
-//        } else if (modulFilePropertyRegistry.hasProperty(ressourceKey)) {
-//            if (logger.isDebugEnabled()) {
-//                logger.debug("modulFilePropertyRegistry found Property " + ressourceKey);
-//            }
-//            return modulFilePropertyRegistry.getProperty(ressourceKey);
-//        } else if (applicationFilePropertyRegistry.hasProperty(ressourceKey)) {
-//            if (logger.isDebugEnabled()) {
-//                logger.debug("applicationFilePropertyRegistry found Property " + ressourceKey);
-//            }
-//            return applicationFilePropertyRegistry.getProperty(ressourceKey);
-//        } else {
-//            if (logger.isDebugEnabled()) {
-//                logger.debug("companyPropertyRegistry must have Property " + ressourceKey);
-//            }
-//            return companyPropertyRegistry.getProperty(ressourceKey);
-//        }
     }
 }

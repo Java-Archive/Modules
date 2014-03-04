@@ -16,13 +16,12 @@
 
 package org.rapidpm.commons.cdi.messagebus;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
 import com.google.common.eventbus.EventBus;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 
 /**
@@ -61,43 +60,4 @@ public class MessageBus implements Serializable {
         }
         eventBus.post(message);
     }
-
-
-    //ScoringMessgae -> Cache<ScoringMessaget>
-//    private Map<Class<?>, Cache> classCacheMap = new HashMap<>();
-//
-//    @Inject @CDIGenericCache private Instance<Cache> genericcache;
-//
-//    public void catchMessage(@Observes @CDIMessageBus Message message){
-//        //eventBus.post(message);
-//        if (logger.isDebugEnabled()) {
-//            logger.debug("catchMessage " + message);
-//        }
-//
-//        final Object value = message.getValue();
-//        final Class<?> aClass = value.getClass();
-//        if(classCacheMap.containsKey(aClass)){
-//
-//        } else{
-//            final AnnotationLiteral<CDIGenericCache> annotationLiteral = new AnnotationLiteral<CDIGenericCache>() {
-//
-//            };
-//            genericcache.select()
-//        }
-//            final Cache cache = classCacheMap.get(aClass);
-//            try {
-//                cache.fillCache(value);
-//            } catch (IllegalAccessException | InvocationTargetException e) {
-//                logger.error(e);
-//            }
-//
-//    }
-//
-//    public T <T>getMessageForEvent(final Object object){
-//
-//        //hole aus dem Cache
-//        return null;
-//    }
-
-
 }

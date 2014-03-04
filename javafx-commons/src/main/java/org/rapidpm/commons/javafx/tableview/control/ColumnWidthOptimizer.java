@@ -32,11 +32,9 @@ public class ColumnWidthOptimizer {
         final ObservableList<TableColumn<?, ?>> visibleLeafColumns = tableView.getVisibleLeafColumns();
         final int size = visibleLeafColumns.size();
         final SimpleDoubleProperty newSizeProperty = new SimpleDoubleProperty(size);
-        visibleLeafColumns.addListener(new ListChangeListener<TableColumn<?, ?>>() {
-            @Override public void onChanged(Change<? extends TableColumn<?, ?>> change) {
-                final int newSize = change.getList().size();
-                newSizeProperty.set(newSize);
-            }
+        visibleLeafColumns.addListener((ListChangeListener<TableColumn<?, ?>>) change -> {
+            final int newSize = change.getList().size();
+            newSizeProperty.set(newSize);
         });
         for (final TableColumn<?, ?> column : columns) {
             column.prefWidthProperty().bind(tableView.widthProperty().divide(newSizeProperty));
