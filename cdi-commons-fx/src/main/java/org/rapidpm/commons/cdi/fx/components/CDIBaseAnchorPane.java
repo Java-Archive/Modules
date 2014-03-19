@@ -26,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import org.rapidpm.commons.cdi.CDINotMapped;
 import org.rapidpm.commons.cdi.fx.CDIJavaFxBaseController;
 import org.rapidpm.commons.cdi.fx.FXMLLoaderSingleton;
+import org.rapidpm.commons.cdi.se.CDIContainerSingleton;
 
 /**
  * User: Sven Ruppert
@@ -61,6 +62,7 @@ public abstract class CDIBaseAnchorPane<T, C extends CDIJavaFxBaseController> ex
     }
 
     public C getController() {
+        if (controller == null) CDIContainerSingleton.getInstance().activateCDI(this);
         return controller;
     }
 

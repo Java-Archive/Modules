@@ -27,6 +27,7 @@ import javafx.scene.layout.GridPane;
 import org.rapidpm.commons.cdi.CDINotMapped;
 import org.rapidpm.commons.cdi.fx.CDIJavaFxBaseController;
 import org.rapidpm.commons.cdi.fx.FXMLLoaderSingleton;
+import org.rapidpm.commons.cdi.se.CDIContainerSingleton;
 
 /**
  * User: Sven Ruppert
@@ -59,6 +60,7 @@ public abstract class CDIBaseGridPane<T, C extends CDIJavaFxBaseController> exte
     }
 
     public C getController() {
+        if (controller == null) CDIContainerSingleton.getInstance().activateCDI(this);
         return controller;
     }
 
