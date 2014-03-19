@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import org.rapidpm.commons.cdi.CDINotMapped;
 import org.rapidpm.commons.cdi.fx.CDIJavaFxBaseController;
 import org.rapidpm.commons.cdi.fx.FXMLLoaderSingleton;
 
@@ -31,6 +32,7 @@ import org.rapidpm.commons.cdi.fx.FXMLLoaderSingleton;
  * Date: 30.08.13
  * Time: 07:03
  */
+@CDINotMapped
 public abstract class CDIBaseAnchorPane<T, C extends CDIJavaFxBaseController> extends AnchorPane implements CDIBaseFxComponent<T> {
 
     public CDIBaseAnchorPane() {
