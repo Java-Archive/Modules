@@ -17,17 +17,12 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 
-import com.tinkerforge.Device;
-import com.tinkerforge.NotConnectedException;
-import com.tinkerforge.TimeoutException;
-import data.SensorDataElement;
 import org.rapidpm.module.iot.tinkerforge.actor.LCD20x4;
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.ArangoDBLocalhost;
-import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.SensorDataRepository;
-import org.rapidpm.module.iot.tinkerforge.sensor.*;
-
-import java.util.Date;
+import org.rapidpm.module.iot.tinkerforge.sensor.Barometer;
+import org.rapidpm.module.iot.tinkerforge.sensor.Humidity;
+import org.rapidpm.module.iot.tinkerforge.sensor.Light;
+import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
 
 import static org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor.SensorValueAction;
 
@@ -40,8 +35,7 @@ public class WeatherStationRemote {
     public static final int PORT = 4223;
     private static int callbackPeriod = 10000;
 
-    private static final LCD20x4 lcd20x4 = new LCD20x4("jvX", "localhost", PORT);
-    private static final SensorDataRepository repo = new SensorDataRepository(ArangoDBLocalhost.database);
+    private static final LCD20x4 lcd20x4 = new LCD20x4("jvX", "192.168.0.202", PORT);
 
     public static void main(String args[]) throws Exception {
         final Temperature temperature = new Temperature("dXj", callbackPeriod, PORT, HOST);
@@ -51,34 +45,9 @@ public class WeatherStationRemote {
                 final double tempNorm = sensorvalue / 100.0;
                 final String text = "Temp  : " + tempNorm + " °C";
                 lcd20x4.printLine(0, text);
-//                try {
-//                    final Device.Identity identity = temperature.getBrickletInstance().getIdentity();
-//                    final SensorDataElement data = new SensorDataElement();
-//                    data.setMasterUID("6k297L");
-//                    data.setBrickletUID(identity.uid);
-//                    data.setBrickletType(identity.deviceIdentifier + "");
-//                    data.setDate(new Date());
-//                    data.setSensorValue(illuminance);
-//                    System.out.println(data);
-//                    repo.create(data);
-//
-//                } catch (TimeoutException | NotConnectedException e) {
-//                    e.printStackTrace();
-//                }
-
-
-
             }
         };
         new Thread(temperature).start();
-
-//
-//        @Override
-//        public void workOnSensorValueAltitude(int altitude) {
-//            final String text = "Alt   : " + altitude / 100.0 + " m";
-////                lcd20x4.printLine(2, text);
-//        }
-
 
         final Barometer barometer = new Barometer("jY4", callbackPeriod, PORT, HOST);
         barometer.actionAirPressure = new SensorValueAction() {

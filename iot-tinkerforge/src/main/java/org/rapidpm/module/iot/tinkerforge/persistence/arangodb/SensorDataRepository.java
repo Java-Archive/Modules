@@ -21,6 +21,12 @@ import org.arangodb.objectmapper.ArangoDb4JException;
 import org.arangodb.objectmapper.ArangoDbRepository;
 import org.arangodb.objectmapper.Database;
 import org.rapidpm.module.iot.tinkerforge.persistence.ISensorDataRepository;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor;
+
+import java.util.ArrayDeque;
+import java.util.Date;
+import java.util.Deque;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by Sven Ruppert on 16.02.14.
@@ -33,7 +39,10 @@ public class SensorDataRepository extends ArangoDbRepository<SensorDataElement> 
      */
     public SensorDataRepository(Database database) {
         super(database, SensorDataElement.class);
+        cleaner.start();
     }
+    private final SaveWorker cleaner = new SaveWorker(this);
+    private static final Deque<SensorDataElement> deque = new ArrayDeque<>();
 
     @Override
     public SensorDataElement create(SensorDataElement data) {
@@ -44,4 +53,59 @@ public class SensorDataRepository extends ArangoDbRepository<SensorDataElement> 
         }
         return null;
     }
+
+
+    public void saveSensorValue(int sensorvalue, TinkerForgeSensor sensor) {
+            final SensorDataElement data = sensor.getNextSensorDataElement();
+            data.setSensorValue(sensorvalue);
+            deque.add(data);
+    }
+
+    public static class SaveWorker extends Thread {
+
+        private final SensorDataRepository repo;
+
+        public SaveWorker(SensorDataRepository repo) {
+            this.repo = repo;
+            setDaemon(true);
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                Date date = new Date();
+                save(date);
+            }
+        }
+
+        private void save(Date date) {
+            long difference;
+            boolean delete;
+
+            if (deque.size()==0) {
+                return;
+            }
+
+            delete=false;
+            do {
+                SensorDataElement e = deque.getLast();
+                difference = date.getTime() - e.getDate().getTime();
+                if (difference > 100) {
+                    System.out.printf("Cleaner: %s\n",e);
+
+                    repo.create(e);
+
+                    deque.removeLast();
+                    delete=true;
+                }
+            } while (difference > 100);
+            if (delete){
+                System.out.printf("Cleaner: Size of the queue: %d\n",deque.size());
+            }
+        }
+
+    }
+
+
+
 }

@@ -17,8 +17,10 @@
 package org.rapidpm.module.iot.tinkerforge.sensor;
 
 import com.tinkerforge.*;
+import data.SensorDataElement;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by Sven Ruppert on 21.02.14.
@@ -35,6 +37,11 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable{
 
     public T bricklet;
 
+    public String masterUID;
+    public String brickletUID;
+    public String brickletType;
+
+
     public TinkerForgeSensor(final String UID, int callbackPeriod, int port, String host) {
         this.UID = UID;
         this.callbackPeriod = callbackPeriod;
@@ -47,11 +54,29 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable{
         bricklet = getBrickletInstance();
         try {
             ipcon.connect(host, port);
+            masterUID = bricklet.getIdentity().connectedUid;
+            brickletUID = bricklet.getIdentity().uid;
+            brickletType = bricklet.getIdentity().deviceIdentifier+"";
             initBricklet();
-        } catch (IOException | AlreadyConnectedException  e) {
+        } catch (IOException
+                | AlreadyConnectedException
+                | TimeoutException
+                | NotConnectedException e) {
             e.printStackTrace();
         }
     }
+
+    public SensorDataElement getNextSensorDataElement(){
+        final SensorDataElement data = new SensorDataElement();
+        data.setMasterUID(masterUID);
+        data.setBrickletUID(brickletUID);
+        data.setBrickletType(brickletType);
+        data.setDate(new Date());
+//        data.setSensorValue(sensorvalue);
+        return data;
+    }
+
+
 
     public abstract void initBricklet();
 

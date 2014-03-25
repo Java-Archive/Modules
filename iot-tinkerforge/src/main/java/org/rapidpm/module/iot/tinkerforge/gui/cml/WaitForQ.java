@@ -32,7 +32,7 @@ public class WaitForQ {
             int quit=0;
             while(true){
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10000);
                     String msg = null;
                     while(true){
                         try{
