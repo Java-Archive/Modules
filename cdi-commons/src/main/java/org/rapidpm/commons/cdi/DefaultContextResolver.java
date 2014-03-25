@@ -112,7 +112,6 @@ public class DefaultContextResolver implements ContextResolver {
                                 .orElse(null)
                 );
 
-
 //        final Set<ContextResolver> mockedContextResolvers = gettAllMockedContextResolver();
 //        for (final ContextResolver mockedContextResolver : mockedContextResolvers) {
 //            final AnnotationLiteral annotationLiteral = mockedContextResolver.resolveContext(targetClass);

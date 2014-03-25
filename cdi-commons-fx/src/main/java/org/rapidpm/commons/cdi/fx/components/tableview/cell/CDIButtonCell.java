@@ -17,18 +17,16 @@
 package org.rapidpm.commons.cdi.fx.components.tableview.cell;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import org.rapidpm.commons.cdi.ManagedInstanceCreator;
+import org.rapidpm.commons.cdi.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import org.rapidpm.commons.cdi.logger.CDILogger;
-import org.rapidpm.module.se.commons.logger.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: Sven Ruppert
@@ -43,7 +41,8 @@ public abstract class CDIButtonCell<T> extends TableCell<T, Boolean> {
 
     private List<ButtonCellAction<T>> actionList = new ArrayList<>();
 
-    private @Inject @CDILogger Logger logger;
+    public @Inject @CDILogger Logger logger;
+    public @Inject ManagedInstanceCreator instanceCreator;
 
     public CDIButtonCell() {
 
@@ -70,16 +69,15 @@ public abstract class CDIButtonCell<T> extends TableCell<T, Boolean> {
         super.updateItem(t, empty);
         if (!empty) {
             setGraphic(cellButton);
+        } else {
+            setText(null);
+            setGraphic(null);
         }
     }
 
-
-    @FunctionalInterface
-    public static interface ButtonCellAction<T> {
-        public abstract void execute(CDIButtonCell<T> CDIButtonCell, ActionEvent t);
-    }
-
-    public List<ButtonCellAction<T>> getActionList() {
-        return actionList;
+    public  void addActionAsCDIManaged( ButtonCellAction<T> action){
+//       actionList.addAll(instanceCreator.activateCDI( action ));
+        actionList.add(action);
+        actionList.forEach(instanceCreator::activateCDI);
     }
 }

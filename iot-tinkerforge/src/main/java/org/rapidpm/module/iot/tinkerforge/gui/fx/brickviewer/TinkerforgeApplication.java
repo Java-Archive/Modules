@@ -47,10 +47,8 @@ public class TinkerforgeApplication extends Application {
         VBox selectableComponentsVBox1 = getSelectableComponentsVBox();
 
         //Auswählbare Objekte
-        masterBrickService.findMasterbricks().stream().map(e -> {
-            return new MasterBrickPanel(e,
-                    new SimpleDoubleProperty(100), new SimpleDoubleProperty(100));
-        }).forEach((e) -> {
+        masterBrickService.findMasterbricks().stream().map(e -> new MasterBrickPanel(e,
+                new SimpleDoubleProperty(100), new SimpleDoubleProperty(100))).forEach((e) -> {
             e.setDnDBehavior(new DndCopyBehavior(e));
             selectableComponentsVBox1.getChildren().add(e);
         });
