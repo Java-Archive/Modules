@@ -114,6 +114,12 @@
                 <scope>compile</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.hazelcast</groupId>
+                <artifactId>hazelcast</artifactId>
+                <version>3.2-RC2</version>
+            </dependency>
+
 
             <!-- Lucene f SearchBox-->
             <!--<dependency>-->
