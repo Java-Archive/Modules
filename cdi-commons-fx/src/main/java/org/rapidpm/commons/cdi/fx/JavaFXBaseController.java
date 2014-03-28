@@ -44,7 +44,7 @@ public abstract class JavaFXBaseController implements CDIJavaFxBaseController {
     @Override
     public void initInstance(){
         supplyAsync = CompletableFuture.supplyAsync(task, CachedThreadPoolSingleton.getInstance().cachedThreadPool);
-        supplyAsync.thenAccept(logger::debug);  //logger
+        if (logger.isDebugEnabled()) supplyAsync.thenAccept(logger::debug);  //logger
     }
 
     public final Supplier<String> task = ()-> {
