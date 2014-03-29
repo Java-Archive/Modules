@@ -40,6 +40,12 @@
             <artifactId>weld-se</artifactId>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>3.2-RC2</version>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.apache.solr</groupId>-->
             <!--<artifactId>solr-solrj</artifactId>-->

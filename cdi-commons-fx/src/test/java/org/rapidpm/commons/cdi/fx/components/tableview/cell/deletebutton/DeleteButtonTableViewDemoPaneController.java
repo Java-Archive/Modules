@@ -1,6 +1,6 @@
 package org.rapidpm.commons.cdi.fx.components.tableview.cell.deletebutton;
 
-import org.rapidpm.commons.cdi.fx.CDIJavaFxBaseController;
+import org.rapidpm.commons.cdi.fx.JavaFXBaseController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,10 +8,37 @@ import java.util.ResourceBundle;
 /**
  * Created by ts40 on 03.03.14.
  */
-public class DeleteButtonTableViewDemoPaneController implements CDIJavaFxBaseController {
+public class DeleteButtonTableViewDemoPaneController extends JavaFXBaseController {
+
+
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    protected void initializeFX(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    @Override
+    public void initBusinessLogic() {
+
+    }
+
+    @Override
+    public void cleanUp() {
+
+    }
+
+    @Override
+    public void setI18n() {
+
+    }
+
+    @Override
+    public void initInstance() {
+
+    }
+
+    @Override
+    public void cdiPostConstruct() {
 
     }
 }
