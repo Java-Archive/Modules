@@ -62,8 +62,9 @@ public class FXMLLoaderSingleton {
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {
-                    final Class<CDIJavaFxBaseController> p = (Class<CDIJavaFxBaseController>) param;
-                    final CDIJavaFxBaseController controller = instance.select(p).get();
+                    final Class<JavaFXBaseController> p = (Class<JavaFXBaseController>) param;
+                    final JavaFXBaseController controller = instance.select(p).get();
+                    controller.initInstance(); //trigger async call
                     return controller;
                 }
             });

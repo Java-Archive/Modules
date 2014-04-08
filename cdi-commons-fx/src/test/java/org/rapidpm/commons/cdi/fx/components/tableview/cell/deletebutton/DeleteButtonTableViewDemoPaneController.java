@@ -33,11 +33,6 @@ public class DeleteButtonTableViewDemoPaneController extends JavaFXBaseControlle
     }
 
     @Override
-    public void initInstance() {
-
-    }
-
-    @Override
     public void cdiPostConstruct() {
 
     }

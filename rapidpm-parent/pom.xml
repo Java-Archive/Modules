@@ -20,11 +20,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!--for release only-->
-    <!--<parent>-->
-    <!--<groupId>org.sonatype.oss</groupId>-->
-    <!--<artifactId>oss-parent</artifactId>-->
-    <!--<version>7</version>-->
-    <!--</parent>-->
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-parent</artifactId>
@@ -306,7 +306,7 @@
     </build>
 
     <!--for development of features/develop branch-->
-    <distributionManagement>
+    <!--<distributionManagement>
         <repository>
             <id>releases</id>
             <name>RapidPM Releases</name>
@@ -317,7 +317,7 @@
             <name>RapidPM Snapshots</name>
             <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement>-->
     <profiles>
         <profile>
             <activation>
@@ -608,7 +608,7 @@
         <connection>scm:git:https://bitbucket.org/rapidpm/modules.git</connection>
         <developerConnection>scm:git:https://bitbucket.org/rapidpm/modules.git</developerConnection>
         <!--<tag>master</tag>-->
-        <tag>rapidpm-parent-1.1</tag>
+        <tag>rapidpm-parent-2.0</tag>
     </scm>
     <developers>
         <developer>
@@ -621,11 +621,11 @@
     </developers>
     <issueManagement>
         <system>Jira</system>
-        <url>https://bitbucket.org/rapidpm/rapidpm-modules/issues</url>
+        <url>http://jira.rapidpm.org/browse/MOD#selectedTab=com.atlassian.jira.plugin.system.project%3Aissues-panel</url>
     </issueManagement>
     <ciManagement>
-        <system>Jenkins</system>
-        <url>http://jenkins.rapidpm.org/job/rapidpm-modules/</url>
+        <system>Bamboo</system>
+        <url>http://bamboo.rapidpm.org/</url>
         <!--<notifiers>-->
         <!--<notifier></notifier>-->
         <!--</notifiers>-->

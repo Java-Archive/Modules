@@ -42,8 +42,9 @@ public abstract class JavaFXBaseController implements CDIJavaFxBaseController {
     public CompletableFuture<String> supplyAsync;
 
     @Override
-    public void initInstance(){
-        supplyAsync = CompletableFuture.supplyAsync(task, CachedThreadPoolSingleton.getInstance().cachedThreadPool);
+    public final void initInstance(){
+        final CachedThreadPoolSingleton instance = CachedThreadPoolSingleton.getInstance();
+        supplyAsync = CompletableFuture.supplyAsync(task, instance.cachedThreadPool);
         if (logger.isDebugEnabled()) supplyAsync.thenAccept(logger::debug);  //logger
     }
 
@@ -52,16 +53,21 @@ public abstract class JavaFXBaseController implements CDIJavaFxBaseController {
         while(! (initCompleteCDI && initCompleteFX) ){
             try {
                 //evtl loggen
-                System.out.println("initCompleteCDI = " + initCompleteCDI);
-                System.out.println("initCompleteFX = " + initCompleteFX);
-                System.out.println("getClass().getName() = " + getClass().getName());
+                if (logger.isDebugEnabled()) {
+                    logger.debug("initCompleteCDI = " + initCompleteCDI);
+                    logger.debug("initCompleteFX = " + initCompleteFX);
+                    logger.debug("getClass().getName() = " + getClass().getName());
+                }
                 TimeUnit.MILLISECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 return e.toString();
             }
         }
-        System.out.println("initBusinessLogic() => called now");
+
+        if (logger.isInfoEnabled()) {
+            logger.info("initBusinessLogic() => called now");
+        }
         final boolean fxApplicationThread = Platform.isFxApplicationThread();
         if ( ! fxApplicationThread){
             Platform.runLater(this::initBusinessLogic);
@@ -70,7 +76,9 @@ public abstract class JavaFXBaseController implements CDIJavaFxBaseController {
         }
 
 
-        System.out.println("initBusinessLogic() => done now");
+        if (logger.isInfoEnabled()) {
+            logger.info("initBusinessLogic() => done now");
+        }
         return DONE;
     };
 

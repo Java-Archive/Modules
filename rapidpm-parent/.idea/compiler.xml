@@ -32,6 +32,17 @@
         <module name="se-genericcache" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cdi-commons" target="1.8" />
+      <module name="cdi-commons-fx" target="1.8" />
+      <module name="cdi-commons-se" target="1.8" />
+      <module name="iot-tinkerforge" target="1.8" />
+      <module name="javafx-commons" target="1.8" />
+      <module name="rapidpm-parent" target="1.8" />
+      <module name="rapidpm-resources" target="1.8" />
+      <module name="se-commons" target="1.8" />
+      <module name="se-genericcache" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="MAXIMUM_HEAP_SIZE" value="512" />
