@@ -16,8 +16,8 @@
 
 package org.rapidpm.commons.cdi.dynamicdecorator;
 
-import org.rapidpm.commons.cdi.ContextResolver;
 import org.rapidpm.commons.cdi.ManagedInstanceCreator;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;

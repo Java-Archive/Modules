@@ -19,8 +19,7 @@ package org.rapidpm.commons.cdi.format;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
-import org.rapidpm.commons.cdi.CDINotMapped;
-import org.rapidpm.commons.cdi.ContextResolver;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.commons.cdi.registry.property.PropertyRegistryService;
 import org.rapidpm.commons.cdi.registry.property.impl.file.CDIPropertyRegistryFileBased;

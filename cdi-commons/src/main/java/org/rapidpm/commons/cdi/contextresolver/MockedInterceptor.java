@@ -22,12 +22,8 @@ import org.rapidpm.module.se.commons.logger.Logger;
 public class MockedInterceptor implements Serializable {
 
 
-    @Inject
-    CDIContext context;
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
+    @Inject CDIContext context;
+    private @Inject @CDILogger Logger logger;
 
     @AroundInvoke
     public Object checkMockedMode(InvocationContext ctx) throws Exception {

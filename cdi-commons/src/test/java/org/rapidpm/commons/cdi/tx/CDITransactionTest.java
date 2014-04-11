@@ -39,10 +39,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
 @RunWith(Arquillian.class)
 public class CDITransactionTest {
 
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     @Deployment
     public static JavaArchive createDeployment() {

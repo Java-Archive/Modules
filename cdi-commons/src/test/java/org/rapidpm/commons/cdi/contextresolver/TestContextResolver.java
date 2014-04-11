@@ -12,12 +12,17 @@ import org.rapidpm.commons.cdi.CDICommons;
  * Time: 13:56
  */
 
+@CDIContextResolverTest
 public class TestContextResolver implements ContextResolver {
 
     @Inject CDIContext context;
 
     @CheckMockedContext
     @Override public AnnotationLiteral resolveContext(Class<?> targetClass) {
-        return new AnnotationLiteral<CDICommons>() {};
+      if(targetClass.equals(ContextResolverMockedTest.class)){
+        return new AnnotationLiteral<CDIContextResolverTest>() {};
+      } else {
+        return null;
+      }
     }
 }

@@ -16,22 +16,18 @@
 
 package org.rapidpm.commons.cdi;
 
-import java.lang.reflect.Type;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Stream;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
+import org.rapidpm.commons.cdi.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
-
-import org.rapidpm.commons.cdi.CDICommons;
-import org.rapidpm.commons.cdi.CDICommonsMocked;
-import org.rapidpm.commons.cdi.ContextResolver;
-import org.rapidpm.commons.cdi.logger.CDILogger;
-import org.rapidpm.module.se.commons.logger.Logger;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * User: Sven Ruppert
@@ -52,9 +48,10 @@ public class DefaultContextResolver implements ContextResolver {
 
         allBeans.forEach(b-> b.getTypes().stream()
                 .filter(t -> t.equals(ContextResolver.class))
+//                .filter(r -> !r.getClass().isAnnotationPresent(CDICommonsMocked.class))
                 .forEach(t -> {
-                    final ContextResolver cr = ((Bean<ContextResolver>) b).create(beanManager.createCreationalContext((Bean<ContextResolver>) b));
-                    resultSet.add(cr);
+                  final ContextResolver cr = ((Bean<ContextResolver>) b).create(beanManager.createCreationalContext((Bean<ContextResolver>) b));
+                  resultSet.add(cr);
                 }));
 
 //        for (final Bean<?> bean : allBeans) {

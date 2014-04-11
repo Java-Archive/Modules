@@ -1,5 +1,5 @@
 /*
- * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,18 +14,19 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.commons.cdi;
+package org.rapidpm.commons.cdi.contextresolver;
 
-import javax.enterprise.util.AnnotationLiteral;
+import javax.inject.Qualifier;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * User: Sven Ruppert
- * Date: 26.06.13
- * Time: 16:20
+ * Created by Sven Ruppert on 09.01.14.
  */
-public interface ContextResolver {
-
-    public AnnotationLiteral resolveContext(final Class<?> targetClass);
-
-
+@Qualifier
+@Retention(value = RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
+public @interface CDIContextResolverTest {
 }

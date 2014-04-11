@@ -24,7 +24,7 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 
 import org.rapidpm.commons.cdi.CDICommons;
-import org.rapidpm.commons.cdi.ContextResolver;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 
 /**
  * User: Sven Ruppert
@@ -34,7 +34,8 @@ import org.rapidpm.commons.cdi.ContextResolver;
 public class ListProducer {
 
     @Produces @CDILegacyTest
-    public List createList(InjectionPoint injectionPoint, BeanManager beanManager, @CDICommons ContextResolver contextResolver) {
+    public List createList(InjectionPoint injectionPoint, BeanManager beanManager,
+                           @CDICommons ContextResolver contextResolver) {
         //treffen der Entscheidungen...
 
         return new ArrayList();

@@ -1,5 +1,7 @@
-package org.rapidpm.commons.cdi.contextresolver;
+package org.rapidpm.commons.cdi;
 
+
+import org.rapidpm.commons.cdi.contextresolver.CDIContext;
 
 import javax.inject.Singleton;
 
@@ -11,10 +13,7 @@ import javax.inject.Singleton;
 @Singleton
 public class TestContext implements CDIContext {
 
-
-
     private boolean testModus = false;
-
 
     @Override public boolean isMockedModusActive() {
         return testModus;
