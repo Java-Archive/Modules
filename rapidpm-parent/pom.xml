@@ -20,15 +20,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!--for release only-->
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
+    <!--<parent>-->
+        <!--<groupId>org.sonatype.oss</groupId>-->
+        <!--<artifactId>oss-parent</artifactId>-->
+        <!--<version>7</version>-->
+    <!--</parent>-->
 
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-parent</artifactId>
-    <version>2.0</version>
+    <version>2.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>rapidpm-parent</name>
@@ -48,7 +48,7 @@
             <dependency>
                 <groupId>org.rapidpm</groupId>
                 <artifactId>rapidpm-dependicies</artifactId>
-                <version>2.0</version>
+                <version>2.0.1-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -306,7 +306,7 @@
     </build>
 
     <!--for development of features/develop branch-->
-    <!--<distributionManagement>
+    <distributionManagement>
         <repository>
             <id>releases</id>
             <name>RapidPM Releases</name>
@@ -317,7 +317,7 @@
             <name>RapidPM Snapshots</name>
             <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
-    </distributionManagement>-->
+    </distributionManagement>
     <profiles>
         <profile>
             <activation>
@@ -587,7 +587,7 @@
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
         <module>../javafx-commons</module>
-        <!--<module>../iot-tinkerforge</module>-->
+        <module>../iot-tinkerforge</module>
         <!--deactivated-->
         <!--<module>../cdi-tablemodel</module>-->
         <!--<module>../javafx-chart-pie-drilldown</module>-->
