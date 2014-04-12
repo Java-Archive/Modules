@@ -19,7 +19,7 @@ package org.rapidpm.commons.javafx.pairedtextfield.demologic;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
-import org.rapidpm.commons.cdi.ContextResolver;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 import org.rapidpm.commons.javafx.pairedtextfield.demologic.context_b.DemoLogicContextB;
 import org.rapidpm.commons.javafx.pairedtextfield.demologic.kotlin.KotlinDemoLogicContext;
 
