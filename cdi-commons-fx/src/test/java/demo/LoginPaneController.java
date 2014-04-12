@@ -29,10 +29,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.rapidpm.commons.cdi.fx.CDIJavaFXBaseApp;
 import org.rapidpm.commons.cdi.fx.CDIJavaFxBaseController;
+import org.rapidpm.commons.cdi.fx.JavaFXBaseController;
 
 // Simple application controller that uses injected fields 
 // to delegate login process and to get default values from the command line using: --user=SomeUser
-public class LoginPaneController implements CDIJavaFxBaseController {
+public class LoginPaneController extends JavaFXBaseController {
     // Standard FXML injected fields
     @FXML TextField loginField;
     @FXML PasswordField passwordField;
@@ -50,7 +51,27 @@ public class LoginPaneController implements CDIJavaFxBaseController {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void cleanUp() {
+
+    }
+
+    @Override
+    public void setI18n() {
+
+    }
+
+    @Override
+    public void cdiPostConstruct() {
+
+    }
+
+    @Override
+    protected void initializeFX(URL url, ResourceBundle resourceBundle) {
         loginField.setText(applicationParameters.getNamed().get("user"));
+    }
+
+    @Override
+    public void initBusinessLogic() {
+
     }
 }

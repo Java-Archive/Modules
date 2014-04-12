@@ -16,11 +16,14 @@
 
 package org.rapidpm.commons.cdi.fx.components;
 
+import org.rapidpm.commons.cdi.CDINotMapped;
+
 /**
  * User: Sven Ruppert
  * Date: 30.08.13
  * Time: 07:07
  */
+@CDINotMapped
 public interface CDIBaseFxComponent<T> {
 
     public abstract Class<T> getPaneClass();

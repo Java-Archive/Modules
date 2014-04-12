@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>1.2</version>
+        <version>2.0</version>
     </parent>
     <name>se-genericcache</name>
     <description>A GenericCache for embedded usage</description>
@@ -38,8 +38,8 @@
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
             <artifactId>se-commons</artifactId>
-            <scope>compile</scope>
         </dependency>
+
     </dependencies>
 
     <profiles>

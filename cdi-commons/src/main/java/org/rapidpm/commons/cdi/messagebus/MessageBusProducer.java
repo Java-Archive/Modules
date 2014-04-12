@@ -29,7 +29,6 @@ public class MessageBusProducer {
     @Produces
     @CDIMessageBus public MessageBus create(MessageBus messageBus) {
         return messageBus;
-
     }
 
 }

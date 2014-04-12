@@ -37,12 +37,9 @@ import org.rapidpm.module.se.commons.logger.Logger;
 public class ModulFilePropertyRegistry implements ModulPropertyRegistry, Serializable {
 
     private ResourceBundle messages;
-    private @Inject
-    @CDILocale
-    Locale defaultLocale;
+    private @Inject @CDILocale Locale defaultLocale;
 
-    private @Inject @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     @Override
     public void loadProperties() {
@@ -60,7 +57,7 @@ public class ModulFilePropertyRegistry implements ModulPropertyRegistry, Seriali
         if (contains) {
             return messages.getString(key);
         } else {
-            return "###" + key + "###";  //JIRA MOD-43 write to separat log file that this key is missing
+            return "###" + key + "###";
         }
     }
 

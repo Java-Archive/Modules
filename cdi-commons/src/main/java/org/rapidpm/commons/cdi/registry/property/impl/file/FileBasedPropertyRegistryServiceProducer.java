@@ -31,11 +31,9 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public class FileBasedPropertyRegistryServiceProducer {
 
-    private @Inject @CDILogger
-    Logger logger;
+    @Inject @CDILogger Logger logger;
 
-    @Produces
-    @CDIPropertyRegistryFileBased
+    @Produces @CDIPropertyRegistryFileBased
     private PropertyRegistryService createFileBased(@New FileBasedPropertyRegistryService service) {
         return service;
     }

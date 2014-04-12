@@ -28,10 +28,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public class String2Number {
 
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
+    private @Inject @CDILogger Logger logger;
 
     public boolean isDouble(final String text) {
         if (text == null) {

@@ -20,9 +20,8 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
-import org.rapidpm.commons.cdi.CDICommons;
-import org.rapidpm.commons.cdi.ContextResolver;
 import org.rapidpm.commons.cdi.ManagedInstanceCreator;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 
 /**
  * User: Sven Ruppert
@@ -32,7 +31,7 @@ import org.rapidpm.commons.cdi.ManagedInstanceCreator;
 public class DemoLogicProducer {
     private @Inject ManagedInstanceCreator creator;
 
-    @Inject @CDICommons ContextResolver contextResolver;
+    @Inject ContextResolver contextResolver;
 
 
     @Produces @DemoLogicContext

@@ -16,6 +16,8 @@
 
 package org.rapidpm.commons.cdi.contextresolver;
 
+import org.rapidpm.commons.cdi.CDINotMapped;
+
 import javax.enterprise.util.AnnotationLiteral;
 
 /**
@@ -23,6 +25,7 @@ import javax.enterprise.util.AnnotationLiteral;
  * Date: 26.06.13
  * Time: 16:20
  */
+@CDINotMapped
 public interface ContextResolver {
 
     @CheckMockedContext

@@ -30,7 +30,6 @@ import org.rapidpm.commons.javafx.textfield.pairedtextfield.BasePairedTextField;
  */
 public class PercentValuePairedTextField extends BasePairedTextField {
 
-
     @Inject Instance<ValueToPercentageLogic> valueToPercentageLogicInstance;
     @Inject Instance<PercentageToValueLogic> percentageToValueLogicInstance;
 
@@ -40,20 +39,16 @@ public class PercentValuePairedTextField extends BasePairedTextField {
     private double baseValue = 0.0;
 
     @Override public Callable<String> getCallableForLeftToRightTransformation() {
-        return new Callable<String>() {
-            @Override public String call() throws Exception {
-                final String leftTextFieldText = leftTextField.getText();
-                return valueToPercentageLogicInstance.get().convert(getBaseValue(), leftTextFieldText);
-            }
+        return () -> {
+            final String leftTextFieldText = leftTextField.getText();
+            return valueToPercentageLogicInstance.get().convert(getBaseValue(), leftTextFieldText);
         };
     }
 
     @Override public Callable<String> getCallableForRightToLeftTransformation() {
-        return new Callable<String>() {
-            @Override public String call() throws Exception {
-                final String rightTextFieldText = rightTextField.getText();
-                return percentageToValueLogicInstance.get().convert(getBaseValue(), rightTextFieldText);
-            }
+        return () -> {
+            final String rightTextFieldText = rightTextField.getText();
+            return percentageToValueLogicInstance.get().convert(getBaseValue(), rightTextFieldText);
         };
     }
 

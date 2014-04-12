@@ -16,11 +16,12 @@
 
 package org.rapidpm.commons.cdi.legacy;
 
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.rapidpm.commons.cdi.ContextResolver;
 
 /**
  * Created by Sven Ruppert on 02.08.13.

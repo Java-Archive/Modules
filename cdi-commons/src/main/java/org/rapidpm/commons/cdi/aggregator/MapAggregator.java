@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.inject.Inject;
 
@@ -41,7 +42,8 @@ public abstract class MapAggregator<T, K> {
 
     public Map<K, List<T>> aggregate(final Collection<T> dataCollection) {
         final Map<K, List<T>> result = new HashMap<>();
-        for (final T dataObject : dataCollection) {
+
+        dataCollection.forEach((dataObject)->{
             final K key = getKeyElement(dataObject);
             if (result.containsKey(key)) {
                 if (logger.isDebugEnabled()) {
@@ -51,7 +53,21 @@ public abstract class MapAggregator<T, K> {
                 result.put(key, new ArrayList<T>());
             }
             result.get(key).add(dataObject);
-        }
+
+        });
+
+//        for (final T dataObject : dataCollection) {
+//            final K key = getKeyElement(dataObject);
+//            if (result.containsKey(key)) {
+//                if (logger.isDebugEnabled()) {
+//                    logger.debug("key allready available -> " + key);
+//                }
+//            } else {
+//                result.put(key, new ArrayList<T>());
+//            }
+//            result.get(key).add(dataObject);
+//        }
+
         return result;
     }
 

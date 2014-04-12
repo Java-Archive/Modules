@@ -25,6 +25,7 @@ import javax.inject.Inject;
 
 import org.rapidpm.commons.cdi.format.CDISimpleDateFormatter;
 import org.rapidpm.commons.cdi.logger.CDILogger;
+import org.rapidpm.commons.cdi.se.CDICommonsSE;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 /**
@@ -44,6 +45,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  * 12
  * 30 this file would be given back.
  */
+@CDICommonsSE
 public class TargetDateFile implements Serializable{
 
     private @Inject @CDILogger Logger logger;
@@ -63,18 +65,14 @@ public class TargetDateFile implements Serializable{
         final File yyyy = new File(baseDir, sdfYYYY.format(date));
         final File mm = new File(yyyy, sdfMM.format(date));
         final File dd = new File(mm, sdfdd.format(date));
-        if (yyyy.exists()) {
+        if (!yyyy.exists()) {
             //
-        } else {
             yyyy.mkdir();
         }
-
-        if (mm.exists()) {
-        } else {
+        if (! mm.exists()) {
             mm.mkdir();
         }
-        if (dd.exists()) {
-        } else {
+        if (! dd.exists()) {
             dd.mkdir();
         }
         return dd;

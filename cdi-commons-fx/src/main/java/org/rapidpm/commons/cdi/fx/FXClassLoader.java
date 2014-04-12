@@ -32,7 +32,6 @@ public class FXClassLoader extends ClassLoader {
     private final Map<String, Class> classes = new HashMap<String, Class>();
     private final ClassLoader parent;
 
-
     public FXClassLoader(ClassLoader parent) {
         this.parent = parent;
     }
@@ -40,9 +39,6 @@ public class FXClassLoader extends ClassLoader {
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         Class<?> c = findClass(name);
-        if (c == null) {
-            throw new ClassNotFoundException(name);
-        }
         return c;
     }
 

@@ -37,13 +37,8 @@ import org.rapidpm.module.se.commons.logger.Logger;
 @Singleton
 public class FXMLLoaderSingleton {
 
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
-    private
-    @Inject
-    Instance<CDIJavaFxBaseController> instance;
+    private @Inject @CDILogger Logger logger;
+    private @Inject Instance<CDIJavaFxBaseController> instance;
 
     private final ClassLoader cachingClassLoader = new FXClassLoader(FXMLLoader.getDefaultClassLoader());
     private final Map<Class, FXMLLoader> class2LoaderMap = new HashMap<Class, FXMLLoader>();
@@ -67,12 +62,13 @@ public class FXMLLoaderSingleton {
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> param) {
-                    final Class<CDIJavaFxBaseController> p = (Class<CDIJavaFxBaseController>) param;
-                    final CDIJavaFxBaseController controller = instance.select(p).get();
+                    final Class<JavaFXBaseController> p = (Class<JavaFXBaseController>) param;
+                    final JavaFXBaseController controller = instance.select(p).get();
+                    controller.initInstance(); //trigger async call
                     return controller;
                 }
             });
-            try {
+            try {  //verpacken in Dynamic Proxy
                 final Class<?> aClass = Class.forName(clazz.getName() + "Controller");
                 final CDIJavaFxBaseController call = (CDIJavaFxBaseController) loader.getControllerFactory().call(aClass);
                 loader.setController(call);

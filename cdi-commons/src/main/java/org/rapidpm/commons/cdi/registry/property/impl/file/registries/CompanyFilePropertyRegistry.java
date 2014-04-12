@@ -56,7 +56,7 @@ public class CompanyFilePropertyRegistry implements CompanyPropertyRegistry, Ser
         if (contains) {
             return messages.getString(key);
         } else {
-            return "###" + key + "###";  //JIRA MOD-44 write to separat log file that this key is missing
+            return "###" + key + "###";
         }
     }
 

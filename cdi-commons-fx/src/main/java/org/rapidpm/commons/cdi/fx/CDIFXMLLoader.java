@@ -45,14 +45,14 @@ public class CDIFXMLLoader extends FXMLLoader {
     private final CDIContainerSingleton cdi = CDIContainerSingleton.getInstance();
 
     public <T> T activateCDI(T t) {
-        final BeanManager beanManager = cdi.getBeanManager();
-        final Class<?> aClass = t.getClass();
-        final AnnotatedType annotationType = beanManager.createAnnotatedType(aClass);
-        final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
-        final CreationalContext creationalContext = beanManager.createCreationalContext(null);
-        injectionTarget.inject(t, creationalContext);
-        injectionTarget.postConstruct(t);
-        return t;
+//        final BeanManager beanManager = cdi.getBeanManager();
+//        final Class aClass = t.getClass();
+//        final AnnotatedType annotationType = beanManager.createAnnotatedType(aClass);
+//        final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
+//        final CreationalContext creationalContext = beanManager.createCreationalContext(null);
+//        injectionTarget.inject(t, creationalContext);
+//        injectionTarget.postConstruct(t);
+        return cdi.activateCDI(t);
     }
 
     public CDIFXMLLoader() {

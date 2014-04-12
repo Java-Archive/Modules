@@ -24,14 +24,17 @@ import javax.inject.Inject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import org.rapidpm.commons.cdi.CDINotMapped;
 import org.rapidpm.commons.cdi.fx.CDIJavaFxBaseController;
 import org.rapidpm.commons.cdi.fx.FXMLLoaderSingleton;
+import org.rapidpm.commons.cdi.se.CDIContainerSingleton;
 
 /**
  * User: Sven Ruppert
  * Date: 30.08.13
  * Time: 07:06
  */
+@CDINotMapped
 public abstract class CDIBaseGridPane<T, C extends CDIJavaFxBaseController> extends GridPane implements CDIBaseFxComponent<T> {
 
     public @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
@@ -57,6 +60,7 @@ public abstract class CDIBaseGridPane<T, C extends CDIJavaFxBaseController> exte
     }
 
     public C getController() {
+        if (controller == null) CDIContainerSingleton.getInstance().activateCDI(this);
         return controller;
     }
 

@@ -18,13 +18,12 @@ package org.rapidpm.commons.cdi.registry.property;
 
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 import org.rapidpm.commons.cdi.registry.property.impl.file.CDIPropertyRegistryFileBased;
 import org.rapidpm.commons.cdi.CDICommons;
-import org.rapidpm.commons.cdi.ContextResolver;
 import org.rapidpm.commons.cdi.ManagedInstanceCreator;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
@@ -37,14 +36,12 @@ import org.rapidpm.module.se.commons.logger.Logger;
 public class PropertyRegistryServiceProducer {
 
     private @Inject @CDILogger Logger logger;
-    private @Inject @CDIPropertyRegistryFileBased
-    PropertyRegistryService defaultRegistry;
+    private @Inject @CDIPropertyRegistryFileBased PropertyRegistryService defaultRegistry;
     private @Inject BeanManager beanManager;
     private @Inject ManagedInstanceCreator creator;
-    @Produces
-    @CDIPropertyRegistryService
-    public PropertyRegistryService create(InjectionPoint injectionPoint,
-                                          @CDICommons ContextResolver contextResolver) {
+
+    @Produces @CDIPropertyRegistryService
+    public PropertyRegistryService create(@CDICommons ContextResolver contextResolver) {
         if (logger.isDebugEnabled()) {
             logger.debug("used ContextResolver - " + contextResolver.getClass().getName());
         }

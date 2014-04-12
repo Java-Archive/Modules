@@ -19,7 +19,7 @@ package org.rapidpm.commons.javafx.pairedtextfield.demologic;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 
-import org.rapidpm.commons.cdi.ContextResolver;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 import org.rapidpm.commons.javafx.pairedtextfield.demologic.context_b.DemoLogicContextB;
 import org.rapidpm.commons.javafx.pairedtextfield.demologic.kotlin.KotlinDemoLogicContext;
 
@@ -28,6 +28,7 @@ import org.rapidpm.commons.javafx.pairedtextfield.demologic.kotlin.KotlinDemoLog
  * Date: 16.10.13
  * Time: 17:22
  */
+@DemoLogicContext
 public class DemoContextResolver implements ContextResolver {
 
     @Inject DemoContext demoContext;
