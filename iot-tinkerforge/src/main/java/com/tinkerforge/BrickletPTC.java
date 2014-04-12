@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for reading temperatures from Pt100 or Pt1000 sensors
@@ -100,11 +85,11 @@ public class BrickletPTC extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletPTC#setTemperatureCallbackPeriod(long)}. The parameter is the temperature
 	 * of the connected sensor.
-	 *
+	 * 
 	 * {@link BrickletPTC.TemperatureListener} is only triggered if the temperature has changed since the
 	 * last triggering.
 	 */
-	public interface TemperatureListener {
+	public interface TemperatureListener extends DeviceListener {
 		public void temperature(int temperature);
 	}
 
@@ -112,11 +97,11 @@ public class BrickletPTC extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletPTC#setTemperatureCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the temperature of the connected sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletPTC#setDebouncePeriod(long)}.
 	 */
-	public interface TemperatureReachedListener {
+	public interface TemperatureReachedListener extends DeviceListener {
 		public void temperatureReached(int temperature);
 	}
 
@@ -124,11 +109,11 @@ public class BrickletPTC extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletPTC#setResistanceCallbackPeriod(long)}. The parameter is the resistance
 	 * of the connected sensor.
-	 *
+	 * 
 	 * {@link BrickletPTC.ResistanceListener} is only triggered if the resistance has changed since the
 	 * last triggering.
 	 */
-	public interface ResistanceListener {
+	public interface ResistanceListener extends DeviceListener {
 		public void resistance(int resistance);
 	}
 
@@ -136,11 +121,11 @@ public class BrickletPTC extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletPTC#setResistanceCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the resistance of the connected sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletPTC#setDebouncePeriod(long)}.
 	 */
-	public interface ResistanceReachedListener {
+	public interface ResistanceReachedListener extends DeviceListener {
 		public void resistanceReached(int resistance);
 	}
 
@@ -177,7 +162,7 @@ public class BrickletPTC extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_RESISTANCE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_RESISTANCE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_TEMPERATURE] = new CallbackListener() {
+		callbacks[CALLBACK_TEMPERATURE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -190,7 +175,7 @@ public class BrickletPTC extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_TEMPERATURE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_TEMPERATURE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -203,7 +188,7 @@ public class BrickletPTC extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_RESISTANCE] = new CallbackListener() {
+		callbacks[CALLBACK_RESISTANCE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -216,7 +201,7 @@ public class BrickletPTC extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_RESISTANCE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_RESISTANCE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -234,9 +219,9 @@ public class BrickletPTC extends Device {
 	 * Returns the temperature of connected sensor. The value
 	 * has a range of -246 to 849 °C and is given in °C/100,
 	 * e.g. a value of 4223 means that a temperature of 42.23 °C is measured.
-	 *
-	 * If you want to get the temperature periodically, it is recommended
-	 * to use the listener {@link BrickletPTC.TemperatureListener} and set the period with
+	 * 
+	 * If you want to get the temperature periodically, it is recommended 
+	 * to use the listener {@link BrickletPTC.TemperatureListener} and set the period with 
 	 * {@link BrickletPTC#setTemperatureCallbackPeriod(long)}.
 	 */
 	public int getTemperature() throws TimeoutException, NotConnectedException {
@@ -254,14 +239,14 @@ public class BrickletPTC extends Device {
 
 	/**
 	 * Returns the value as measured by the MAX31865 precision delta-sigma ADC.
-	 *
+	 * 
 	 * The value can be converted with the following formulas:
-	 *
+	 * 
 	 * * Pt100:  resistance = (value * 390) / 32768
 	 * * Pt1000: resistance = (value * 3900) / 32768
-	 *
-	 * If you want to get the resistance periodically, it is recommended
-	 * to use the listener {@link BrickletPTC.ResistanceListener} and set the period with
+	 * 
+	 * If you want to get the resistance periodically, it is recommended 
+	 * to use the listener {@link BrickletPTC.ResistanceListener} and set the period with 
 	 * {@link BrickletPTC#setResistanceCallbackPeriod(long)}.
 	 */
 	public int getResistance() throws TimeoutException, NotConnectedException {
@@ -280,10 +265,10 @@ public class BrickletPTC extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletPTC.TemperatureListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletPTC.TemperatureListener} is only triggered if the temperature has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setTemperatureCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -312,10 +297,10 @@ public class BrickletPTC extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletPTC.ResistanceListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletPTC.ResistanceListener} is only triggered if the resistance has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setResistanceCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -342,21 +327,21 @@ public class BrickletPTC extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletPTC.TemperatureReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletPTC.TemperatureReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the temperature is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the temperature is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the temperature is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the temperature is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the temperature is *outside* the min and max values&quot;
+	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the temperature is *inside* the min and max values&quot;
+	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the temperature is smaller than the min value (max is ignored)&quot;
+	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the temperature is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
-	 * The default value is ('x', 0, 0).
+	 * 
+	 * The default value is (&apos;x&apos;, 0, 0).
 	 */
 	public void setTemperatureCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)17, FUNCTION_SET_TEMPERATURE_CALLBACK_THRESHOLD, this);
@@ -387,21 +372,21 @@ public class BrickletPTC extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletPTC.ResistanceReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletPTC.ResistanceReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the temperature is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the temperature is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the temperature is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the temperature is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the temperature is *outside* the min and max values&quot;
+	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the temperature is *inside* the min and max values&quot;
+	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the temperature is smaller than the min value (max is ignored)&quot;
+	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the temperature is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
-	 * The default value is ('x', 0, 0).
+	 * 
+	 * The default value is (&apos;x&apos;, 0, 0).
 	 */
 	public void setResistanceCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)13, FUNCTION_SET_RESISTANCE_CALLBACK_THRESHOLD, this);
@@ -433,17 +418,17 @@ public class BrickletPTC extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listener
-	 *
+	 * 
 	 * * {@link BrickletPTC.TemperatureReachedListener},
 	 * * {@link BrickletPTC.ResistanceReachedListener}
-	 *
+	 * 
 	 * is triggered, if the threshold
-	 *
+	 * 
 	 * * {@link BrickletPTC#setTemperatureCallbackThreshold(char, int, int)},
 	 * * {@link BrickletPTC#setResistanceCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keeps being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -472,9 +457,9 @@ public class BrickletPTC extends Device {
 	/**
 	 * Sets the noise rejection filter to either 50Hz (0) or 60Hz (1).
 	 * Noise from 50Hz or 60Hz power sources (including
-	 * harmonics of the AC power's fundamental frequency) is
+	 * harmonics of the AC power&apos;s fundamental frequency) is
 	 * attenuated by 82dB.
-	 *
+	 * 
 	 * Default value is 0 = 50Hz.
 	 */
 	public void setNoiseRejectionFilter(short filter) throws TimeoutException, NotConnectedException {
@@ -485,7 +470,7 @@ public class BrickletPTC extends Device {
 	}
 
 	/**
-	 * Returns the noise rejection filter option as set by
+	 * Returns the noise rejection filter option as set by 
 	 * {@link BrickletPTC#setNoiseRejectionFilter(short)}
 	 */
 	public short getNoiseRejectionFilter() throws TimeoutException, NotConnectedException {
@@ -502,8 +487,8 @@ public class BrickletPTC extends Device {
 	}
 
 	/**
-	 * Returns *true* if the sensor is connected correctly.
-	 *
+	 * Returns *true* if the sensor is connected correctly. 
+	 * 
 	 * If this function
 	 * returns *false*, there is either no Pt100 or Pt1000 sensor connected,
 	 * the sensor is connected incorrectly or the sensor itself is faulty.
@@ -525,7 +510,7 @@ public class BrickletPTC extends Device {
 	 * Sets the wire mode of the sensor. Possible values are 2, 3 and 4 which
 	 * correspond to 2-, 3- and 4-wire sensors. The value has to match the jumper
 	 * configuration on the Bricklet.
-	 *
+	 * 
 	 * The default value is 2 = 2-wire.
 	 */
 	public void setWireMode(short mode) throws TimeoutException, NotConnectedException {
@@ -556,11 +541,10 @@ public class BrickletPTC extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

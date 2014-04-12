@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for non-contact temperature sensing
@@ -92,11 +77,11 @@ public class BrickletTemperatureIR extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletTemperatureIR#setAmbientTemperatureCallbackPeriod(long)}. The parameter is the ambient
 	 * temperature of the sensor.
-	 *
+	 * 
 	 * {@link BrickletTemperatureIR.AmbientTemperatureListener} is only triggered if the ambient temperature
 	 * has changed since the last triggering.
 	 */
-	public interface AmbientTemperatureListener {
+	public interface AmbientTemperatureListener extends DeviceListener {
 		public void ambientTemperature(short temperature);
 	}
 
@@ -104,11 +89,11 @@ public class BrickletTemperatureIR extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletTemperatureIR#setObjectTemperatureCallbackPeriod(long)}. The parameter is the object
 	 * temperature of the sensor.
-	 *
+	 * 
 	 * {@link BrickletTemperatureIR.ObjectTemperatureListener} is only triggered if the object temperature
 	 * has changed since the last triggering.
 	 */
-	public interface ObjectTemperatureListener {
+	public interface ObjectTemperatureListener extends DeviceListener {
 		public void objectTemperature(short temperature);
 	}
 
@@ -116,11 +101,11 @@ public class BrickletTemperatureIR extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletTemperatureIR#setAmbientTemperatureCallbackThreshold(char, short, short)} is reached.
 	 * The parameter is the ambient temperature of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletTemperatureIR#setDebouncePeriod(long)}.
 	 */
-	public interface AmbientTemperatureReachedListener {
+	public interface AmbientTemperatureReachedListener extends DeviceListener {
 		public void ambientTemperatureReached(short temperature);
 	}
 
@@ -128,11 +113,11 @@ public class BrickletTemperatureIR extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletTemperatureIR#setObjectTemperatureCallbackThreshold(char, short, short)} is reached.
 	 * The parameter is the object temperature of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletTemperatureIR#setDebouncePeriod(long)}.
 	 */
-	public interface ObjectTemperatureReachedListener {
+	public interface ObjectTemperatureReachedListener extends DeviceListener {
 		public void objectTemperatureReached(short temperature);
 	}
 
@@ -166,7 +151,7 @@ public class BrickletTemperatureIR extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_AMBIENT_TEMPERATURE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_OBJECT_TEMPERATURE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_AMBIENT_TEMPERATURE] = new CallbackListener() {
+		callbacks[CALLBACK_AMBIENT_TEMPERATURE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -179,7 +164,7 @@ public class BrickletTemperatureIR extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_OBJECT_TEMPERATURE] = new CallbackListener() {
+		callbacks[CALLBACK_OBJECT_TEMPERATURE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -192,7 +177,7 @@ public class BrickletTemperatureIR extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_AMBIENT_TEMPERATURE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_AMBIENT_TEMPERATURE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -205,7 +190,7 @@ public class BrickletTemperatureIR extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_OBJECT_TEMPERATURE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_OBJECT_TEMPERATURE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -222,11 +207,11 @@ public class BrickletTemperatureIR extends Device {
 	/**
 	 * Returns the ambient temperature of the sensor. The value
 	 * has a range of -400 to 1250 and is given in °C/10,
-	 * e.g. a value of 423 means that an ambient temperature of 42.3 °C is
+	 * e.g. a value of 423 means that an ambient temperature of 42.3 °C is 
 	 * measured.
-	 *
-	 * If you want to get the ambient temperature periodically, it is recommended
-	 * to use the listener {@link BrickletTemperatureIR.AmbientTemperatureListener} and set the period with
+	 * 
+	 * If you want to get the ambient temperature periodically, it is recommended 
+	 * to use the listener {@link BrickletTemperatureIR.AmbientTemperatureListener} and set the period with 
 	 * {@link BrickletTemperatureIR#setAmbientTemperatureCallbackPeriod(long)}.
 	 */
 	public short getAmbientTemperature() throws TimeoutException, NotConnectedException {
@@ -248,13 +233,13 @@ public class BrickletTemperatureIR extends Device {
 	 * has a range of -700 to 3800 and is given in °C/10,
 	 * e.g. a value of 3001 means that a temperature of 300.1 °C is measured
 	 * on the surface of the object.
-	 *
-	 * The temperature of different materials is dependent on their `emissivity
-	 * <http://en.wikipedia.org/wiki/Emissivity>`__. The emissivity of the material
+	 * 
+	 * The temperature of different materials is dependent on their `emissivity 
+	 * &lt;http://en.wikipedia.org/wiki/Emissivity&gt;`__. The emissivity of the material
 	 * can be set with {@link BrickletTemperatureIR#setEmissivity(int)}.
-	 *
-	 * If you want to get the object temperature periodically, it is recommended
-	 * to use the listener {@link BrickletTemperatureIR.ObjectTemperatureListener} and set the period with
+	 * 
+	 * If you want to get the object temperature periodically, it is recommended 
+	 * to use the listener {@link BrickletTemperatureIR.ObjectTemperatureListener} and set the period with 
 	 * {@link BrickletTemperatureIR#setObjectTemperatureCallbackPeriod(long)}.
 	 */
 	public short getObjectTemperature() throws TimeoutException, NotConnectedException {
@@ -271,22 +256,22 @@ public class BrickletTemperatureIR extends Device {
 	}
 
 	/**
-	 * Sets the `emissivity <http://en.wikipedia.org/wiki/Emissivity>`__ that is
-	 * used to calculate the surface temperature as returned by
-	 * {@link BrickletTemperatureIR#getObjectTemperature()}.
-	 *
+	 * Sets the `emissivity &lt;http://en.wikipedia.org/wiki/Emissivity&gt;`__ that is
+	 * used to calculate the surface temperature as returned by 
+	 * {@link BrickletTemperatureIR#getObjectTemperature()}. 
+	 * 
 	 * The emissivity is usually given as a value between 0.0 and 1.0. A list of
-	 * emissivities of different materials can be found
-	 * `here <http://www.infrared-thermography.com/material.htm>`__.
-	 *
+	 * emissivities of different materials can be found 
+	 * `here &lt;http://www.infrared-thermography.com/material.htm&gt;`__.
+	 * 
 	 * The parameter of {@link BrickletTemperatureIR#setEmissivity(int)} has to be given with a factor of
 	 * 65535 (16-bit). For example: An emissivity of 0.1 can be set with the
 	 * value 6553, an emissivity of 0.5 with the value 32767 and so on.
-	 *
+	 * 
 	 * \note
 	 *  If you need a precise measurement for the object temperature, it is
 	 *  absolutely crucial that you also provide a precise emissivity.
-	 *
+	 * 
 	 * The default emissivity is 1.0 (value of 65535) and the minimum emissivity the
 	 * sensor can handle is 0.1 (value of 6553).
 	 */
@@ -316,10 +301,10 @@ public class BrickletTemperatureIR extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletTemperatureIR.AmbientTemperatureListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletTemperatureIR.AmbientTemperatureListener} is only triggered if the temperature has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAmbientTemperatureCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -348,10 +333,10 @@ public class BrickletTemperatureIR extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletTemperatureIR.ObjectTemperatureListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletTemperatureIR.ObjectTemperatureListener} is only triggered if the temperature has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setObjectTemperatureCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -378,21 +363,21 @@ public class BrickletTemperatureIR extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletTemperatureIR.AmbientTemperatureReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletTemperatureIR.AmbientTemperatureReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the ambient temperature is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the ambient temperature is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the ambient temperature is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the ambient temperature is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the ambient temperature is *outside* the min and max values&quot;
+	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the ambient temperature is *inside* the min and max values&quot;
+	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the ambient temperature is smaller than the min value (max is ignored)&quot;
+	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the ambient temperature is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
-	 * The default value is ('x', 0, 0).
+	 * 
+	 * The default value is (&apos;x&apos;, 0, 0).
 	 */
 	public void setAmbientTemperatureCallbackThreshold(char option, short min, short max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)13, FUNCTION_SET_AMBIENT_TEMPERATURE_CALLBACK_THRESHOLD, this);
@@ -423,21 +408,21 @@ public class BrickletTemperatureIR extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletTemperatureIR.ObjectTemperatureReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletTemperatureIR.ObjectTemperatureReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the object temperature is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the object temperature is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the object temperature is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the object temperature is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the object temperature is *outside* the min and max values&quot;
+	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the object temperature is *inside* the min and max values&quot;
+	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the object temperature is smaller than the min value (max is ignored)&quot;
+	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the object temperature is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
-	 * The default value is ('x', 0, 0).
+	 * 
+	 * The default value is (&apos;x&apos;, 0, 0).
 	 */
 	public void setObjectTemperatureCallbackThreshold(char option, short min, short max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)13, FUNCTION_SET_OBJECT_TEMPERATURE_CALLBACK_THRESHOLD, this);
@@ -469,17 +454,17 @@ public class BrickletTemperatureIR extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickletTemperatureIR.AmbientTemperatureReachedListener},
 	 * * {@link BrickletTemperatureIR.ObjectTemperatureReachedListener}
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletTemperatureIR#setAmbientTemperatureCallbackThreshold(char, short, short)},
 	 * * {@link BrickletTemperatureIR#setObjectTemperatureCallbackThreshold(char, short, short)}
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -510,11 +495,10 @@ public class BrickletTemperatureIR extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

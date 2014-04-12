@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,9 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Device for controlling DC motors
@@ -91,7 +75,7 @@ public class BrickDC extends Device {
 	 * {@link BrickDC#setMinimumVoltage(int)}. The parameter is the current voltage given
 	 * in mV.
 	 */
-	public interface UnderVoltageListener {
+	public interface UnderVoltageListener extends DeviceListener {
 		public void underVoltage(int voltage);
 	}
 
@@ -102,16 +86,16 @@ public class BrickDC extends Device {
 	 * temperature will reach this threshold immediately if the motor consumes too
 	 * much current. In case of a voltage below 3.3V (external or stack) this
 	 * listener is triggered as well.
-	 *
+	 * 
 	 * If this listener is triggered, the driver chip gets disabled at the same time.
 	 * That means, {@link BrickDC#enable()} has to be called to drive the motor again.
-	 *
+	 * 
 	 * \note
 	 *  This listener only works in Drive/Brake mode (see {@link BrickDC#setDriveMode(short)}). In
 	 *  Drive/Coast mode it is unfortunately impossible to reliably read the
 	 *  overcurrent/overtemperature signal from the driver chip.
 	 */
-	public interface EmergencyShutdownListener {
+	public interface EmergencyShutdownListener extends DeviceListener {
 		public void emergencyShutdown();
 	}
 
@@ -120,14 +104,14 @@ public class BrickDC extends Device {
 	 * If a velocity of 0 is present, acceleration is set to 5000 and velocity
 	 * to 10000, {@link BrickDC.VelocityReachedListener} will be triggered after about 2 seconds, when
 	 * the set velocity is actually reached.
-	 *
+	 * 
 	 * \note
-	 *  Since we can't get any feedback from the DC motor, this only works if the
+	 *  Since we can&apos;t get any feedback from the DC motor, this only works if the
 	 *  acceleration (see {@link BrickDC#setAcceleration(int)}) is set smaller or equal to the
 	 *  maximum acceleration of the motor. Otherwise the motor will lag behind the
 	 *  control value and the listener will be triggered too early.
 	 */
-	public interface VelocityReachedListener {
+	public interface VelocityReachedListener extends DeviceListener {
 		public void velocityReached(short velocity);
 	}
 
@@ -135,11 +119,11 @@ public class BrickDC extends Device {
 	 * This listener is triggered with the period that is set by
 	 * {@link BrickDC#setCurrentVelocityPeriod(int)}. The parameter is the *current* velocity
 	 * used by the motor.
-	 *
+	 * 
 	 * {@link BrickDC.CurrentVelocityListener} is only triggered after the set period if there is
 	 * a change in the velocity.
 	 */
-	public interface CurrentVelocityListener {
+	public interface CurrentVelocityListener extends DeviceListener {
 		public void currentVelocity(short velocity);
 	}
 
@@ -182,7 +166,7 @@ public class BrickDC extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_VELOCITY_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_CURRENT_VELOCITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_UNDER_VOLTAGE] = new CallbackListener() {
+		callbacks[CALLBACK_UNDER_VOLTAGE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -195,7 +179,7 @@ public class BrickDC extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_EMERGENCY_SHUTDOWN] = new CallbackListener() {
+		callbacks[CALLBACK_EMERGENCY_SHUTDOWN] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(EmergencyShutdownListener listener: listenerEmergencyShutdown) {
 					listener.emergencyShutdown();
@@ -203,7 +187,7 @@ public class BrickDC extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_VELOCITY_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_VELOCITY_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -216,7 +200,7 @@ public class BrickDC extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_CURRENT_VELOCITY] = new CallbackListener() {
+		callbacks[CALLBACK_CURRENT_VELOCITY] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -235,12 +219,12 @@ public class BrickDC extends Device {
 	 * 0 is stop and 32767 is full speed forward. Depending on the
 	 * acceleration (see {@link BrickDC#setAcceleration(int)}), the motor is not immediately
 	 * brought to the velocity but smoothly accelerated.
-	 *
+	 * 
 	 * The velocity describes the duty cycle of the PWM with which the motor is
 	 * controlled, e.g. a velocity of 3277 sets a PWM with a 10% duty cycle.
 	 * You can not only control the duty cycle of the PWM but also the frequency,
 	 * see {@link BrickDC#setPWMFrequency(int)}.
-	 *
+	 * 
 	 * The default velocity is 0.
 	 */
 	public void setVelocity(short velocity) throws TimeoutException, NotConnectedException {
@@ -288,14 +272,14 @@ public class BrickDC extends Device {
 	 * Sets the acceleration of the motor. It is given in *velocity/s*. An
 	 * acceleration of 10000 means, that every second the velocity is increased
 	 * by 10000 (or about 30% duty cycle).
-	 *
+	 * 
 	 * For example: If the current velocity is 0 and you want to accelerate to a
 	 * velocity of 16000 (about 50% duty cycle) in 10 seconds, you should set
 	 * an acceleration of 1600.
-	 *
+	 * 
 	 * If acceleration is set to 0, there is no speed ramping, i.e. a new velocity
 	 * is immediately given to the motor.
-	 *
+	 * 
 	 * The default acceleration is 10000.
 	 */
 	public void setAcceleration(int acceleration) throws TimeoutException, NotConnectedException {
@@ -327,10 +311,10 @@ public class BrickDC extends Device {
 	 * is less noisy and the motor runs smoother. However, with a low frequency
 	 * there are less switches and therefore fewer switching losses. Also with
 	 * most motors lower frequencies enable higher torque.
-	 *
+	 * 
 	 * If you have no idea what all this means, just ignore this function and use
 	 * the default frequency, it will very likely work fine.
-	 *
+	 * 
 	 * The default frequency is 15 kHz.
 	 */
 	public void setPWMFrequency(int frequency) throws TimeoutException, NotConnectedException {
@@ -358,12 +342,12 @@ public class BrickDC extends Device {
 
 	/**
 	 * Executes an active full brake.
-	 *
+	 * 
 	 * \warning
 	 *  This function is for emergency purposes,
 	 *  where an immediate brake is necessary. Depending on the current velocity and
 	 *  the strength of the motor, a full brake can be quite violent.
-	 *
+	 * 
 	 * Call {@link BrickDC#setVelocity(short)} with 0 if you just want to stop the motor.
 	 */
 	public void fullBrake() throws TimeoutException, NotConnectedException {
@@ -393,11 +377,11 @@ public class BrickDC extends Device {
 	/**
 	 * Returns the external input voltage in mV. The external input voltage is
 	 * given via the black power input connector on the DC Brick.
-	 *
+	 * 
 	 * If there is an external input voltage and a stack input voltage, the motor
 	 * will be driven by the external input voltage. If there is only a stack
 	 * voltage present, the motor will be driven by this voltage.
-	 *
+	 * 
 	 * \warning
 	 *  This means, if you have a high stack voltage and a low external voltage,
 	 *  the motor will be driven with the low external voltage. If you then remove
@@ -475,7 +459,7 @@ public class BrickDC extends Device {
 	 * You can use this function to detect the discharge of a battery that is used
 	 * to drive the motor. If you have a fixed power supply, you likely do not need
 	 * this functionality.
-	 *
+	 * 
 	 * The default value is 5V.
 	 */
 	public void setMinimumVoltage(int voltage) throws TimeoutException, NotConnectedException {
@@ -503,21 +487,21 @@ public class BrickDC extends Device {
 
 	/**
 	 * Sets the drive mode. Possible modes are:
-	 *
+	 * 
 	 * * 0 = Drive/Brake
 	 * * 1 = Drive/Coast
-	 *
+	 * 
 	 * These modes are different kinds of motor controls.
-	 *
+	 * 
 	 * In Drive/Brake mode, the motor is always either driving or braking. There
 	 * is no freewheeling. Advantages are: A more linear correlation between
 	 * PWM and velocity, more exact accelerations and the possibility to drive
 	 * with slower velocities.
-	 *
+	 * 
 	 * In Drive/Coast mode, the motor is always either driving or freewheeling.
 	 * Advantages are: Less current consumption and less demands on the motor and
 	 * driver chip.
-	 *
+	 * 
 	 * The default value is 0 = Drive/Brake.
 	 */
 	public void setDriveMode(short mode) throws TimeoutException, NotConnectedException {
@@ -546,7 +530,7 @@ public class BrickDC extends Device {
 	/**
 	 * Sets a period in ms with which the {@link BrickDC.CurrentVelocityListener} listener is triggered.
 	 * A period of 0 turns the listener off.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setCurrentVelocityPeriod(int period) throws TimeoutException, NotConnectedException {
@@ -578,8 +562,6 @@ public class BrickDC extends Device {
 	 * 
 	 * This functions sole purpose is to allow automatic flashing of v1.x.y Bricklet
 	 * plugins.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
 	 */
 	public Protocol1BrickletName getProtocol1BrickletName(char port) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_PROTOCOL1_BRICKLET_NAME, this);
@@ -608,8 +590,6 @@ public class BrickDC extends Device {
 	 * The temperature is only proportional to the real temperature and it has an
 	 * accuracy of +-15%. Practically it is only useful as an indicator for
 	 * temperature changes.
-	 * 
-	 * .. versionadded:: 1.1.3~(Firmware)
 	 */
 	public short getChipTemperature() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIP_TEMPERATURE, this);
@@ -631,8 +611,6 @@ public class BrickDC extends Device {
 	 * After a reset you have to create new device objects,
 	 * calling functions on the existing ones will result in
 	 * undefined behavior!
-	 * 
-	 * .. versionadded:: 1.1.3~(Firmware)
 	 */
 	public void reset() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_RESET, this);
@@ -645,11 +623,10 @@ public class BrickDC extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be '0'-'8' (stack position).
+	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

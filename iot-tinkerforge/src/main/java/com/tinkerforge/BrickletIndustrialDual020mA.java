@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing two currents between 0 and 20mA (IEC 60381-1)
@@ -78,11 +63,11 @@ public class BrickletIndustrialDual020mA extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletIndustrialDual020mA#setCurrentCallbackPeriod(short, long)}. The parameter is the current of the
 	 * sensor.
-	 *
+	 * 
 	 * {@link BrickletIndustrialDual020mA.CurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
 	 */
-	public interface CurrentListener {
+	public interface CurrentListener extends DeviceListener {
 		public void current(short sensor, int current);
 	}
 
@@ -90,11 +75,11 @@ public class BrickletIndustrialDual020mA extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletIndustrialDual020mA#setCurrentCallbackThreshold(short, char, int, int)} is reached.
 	 * The parameter is the current of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletIndustrialDual020mA#setDebouncePeriod(long)}.
 	 */
-	public interface CurrentReachedListener {
+	public interface CurrentReachedListener extends DeviceListener {
 		public void currentReached(short sensor, int current);
 	}
 
@@ -121,7 +106,7 @@ public class BrickletIndustrialDual020mA extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_CURRENT)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_CURRENT_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_CURRENT] = new CallbackListener() {
+		callbacks[CALLBACK_CURRENT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -135,7 +120,7 @@ public class BrickletIndustrialDual020mA extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_CURRENT_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_CURRENT_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -153,16 +138,16 @@ public class BrickletIndustrialDual020mA extends Device {
 	/**
 	 * Returns the current of the specified sensor (0 or 1). The value is in nA
 	 * and between 0nA and 22505322nA (22.5mA).
-	 *
+	 * 
 	 * It is possible to detect if an IEC 60381-1 compatible sensor is connected
 	 * and if it works probably.
-	 *
+	 * 
 	 * If the returned current is below 4mA, there is likely no sensor connected
 	 * or the sensor may be defect. If the returned current is over 20mA, there might
 	 * be a short circuit or the sensor may be defect.
-	 *
+	 * 
 	 * If you want to get the current periodically, it is recommended to use the
-	 * listener {@link BrickletIndustrialDual020mA.CurrentListener} and set the period with
+	 * listener {@link BrickletIndustrialDual020mA.CurrentListener} and set the period with 
 	 * {@link BrickletIndustrialDual020mA#setCurrentCallbackPeriod(short, long)}.
 	 */
 	public int getCurrent(short sensor) throws TimeoutException, NotConnectedException {
@@ -182,10 +167,10 @@ public class BrickletIndustrialDual020mA extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletIndustrialDual020mA.CurrentListener} listener is triggered
 	 * periodically for the given sensor. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletIndustrialDual020mA.CurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setCurrentCallbackPeriod(short sensor, long period) throws TimeoutException, NotConnectedException {
@@ -216,20 +201,20 @@ public class BrickletIndustrialDual020mA extends Device {
 	/**
 	 * Sets the thresholds for the {@link BrickletIndustrialDual020mA.CurrentReachedListener} listener for the given
 	 * sensor.
-	 *
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the current is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the current is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the current is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the current is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
+	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
+	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
+	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
-	 * The default value is ('x', 0, 0).
+	 * 
+	 * The default value is (&apos;x&apos;, 0, 0).
 	 */
 	public void setCurrentCallbackThreshold(short sensor, char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)18, FUNCTION_SET_CURRENT_CALLBACK_THRESHOLD, this);
@@ -263,15 +248,15 @@ public class BrickletIndustrialDual020mA extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listener
-	 *
+	 * 
 	 * * {@link BrickletIndustrialDual020mA.CurrentReachedListener}
-	 *
+	 * 
 	 * is triggered, if the threshold
-	 *
+	 * 
 	 * * {@link BrickletIndustrialDual020mA#setCurrentCallbackThreshold(short, char, int, int)}
-	 *
+	 * 
 	 * keeps being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -300,16 +285,16 @@ public class BrickletIndustrialDual020mA extends Device {
 	/**
 	 * Sets the sample rate to either 240, 60, 15 or 4 samples per second.
 	 * The resolution for the rates is 12, 14, 16 and 18 bit respectively.
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Description"
-	 *
-	 *  "0",    "240 samples per second, 12 bit resolution"
-	 *  "1",    "60 samples per second, 14 bit resolution"
-	 *  "2",    "15 samples per second, 16 bit resolution"
-	 *  "3",    "4 samples per second, 18 bit resolution"
+	 *  &quot;Value&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;,    &quot;240 samples per second, 12 bit resolution&quot;
+	 *  &quot;1&quot;,    &quot;60 samples per second, 14 bit resolution&quot;
+	 *  &quot;2&quot;,    &quot;15 samples per second, 16 bit resolution&quot;
+	 *  &quot;3&quot;,    &quot;4 samples per second, 18 bit resolution&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is 3: 4 samples per second with 18 bit resolution.
 	 */
 	public void setSampleRate(short rate) throws TimeoutException, NotConnectedException {
@@ -340,11 +325,10 @@ public class BrickletIndustrialDual020mA extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

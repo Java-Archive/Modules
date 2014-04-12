@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing Moisture
@@ -73,11 +58,11 @@ public class BrickletMoisture extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletMoisture#setMoistureCallbackPeriod(long)}. The parameter is the moisture value
 	 * of the sensor.
-	 *
+	 * 
 	 * {@link BrickletMoisture.MoistureListener} is only triggered if the moisture value has changed since the
 	 * last triggering.
 	 */
-	public interface MoistureListener {
+	public interface MoistureListener extends DeviceListener {
 		public void moisture(int moisture);
 	}
 
@@ -85,11 +70,11 @@ public class BrickletMoisture extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletMoisture#setMoistureCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the moisture value of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletMoisture#setDebouncePeriod(long)}.
 	 */
-	public interface MoistureReachedListener {
+	public interface MoistureReachedListener extends DeviceListener {
 		public void moistureReached(int moisture);
 	}
 
@@ -116,7 +101,7 @@ public class BrickletMoisture extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MOISTURE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MOISTURE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_MOISTURE] = new CallbackListener() {
+		callbacks[CALLBACK_MOISTURE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -129,7 +114,7 @@ public class BrickletMoisture extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_MOISTURE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_MOISTURE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -147,9 +132,9 @@ public class BrickletMoisture extends Device {
 	 * Returns the current moisture value. The value has a range of
 	 * 0 to 4095. A small value corresponds to little moisture, a big
 	 * value corresponds to much moisture.
-	 *
-	 * If you want to get the moisture value periodically, it is recommended
-	 * to use the listener {@link BrickletMoisture.MoistureListener} and set the period with
+	 * 
+	 * If you want to get the moisture value periodically, it is recommended 
+	 * to use the listener {@link BrickletMoisture.MoistureListener} and set the period with 
 	 * {@link BrickletMoisture#setMoistureCallbackPeriod(long)}.
 	 */
 	public int getMoistureValue() throws TimeoutException, NotConnectedException {
@@ -168,10 +153,10 @@ public class BrickletMoisture extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletMoisture.MoistureListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletMoisture.MoistureListener} is only triggered if the moisture value has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setMoistureCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -198,21 +183,21 @@ public class BrickletMoisture extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletMoisture.MoistureReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletMoisture.MoistureReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the moisture value is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the moisture value is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the moisture value is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the moisture value is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the moisture value is *outside* the min and max values&quot;
+	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the moisture value is *inside* the min and max values&quot;
+	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the moisture value is smaller than the min value (max is ignored)&quot;
+	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the moisture value is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
-	 * The default value is ('x', 0, 0).
+	 * 
+	 * The default value is (&apos;x&apos;, 0, 0).
 	 */
 	public void setMoistureCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)13, FUNCTION_SET_MOISTURE_CALLBACK_THRESHOLD, this);
@@ -244,15 +229,15 @@ public class BrickletMoisture extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listener
-	 *
+	 * 
 	 * * {@link BrickletMoisture.MoistureReachedListener}
-	 *
+	 * 
 	 * is triggered, if the threshold
-	 *
+	 * 
 	 * * {@link BrickletMoisture#setMoistureCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keeps being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -279,14 +264,14 @@ public class BrickletMoisture extends Device {
 	}
 
 	/**
-	 * Sets the length of a `moving averaging <http://en.wikipedia.org/wiki/Moving_average>`__
+	 * Sets the length of a `moving averaging &lt;http://en.wikipedia.org/wiki/Moving_average&gt;`__ 
 	 * for the moisture value.
-	 *
+	 * 
 	 * Setting the length to 0 will turn the averaging completely off. With less
 	 * averaging, there is more noise on the data.
-	 *
+	 * 
 	 * The range for the averaging is 0-100.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setMovingAverage(short average) throws TimeoutException, NotConnectedException {
@@ -317,11 +302,10 @@ public class BrickletMoisture extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

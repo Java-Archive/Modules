@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for receiving GPS position
@@ -130,12 +115,12 @@ public class BrickletGPS extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletGPS#setCoordinatesCallbackPeriod(long)}. The parameters are the same
 	 * as for {@link BrickletGPS#getCoordinates()}.
-	 *
+	 * 
 	 * {@link BrickletGPS.CoordinatesListener} is only triggered if the coordinates changed since the
 	 * last triggering and if there is currently a fix as indicated by
 	 * {@link BrickletGPS#getStatus()}.
 	 */
-	public interface CoordinatesListener {
+	public interface CoordinatesListener extends DeviceListener {
 		public void coordinates(long latitude, char ns, long longitude, char ew, int pdop, int hdop, int vdop, int epe);
 	}
 
@@ -143,11 +128,11 @@ public class BrickletGPS extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletGPS#setStatusCallbackPeriod(long)}. The parameters are the same
 	 * as for {@link BrickletGPS#getStatus()}.
-	 *
+	 * 
 	 * {@link BrickletGPS.StatusListener} is only triggered if the status changed since the
 	 * last triggering.
 	 */
-	public interface StatusListener {
+	public interface StatusListener extends DeviceListener {
 		public void status(short fix, short satellitesView, short satellitesUsed);
 	}
 
@@ -155,12 +140,12 @@ public class BrickletGPS extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletGPS#setAltitudeCallbackPeriod(long)}. The parameters are the same
 	 * as for {@link BrickletGPS#getAltitude()}.
-	 *
+	 * 
 	 * {@link BrickletGPS.AltitudeListener} is only triggered if the altitude changed since the
 	 * last triggering and if there is currently a fix as indicated by
 	 * {@link BrickletGPS#getStatus()}.
 	 */
-	public interface AltitudeListener {
+	public interface AltitudeListener extends DeviceListener {
 		public void altitude(long altitude, long geoidalSeparation);
 	}
 
@@ -168,12 +153,12 @@ public class BrickletGPS extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletGPS#setMotionCallbackPeriod(long)}. The parameters are the same
 	 * as for {@link BrickletGPS#getMotion()}.
-	 *
+	 * 
 	 * {@link BrickletGPS.MotionListener} is only triggered if the motion changed since the
 	 * last triggering and if there is currently a fix as indicated by
 	 * {@link BrickletGPS#getStatus()}.
 	 */
-	public interface MotionListener {
+	public interface MotionListener extends DeviceListener {
 		public void motion(long course, long speed);
 	}
 
@@ -181,11 +166,11 @@ public class BrickletGPS extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletGPS#setDateTimeCallbackPeriod(long)}. The parameters are the same
 	 * as for {@link BrickletGPS#getDateTime()}.
-	 *
+	 * 
 	 * {@link BrickletGPS.DateTimeListener} is only triggered if the date or time changed since the
 	 * last triggering.
 	 */
-	public interface DateTimeListener {
+	public interface DateTimeListener extends DeviceListener {
 		public void dateTime(long date, long time);
 	}
 
@@ -222,7 +207,7 @@ public class BrickletGPS extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MOTION)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_DATE_TIME)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_COORDINATES] = new CallbackListener() {
+		callbacks[CALLBACK_COORDINATES] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -242,7 +227,7 @@ public class BrickletGPS extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_STATUS] = new CallbackListener() {
+		callbacks[CALLBACK_STATUS] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -257,7 +242,7 @@ public class BrickletGPS extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ALTITUDE] = new CallbackListener() {
+		callbacks[CALLBACK_ALTITUDE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -271,7 +256,7 @@ public class BrickletGPS extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_MOTION] = new CallbackListener() {
+		callbacks[CALLBACK_MOTION] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -285,7 +270,7 @@ public class BrickletGPS extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_DATE_TIME] = new CallbackListener() {
+		callbacks[CALLBACK_DATE_TIME] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -304,19 +289,19 @@ public class BrickletGPS extends Device {
 	 * Returns the GPS coordinates. Latitude and longitude are given in the
 	 * ``DD.dddddd°`` format, the value 57123468 means 57.123468°.
 	 * The parameter ``ns`` and ``ew`` are the cardinal directions for
-	 * latitude and longitude. Possible values for ``ns`` and ``ew`` are 'N', 'S', 'E'
-	 * and 'W' (north, south, east and west).
-	 *
+	 * latitude and longitude. Possible values for ``ns`` and ``ew`` are &apos;N&apos;, &apos;S&apos;, &apos;E&apos;
+	 * and &apos;W&apos; (north, south, east and west).
+	 * 
 	 * PDOP, HDOP and VDOP are the dilution of precision (DOP) values. They specify
-	 * the additional multiplicative effect of GPS satellite geometry on GPS
-	 * precision. See
-	 * `here <http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)>`__
+	 * the additional multiplicative effect of GPS satellite geometry on GPS 
+	 * precision. See 
+	 * `here &lt;http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)&gt;`__
 	 * for more information. The values are give in hundredths.
-	 *
-	 * EPE is the "Estimated Position Error". The EPE is given in cm. This is not the
+	 * 
+	 * EPE is the &quot;Estimated Position Error&quot;. The EPE is given in cm. This is not the
 	 * absolute maximum error, it is the error with a specific confidence. See
-	 * `here <http://www.nps.gov/gis/gps/WhatisEPE.html>`__ for more information.
-	 *
+	 * `here &lt;http://www.nps.gov/gis/gps/WhatisEPE.html&gt;`__ for more information.
+	 * 
 	 * This data is only valid if there is currently a fix as indicated by
 	 * {@link BrickletGPS#getStatus()}.
 	 */
@@ -344,18 +329,18 @@ public class BrickletGPS extends Device {
 	/**
 	 * Returns the current fix status, the number of satellites that are in view and
 	 * the number of satellites that are currently used.
-	 *
+	 * 
 	 * Possible fix status values can be:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Description"
-	 *
-	 *  "1", "No Fix, {@link BrickletGPS#getCoordinates()} and {@link BrickletGPS#getAltitude()} return invalid data"
-	 *  "2", "2D Fix, only {@link BrickletGPS#getCoordinates()} returns valid data"
-	 *  "3", "3D Fix, {@link BrickletGPS#getCoordinates()} and {@link BrickletGPS#getAltitude()} return valid data"
+	 *  &quot;Value&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;1&quot;, &quot;No Fix, {@link BrickletGPS#getCoordinates()} and {@link BrickletGPS#getAltitude()} return invalid data&quot;
+	 *  &quot;2&quot;, &quot;2D Fix, only {@link BrickletGPS#getCoordinates()} returns valid data&quot;
+	 *  &quot;3&quot;, &quot;3D Fix, {@link BrickletGPS#getCoordinates()} and {@link BrickletGPS#getAltitude()} return valid data&quot;
 	 * \endverbatim
-	 *
-	 * There is also a :ref:`blue LED <gps_bricklet_fix_led>` on the Bricklet that
+	 * 
+	 * There is also a :ref:`blue LED &lt;gps_bricklet_fix_led&gt;` on the Bricklet that
 	 * indicates the fix status.
 	 */
 	public Status getStatus() throws TimeoutException, NotConnectedException {
@@ -376,9 +361,9 @@ public class BrickletGPS extends Device {
 
 	/**
 	 * Returns the current altitude and corresponding geoidal separation.
-	 *
+	 * 
 	 * Both values are given in cm.
-	 *
+	 * 
 	 * This data is only valid if there is currently a fix as indicated by
 	 * {@link BrickletGPS#getStatus()}.
 	 */
@@ -401,10 +386,10 @@ public class BrickletGPS extends Device {
 	 * Returns the current course and speed. Course is given in hundredths degree
 	 * and speed is given in hundredths km/h. A course of 0° means the Bricklet is
 	 * traveling north bound and 90° means it is traveling east bound.
-	 *
+	 * 
 	 * Please note that this only returns useful values if an actual movement
 	 * is present.
-	 *
+	 * 
 	 * This data is only valid if there is currently a fix as indicated by
 	 * {@link BrickletGPS#getStatus()}.
 	 */
@@ -446,14 +431,14 @@ public class BrickletGPS extends Device {
 
 	/**
 	 * Restarts the GPS Bricklet, the following restart types are available:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Description"
-	 *
-	 *  "0", "Hot start (use all available data in the NV store)"
-	 *  "1", "Warm start (don't use ephemeris at restart)"
-	 *  "2", "Cold start (don't use time, position, almanacs and ephemeris at restart)"
-	 *  "3", "Factory reset (clear all system/user configurations at restart)"
+	 *  &quot;Value&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;, &quot;Hot start (use all available data in the NV store)&quot;
+	 *  &quot;1&quot;, &quot;Warm start (don&apos;t use ephemeris at restart)&quot;
+	 *  &quot;2&quot;, &quot;Cold start (don&apos;t use time, position, almanacs and ephemeris at restart)&quot;
+	 *  &quot;3&quot;, &quot;Factory reset (clear all system/user configurations at restart)&quot;
 	 * \endverbatim
 	 */
 	public void restart(short restartType) throws TimeoutException, NotConnectedException {
@@ -466,10 +451,10 @@ public class BrickletGPS extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletGPS.CoordinatesListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletGPS.CoordinatesListener} is only triggered if the coordinates changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setCoordinatesCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -498,10 +483,10 @@ public class BrickletGPS extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletGPS.StatusListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletGPS.StatusListener} is only triggered if the status changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setStatusCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -530,10 +515,10 @@ public class BrickletGPS extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletGPS.AltitudeListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletGPS.AltitudeListener} is only triggered if the altitude changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAltitudeCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -562,10 +547,10 @@ public class BrickletGPS extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletGPS.MotionListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletGPS.MotionListener} is only triggered if the motion changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setMotionCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -594,10 +579,10 @@ public class BrickletGPS extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletGPS.DateTimeListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletGPS.DateTimeListener} is only triggered if the date or time changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setDateTimeCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -628,11 +613,10 @@ public class BrickletGPS extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

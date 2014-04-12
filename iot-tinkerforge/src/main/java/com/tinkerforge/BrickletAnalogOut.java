@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,6 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for output of voltage between 0 and 5V
@@ -67,7 +54,7 @@ public class BrickletAnalogOut extends Device {
 	/**
 	 * Sets the voltage in mV. The possible range is 0V to 5V (0-5000).
 	 * Calling this function will set the mode to 0 (see {@link BrickletAnalogOut#setMode(short)}).
-	 *
+	 * 
 	 * The default value is 0 (with mode 1).
 	 */
 	public void setVoltage(int voltage) throws TimeoutException, NotConnectedException {
@@ -95,15 +82,15 @@ public class BrickletAnalogOut extends Device {
 
 	/**
 	 * Sets the mode of the analog value. Possible modes:
-	 *
+	 * 
 	 * * 0: Normal Mode (Analog value as set by {@link BrickletAnalogOut#setVoltage(int)} is applied)
 	 * * 1: 1k Ohm resistor to ground
 	 * * 2: 100k Ohm resistor to ground
 	 * * 3: 500k Ohm resistor to ground
-	 *
+	 * 
 	 * Setting the mode to 0 will result in an output voltage of 0. You can jump
 	 * to a higher output voltage directly by calling {@link BrickletAnalogOut#setVoltage(int)}.
-	 *
+	 * 
 	 * The default mode is 1.
 	 */
 	public void setMode(short mode) throws TimeoutException, NotConnectedException {
@@ -134,11 +121,10 @@ public class BrickletAnalogOut extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

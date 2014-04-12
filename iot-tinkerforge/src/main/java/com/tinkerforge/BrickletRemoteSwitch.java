@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device that controls mains switches remotely
@@ -59,7 +44,7 @@ public class BrickletRemoteSwitch extends Device {
 	 * This listener is called whenever the switching state changes
 	 * from busy to ready, see {@link BrickletRemoteSwitch#getSwitchingState()}.
 	 */
-	public interface SwitchingDoneListener {
+	public interface SwitchingDoneListener extends DeviceListener {
 		public void switchingDone();
 	}
 
@@ -84,7 +69,7 @@ public class BrickletRemoteSwitch extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_SWITCHING_DONE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_SWITCHING_DONE] = new CallbackListener() {
+		callbacks[CALLBACK_SWITCHING_DONE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(SwitchingDoneListener listener: listenerSwitchingDone) {
 					listener.switchingDone();
@@ -109,7 +94,7 @@ public class BrickletRemoteSwitch extends Device {
 	 * Returns the current switching state. If the current state is busy, the
 	 * Bricklet is currently sending a code to switch a socket. It will not
 	 * accept any calls of {@link BrickletRemoteSwitch#switchSocket(short, short, short)} until the state changes to ready.
-	 *
+	 * 
 	 * How long the switching takes is dependent on the number of repeats, see
 	 * {@link BrickletRemoteSwitch#setRepeats(short)}.
 	 */
@@ -130,10 +115,10 @@ public class BrickletRemoteSwitch extends Device {
 	 * Sets the number of times the code is send when of the {@link BrickletRemoteSwitch#switchSocket(short, short, short)}
 	 * functions is called. The repeats basically correspond to the amount of time
 	 * that a button of the remote is pressed.
-	 *
+	 * 
 	 * Some dimmers are controlled by the length of a button pressed,
 	 * this can be simulated by increasing the repeats.
-	 *
+	 * 
 	 * The default value is 5.
 	 */
 	public void setRepeats(short repeats) throws TimeoutException, NotConnectedException {
@@ -166,7 +151,7 @@ public class BrickletRemoteSwitch extends Device {
 	 * The house code and receiver code have a range of 0 to 31 (5bit).
 	 * 
 	 * A detailed description on how you can figure out the house and receiver code
-	 * can be found :ref:`here <remote_switch_bricklet_type_a_house_and_receiver_code>`.
+	 * can be found :ref:`here &lt;remote_switch_bricklet_type_a_house_and_receiver_code&gt;`.
 	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
@@ -188,7 +173,7 @@ public class BrickletRemoteSwitch extends Device {
 	 * the unit.
 	 * 
 	 * A detailed description on how you can teach a socket the address and unit can
-	 * be found :ref:`here <remote_switch_bricklet_type_b_address_and_unit>`.
+	 * be found :ref:`here &lt;remote_switch_bricklet_type_b_address_and_unit&gt;`.
 	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
@@ -209,7 +194,7 @@ public class BrickletRemoteSwitch extends Device {
 	 * has a range of 0 to 15 (4bit).
 	 * 
 	 * A detailed description on how you can teach a dimmer the address and unit can
-	 * be found :ref:`here <remote_switch_bricklet_type_b_address_and_unit>`.
+	 * be found :ref:`here &lt;remote_switch_bricklet_type_b_address_and_unit&gt;`.
 	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
@@ -226,11 +211,11 @@ public class BrickletRemoteSwitch extends Device {
 	 * To switch a type C socket you have to give the system code, device code and the
 	 * state (on or off) you want to switch to.
 	 * 
-	 * The system code has a range of 'A' to 'P' (4bit) and the device code has a
+	 * The system code has a range of &apos;A&apos; to &apos;P&apos; (4bit) and the device code has a
 	 * range of 1 to 16 (4bit).
 	 * 
 	 * A detailed description on how you can figure out the system and device code
-	 * can be found :ref:`here <remote_switch_bricklet_type_c_system_and_device_code>`.
+	 * can be found :ref:`here &lt;remote_switch_bricklet_type_c_system_and_device_code&gt;`.
 	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
@@ -248,11 +233,10 @@ public class BrickletRemoteSwitch extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

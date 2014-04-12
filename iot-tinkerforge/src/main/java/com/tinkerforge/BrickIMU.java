@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,9 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Device for sensing acceleration, magnetic field and angular velocity
@@ -180,7 +164,7 @@ public class BrickIMU extends Device {
 	 * {@link BrickIMU#setAccelerationPeriod(long)}. The parameters are the acceleration
 	 * for the x, y and z axis.
 	 */
-	public interface AccelerationListener {
+	public interface AccelerationListener extends DeviceListener {
 		public void acceleration(short x, short y, short z);
 	}
 
@@ -189,7 +173,7 @@ public class BrickIMU extends Device {
 	 * {@link BrickIMU#setMagneticFieldPeriod(long)}. The parameters are the magnetic field
 	 * for the x, y and z axis.
 	 */
-	public interface MagneticFieldListener {
+	public interface MagneticFieldListener extends DeviceListener {
 		public void magneticField(short x, short y, short z);
 	}
 
@@ -198,7 +182,7 @@ public class BrickIMU extends Device {
 	 * {@link BrickIMU#setAngularVelocityPeriod(long)}. The parameters are the angular velocity
 	 * for the x, y and z axis.
 	 */
-	public interface AngularVelocityListener {
+	public interface AngularVelocityListener extends DeviceListener {
 		public void angularVelocity(short x, short y, short z);
 	}
 
@@ -208,7 +192,7 @@ public class BrickIMU extends Device {
 	 * the magnetic field and the angular velocity for the x, y and z axis as
 	 * well as the temperature of the IMU Brick.
 	 */
-	public interface AllDataListener {
+	public interface AllDataListener extends DeviceListener {
 		public void allData(short accX, short accY, short accZ, short magX, short magY, short magZ, short angX, short angY, short angZ, short temperature);
 	}
 
@@ -218,7 +202,7 @@ public class BrickIMU extends Device {
 	 * (roll, pitch and yaw) of the IMU Brick in Euler angles. See
 	 * {@link BrickIMU#getOrientation()} for details.
 	 */
-	public interface OrientationListener {
+	public interface OrientationListener extends DeviceListener {
 		public void orientation(short roll, short pitch, short yaw);
 	}
 
@@ -228,7 +212,7 @@ public class BrickIMU extends Device {
 	 * (x, y, z, w) of the IMU Brick in quaternions. See {@link BrickIMU#getQuaternion()}
 	 * for details.
 	 */
-	public interface QuaternionListener {
+	public interface QuaternionListener extends DeviceListener {
 		public void quaternion(float x, float y, float z, float w);
 	}
 
@@ -286,7 +270,7 @@ public class BrickIMU extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_ORIENTATION)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_QUATERNION)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_ACCELERATION] = new CallbackListener() {
+		callbacks[CALLBACK_ACCELERATION] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -301,7 +285,7 @@ public class BrickIMU extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_MAGNETIC_FIELD] = new CallbackListener() {
+		callbacks[CALLBACK_MAGNETIC_FIELD] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -316,7 +300,7 @@ public class BrickIMU extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ANGULAR_VELOCITY] = new CallbackListener() {
+		callbacks[CALLBACK_ANGULAR_VELOCITY] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -331,7 +315,7 @@ public class BrickIMU extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ALL_DATA] = new CallbackListener() {
+		callbacks[CALLBACK_ALL_DATA] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -353,7 +337,7 @@ public class BrickIMU extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ORIENTATION] = new CallbackListener() {
+		callbacks[CALLBACK_ORIENTATION] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -368,7 +352,7 @@ public class BrickIMU extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_QUATERNION] = new CallbackListener() {
+		callbacks[CALLBACK_QUATERNION] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -386,11 +370,11 @@ public class BrickIMU extends Device {
 	}
 
 	/**
-	 * Returns the calibrated acceleration from the accelerometer for the
+	 * Returns the calibrated acceleration from the accelerometer for the 
 	 * x, y and z axis in mG (G/1000, 1G = 9.80605m/s²).
-	 *
-	 * If you want to get the acceleration periodically, it is recommended
-	 * to use the listener {@link BrickIMU.AccelerationListener} and set the period with
+	 * 
+	 * If you want to get the acceleration periodically, it is recommended 
+	 * to use the listener {@link BrickIMU.AccelerationListener} and set the period with 
 	 * {@link BrickIMU#setAccelerationPeriod(long)}.
 	 */
 	public Acceleration getAcceleration() throws TimeoutException, NotConnectedException {
@@ -410,11 +394,11 @@ public class BrickIMU extends Device {
 	}
 
 	/**
-	 * Returns the calibrated magnetic field from the magnetometer for the
+	 * Returns the calibrated magnetic field from the magnetometer for the 
 	 * x, y and z axis in mG (Milligauss or Nanotesla).
-	 *
-	 * If you want to get the magnetic field periodically, it is recommended
-	 * to use the listener {@link BrickIMU.MagneticFieldListener} and set the period with
+	 * 
+	 * If you want to get the magnetic field periodically, it is recommended 
+	 * to use the listener {@link BrickIMU.MagneticFieldListener} and set the period with 
 	 * {@link BrickIMU#setMagneticFieldPeriod(long)}.
 	 */
 	public MagneticField getMagneticField() throws TimeoutException, NotConnectedException {
@@ -434,12 +418,12 @@ public class BrickIMU extends Device {
 	}
 
 	/**
-	 * Returns the calibrated angular velocity from the gyroscope for the
-	 * x, y and z axis in °/17.5s (you have to divide by 17.5 to
+	 * Returns the calibrated angular velocity from the gyroscope for the 
+	 * x, y and z axis in °/14.375s (you have to divide by 14.375 to
 	 * get the value in °/s).
-	 *
-	 * If you want to get the angular velocity periodically, it is recommended
-	 * to use the listener {@link BrickIMU.AngularVelocityListener} and set the period with
+	 * 
+	 * If you want to get the angular velocity periodically, it is recommended 
+	 * to use the listener {@link BrickIMU.AngularVelocityListener} and set the period with 
 	 * {@link BrickIMU#setAngularVelocityPeriod(long)}.
 	 */
 	public AngularVelocity getAngularVelocity() throws TimeoutException, NotConnectedException {
@@ -459,13 +443,13 @@ public class BrickIMU extends Device {
 	}
 
 	/**
-	 * Returns the data from {@link BrickIMU#getAcceleration()}, {@link BrickIMU#getMagneticField()}
+	 * Returns the data from {@link BrickIMU#getAcceleration()}, {@link BrickIMU#getMagneticField()} 
 	 * and {@link BrickIMU#getAngularVelocity()} as well as the temperature of the IMU Brick.
-	 *
+	 * 
 	 * The temperature is given in °C/100.
-	 *
-	 * If you want to get the data periodically, it is recommended
-	 * to use the listener {@link BrickIMU.AllDataListener} and set the period with
+	 * 
+	 * If you want to get the data periodically, it is recommended 
+	 * to use the listener {@link BrickIMU.AllDataListener} and set the period with 
 	 * {@link BrickIMU#setAllDataPeriod(long)}.
 	 */
 	public AllData getAllData() throws TimeoutException, NotConnectedException {
@@ -494,15 +478,15 @@ public class BrickIMU extends Device {
 	/**
 	 * Returns the current orientation (roll, pitch, yaw) of the IMU Brick as Euler
 	 * angles in one-hundredth degree. Note that Euler angles always experience a
-	 * `gimbal lock <http://en.wikipedia.org/wiki/Gimbal_lock>`__.
-	 *
+	 * `gimbal lock &lt;http://en.wikipedia.org/wiki/Gimbal_lock&gt;`__.
+	 * 
 	 * We recommend that you use quaternions instead.
-	 *
-	 * The order to sequence in which the orientation values should be applied is
-	 * roll, yaw, pitch.
-	 *
-	 * If you want to get the orientation periodically, it is recommended
-	 * to use the listener {@link BrickIMU.OrientationListener} and set the period with
+	 * 
+	 * The order to sequence in which the orientation values should be applied is 
+	 * roll, yaw, pitch. 
+	 * 
+	 * If you want to get the orientation periodically, it is recommended 
+	 * to use the listener {@link BrickIMU.OrientationListener} and set the period with 
 	 * {@link BrickIMU#setOrientationPeriod(long)}.
 	 */
 	public Orientation getOrientation() throws TimeoutException, NotConnectedException {
@@ -522,28 +506,36 @@ public class BrickIMU extends Device {
 	}
 
 	/**
-	 * Returns the current orientation (x, y, z, w) of the IMU as
-	 * `quaternions <http://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation>`__.
-	 *
+	 * Returns the current orientation (x, y, z, w) of the IMU as 
+	 * `quaternions &lt;http://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation&gt;`__.
+	 * 
 	 * You can go from quaternions to Euler angles with the following formula::
-	 *
-	 *  roll  = atan2(2*y*w - 2*x*z, 1 - 2*y*y - 2*z*z)
-	 *  pitch = atan2(2*x*w - 2*y*z, 1 - 2*x*x - 2*z*z)
-	 *  yaw   =  asin(2*x*y + 2*z*w)
-	 *
-	 * This process is not reversible, because of the
-	 * `gimbal lock <http://en.wikipedia.org/wiki/Gimbal_lock>`__.
-	 *
+	 * 
+	 *  xAngle = atan2(2*y*w - 2*x*z, 1 - 2*y*y - 2*z*z)
+	 *  yAngle = atan2(2*x*w - 2*y*z, 1 - 2*x*x - 2*z*z)
+	 *  zAngle =  asin(2*x*y + 2*z*w)
+	 * 
+	 * This process is not reversible, because of the 
+	 * `gimbal lock &lt;http://en.wikipedia.org/wiki/Gimbal_lock&gt;`__.
+	 * 
+	 * It is also possible to calculate independent angles. You can calculate 
+	 * yaw, pitch and roll in a right-handed vehicle coordinate system according to DIN70000
+	 * with::
+	 * 
+	 *  yaw   =  atan2(2*x*y + 2*w*z, w*w + x*x - y*y - z*z)
+	 *  pitch = -asin(2*w*y - 2*x*z)
+	 *  roll  = -atan2(2*y*z + 2*w*x, -w*w + x*x + y*y - z*z))
+	 * 
 	 * Converting the quaternions to an OpenGL transformation matrix is
 	 * possible with the following formula::
-	 *
+	 * 
 	 *  matrix = [[1 - 2*(y*y + z*z),     2*(x*y - w*z),     2*(x*z + w*y), 0],
 	 *            [    2*(x*y + w*z), 1 - 2*(x*x + z*z),     2*(y*z - w*x), 0],
 	 *            [    2*(x*z - w*y),     2*(y*z + w*x), 1 - 2*(x*x + y*y), 0],
 	 *            [                0,                 0,                 0, 1]]
-	 *
-	 * If you want to get the quaternions periodically, it is recommended
-	 * to use the listener {@link BrickIMU.QuaternionListener} and set the period with
+	 * 
+	 * If you want to get the quaternions periodically, it is recommended 
+	 * to use the listener {@link BrickIMU.QuaternionListener} and set the period with 
 	 * {@link BrickIMU#setQuaternionPeriod(long)}.
 	 */
 	public Quaternion getQuaternion() throws TimeoutException, NotConnectedException {
@@ -564,7 +556,7 @@ public class BrickIMU extends Device {
 	}
 
 	/**
-	 * Returns the temperature of the IMU Brick. The temperature is given in
+	 * Returns the temperature of the IMU Brick. The temperature is given in 
 	 * °C/100.
 	 */
 	public short getIMUTemperature() throws TimeoutException, NotConnectedException {
@@ -668,32 +660,32 @@ public class BrickIMU extends Device {
 	}
 
 	/**
-	 * Sets the convergence speed of the IMU Brick in °/s. The convergence speed
+	 * Sets the convergence speed of the IMU Brick in °/s. The convergence speed 
 	 * determines how the different sensor measurements are fused.
-	 *
-	 * If the orientation of the IMU Brick is off by 10° and the convergence speed is
+	 * 
+	 * If the orientation of the IMU Brick is off by 10° and the convergence speed is 
 	 * set to 20°/s, it will take 0.5s until the orientation is corrected. However,
 	 * if the correct orientation is reached and the convergence speed is too high,
 	 * the orientation will fluctuate with the fluctuations of the accelerometer and
 	 * the magnetometer.
-	 *
+	 * 
 	 * If you set the convergence speed to 0, practically only the gyroscope is used
 	 * to calculate the orientation. This gives very smooth movements, but errors of the
 	 * gyroscope will not be corrected. If you set the convergence speed to something
 	 * above 500, practically only the magnetometer and the accelerometer are used to
 	 * calculate the orientation. In this case the movements are abrupt and the values
-	 * will fluctuate, but there won't be any errors that accumulate over time.
-	 *
+	 * will fluctuate, but there won&apos;t be any errors that accumulate over time.
+	 * 
 	 * In an application with high angular velocities, we recommend a high convergence
 	 * speed, so the errors of the gyroscope can be corrected fast. In applications with
 	 * only slow movements we recommend a low convergence speed. You can change the
-	 * convergence speed on the fly. So it is possible (and recommended) to increase
-	 * the convergence speed before an abrupt movement and decrease it afterwards
+	 * convergence speed on the fly. So it is possible (and recommended) to increase 
+	 * the convergence speed before an abrupt movement and decrease it afterwards 
 	 * again.
-	 *
+	 * 
 	 * You might want to play around with the convergence speed in the Brick Viewer to
 	 * get a feeling for a good value for your application.
-	 *
+	 * 
 	 * The default value is 30.
 	 */
 	public void setConvergenceSpeed(int speed) throws TimeoutException, NotConnectedException {
@@ -721,36 +713,36 @@ public class BrickIMU extends Device {
 
 	/**
 	 * There are several different types that can be calibrated:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Type", "Description", "Values"
-	 *
-	 *  "0",    "Accelerometer Gain", "``[mul x, mul y, mul z, div x, div y, div z, 0, 0, 0, 0]``"
-	 *  "1",    "Accelerometer Bias", "``[bias x, bias y, bias z, 0, 0, 0, 0, 0, 0, 0]``"
-	 *  "2",    "Magnetometer Gain",  "``[mul x, mul y, mul z, div x, div y, div z, 0, 0, 0, 0]``"
-	 *  "3",    "Magnetometer Bias",  "``[bias x, bias y, bias z, 0, 0, 0, 0, 0, 0, 0]``"
-	 *  "4",    "Gyroscope Gain",     "``[mul x, mul y, mul z, div x, div y, div z, 0, 0, 0, 0]``"
-	 *  "5",    "Gyroscope Bias",     "``[bias xl, bias yl, bias zl, temp l, bias xh, bias yh, bias zh, temp h, 0, 0]``"
+	 *  &quot;Type&quot;, &quot;Description&quot;, &quot;Values&quot;
+	 * 
+	 *  &quot;0&quot;,    &quot;Accelerometer Gain&quot;, &quot;``[mul x, mul y, mul z, div x, div y, div z, 0, 0, 0, 0]``&quot;
+	 *  &quot;1&quot;,    &quot;Accelerometer Bias&quot;, &quot;``[bias x, bias y, bias z, 0, 0, 0, 0, 0, 0, 0]``&quot;
+	 *  &quot;2&quot;,    &quot;Magnetometer Gain&quot;,  &quot;``[mul x, mul y, mul z, div x, div y, div z, 0, 0, 0, 0]``&quot;
+	 *  &quot;3&quot;,    &quot;Magnetometer Bias&quot;,  &quot;``[bias x, bias y, bias z, 0, 0, 0, 0, 0, 0, 0]``&quot;
+	 *  &quot;4&quot;,    &quot;Gyroscope Gain&quot;,     &quot;``[mul x, mul y, mul z, div x, div y, div z, 0, 0, 0, 0]``&quot;
+	 *  &quot;5&quot;,    &quot;Gyroscope Bias&quot;,     &quot;``[bias xl, bias yl, bias zl, temp l, bias xh, bias yh, bias zh, temp h, 0, 0]``&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The calibration via gain and bias is done with the following formula::
-	 *
+	 * 
 	 *  new_value = (bias + orig_value) * gain_mul / gain_div
-	 *
+	 * 
 	 * If you really want to write your own calibration software, please keep
 	 * in mind that you first have to undo the old calibration (set bias to 0 and
 	 * gain to 1/1) and that you have to average over several thousand values
 	 * to obtain a usable result in the end.
-	 *
+	 * 
 	 * The gyroscope bias is highly dependent on the temperature, so you have to
 	 * calibrate the bias two times with different temperatures. The values ``xl``,
-	 * ``yl``, ``zl `` and ``temp l`` are the bias for ``x``, ``y``, ``z`` and the
+	 * ``yl``, ``zl`` and ``temp l`` are the bias for ``x``, ``y``, ``z`` and the
 	 * corresponding temperature for a low temperature. The values ``xh``, ``yh``,
 	 * ``zh`` and ``temp h`` are the same for a high temperatures. The temperature
 	 * difference should be at least 5°C. If you have a temperature where the
 	 * IMU Brick is mostly used, you should use this temperature for one of the
 	 * sampling points.
-	 *
+	 * 
 	 * \note
 	 *  We highly recommend that you use the Brick Viewer to calibrate your
 	 *  IMU Brick.
@@ -790,7 +782,7 @@ public class BrickIMU extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickIMU.AccelerationListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAccelerationPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -953,9 +945,9 @@ public class BrickIMU extends Device {
 
 	/**
 	 * Turns the orientation calculation of the IMU Brick on.
-	 *
+	 * 
 	 * As default the calculation is on.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.2~(Firmware)
 	 */
 	public void orientationCalculationOn() throws TimeoutException, NotConnectedException {
@@ -966,7 +958,7 @@ public class BrickIMU extends Device {
 
 	/**
 	 * Turns the orientation calculation of the IMU Brick off.
-	 *
+	 * 
 	 * If the calculation is off, {@link BrickIMU#getOrientation()} will return
 	 * the last calculated value until the calculation is turned on again.
 	 * 
@@ -1010,8 +1002,6 @@ public class BrickIMU extends Device {
 	 * 
 	 * This functions sole purpose is to allow automatic flashing of v1.x.y Bricklet
 	 * plugins.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
 	 */
 	public Protocol1BrickletName getProtocol1BrickletName(char port) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_PROTOCOL1_BRICKLET_NAME, this);
@@ -1040,8 +1030,6 @@ public class BrickIMU extends Device {
 	 * The temperature is only proportional to the real temperature and it has an
 	 * accuracy of +-15%. Practically it is only useful as an indicator for
 	 * temperature changes.
-	 * 
-	 * .. versionadded:: 1.0.7~(Firmware)
 	 */
 	public short getChipTemperature() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIP_TEMPERATURE, this);
@@ -1063,8 +1051,6 @@ public class BrickIMU extends Device {
 	 * After a reset you have to create new device objects,
 	 * calling functions on the existing ones will result in
 	 * undefined behavior!
-	 * 
-	 * .. versionadded:: 1.0.7~(Firmware)
 	 */
 	public void reset() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_RESET, this);
@@ -1077,11 +1063,10 @@ public class BrickIMU extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be '0'-'8' (stack position).
+	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

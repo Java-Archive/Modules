@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,9 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Device for controlling up to seven servos
@@ -118,39 +102,39 @@ public class BrickServo extends Device {
 	 * {@link BrickServo#setMinimumVoltage(int)}. The parameter is the current voltage given
 	 * in mV.
 	 */
-	public interface UnderVoltageListener {
+	public interface UnderVoltageListener extends DeviceListener {
 		public void underVoltage(int voltage);
 	}
 
 	/**
 	 * This listener is triggered when a position set by {@link BrickServo#setPosition(short, short)}
 	 * is reached. The parameters are the servo and the position that is reached.
-	 *
+	 * 
 	 * You can enable this listener with {@link BrickServo#enablePositionReachedCallback()}.
-	 *
+	 * 
 	 * \note
-	 *  Since we can't get any feedback from the servo, this only works if the
+	 *  Since we can&apos;t get any feedback from the servo, this only works if the
 	 *  velocity (see {@link BrickServo#setVelocity(short, int)}) is set smaller or equal to the
 	 *  maximum velocity of the servo. Otherwise the servo will lag behind the
 	 *  control value and the listener will be triggered too early.
 	 */
-	public interface PositionReachedListener {
+	public interface PositionReachedListener extends DeviceListener {
 		public void positionReached(short servoNum, short position);
 	}
 
 	/**
 	 * This listener is triggered when a velocity set by {@link BrickServo#setVelocity(short, int)}
 	 * is reached. The parameters are the servo and the velocity that is reached.
-	 *
+	 * 
 	 * You can enable this listener with {@link BrickServo#enableVelocityReachedCallback()}.
-	 *
+	 * 
 	 * \note
-	 *  Since we can't get any feedback from the servo, this only works if the
+	 *  Since we can&apos;t get any feedback from the servo, this only works if the
 	 *  acceleration (see {@link BrickServo#setAcceleration(short, int)}) is set smaller or equal to the
 	 *  maximum acceleration of the servo. Otherwise the servo will lag behind the
 	 *  control value and the listener will be triggered too early.
 	 */
-	public interface VelocityReachedListener {
+	public interface VelocityReachedListener extends DeviceListener {
 		public void velocityReached(short servoNum, short velocity);
 	}
 
@@ -203,7 +187,7 @@ public class BrickServo extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_POSITION_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_VELOCITY_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_UNDER_VOLTAGE] = new CallbackListener() {
+		callbacks[CALLBACK_UNDER_VOLTAGE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -216,7 +200,7 @@ public class BrickServo extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_POSITION_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_POSITION_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -230,7 +214,7 @@ public class BrickServo extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_VELOCITY_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_VELOCITY_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -285,11 +269,11 @@ public class BrickServo extends Device {
 	}
 
 	/**
-	 * Sets the position in °/100 for the specified servo.
-	 *
+	 * Sets the position in °/100 for the specified servo. 
+	 * 
 	 * The default range of the position is -9000 to 9000, but it can be specified
 	 * according to your servo with {@link BrickServo#setDegree(short, short, short)}.
-	 *
+	 * 
 	 * If you want to control a linear servo or RC brushless motor controller or
 	 * similar with the Servo Brick, you can also define lengths or speeds with
 	 * {@link BrickServo#setDegree(short, short, short)}.
@@ -341,10 +325,10 @@ public class BrickServo extends Device {
 	/**
 	 * Sets the maximum velocity of the specified servo in °/100s. The velocity
 	 * is accelerated according to the value set by {@link BrickServo#setAcceleration(short, int)}.
-	 *
+	 * 
 	 * The minimum velocity is 0 (no movement) and the maximum velocity is 65535.
 	 * With a value of 65535 the position will be set immediately (no velocity).
-	 *
+	 * 
 	 * The default value is 65535.
 	 */
 	public void setVelocity(short servoNum, int velocity) throws TimeoutException, NotConnectedException {
@@ -393,10 +377,10 @@ public class BrickServo extends Device {
 
 	/**
 	 * Sets the acceleration of the specified servo in °/100s².
-	 *
+	 * 
 	 * The minimum acceleration is 1 and the maximum acceleration is 65535.
 	 * With a value of 65535 the velocity will be set immediately (no acceleration).
-	 *
+	 * 
 	 * The default value is 65535.
 	 */
 	public void setAcceleration(short servoNum, int acceleration) throws TimeoutException, NotConnectedException {
@@ -408,7 +392,7 @@ public class BrickServo extends Device {
 	}
 
 	/**
-	 * Returns the acceleration for the specified servo as set by
+	 * Returns the acceleration for the specified servo as set by 
 	 * {@link BrickServo#setAcceleration(short, int)}.
 	 */
 	public int getAcceleration(short servoNum) throws TimeoutException, NotConnectedException {
@@ -427,14 +411,14 @@ public class BrickServo extends Device {
 
 	/**
 	 * Sets the output voltages with which the servos are driven in mV.
-	 * The minimum output voltage is 2000mV and the maximum output voltage is
+	 * The minimum output voltage is 2000mV and the maximum output voltage is 
 	 * 9000mV.
-	 *
+	 * 
 	 * \note
 	 *  We recommend that you set this value to the maximum voltage that is
 	 *  specified for your servo, most servos achieve their maximum force only
 	 *  with high voltages.
-	 *
+	 * 
 	 * The default value is 5000.
 	 */
 	public void setOutputVoltage(int voltage) throws TimeoutException, NotConnectedException {
@@ -462,21 +446,21 @@ public class BrickServo extends Device {
 
 	/**
 	 * Sets the minimum and maximum pulse width of the specified servo in µs.
-	 *
-	 * Usually, servos are controlled with a
-	 * `PWM <http://en.wikipedia.org/wiki/Pulse-width_modulation>`__, whereby the
+	 * 
+	 * Usually, servos are controlled with a 
+	 * `PWM &lt;http://en.wikipedia.org/wiki/Pulse-width_modulation&gt;`__, whereby the
 	 * length of the pulse controls the position of the servo. Every servo has
 	 * different minimum and maximum pulse widths, these can be specified with
 	 * this function.
-	 *
+	 * 
 	 * If you have a datasheet for your servo that specifies the minimum and
 	 * maximum pulse width, you should set the values accordingly. If your servo
 	 * comes without any datasheet you have to find the values via trial and error.
-	 *
+	 * 
 	 * Both values have a range from 1 to 65535 (unsigned 16-bit integer). The
 	 * minimum must be smaller than the maximum.
-	 *
-	 * The default values are 1000µs (1ms) and 2000µs (2ms) for minimum and
+	 * 
+	 * The default values are 1000µs (1ms) and 2000µs (2ms) for minimum and 
 	 * maximum pulse width.
 	 */
 	public void setPulseWidth(short servoNum, int min, int max) throws TimeoutException, NotConnectedException {
@@ -511,33 +495,33 @@ public class BrickServo extends Device {
 	/**
 	 * Sets the minimum and maximum degree for the specified servo (by default
 	 * given as °/100).
-	 *
+	 * 
 	 * This only specifies the abstract values between which the minimum and maximum
 	 * pulse width is scaled. For example: If you specify a pulse width of 1000µs
 	 * to 2000µs and a degree range of -90° to 90°, a call of {@link BrickServo#setPosition(short, short)}
-	 * with 0 will result in a pulse width of 1500µs
+	 * with 0 will result in a pulse width of 1500µs 
 	 * (-90° = 1000µs, 90° = 2000µs, etc.).
-	 *
+	 * 
 	 * Possible usage:
-	 *
+	 * 
 	 * * The datasheet of your servo specifies a range of 200° with the middle position
 	 *   at 110°. In this case you can set the minimum to -9000 and the maximum to 11000.
-	 * * You measure a range of 220° on your servo and you don't have or need a middle
+	 * * You measure a range of 220° on your servo and you don&apos;t have or need a middle
 	 *   position. In this case you can set the minimum to 0 and the maximum to 22000.
 	 * * You have a linear servo with a drive length of 20cm, In this case you could
 	 *   set the minimum to 0 and the maximum to 20000. Now you can set the Position
 	 *   with {@link BrickServo#setPosition(short, short)} with a resolution of cm/100. Also the velocity will
 	 *   have a resolution of cm/100s and the acceleration will have a resolution of
 	 *   cm/100s².
-	 * * You don't care about units and just want the highest possible resolution. In
+	 * * You don&apos;t care about units and just want the highest possible resolution. In
 	 *   this case you should set the minimum to -32767 and the maximum to 32767.
 	 * * You have a brushless motor with a maximum speed of 10000 rpm and want to
 	 *   control it with a RC brushless motor controller. In this case you can set the
 	 *   minimum to 0 and the maximum to 10000. {@link BrickServo#setPosition(short, short)} now controls the rpm.
-	 *
-	 * Both values have a possible range from -32767 to 32767
+	 * 
+	 * Both values have a possible range from -32767 to 32767 
 	 * (signed 16-bit integer). The minimum must be smaller than the maximum.
-	 *
+	 * 
 	 * The default values are -9000 and 9000 for the minimum and maximum degree.
 	 */
 	public void setDegree(short servoNum, short min, short max) throws TimeoutException, NotConnectedException {
@@ -571,19 +555,19 @@ public class BrickServo extends Device {
 
 	/**
 	 * Sets the period of the specified servo in µs.
-	 *
-	 * Usually, servos are controlled with a
-	 * `PWM <http://en.wikipedia.org/wiki/Pulse-width_modulation>`__. Different
-	 * servos expect PWMs with different periods. Most servos run well with a
+	 * 
+	 * Usually, servos are controlled with a 
+	 * `PWM &lt;http://en.wikipedia.org/wiki/Pulse-width_modulation&gt;`__. Different
+	 * servos expect PWMs with different periods. Most servos run well with a 
 	 * period of about 20ms.
-	 *
+	 * 
 	 * If your servo comes with a datasheet that specifies a period, you should
-	 * set it accordingly. If you don't have a datasheet and you have no idea
+	 * set it accordingly. If you don&apos;t have a datasheet and you have no idea
 	 * what the correct period is, the default value (19.5ms) will most likely
-	 * work fine.
-	 *
-	 * The minimum possible period is 2000µs and the maximum is 65535µs.
-	 *
+	 * work fine. 
+	 * 
+	 * The minimum possible period is 1µs and the maximum is 65535µs.
+	 * 
 	 * The default value is 19.5ms (19500µs).
 	 */
 	public void setPeriod(short servoNum, int period) throws TimeoutException, NotConnectedException {
@@ -646,7 +630,7 @@ public class BrickServo extends Device {
 
 	/**
 	 * Returns the stack input voltage in mV. The stack input voltage is the
-	 * voltage that is supplied via the stack, i.e. it is given by a
+	 * voltage that is supplied via the stack, i.e. it is given by a 
 	 * Step-Down or Step-Up Power Supply.
 	 */
 	public int getStackInputVoltage() throws TimeoutException, NotConnectedException {
@@ -664,12 +648,12 @@ public class BrickServo extends Device {
 
 	/**
 	 * Returns the external input voltage in mV. The external input voltage is
-	 * given via the black power input connector on the Servo Brick.
-	 *
+	 * given via the black power input connector on the Servo Brick. 
+	 *  
 	 * If there is an external input voltage and a stack input voltage, the motors
-	 * will be driven by the external input voltage. If there is only a stack
+	 * will be driven by the external input voltage. If there is only a stack 
 	 * voltage present, the motors will be driven by this voltage.
-	 *
+	 * 
 	 * \warning
 	 *  This means, if you have a high stack voltage and a low external voltage,
 	 *  the motors will be driven with the low external voltage. If you then remove
@@ -693,9 +677,9 @@ public class BrickServo extends Device {
 	 * Sets the minimum voltage in mV, below which the {@link BrickServo.UnderVoltageListener} listener
 	 * is triggered. The minimum possible value that works with the Servo Brick is 5V.
 	 * You can use this function to detect the discharge of a battery that is used
-	 * to drive the stepper motor. If you have a fixed power supply, you likely do
+	 * to drive the stepper motor. If you have a fixed power supply, you likely do 
 	 * not need this functionality.
-	 *
+	 * 
 	 * The default value is 5V (5000mV).
 	 */
 	public void setMinimumVoltage(int voltage) throws TimeoutException, NotConnectedException {
@@ -723,9 +707,9 @@ public class BrickServo extends Device {
 
 	/**
 	 * Enables the {@link BrickServo.PositionReachedListener} listener.
-	 *
+	 * 
 	 * Default is disabled.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Firmware)
 	 */
 	public void enablePositionReachedCallback() throws TimeoutException, NotConnectedException {
@@ -736,9 +720,9 @@ public class BrickServo extends Device {
 
 	/**
 	 * Disables the {@link BrickServo.PositionReachedListener} listener.
-	 *
+	 * 
 	 * Default is disabled.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Firmware)
 	 */
 	public void disablePositionReachedCallback() throws TimeoutException, NotConnectedException {
@@ -749,7 +733,7 @@ public class BrickServo extends Device {
 
 	/**
 	 * Returns *true* if {@link BrickServo.PositionReachedListener} listener is enabled, *false* otherwise.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Firmware)
 	 */
 	public short isPositionReachedCallbackEnabled() throws TimeoutException, NotConnectedException {
@@ -767,9 +751,9 @@ public class BrickServo extends Device {
 
 	/**
 	 * Enables the {@link BrickServo.VelocityReachedListener} listener.
-	 *
+	 * 
 	 * Default is disabled.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Firmware)
 	 */
 	public void enableVelocityReachedCallback() throws TimeoutException, NotConnectedException {
@@ -780,9 +764,9 @@ public class BrickServo extends Device {
 
 	/**
 	 * Disables the {@link BrickServo.VelocityReachedListener} listener.
-	 *
+	 * 
 	 * Default is disabled.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Firmware)
 	 */
 	public void disableVelocityReachedCallback() throws TimeoutException, NotConnectedException {
@@ -815,8 +799,6 @@ public class BrickServo extends Device {
 	 * 
 	 * This functions sole purpose is to allow automatic flashing of v1.x.y Bricklet
 	 * plugins.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
 	 */
 	public Protocol1BrickletName getProtocol1BrickletName(char port) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_PROTOCOL1_BRICKLET_NAME, this);
@@ -845,8 +827,6 @@ public class BrickServo extends Device {
 	 * The temperature is only proportional to the real temperature and it has an
 	 * accuracy of +-15%. Practically it is only useful as an indicator for
 	 * temperature changes.
-	 * 
-	 * .. versionadded:: 1.1.3~(Firmware)
 	 */
 	public short getChipTemperature() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIP_TEMPERATURE, this);
@@ -868,8 +848,6 @@ public class BrickServo extends Device {
 	 * After a reset you have to create new device objects,
 	 * calling functions on the existing ones will result in
 	 * undefined behavior!
-	 * 
-	 * .. versionadded:: 1.1.3~(Firmware)
 	 */
 	public void reset() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_RESET, this);
@@ -882,11 +860,10 @@ public class BrickServo extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be '0'-'8' (stack position).
+	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

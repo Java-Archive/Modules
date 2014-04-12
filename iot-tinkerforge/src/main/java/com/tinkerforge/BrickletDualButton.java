@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device with two buttons and two LEDs
@@ -88,7 +73,7 @@ public class BrickletDualButton extends Device {
 	 * * 2 = On: LED on (auto toggle is disabled).
 	 * * 3 = Off: LED off (auto toggle is disabled).
 	 */
-	public interface StateChangedListener {
+	public interface StateChangedListener extends DeviceListener {
 		public void stateChanged(short buttonL, short buttonR, short ledL, short ledR);
 	}
 
@@ -109,7 +94,7 @@ public class BrickletDualButton extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_STATE_CHANGED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_STATE_CHANGED] = new CallbackListener() {
+		callbacks[CALLBACK_STATE_CHANGED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -136,10 +121,10 @@ public class BrickletDualButton extends Device {
 	 * 
 	 * In auto toggle mode the LED is toggled automatically at each press of a button.
 	 * 
-	 * If you just want to set one of the LEDs and don't know the current state
+	 * If you just want to set one of the LEDs and don&apos;t know the current state
 	 * of the other LED, you can get the state with {@link BrickletDualButton#getLEDState()} or you
 	 * can use {@link BrickletDualButton#setSelectedLEDState(short, short)}.
-	 *
+	 * 
 	 * The default value is (1, 1).
 	 */
 	public void setLEDState(short ledL, short ledR) throws TimeoutException, NotConnectedException {
@@ -193,8 +178,6 @@ public class BrickletDualButton extends Device {
 	 * Sets the state of the selected LED (0 or 1). 
 	 * 
 	 * The other LED remains untouched.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
 	 */
 	public void setSelectedLEDState(short led, short state) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_SET_SELECTED_LED_STATE, this);
@@ -209,11 +192,10 @@ public class BrickletDualButton extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

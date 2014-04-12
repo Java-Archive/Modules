@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device that detects presence of magnetic field via hall effect
@@ -77,11 +62,11 @@ public class BrickletHallEffect extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletHallEffect#setEdgeCountCallbackPeriod(long)}. The parameters are the
 	 * current count and the current value (see {@link BrickletHallEffect#getValue()} and {@link BrickletHallEffect#getEdgeCount(boolean)}).
-	 *
+	 * 
 	 * {@link BrickletHallEffect.EdgeCountListener} is only triggered if the count or value changed since the
 	 * last triggering.
 	 */
-	public interface EdgeCountListener {
+	public interface EdgeCountListener extends DeviceListener {
 		public void edgeCount(long count, boolean value);
 	}
 
@@ -107,7 +92,7 @@ public class BrickletHallEffect extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_EDGE_COUNT)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_EDGE_COUNT] = new CallbackListener() {
+		callbacks[CALLBACK_EDGE_COUNT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -142,7 +127,7 @@ public class BrickletHallEffect extends Device {
 	 * Returns the current value of the edge counter. You can configure
 	 * edge type (rising, falling, both) that is counted with
 	 * {@link BrickletHallEffect#setEdgeCountConfig(short, short)}.
-	 *
+	 * 
 	 * If you set the reset counter to *true*, the count is set back to 0
 	 * directly after it is read.
 	 */
@@ -161,24 +146,26 @@ public class BrickletHallEffect extends Device {
 	}
 
 	/**
-	 * The edge type parameter configures if rising edges, falling edges or
+	 * The edge type parameter configures if rising edges, falling edges or 
 	 * both are counted. Possible edge types are:
-	 *
+	 * 
 	 * * 0 = rising (default)
 	 * * 1 = falling
 	 * * 2 = both
-	 *
+	 * 
 	 * A magnetic field of 35 Gauss (3.5mT) or greater causes a falling edge and a
 	 * magnetic field of 25 Gauss (2.5mT) or smaller causes a rising edge.
-	 *
+	 * 
 	 * If a magnet comes near the Bricklet the signal goes low (falling edge), if
 	 * a magnet is removed from the vicinity the signal goes high (rising edge).
-	 *
+	 * 
 	 * The debounce time is given in ms.
-	 *
-	 * If you don't know what any of this means, just leave it at default. The
+	 * 
+	 * Configuring an edge counter resets its value to 0.
+	 * 
+	 * If you don&apos;t know what any of this means, just leave it at default. The
 	 * default configuration is very likely OK for you.
-	 *
+	 * 
 	 * Default values: 0 (edge type) and 100ms (debounce time)
 	 */
 	public void setEdgeCountConfig(short edgeType, short debounce) throws TimeoutException, NotConnectedException {
@@ -209,11 +196,11 @@ public class BrickletHallEffect extends Device {
 
 	/**
 	 * Sets the number of edges until an interrupt is invoked.
-	 *
+	 * 
 	 * If *edges* is set to n, an interrupt is invoked for every n-th detected edge.
-	 *
+	 * 
 	 * If *edges* is set to 0, the interrupt is disabled.
-	 *
+	 * 
 	 * Default value is 0.
 	 */
 	public void setEdgeInterrupt(long edges) throws TimeoutException, NotConnectedException {
@@ -242,10 +229,10 @@ public class BrickletHallEffect extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletHallEffect.EdgeCountListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletHallEffect.EdgeCountListener} is only triggered if the edge count has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setEdgeCountCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -296,11 +283,10 @@ public class BrickletHallEffect extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be 'a', 'b', 'c' or 'd'.
+	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);
