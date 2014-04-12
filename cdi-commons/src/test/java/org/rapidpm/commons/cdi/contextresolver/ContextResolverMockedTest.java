@@ -10,7 +10,9 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.rapidpm.commons.cdi.CDICommons;
 import org.rapidpm.commons.cdi.CDICommonsMocked;
+import org.rapidpm.commons.cdi.TestContext;
 
 /**
  * User: Sven Ruppert
@@ -29,7 +31,7 @@ public class ContextResolverMockedTest {
 
 
     @Inject CDIContext context;
-    @Inject ContextResolver contextResolver;
+    @Inject @CDICommons ContextResolver contextResolver;
 
     @Test
     public void testMockedModus001() throws Exception {
