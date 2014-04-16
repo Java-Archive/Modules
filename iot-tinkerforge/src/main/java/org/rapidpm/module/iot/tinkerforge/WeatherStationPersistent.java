@@ -17,8 +17,6 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.ArangoDBRemote;
-import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.SensorDataRepository;
 import org.rapidpm.module.iot.tinkerforge.sensor.Barometer;
 import org.rapidpm.module.iot.tinkerforge.sensor.Humidity;
 import org.rapidpm.module.iot.tinkerforge.sensor.Light;
@@ -34,7 +32,6 @@ public class WeatherStationPersistent {
     public static final int PORT = 4223;
     private static int callbackPeriod = 10000;
 
-    private static final SensorDataRepository repo = new SensorDataRepository(ArangoDBRemote.database);
 
     public static void main(String args[]) throws Exception {
 
@@ -44,7 +41,6 @@ public class WeatherStationPersistent {
             public void workOnValue(int sensorvalue) {
                 final double tempNorm = sensorvalue / 100.0;
                 System.out.println("sensorvalue = " + sensorvalue);
-                repo.saveSensorValue(sensorvalue, temperature);
             }
         };
         final Thread tempThread = new Thread(temperature);
@@ -58,7 +54,6 @@ public class WeatherStationPersistent {
                 final String text = "Air   : " + sensorvalue / 1000.0 + " mbar";
 //                lcd20x4.printLine(1, text);
                 System.out.println("sensorvalue = " + sensorvalue);
-                repo.saveSensorValue(sensorvalue, barometer);
             }
         };
         final Thread barometerThread = new Thread(barometer);
@@ -72,7 +67,6 @@ public class WeatherStationPersistent {
                 final String text = "Lux   : " + lux + " Lux";
 //                lcd20x4.printLine(3, text);
                 System.out.println("sensorvalue = " + sensorvalue);
-                repo.saveSensorValue(sensorvalue, light);
             }
         };
         final Thread lightThread = new Thread(light);
@@ -86,7 +80,6 @@ public class WeatherStationPersistent {
                 final String text = "RelHum: " + tempNorm + " %RH";
 //                lcd20x4.printLine(2, text);
                 System.out.println("sensorvalue = " + sensorvalue);
-                repo.saveSensorValue(sensorvalue, humidity);
             }
         };
         final Thread humidityThread = new Thread(humidity);

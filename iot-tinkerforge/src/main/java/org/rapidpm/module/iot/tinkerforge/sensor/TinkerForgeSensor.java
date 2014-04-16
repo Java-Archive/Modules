@@ -17,7 +17,7 @@
 package org.rapidpm.module.iot.tinkerforge.sensor;
 
 import com.tinkerforge.*;
-import data.SensorDataElement;
+import org.rapidpm.module.iot.tinkerforge.SensorDataElement;
 
 import java.io.IOException;
 import java.util.Date;
@@ -40,6 +40,7 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable{
     public String masterUID;
     public String brickletUID;
     public String brickletType;
+
 
 
     public TinkerForgeSensor(final String UID, int callbackPeriod, int port, String host) {
@@ -82,6 +83,7 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable{
 
     public abstract T getBrickletInstance();
 
+  @FunctionalInterface
     public static interface SensorValueAction {
         public default void workOnValue(int sensorvalue){}
     }

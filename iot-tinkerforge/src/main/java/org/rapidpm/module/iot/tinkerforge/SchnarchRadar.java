@@ -17,9 +17,10 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.ArangoDBRemote;
-import org.rapidpm.module.iot.tinkerforge.persistence.arangodb.SensorDataRepository;
-import org.rapidpm.module.iot.tinkerforge.sensor.*;
+import org.rapidpm.module.iot.tinkerforge.sensor.Humidity;
+import org.rapidpm.module.iot.tinkerforge.sensor.Light;
+import org.rapidpm.module.iot.tinkerforge.sensor.MotionDectector;
+import org.rapidpm.module.iot.tinkerforge.sensor.SoundIntensity;
 
 import java.util.Date;
 

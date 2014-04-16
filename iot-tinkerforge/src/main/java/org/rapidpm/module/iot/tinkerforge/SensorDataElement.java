@@ -14,9 +14,7 @@
  *    limitations under the License.
  */
 
-package data;
-
-import org.arangodb.objectmapper.jackson.ArangoDbDocument;
+package org.rapidpm.module.iot.tinkerforge;
 
 import java.util.Date;
 import java.util.Objects;
@@ -24,7 +22,7 @@ import java.util.Objects;
 /**
  * Created by Sven Ruppert on 16.02.14.
  */
-public class SensorDataElement extends ArangoDbDocument {
+public class SensorDataElement  {
 
     private String masterUID;      //master abc
     private String brickletUID;    // sensor xyz
