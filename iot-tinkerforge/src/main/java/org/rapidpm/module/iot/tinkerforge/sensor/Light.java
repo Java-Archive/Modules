@@ -33,7 +33,6 @@ public  class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
         return new BrickletAmbientLight(UID, ipcon);
     }
 
-    public SensorValueAction actionAmbientLight = new SensorValueAction(){};
 
     public void initBricklet(){
         try {
@@ -41,7 +40,6 @@ public  class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
-        bricklet.addIlluminanceListener(actionAmbientLight::workOnValue);
     }
 
 }

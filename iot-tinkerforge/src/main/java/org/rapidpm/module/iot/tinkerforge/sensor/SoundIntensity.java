@@ -29,7 +29,6 @@ public class SoundIntensity extends TinkerForgeSensor<BrickletSoundIntensity> {
         super(UID, callbackPeriod, port, host);
     }
 
-    public SensorValueAction actionSoundIntensity = new SensorValueAction(){};
 
     @Override
     public void initBricklet() {
@@ -38,7 +37,6 @@ public class SoundIntensity extends TinkerForgeSensor<BrickletSoundIntensity> {
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
-        bricklet.addIntensityListener(actionSoundIntensity::workOnValue);
     }
 
     @Override

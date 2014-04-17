@@ -33,12 +33,10 @@ public  class Humidity extends TinkerForgeSensor<BrickletHumidity> {
         super(UID, callbackPeriod, port, host);
     }
 
-    public SensorValueAction actionHumidity = new SensorValueAction(){};
 
     public void initBricklet(){
         try {
             bricklet.setHumidityCallbackPeriod(callbackPeriod);
-            bricklet.addHumidityListener(actionHumidity::workOnValue);
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }

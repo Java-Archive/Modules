@@ -33,9 +33,6 @@ public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
         super(UID, callbackPeriod, port, host);
     }
 
-    public SensorValueAction actionAirPressure = new SensorValueAction(){};
-    public SensorValueAction actionAltitude = new SensorValueAction(){};
-
     public void initBricklet() {
         try {
             bricklet.setAirPressureCallbackPeriod(callbackPeriod);
@@ -43,9 +40,6 @@ public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
-
-        bricklet.addAirPressureListener(actionAirPressure::workOnValue);
-        bricklet.addAltitudeListener(actionAltitude::workOnValue);
     }
 
 }

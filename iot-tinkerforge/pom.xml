@@ -40,6 +40,16 @@
             <artifactId>weld-se</artifactId>
             <scope>compile</scope>
         </dependency>
+
+
+        <!---->
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>[4.0,)</version>
+        </dependency>
+        <!---->
+
         <!--arangodb-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

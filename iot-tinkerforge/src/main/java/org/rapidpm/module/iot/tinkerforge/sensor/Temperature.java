@@ -20,27 +20,26 @@ import com.tinkerforge.BrickletTemperature;
 import com.tinkerforge.NotConnectedException;
 import com.tinkerforge.TimeoutException;
 
+import java.util.function.Consumer;
+
 /**
  * Created by Sven Ruppert on 09.02.14.
  */
 public class Temperature extends TinkerForgeSensor<BrickletTemperature> {
 
-    public BrickletTemperature getBrickletInstance() {
-        return new BrickletTemperature(UID, ipcon);
-    }
+  public BrickletTemperature getBrickletInstance() {
+    return new BrickletTemperature(UID, ipcon);
+  }
 
-    public Temperature(String UID, int callbackPeriod, int port, String host) {
-        super(UID, callbackPeriod, port, host);
-    }
+  public Temperature(String UID, int callbackPeriod, int port, String host) {
+    super(UID, callbackPeriod, port, host);
+  }
 
-    public SensorValueAction actionTemperature = new SensorValueAction(){};
-
-    public void initBricklet() {
-        try {
-            bricklet.setTemperatureCallbackPeriod(callbackPeriod);
-        } catch (TimeoutException | NotConnectedException e) {
-            e.printStackTrace();
-        }
-        bricklet.addTemperatureListener(actionTemperature::workOnValue);
+  public void initBricklet() {
+    try {
+      bricklet.setTemperatureCallbackPeriod(callbackPeriod);
+    } catch (TimeoutException | NotConnectedException e) {
+      e.printStackTrace();
     }
+  }
 }

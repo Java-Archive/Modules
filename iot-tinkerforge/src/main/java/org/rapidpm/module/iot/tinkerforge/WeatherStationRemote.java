@@ -29,8 +29,6 @@ import twitter4j.TwitterException;
 
 import java.time.LocalDateTime;
 
-import static org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor.SensorValueAction;
-
 /**
  * Created by Sven Ruppert on 15.02.14.
  */
@@ -42,82 +40,59 @@ public class WeatherStationRemote {
 
   private static final LCD20x4 lcd20x4 = new LCD20x4("jvX", "192.168.0.202", PORT);
 
+  private static final TwitterFactory tf = new TwitterFactory();
+  private static final Twitter twitter = tf.createTwitter();
+
   public static void main(String args[]) throws Exception {
-
-    TwitterFactory tf = new TwitterFactory();
-    Twitter twitter = tf.createTwitter();
-
     final Temperature temperature = new Temperature("dXj", callbackPeriod, PORT, HOST);
-    temperature.actionTemperature = new SensorValueAction() {
-      @Override
-      public void workOnValue(int sensorvalue) {
-        final double tempNorm = sensorvalue / 100.0;
-        final String text = LocalDateTime.now() + " - Temp  : " + tempNorm + " °C";
-        lcd20x4.printLine(0, text);
-        System.out.println("text = " + text);
-        try {
-          twitter.updateStatus(text);
-        } catch (TwitterException e) {
-          e.printStackTrace();
-        }
-      }
-    };
+    temperature.bricklet.addTemperatureListener(sensorvalue -> {
+      final double tempNorm = sensorvalue / 100.0;
+      final String text = LocalDateTime.now() + " - Temp  : " + tempNorm + " °C";
+      lcd20x4.printLine0(text);
+      System.out.println("text = " + text);
+      tweetIt(text);
+    });
+
     new Thread(temperature).start();
 
     final Barometer barometer = new Barometer("jY4", callbackPeriod, PORT, HOST);
-    barometer.actionAirPressure = new SensorValueAction() {
-      @Override
-      public void workOnValue(int sensorvalue) {
-        final String text = LocalDateTime.now() + " - Air   : " + sensorvalue / 1000.0 + " mbar";
-        lcd20x4.printLine(1, text);
-        System.out.println("text = " + text);
-        try {
-          twitter.updateStatus(text);
-        } catch (TwitterException e) {
-          e.printStackTrace();
-        }
-
-      }
-    };
+    barometer.bricklet.addAirPressureListener(sensorvalue ->{
+      final String text = LocalDateTime.now() + " - Air   : " + sensorvalue / 1000.0 + " mbar";
+      lcd20x4.printLine1(text);
+      System.out.println("text = " + text);
+      tweetIt(text);
+    });
     new Thread(barometer).start();
 
     final Light light = new Light("jy2", callbackPeriod, PORT, HOST);
-    light.actionAmbientLight = new SensorValueAction() {
-      @Override
-      public void workOnValue(int sensorvalue) {
-        final double lux = sensorvalue / 10.0;
-        final String text = LocalDateTime.now() + " - Lux   : " + lux + " Lux";
-        lcd20x4.printLine(3, text);
-        System.out.println("text = " + text);
-        try {
-          twitter.updateStatus(text);
-        } catch (TwitterException e) {
-          e.printStackTrace();
-        }
-
-      }
-    };
-
+    light.bricklet.addIlluminanceListener(sensorvalue->{
+      final double lux = sensorvalue / 10.0;
+      final String text = LocalDateTime.now() + " - Lux   : " + lux + " Lux";
+      lcd20x4.printLine3(text);
+      System.out.println("text = " + text);
+      tweetIt(text);
+    });
     new Thread(light).start();
 
     final Humidity humidity = new Humidity("kfd", callbackPeriod, PORT, HOST);
-    humidity.actionHumidity = new SensorValueAction() {
-      @Override
-      public void workOnValue(int sensorvalue) {
-        final double tempNorm = sensorvalue / 10.0;
-        final String text = LocalDateTime.now() + " - RelHum: " + tempNorm + " %RH";
-        lcd20x4.printLine(2, text);
-        System.out.println("text = " + text);
-        try {
-          twitter.updateStatus(text);
-        } catch (TwitterException e) {
-          e.printStackTrace();
-        }
-
-      }
-    };
+    humidity.bricklet.addHumidityListener(sensorvalue->{
+      final double tempNorm = sensorvalue / 10.0;
+      final String text = LocalDateTime.now() + " - RelHum: " + tempNorm + " %RH";
+      lcd20x4.printLine2(text);
+      System.out.println("text = " + text);
+      tweetIt(text);
+    });
+    humidity.bricklet.addHumidityListener(v-> tweetIt(""+v));
     new Thread(humidity).start();
 
     WaitForQ.waitForQ();
+  }
+
+  private static void tweetIt(String text) {
+    try {
+      twitter.updateStatus(text);
+    } catch (TwitterException e) {
+      e.printStackTrace();
+    }
   }
 }
