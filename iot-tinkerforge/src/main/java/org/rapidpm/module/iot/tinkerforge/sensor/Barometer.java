@@ -25,16 +25,13 @@ import java.io.IOException;
  */
 public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
 
-    public BrickletBarometer getBrickletInstance() {
-        return new BrickletBarometer(UID, ipcon);
+    public void connectBricklet() {
+        bricklet= new BrickletBarometer(UID, ipcon);
     }
 
     public Barometer(String UID, int callbackPeriod, int port, String host) {
         super(UID, callbackPeriod, port, host);
     }
-
-    public SensorValueAction actionAirPressure = new SensorValueAction(){};
-    public SensorValueAction actionAltitude = new SensorValueAction(){};
 
     public void initBricklet() {
         try {
@@ -43,9 +40,8 @@ public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }
-
-        bricklet.addAirPressureListener(actionAirPressure::workOnValue);
-        bricklet.addAltitudeListener(actionAltitude::workOnValue);
     }
+
+
 
 }

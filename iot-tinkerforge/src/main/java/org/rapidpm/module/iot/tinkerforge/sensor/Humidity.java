@@ -25,20 +25,18 @@ import java.io.IOException;
  */
 public  class Humidity extends TinkerForgeSensor<BrickletHumidity> {
 
-    public BrickletHumidity getBrickletInstance() {
-        return new BrickletHumidity(UID, ipcon);
+    public void connectBricklet() {
+        bricklet = new BrickletHumidity(UID, ipcon);
     }
 
     public Humidity(String UID, int callbackPeriod, int port, String host) {
         super(UID, callbackPeriod, port, host);
     }
 
-    public SensorValueAction actionHumidity = new SensorValueAction(){};
 
     public void initBricklet(){
         try {
             bricklet.setHumidityCallbackPeriod(callbackPeriod);
-            bricklet.addHumidityListener(actionHumidity::workOnValue);
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }

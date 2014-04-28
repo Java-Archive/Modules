@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device that measures reflectivity to allow following a line
@@ -71,11 +56,11 @@ public class BrickletLine extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletLine#setReflectivityCallbackPeriod(long)}. The parameter is the reflectivity
 	 * of the sensor.
-	 *
+	 * 
 	 * {@link BrickletLine.ReflectivityListener} is only triggered if the reflectivity has changed since the
 	 * last triggering.
 	 */
-	public interface ReflectivityListener {
+	public interface ReflectivityListener extends DeviceListener {
 		public void reflectivity(int reflectivity);
 	}
 
@@ -83,11 +68,11 @@ public class BrickletLine extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletLine#setReflectivityCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the reflectivity of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletLine#setDebouncePeriod(long)}.
 	 */
-	public interface ReflectivityReachedListener {
+	public interface ReflectivityReachedListener extends DeviceListener {
 		public void reflectivityReached(int reflectivity);
 	}
 
@@ -112,7 +97,7 @@ public class BrickletLine extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_REFLECTIVITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_REFLECTIVITY_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_REFLECTIVITY] = new CallbackListener() {
+		callbacks[CALLBACK_REFLECTIVITY] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -125,7 +110,7 @@ public class BrickletLine extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_REFLECTIVITY_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_REFLECTIVITY_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -142,12 +127,12 @@ public class BrickletLine extends Device {
 	/**
 	 * Returns the currently measured reflectivity. The reflectivity is
 	 * a value between 0 (not reflective) and 4095 (very reflective).
-	 *
+	 * 
 	 * Usually black has a low reflectivity while white has a high
 	 * reflectivity.
-	 *
-	 * If you want to get the reflectivity periodically, it is recommended
-	 * to use the listener {@link BrickletLine.ReflectivityListener} and set the period with
+	 * 
+	 * If you want to get the reflectivity periodically, it is recommended 
+	 * to use the listener {@link BrickletLine.ReflectivityListener} and set the period with 
 	 * {@link BrickletLine#setReflectivityCallbackPeriod(long)}.
 	 */
 	public int getReflectivity() throws TimeoutException, NotConnectedException {
@@ -166,10 +151,10 @@ public class BrickletLine extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletLine.ReflectivityListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletLine.ReflectivityListener} is only triggered if the reflectivity has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setReflectivityCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -196,20 +181,20 @@ public class BrickletLine extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletLine.ReflectivityReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletLine.ReflectivityReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the reflectivity is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the reflectivity is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the reflectivity is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the reflectivity is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the reflectivity is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the reflectivity is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the reflectivity is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the reflectivity is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setReflectivityCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -242,15 +227,15 @@ public class BrickletLine extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listener
-	 *
+	 * 
 	 * * {@link BrickletLine.ReflectivityReachedListener}
-	 *
+	 * 
 	 * is triggered, if the threshold
-	 *
+	 * 
 	 * * {@link BrickletLine#setReflectivityCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keeps being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -283,9 +268,8 @@ public class BrickletLine extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

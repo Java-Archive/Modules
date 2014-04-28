@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing distance via ultrasound
@@ -73,11 +58,11 @@ public class BrickletDistanceUS extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletDistanceUS#setDistanceCallbackPeriod(long)}. The parameter is the distance value
 	 * of the sensor.
-	 *
+	 * 
 	 * {@link BrickletDistanceUS.DistanceListener} is only triggered if the distance value has changed since the
 	 * last triggering.
 	 */
-	public interface DistanceListener {
+	public interface DistanceListener extends DeviceListener {
 		public void distance(int distance);
 	}
 
@@ -85,11 +70,11 @@ public class BrickletDistanceUS extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletDistanceUS#setDistanceCallbackThreshold(char, short, short)} is reached.
 	 * The parameter is the distance value of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletDistanceUS#setDebouncePeriod(long)}.
 	 */
-	public interface DistanceReachedListener {
+	public interface DistanceReachedListener extends DeviceListener {
 		public void distanceReached(int distance);
 	}
 
@@ -116,7 +101,7 @@ public class BrickletDistanceUS extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_DISTANCE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_DISTANCE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_DISTANCE] = new CallbackListener() {
+		callbacks[CALLBACK_DISTANCE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -129,7 +114,7 @@ public class BrickletDistanceUS extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_DISTANCE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_DISTANCE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -150,9 +135,9 @@ public class BrickletDistanceUS extends Device {
 	 * value and the actual distance is affected by the 5V supply voltage (deviations
 	 * in the supply voltage result in deviations in the distance values) and is
 	 * non-linear (resolution is bigger at close range).
-	 *
+	 * 
 	 * If you want to get the distance value periodically, it is recommended to
-	 * use the listener {@link BrickletDistanceUS.DistanceListener} and set the period with
+	 * use the listener {@link BrickletDistanceUS.DistanceListener} and set the period with 
 	 * {@link BrickletDistanceUS#setDistanceCallbackPeriod(long)}.
 	 */
 	public int getDistanceValue() throws TimeoutException, NotConnectedException {
@@ -171,10 +156,10 @@ public class BrickletDistanceUS extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletDistanceUS.DistanceListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletDistanceUS.DistanceListener} is only triggered if the distance value has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setDistanceCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -201,20 +186,20 @@ public class BrickletDistanceUS extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletDistanceUS.DistanceReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletDistanceUS.DistanceReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the distance value is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the distance value is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the distance value is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the distance value is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the distance value is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the distance value is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the distance value is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the distance value is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setDistanceCallbackThreshold(char option, short min, short max) throws TimeoutException, NotConnectedException {
@@ -247,15 +232,15 @@ public class BrickletDistanceUS extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickletDistanceUS.DistanceReachedListener},
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletDistanceUS#setDistanceCallbackThreshold(char, short, short)},
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -282,14 +267,14 @@ public class BrickletDistanceUS extends Device {
 	}
 
 	/**
-	 * Sets the length of a `moving averaging <http://en.wikipedia.org/wiki/Moving_average>`__
+	 * Sets the length of a `moving averaging &lt;http://en.wikipedia.org/wiki/Moving_average&gt;`__ 
 	 * for the distance value.
-	 *
+	 * 
 	 * Setting the length to 0 will turn the averaging completely off. With less
 	 * averaging, there is more noise on the data.
-	 *
+	 * 
 	 * The range for the averaging is 0-100.
-	 *
+	 * 
 	 * The default value is 20.
 	 */
 	public void setMovingAverage(short average) throws TimeoutException, NotConnectedException {
@@ -322,9 +307,8 @@ public class BrickletDistanceUS extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

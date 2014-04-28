@@ -27,26 +27,14 @@ public class MotionDectector extends TinkerForgeSensor<BrickletMotionDetector>{
         super(UID, callbackPeriod, port, host);
     }
 
-//    public SensorValueAction actionMotionDetector = new SensorValueAction(){};
 
     @Override
     public void initBricklet() {
-//        try {
-//            bricklet.set(callbackPeriod);
-//        } catch (TimeoutException | NotConnectedException e) {
-//            e.printStackTrace();
-//        }
-//        bricklet.addMotionDetectedListener(actionMotionDetector::workOnValue);
-//        bricklet.addMotionDetectedListener(new BrickletMotionDetector.MotionDetectedListener() {
-//            @Override
-//            public void motionDetected() {
-//
-//            }
-//        });
+
     }
 
     @Override
-    public BrickletMotionDetector getBrickletInstance() {
-        return new BrickletMotionDetector(UID, ipcon);
+    public void connectBricklet() {
+        bricklet= new BrickletMotionDetector(UID, ipcon);
     }
 }

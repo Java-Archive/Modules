@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for controlling two relays
@@ -72,10 +57,8 @@ public class BrickletDualRelay extends Device {
 	 * This listener is triggered whenever a monoflop timer reaches 0. The 
 	 * parameter contain the relay (1 or 2) and the current state of the relay 
 	 * (the state after the monoflop).
-	 * 
-	 * .. versionadded:: 1.1.1~(Plugin)
 	 */
-	public interface MonoflopDoneListener {
+	public interface MonoflopDoneListener extends DeviceListener {
 		public void monoflopDone(short relay, boolean state);
 	}
 
@@ -97,7 +80,7 @@ public class BrickletDualRelay extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MONOFLOP_DONE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_MONOFLOP_DONE] = new CallbackListener() {
+		callbacks[CALLBACK_MONOFLOP_DONE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -119,9 +102,9 @@ public class BrickletDualRelay extends Device {
 	 * If you just want to set one of the relays and don't know the current state
 	 * of the other relay, you can get the state with {@link BrickletDualRelay#getState()} or you
 	 * can use {@link BrickletDualRelay#setSelectedState(short, boolean)}.
-	 *
+	 * 
 	 * Running monoflop timers will be overwritten if this function is called.
-	 *
+	 * 
 	 * The default value is (*false*, *false*).
 	 */
 	public void setState(boolean relay1, boolean relay2) throws TimeoutException, NotConnectedException {
@@ -151,21 +134,19 @@ public class BrickletDualRelay extends Device {
 	}
 
 	/**
-	 * The first parameter can be 1 or 2 (relay 1 or relay 2). The second parameter
+	 * The first parameter can be 1 or 2 (relay 1 or relay 2). The second parameter 
 	 * is the desired state of the relay (*true* means on and *false* means off).
-	 * The third parameter indicates the time (in ms) that the relay should hold
+	 * The third parameter indicates the time (in ms) that the relay should hold 
 	 * the state.
-	 *
+	 * 
 	 * If this function is called with the parameters (1, true, 1500):
 	 * Relay 1 will turn on and in 1.5s it will turn off again.
-	 *
-	 * A monoflop can be used as a failsafe mechanism. For example: Lets assume you
-	 * have a RS485 bus and a Dual Relay Bricklet connected to one of the slave
+	 * 
+	 * A monoflop can be used as a failsafe mechanism. For example: Lets assume you 
+	 * have a RS485 bus and a Dual Relay Bricklet connected to one of the slave 
 	 * stacks. You can now call this function every second, with a time parameter
-	 * of two seconds. The relay will be on all the time. If now the RS485
+	 * of two seconds. The relay will be on all the time. If now the RS485 
 	 * connection is lost, the relay will turn off in at most two seconds.
-	 *
-	 * .. versionadded:: 1.1.1~(Plugin)
 	 */
 	public void setMonoflop(short relay, boolean state, long time) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)14, FUNCTION_SET_MONOFLOP, this);
@@ -177,13 +158,11 @@ public class BrickletDualRelay extends Device {
 	}
 
 	/**
-	 * Returns (for the given relay) the current state and the time as set by
+	 * Returns (for the given relay) the current state and the time as set by 
 	 * {@link BrickletDualRelay#setMonoflop(short, boolean, long)} as well as the remaining time until the state flips.
 	 * 
 	 * If the timer is not running currently, the remaining time will be returned
 	 * as 0.
-	 * 
-	 * .. versionadded:: 1.1.1~(Plugin)
 	 */
 	public Monoflop getMonoflop(short relay) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_MONOFLOP, this);
@@ -206,8 +185,6 @@ public class BrickletDualRelay extends Device {
 	 * Sets the state of the selected relay (1 or 2), *true* means on and *false* means off. 
 	 * 
 	 * The other relay remains untouched.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
 	 */
 	public void setSelectedState(short relay, boolean state) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_SET_SELECTED_STATE, this);
@@ -224,9 +201,8 @@ public class BrickletDualRelay extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

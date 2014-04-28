@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for controlling a LCD with 2 lines a 16 characters
@@ -68,7 +53,7 @@ public class BrickletLCD16x2 extends Device {
 	 * This listener is triggered when a button is pressed. The parameter is
 	 * the number of the button (0 to 2).
 	 */
-	public interface ButtonPressedListener {
+	public interface ButtonPressedListener extends DeviceListener {
 		public void buttonPressed(short button);
 	}
 
@@ -76,7 +61,7 @@ public class BrickletLCD16x2 extends Device {
 	 * This listener is triggered when a button is released. The parameter is
 	 * the number of the button (0 to 2).
 	 */
-	public interface ButtonReleasedListener {
+	public interface ButtonReleasedListener extends DeviceListener {
 		public void buttonReleased(short button);
 	}
 
@@ -104,7 +89,7 @@ public class BrickletLCD16x2 extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_BUTTON_PRESSED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_BUTTON_RELEASED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_BUTTON_PRESSED] = new CallbackListener() {
+		callbacks[CALLBACK_BUTTON_PRESSED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -117,7 +102,7 @@ public class BrickletLCD16x2 extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_BUTTON_RELEASED] = new CallbackListener() {
+		callbacks[CALLBACK_BUTTON_RELEASED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -135,12 +120,12 @@ public class BrickletLCD16x2 extends Device {
 	 * Writes text to a specific line (0 to 1) with a specific position 
 	 * (0 to 15). The text can have a maximum of 16 characters.
 	 * 
-	 * For example: (0, 5, "Hello") will write *Hello* in the middle of the
+	 * For example: (0, 5, &quot;Hello&quot;) will write *Hello* in the middle of the
 	 * first line of the display.
 	 * 
 	 * The display uses a special charset that includes all ASCII characters except
 	 * backslash and tilde. The LCD charset also includes several other non-ASCII characters, see
-	 * the `charset specification <https://github.com/Tinkerforge/lcd-16x2-bricklet/raw/master/datasheets/standard_charset.pdf>`__
+	 * the `charset specification &lt;https://github.com/Tinkerforge/lcd-16x2-bricklet/raw/master/datasheets/standard_charset.pdf&gt;`__
 	 * for details. The Unicode example above shows how to specify non-ASCII characters
 	 * and how to translate from Unicode to the LCD charset.
 	 */
@@ -204,11 +189,11 @@ public class BrickletLCD16x2 extends Device {
 	}
 
 	/**
-	 * Configures if the cursor (shown as "_") should be visible and if it
+	 * Configures if the cursor (shown as &quot;_&quot;) should be visible and if it
 	 * should be blinking (shown as a blinking block). The cursor position
 	 * is one character behind the the last text written with 
 	 * {@link BrickletLCD16x2#writeLine(short, short, String)}.
-	 *
+	 * 
 	 * The default is (false, false).
 	 */
 	public void setConfig(boolean cursor, boolean blinking) throws TimeoutException, NotConnectedException {
@@ -260,8 +245,8 @@ public class BrickletLCD16x2 extends Device {
 	 * The LCD 16x2 Bricklet can store up to 8 custom characters. The characters
 	 * consist of 5x8 pixels and can be addressed with the index 0-7. To describe
 	 * the pixels, the first 5 bits of 8 bytes are used. For example, to make
-	 * a custom character "H", you should transfer the following:
-	 *
+	 * a custom character &quot;H&quot;, you should transfer the following:
+	 * 
 	 * * ``character[0] = 0b00010001`` (decimal value 17)
 	 * * ``character[1] = 0b00010001`` (decimal value 17)
 	 * * ``character[2] = 0b00010001`` (decimal value 17)
@@ -270,16 +255,16 @@ public class BrickletLCD16x2 extends Device {
 	 * * ``character[5] = 0b00010001`` (decimal value 17)
 	 * * ``character[6] = 0b00010001`` (decimal value 17)
 	 * * ``character[7] = 0b00000000`` (decimal value 0)
-	 *
+	 * 
 	 * The characters can later be written with {@link BrickletLCD16x2#writeLine(short, short, String)} by using the
 	 * characters with the byte representation 8 to 15.
-	 *
+	 * 
 	 * You can play around with the custom characters in Brick Viewer since
 	 * version 2.0.1.
-	 *
+	 * 
 	 * Custom characters are stored by the LCD in RAM, so they have to be set
 	 * after each startup.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
 	public void setCustomCharacter(short index, short[] character) throws TimeoutException, NotConnectedException {
@@ -324,9 +309,8 @@ public class BrickletLCD16x2 extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

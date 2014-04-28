@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,9 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Device for controlling stepper motors
@@ -138,21 +122,21 @@ public class BrickStepper extends Device {
 	 * {@link BrickStepper#setMinimumVoltage(int)}. The parameter is the current voltage given
 	 * in mV.
 	 */
-	public interface UnderVoltageListener {
+	public interface UnderVoltageListener extends DeviceListener {
 		public void underVoltage(int voltage);
 	}
 
 	/**
 	 * This listener is triggered when a position set by {@link BrickStepper#setSteps(int)} or
 	 * {@link BrickStepper#setTargetPosition(int)} is reached.
-	 *
+	 * 
 	 * \note
 	 *  Since we can't get any feedback from the stepper motor, this only works if the
 	 *  acceleration (see {@link BrickStepper#setSpeedRamping(int, int)}) is set smaller or equal to the
 	 *  maximum acceleration of the motor. Otherwise the motor will lag behind the
 	 *  control value and the listener will be triggered too early.
 	 */
-	public interface PositionReachedListener {
+	public interface PositionReachedListener extends DeviceListener {
 		public void positionReached(int position);
 	}
 
@@ -161,29 +145,25 @@ public class BrickStepper extends Device {
 	 * {@link BrickStepper#setAllDataPeriod(long)}. The parameters are: the current velocity,
 	 * the current position, the remaining steps, the stack voltage, the external
 	 * voltage and the current consumption of the stepper motor.
-	 *
-	 * .. versionadded:: 1.1.6~(Firmware)
 	 */
-	public interface AllDataListener {
+	public interface AllDataListener extends DeviceListener {
 		public void allData(int currentVelocity, int currentPosition, int remainingSteps, int stackVoltage, int externalVoltage, int currentConsumption);
 	}
 
 	/**
-	 * This listener is triggered whenever the Stepper Brick enters a new state.
+	 * This listener is triggered whenever the Stepper Brick enters a new state. 
 	 * It returns the new state as well as the previous state.
-	 *
+	 * 
 	 * Possible states are:
-	 *
+	 * 
 	 * * 1 = Stop
 	 * * 2 = Acceleration
 	 * * 3 = Run
 	 * * 4 = Deacceleration
 	 * * 5 = Direction change to forward
 	 * * 6 = Direction change to backward
-	 *
-	 * .. versionadded:: 1.1.6~(Firmware)
 	 */
-	public interface NewStateListener {
+	public interface NewStateListener extends DeviceListener {
 		public void newState(short stateNew, short statePrevious);
 	}
 
@@ -243,7 +223,7 @@ public class BrickStepper extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_ALL_DATA)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_NEW_STATE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_UNDER_VOLTAGE] = new CallbackListener() {
+		callbacks[CALLBACK_UNDER_VOLTAGE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -256,7 +236,7 @@ public class BrickStepper extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_POSITION_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_POSITION_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -269,7 +249,7 @@ public class BrickStepper extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ALL_DATA] = new CallbackListener() {
+		callbacks[CALLBACK_ALL_DATA] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -287,7 +267,7 @@ public class BrickStepper extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_NEW_STATE] = new CallbackListener() {
+		callbacks[CALLBACK_NEW_STATE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -352,14 +332,14 @@ public class BrickStepper extends Device {
 	 * Sets the acceleration and deacceleration of the stepper motor. The values
 	 * are given in *steps/s²*. An acceleration of 1000 means, that
 	 * every second the velocity is increased by 1000 *steps/s*.
-	 *
+	 * 
 	 * For example: If the current velocity is 0 and you want to accelerate to a
 	 * velocity of 8000 *steps/s* in 10 seconds, you should set an acceleration
 	 * of 800 *steps/s²*.
-	 *
+	 * 
 	 * An acceleration/deacceleration of 0 means instantaneous
 	 * acceleration/deacceleration (not recommended)
-	 *
+	 * 
 	 * The default value is 1000 for both
 	 */
 	public void setSpeedRamping(int acceleration, int deacceleration) throws TimeoutException, NotConnectedException {
@@ -371,7 +351,7 @@ public class BrickStepper extends Device {
 	}
 
 	/**
-	 * Returns the acceleration and deacceleration as set by
+	 * Returns the acceleration and deacceleration as set by 
 	 * {@link BrickStepper#setSpeedRamping(int, int)}.
 	 */
 	public SpeedRamping getSpeedRamping() throws TimeoutException, NotConnectedException {
@@ -390,13 +370,13 @@ public class BrickStepper extends Device {
 	}
 
 	/**
-	 * Executes an active full brake.
-	 *
+	 * Executes an active full brake. 
+	 *  
 	 * \warning
 	 *  This function is for emergency purposes,
 	 *  where an immediate brake is necessary. Depending on the current velocity and
 	 *  the strength of the motor, a full brake can be quite violent.
-	 *
+	 * 
 	 * Call {@link BrickStepper#stop()} if you just want to stop the motor.
 	 */
 	public void fullBrake() throws TimeoutException, NotConnectedException {
@@ -443,9 +423,9 @@ public class BrickStepper extends Device {
 	 * called with 1000, the stepper motor will drive 500 steps forward. It will
 	 * use the velocity, acceleration and deacceleration as set by
 	 * {@link BrickStepper#setMaxVelocity(int)} and {@link BrickStepper#setSpeedRamping(int, int)}.
-	 *
+	 * 
 	 * A call of {@link BrickStepper#setTargetPosition(int)} with the parameter *x* is equivalent to
-	 * a call of {@link BrickStepper#setSteps(int)} with the parameter
+	 * a call of {@link BrickStepper#setSteps(int)} with the parameter 
 	 * (*x* - {@link BrickStepper#getCurrentPosition()}).
 	 */
 	public void setTargetPosition(int position) throws TimeoutException, NotConnectedException {
@@ -473,7 +453,7 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Sets the number of steps the stepper motor should run. Positive values
-	 * will drive the motor forward and negative values backward.
+	 * will drive the motor forward and negative values backward. 
 	 * The velocity, acceleration and deacceleration as set by
 	 * {@link BrickStepper#setMaxVelocity(int)} and {@link BrickStepper#setSpeedRamping(int, int)} will be used.
 	 */
@@ -502,7 +482,7 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Returns the remaining steps of the last call of {@link BrickStepper#setSteps(int)}.
-	 * For example, if {@link BrickStepper#setSteps(int)} is called with 2000 and
+	 * For example, if {@link BrickStepper#setSteps(int)} is called with 2000 and 
 	 * {@link BrickStepper#getRemainingSteps()} is called after the motor has run for 500 steps,
 	 * it will return 1500.
 	 */
@@ -521,15 +501,15 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Sets the step mode of the stepper motor. Possible values are:
-	 *
+	 * 
 	 * * Full Step = 1
 	 * * Half Step = 2
 	 * * Quarter Step = 4
 	 * * Eighth Step = 8
-	 *
+	 * 
 	 * A higher value will increase the resolution and
 	 * decrease the torque of the stepper motor.
-	 *
+	 * 
 	 * The default value is 8 (Eighth Step).
 	 */
 	public void setStepMode(short mode) throws TimeoutException, NotConnectedException {
@@ -557,7 +537,7 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Drives the stepper motor forward until {@link BrickStepper#driveBackward()} or
-	 * {@link BrickStepper#stop()} is called. The velocity, acceleration and deacceleration as
+	 * {@link BrickStepper#stop()} is called. The velocity, acceleration and deacceleration as 
 	 * set by {@link BrickStepper#setMaxVelocity(int)} and {@link BrickStepper#setSpeedRamping(int, int)} will be used.
 	 */
 	public void driveForward() throws TimeoutException, NotConnectedException {
@@ -578,7 +558,7 @@ public class BrickStepper extends Device {
 	}
 
 	/**
-	 * Stops the stepper motor with the deacceleration as set by
+	 * Stops the stepper motor with the deacceleration as set by 
 	 * {@link BrickStepper#setSpeedRamping(int, int)}.
 	 */
 	public void stop() throws TimeoutException, NotConnectedException {
@@ -589,7 +569,7 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Returns the stack input voltage in mV. The stack input voltage is the
-	 * voltage that is supplied via the stack, i.e. it is given by a
+	 * voltage that is supplied via the stack, i.e. it is given by a 
 	 * Step-Down or Step-Up Power Supply.
 	 */
 	public int getStackInputVoltage() throws TimeoutException, NotConnectedException {
@@ -607,12 +587,12 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Returns the external input voltage in mV. The external input voltage is
-	 * given via the black power input connector on the Stepper Brick.
-	 *
+	 * given via the black power input connector on the Stepper Brick. 
+	 *  
 	 * If there is an external input voltage and a stack input voltage, the motor
-	 * will be driven by the external input voltage. If there is only a stack
+	 * will be driven by the external input voltage. If there is only a stack 
 	 * voltage present, the motor will be driven by this voltage.
-	 *
+	 * 
 	 * \warning
 	 *  This means, if you have a high stack voltage and a low external voltage,
 	 *  the motor will be driven with the low external voltage. If you then remove
@@ -650,9 +630,9 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Sets the current in mA with which the motor will be driven.
-	 * The minimum value is 100mA, the maximum value 2291mA and the
+	 * The minimum value is 100mA, the maximum value 2291mA and the 
 	 * default value is 800mA.
-	 *
+	 * 
 	 * \warning
 	 *  Do not set this value above the specifications of your stepper motor.
 	 *  Otherwise it may damage your motor.
@@ -721,24 +701,24 @@ public class BrickStepper extends Device {
 	 * between 0 and 65535. A value of 0 sets the fast decay mode, a value of
 	 * 65535 sets the slow decay mode and a value in between sets the mixed
 	 * decay mode.
-	 *
+	 * 
 	 * Changing the decay mode is only possible if synchronous rectification
 	 * is enabled (see {@link BrickStepper#setSyncRect(boolean)}).
-	 *
-	 * For a good explanation of the different decay modes see
-	 * `this <http://ebldc.com/?p=86/>`__ blog post by Avayan.
-	 *
+	 * 
+	 * For a good explanation of the different decay modes see 
+	 * `this &lt;http://ebldc.com/?p=86/&gt;`__ blog post by Avayan.
+	 * 
 	 * A good decay mode is unfortunately different for every motor. The best
 	 * way to work out a good decay mode for your stepper motor, if you can't
 	 * measure the current with an oscilloscope, is to listen to the sound of
-	 * the motor. If the value is too low, you often hear a high pitched
+	 * the motor. If the value is too low, you often hear a high pitched 
 	 * sound and if it is too high you can often hear a humming sound.
-	 *
+	 * 
 	 * Generally, fast decay mode (small value) will be noisier but also
 	 * allow higher motor speeds.
-	 *
+	 * 
 	 * The default value is 10000.
-	 *
+	 * 
 	 * \note
 	 *  There is unfortunately no formula to calculate a perfect decay
 	 *  mode for a given stepper motor. If you have problems with loud noises
@@ -772,9 +752,9 @@ public class BrickStepper extends Device {
 	 * Sets the minimum voltage in mV, below which the {@link BrickStepper.UnderVoltageListener} listener
 	 * is triggered. The minimum possible value that works with the Stepper Brick is 8V.
 	 * You can use this function to detect the discharge of a battery that is used
-	 * to drive the stepper motor. If you have a fixed power supply, you likely do
+	 * to drive the stepper motor. If you have a fixed power supply, you likely do 
 	 * not need this functionality.
-	 *
+	 * 
 	 * The default value is 8V.
 	 */
 	public void setMinimumVoltage(int voltage) throws TimeoutException, NotConnectedException {
@@ -802,23 +782,21 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Turns synchronous rectification on or off (*true* or *false*).
-	 *
+	 * 
 	 * With synchronous rectification on, the decay can be changed
 	 * (see {@link BrickStepper#setDecay(int)}). Without synchronous rectification fast
 	 * decay is used.
-	 *
-	 * For an explanation of synchronous rectification see
-	 * `here <http://en.wikipedia.org/wiki/Active_rectification>`__.
-	 *
+	 * 
+	 * For an explanation of synchronous rectification see 
+	 * `here &lt;http://en.wikipedia.org/wiki/Active_rectification&gt;`__.
+	 * 
 	 * \warning
-	 *  If you want to use high speeds (> 10000 steps/s) for a large
+	 *  If you want to use high speeds (&gt; 10000 steps/s) for a large 
 	 *  stepper motor with a large inductivity we strongly
 	 *  suggest that you disable synchronous rectification. Otherwise the
 	 *  Brick may not be able to cope with the load and overheat.
-	 *
+	 * 
 	 * The default value is *false*.
-	 *
-	 * .. versionadded:: 1.1.4~(Firmware)
 	 */
 	public void setSyncRect(boolean syncRect) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_SYNC_RECT, this);
@@ -829,8 +807,6 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Returns *true* if synchronous rectification is enabled, *false* otherwise.
-	 *
-	 * .. versionadded:: 1.1.4~(Firmware)
 	 */
 	public boolean isSyncRect() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_IS_SYNC_RECT, this);
@@ -848,14 +824,12 @@ public class BrickStepper extends Device {
 	/**
 	 * Sets the time base of the velocity and the acceleration of the stepper brick
 	 * (in seconds).
-	 *
-	 * For example, if you want to make one step every 1.5 seconds, you can set
-	 * the time base to 15 and the velocity to 10. Now the velocity is
+	 * 
+	 * For example, if you want to make one step every 1.5 seconds, you can set 
+	 * the time base to 15 and the velocity to 10. Now the velocity is 
 	 * 10steps/15s = 1steps/1.5s.
-	 *
+	 * 
 	 * The default value is 1.
-	 *
-	 * .. versionadded:: 1.1.6~(Firmware)
 	 */
 	public void setTimeBase(long timeBase) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)12, FUNCTION_SET_TIME_BASE, this);
@@ -866,8 +840,6 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Returns the time base as set by {@link BrickStepper#setTimeBase(long)}.
-	 *
-	 * .. versionadded:: 1.1.6~(Firmware)
 	 */
 	public long getTimeBase() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_TIME_BASE, this);
@@ -886,10 +858,8 @@ public class BrickStepper extends Device {
 	 * Returns the following parameters: The current velocity,
 	 * the current position, the remaining steps, the stack voltage, the external
 	 * voltage and the current consumption of the stepper motor.
-	 *
+	 * 
 	 * There is also a listener for this function, see {@link BrickStepper.AllDataListener}.
-	 *
-	 * .. versionadded:: 1.1.6~(Firmware)
 	 */
 	public AllData getAllData() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_ALL_DATA, this);
@@ -913,8 +883,6 @@ public class BrickStepper extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickStepper.AllDataListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
-	 * .. versionadded:: 1.1.6~(Firmware)
 	 */
 	public void setAllDataPeriod(long period) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)12, FUNCTION_SET_ALL_DATA_PERIOD, this);
@@ -925,8 +893,6 @@ public class BrickStepper extends Device {
 
 	/**
 	 * Returns the period as set by {@link BrickStepper#setAllDataPeriod(long)}.
-	 * 
-	 * .. versionadded:: 1.1.6~(Firmware)
 	 */
 	public long getAllDataPeriod() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_ALL_DATA_PERIOD, this);
@@ -947,8 +913,6 @@ public class BrickStepper extends Device {
 	 * 
 	 * This functions sole purpose is to allow automatic flashing of v1.x.y Bricklet
 	 * plugins.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
 	 */
 	public Protocol1BrickletName getProtocol1BrickletName(char port) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_PROTOCOL1_BRICKLET_NAME, this);
@@ -977,8 +941,6 @@ public class BrickStepper extends Device {
 	 * The temperature is only proportional to the real temperature and it has an
 	 * accuracy of +-15%. Practically it is only useful as an indicator for
 	 * temperature changes.
-	 * 
-	 * .. versionadded:: 1.1.4~(Firmware)
 	 */
 	public short getChipTemperature() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIP_TEMPERATURE, this);
@@ -1000,8 +962,6 @@ public class BrickStepper extends Device {
 	 * After a reset you have to create new device objects,
 	 * calling functions on the existing ones will result in
 	 * undefined behavior!
-	 * 
-	 * .. versionadded:: 1.1.4~(Firmware)
 	 */
 	public void reset() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_RESET, this);
@@ -1016,9 +976,8 @@ public class BrickStepper extends Device {
 	 * 
 	 * The position can be '0'-'8' (stack position).
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

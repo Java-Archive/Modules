@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for controlling up to 16 general purpose input/output pins
@@ -99,19 +84,19 @@ public class BrickletIO16 extends Device {
 	/**
 	 * This listener is triggered whenever a change of the voltage level is detected
 	 * on pins where the interrupt was activated with {@link BrickletIO16#setPortInterrupt(char, short)}.
-	 *
+	 * 
 	 * The values are the port, a bitmask that specifies which interrupts occurred
 	 * and the current value bitmask of the port.
-	 *
+	 * 
 	 * For example:
-	 *
+	 * 
 	 * * ('a', 1, 1) or ('a', 0b00000001, 0b00000001) means that on port A an
 	 *   interrupt on pin 0 occurred and currently pin 0 is high and pins 1-7 are low.
 	 * * ('b', 129, 254) or ('b', 0b10000001, 0b11111110) means that on port B
 	 *   interrupts on pins 0 and 7 occurred and currently pin 0 is low and pins 1-7
 	 *   are high.
 	 */
-	public interface InterruptListener {
+	public interface InterruptListener extends DeviceListener {
 		public void interrupt(char port, short interruptMask, short valueMask);
 	}
 
@@ -119,10 +104,8 @@ public class BrickletIO16 extends Device {
 	 * This listener is triggered whenever a monoflop timer reaches 0. The
 	 * parameters contain the port, the involved pins and the current value of
 	 * the pins (the value after the monoflop).
-	 *
-	 * .. versionadded:: 1.1.2~(Plugin)
 	 */
-	public interface MonoflopDoneListener {
+	public interface MonoflopDoneListener extends DeviceListener {
 		public void monoflopDone(char port, short selectionMask, short valueMask);
 	}
 
@@ -154,7 +137,7 @@ public class BrickletIO16 extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_INTERRUPT)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MONOFLOP_DONE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_INTERRUPT] = new CallbackListener() {
+		callbacks[CALLBACK_INTERRUPT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -169,7 +152,7 @@ public class BrickletIO16 extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_MONOFLOP_DONE] = new CallbackListener() {
+		callbacks[CALLBACK_MONOFLOP_DONE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -186,12 +169,12 @@ public class BrickletIO16 extends Device {
 	}
 
 	/**
-	 * Sets the output value (high or low) for a port ("a" or "b") with a bitmask.
-	 * The bitmask is 8 bit long, *true* refers to high and *false* refers to low.
-	 *
-	 * For example: The value 0b00001111 will turn the pins 0-3 high and the
+	 * Sets the output value (high or low) for a port (&quot;a&quot; or &quot;b&quot;) with a bitmask
+	 * (8bit). A 1 in the bitmask means high and a 0 in the bitmask means low.
+	 * 
+	 * For example: The value 15 or 0b00001111 will turn the pins 0-3 high and the
 	 * pins 4-7 low for the specified port.
-	 *
+	 * 
 	 * \note
 	 *  This function does nothing for pins that are configured as input.
 	 *  Pull-up resistors can be switched on with {@link BrickletIO16#setPortConfiguration(char, short, char, boolean)}.
@@ -226,15 +209,15 @@ public class BrickletIO16 extends Device {
 	/**
 	 * Configures the value and direction of a specified port. Possible directions
 	 * are 'i' and 'o' for input and output.
-	 *
+	 * 
 	 * If the direction is configured as output, the value is either high or low
 	 * (set as *true* or *false*).
-	 *
+	 * 
 	 * If the direction is configured as input, the value is either pull-up or
 	 * default (set as *true* or *false*).
-	 *
+	 * 
 	 * For example:
-	 *
+	 * 
 	 * * ('a', 255, 'i', true) or ('a', 0b11111111, 'i', true) will set all pins of port A as input pull-up.
 	 * * ('a', 128, 'i', false) or ('a', 0b10000000, 'i', false) will set pin 7 of port A as input default (floating if nothing is connected).
 	 * * ('b', 3, 'o', false) or ('b', 0b00000011, 'o', false) will set pins 0 and 1 of port B as output low.
@@ -251,11 +234,12 @@ public class BrickletIO16 extends Device {
 	}
 
 	/**
-	 * Returns a direction bitmask and a value bitmask for the specified port.
-	 *
+	 * Returns a direction bitmask and a value bitmask for the specified port. A 1 in
+	 * the direction bitmask means input and a 0 in the bitmask means output.
+	 * 
 	 * For example: A return value of (15, 51) or (0b00001111, 0b00110011) for
 	 * direction and value means that:
-	 *
+	 * 
 	 * * pins 0 and 1 are configured as input pull-up,
 	 * * pins 2 and 3 are configured as input default,
 	 * * pins 4 and 5 are configured as output high
@@ -279,11 +263,11 @@ public class BrickletIO16 extends Device {
 
 	/**
 	 * Sets the debounce period of the {@link BrickletIO16.InterruptListener} listener in ms.
-	 *
+	 * 
 	 * For example: If you set this value to 100, you will get the interrupt
 	 * maximal every 100ms. This is necessary if something that bounces is
 	 * connected to the IO-16 Bricklet, such as a button.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -313,10 +297,10 @@ public class BrickletIO16 extends Device {
 	 * Sets the pins on which an interrupt is activated with a bitmask.
 	 * Interrupts are triggered on changes of the voltage level of the pin,
 	 * i.e. changes from high to low and low to high.
-	 *
-	 * For example: ('a', 129) or (a, 0b10000001) will enable the interrupt for
+	 * 
+	 * For example: ('a', 129) or ('a', 0b10000001) will enable the interrupt for
 	 * pins 0 and 7 of port a.
-	 *
+	 * 
 	 * The interrupt is delivered with the listener {@link BrickletIO16.InterruptListener}.
 	 */
 	public void setPortInterrupt(char port, short interruptMask) throws TimeoutException, NotConnectedException {
@@ -349,24 +333,22 @@ public class BrickletIO16 extends Device {
 	 * Configures a monoflop of the pins specified by the second parameter as 8 bit
 	 * long bitmask. The specified pins must be configured for output. Non-output
 	 * pins will be ignored.
-	 *
+	 * 
 	 * The third parameter is a bitmask with the desired value of the specified
-	 * output pins (*true* means high and *false* means low).
-	 *
+	 * output pins. A 1 in the bitmask means high and a 0 in the bitmask means low.
+	 * 
 	 * The forth parameter indicates the time (in ms) that the pins should hold
 	 * the value.
-	 *
+	 * 
 	 * If this function is called with the parameters ('a', 9, 1, 1500) or
 	 * ('a', 0b00001001, 0b00000001, 1500): Pin 0 will get high and pin 3 will get
 	 * low on port 'a'. In 1.5s pin 0 will get low and pin 3 will get high again.
-	 *
+	 * 
 	 * A monoflop can be used as a fail-safe mechanism. For example: Lets assume you
 	 * have a RS485 bus and an IO-16 Bricklet connected to one of the slave
 	 * stacks. You can now call this function every second, with a time parameter
 	 * of two seconds and pin 0 set to high. Pin 0 will be high all the time. If now
 	 * the RS485 connection is lost, then pin 0 will get low in at most two seconds.
-	 *
-	 * .. versionadded:: 1.1.2~(Plugin)
 	 */
 	public void setPortMonoflop(char port, short selectionMask, short valueMask, long time) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)15, FUNCTION_SET_PORT_MONOFLOP, this);
@@ -381,11 +363,9 @@ public class BrickletIO16 extends Device {
 	/**
 	 * Returns (for the given pin) the current value and the time as set by
 	 * {@link BrickletIO16#setPortMonoflop(char, short, short, long)} as well as the remaining time until the value flips.
-	 *
+	 * 
 	 * If the timer is not running currently, the remaining time will be returned
 	 * as 0.
-	 *
-	 * .. versionadded:: 1.1.2~(Plugin)
 	 */
 	public PortMonoflop getPortMonoflop(char port, short pin) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_GET_PORT_MONOFLOP, this);
@@ -406,18 +386,16 @@ public class BrickletIO16 extends Device {
 	}
 
 	/**
-	 * Sets the output value (high or low) for a port ("a" or "b" with a bitmask,
-	 * according to the selection mask. The bitmask is 8 bit long, *true* refers
-	 * to high and *false* refers to low.
-	 *
+	 * Sets the output value (high or low) for a port (&quot;a&quot; or &quot;b&quot; with a bitmask, 
+	 * according to the selection mask. The bitmask is 8 bit long and a 1 in the
+	 * bitmask means high and a 0 in the bitmask means low.
+	 * 
 	 * For example: The parameters ('a', 192, 128) or ('a', 0b11000000, 0b10000000)
 	 * will turn pin 7 high and pin 6 low on port A, pins 0-6 will remain untouched.
-	 *
+	 * 
 	 * \note
 	 *  This function does nothing for pins that are configured as input.
 	 *  Pull-up resistors can be switched on with :func:`SetConfiguration`.
-	 *
-	 * .. versionadded:: 2.0.0~(Plugin)
 	 */
 	public void setSelectedValues(char port, short selectionMask, short valueMask) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)11, FUNCTION_SET_SELECTED_VALUES, this);
@@ -431,10 +409,10 @@ public class BrickletIO16 extends Device {
 	/**
 	 * Returns the current value of the edge counter for the selected pin on port A.
 	 * You can configure the edges that are counted with {@link BrickletIO16#setEdgeCountConfig(short, short, short)}.
-	 *
+	 * 
 	 * If you set the reset counter to *true*, the count is set back to 0
 	 * directly after it is read.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.3~(Plugin)
 	 */
 	public long getEdgeCount(short pin, boolean resetCounter) throws TimeoutException, NotConnectedException {
@@ -455,21 +433,23 @@ public class BrickletIO16 extends Device {
 	/**
 	 * Configures the edge counter for the selected pin of port A. Pins 0 and 1
 	 * are available for edge counting.
-	 *
+	 * 
 	 * The edge type parameter configures if rising edges, falling edges or
 	 * both are counted if the pin is configured for input. Possible edge types are:
-	 *
+	 * 
 	 * * 0 = rising (default)
 	 * * 1 = falling
 	 * * 2 = both
-	 *
+	 * 
 	 * The debounce time is given in ms.
-	 *
+	 * 
+	 * Configuring an edge counter resets its value to 0.
+	 * 
 	 * If you don't know what any of this means, just leave it at default. The
 	 * default configuration is very likely OK for you.
-	 *
+	 * 
 	 * Default values: 0 (edge type) and 100ms (debounce time)
-	 *
+	 * 
 	 * .. versionadded:: 2.0.3~(Plugin)
 	 */
 	public void setEdgeCountConfig(short pin, short edgeType, short debounce) throws TimeoutException, NotConnectedException {
@@ -510,9 +490,8 @@ public class BrickletIO16 extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

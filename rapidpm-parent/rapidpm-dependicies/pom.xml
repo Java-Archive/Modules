@@ -30,23 +30,23 @@
 
     <groupId>org.rapidpm</groupId>
     <artifactId>rapidpm-dependicies</artifactId>
-    <version>2.0</version>
+    <version>2.0.1</version>
 
     <packaging>pom</packaging>
 
     <!--for development of features/develop branch-->
- <!--   <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>RapidPM Releases</name>
-            <url>http://${nexus.ip}/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>RapidPM Snapshots</name>
-            <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>-->
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>releases</id>-->
+            <!--<name>RapidPM Releases</name>-->
+            <!--<url>http://${nexus.ip}/nexus/content/repositories/releases</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>snapshots</id>-->
+            <!--<name>RapidPM Snapshots</name>-->
+            <!--<url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>-->
+        <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 
 
     <dependencyManagement>

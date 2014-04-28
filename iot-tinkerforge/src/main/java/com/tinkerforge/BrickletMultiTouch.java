@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device with 12 touch sensors
@@ -52,10 +37,10 @@ public class BrickletMultiTouch extends Device {
 	/**
 	 * Returns the current touch state, see {@link BrickletMultiTouch#getTouchState()} for
 	 * information about the state.
-	 *
+	 * 
 	 * This listener is triggered every time the touch state changes.
 	 */
-	public interface TouchStateListener {
+	public interface TouchStateListener extends DeviceListener {
 		public void touchState(int state);
 	}
 
@@ -78,7 +63,7 @@ public class BrickletMultiTouch extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_TOUCH_STATE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_TOUCH_STATE] = new CallbackListener() {
+		callbacks[CALLBACK_TOUCH_STATE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -94,18 +79,18 @@ public class BrickletMultiTouch extends Device {
 
 	/**
 	 * Returns the current touch state. The state is given as a bitfield.
-	 *
+	 * 
 	 * Bits 0 to 11 represent the 12 electrodes and bit 12 represents
 	 * the proximity.
-	 *
+	 * 
 	 * If an electrode is touched, the corresponding bit is true. If
 	 * a hand or similar is in proximity to the electrodes, bit 12 is
 	 * *true*.
-	 *
+	 * 
 	 * Example: The state 4103 = 0x1007 = 0b1000000000111 means that
 	 * electrodes 0, 1 and 2 are touched and that something is in the
 	 * proximity of the electrodes.
-	 *
+	 * 
 	 * The proximity is activated with a distance of 1-2cm. An electrode
 	 * is already counted as touched if a finger is nearly touching the
 	 * electrode. This means that you can put a piece of paper or foil
@@ -137,18 +122,18 @@ public class BrickletMultiTouch extends Device {
 
 	/**
 	 * Enables/disables electrodes with a bitfield (see {@link BrickletMultiTouch#getTouchState()}).
-	 *
+	 * 
 	 * *True* enables the electrode, *false* disables the electrode. A
 	 * disabled electrode will always return *false* as its state. If you
 	 * don't need all electrodes you can disable the electrodes that are
 	 * not needed.
-	 *
+	 * 
 	 * It is recommended that you disable the proximity bit (bit 12) if
 	 * the proximity feature is not needed. This will reduce the amount of
 	 * traffic that is produced by the {@link BrickletMultiTouch.TouchStateListener} listener.
-	 *
+	 * 
 	 * Disabling electrodes will also reduce power consumption.
-	 *
+	 * 
 	 * Default: 8191 = 0x1FFF = 0b1111111111111 (all electrodes enabled)
 	 */
 	public void setElectrodeConfig(int enabledElectrodes) throws TimeoutException, NotConnectedException {
@@ -177,16 +162,16 @@ public class BrickletMultiTouch extends Device {
 	/**
 	 * Sets the sensitivity of the electrodes. An electrode with a high sensitivity
 	 * will register a touch earlier then an electrode with a low sensitivity.
-	 *
+	 * 
 	 * If you build a big electrode you might need to decrease the sensitivity, since
 	 * the area that can be charged will get bigger. If you want to be able to
 	 * activate an electrode from further away you need to increase the sensitivity.
-	 *
+	 * 
 	 * After a new sensitivity is set, you likely want to call {@link BrickletMultiTouch#recalibrate()}
 	 * to calibrate the electrodes with the newly defined sensitivity.
-	 *
+	 * 
 	 * The valid sensitivity value range is 5-201.
-	 *
+	 * 
 	 * The default sensitivity value is 181.
 	 */
 	public void setElectrodeSensitivity(short sensitivity) throws TimeoutException, NotConnectedException {
@@ -219,9 +204,8 @@ public class BrickletMultiTouch extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

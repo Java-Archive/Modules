@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,9 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Device to control up to 320 RGB LEDs
@@ -71,7 +55,7 @@ public class BrickletLEDStrip extends Device {
 	 * 
 	 * For an explanation of the general approach see {@link BrickletLEDStrip#setRGBValues(int, short, short[], short[], short[])}.
 	 */
-	public interface FrameRenderedListener {
+	public interface FrameRenderedListener extends DeviceListener {
 		public void frameRendered(int length);
 	}
 
@@ -95,7 +79,7 @@ public class BrickletLEDStrip extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_FRAME_RENDERED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_FRAME_RENDERED] = new CallbackListener() {
+		callbacks[CALLBACK_FRAME_RENDERED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -110,40 +94,42 @@ public class BrickletLEDStrip extends Device {
 	}
 
 	/**
-	 * Sets the *rgb* values for the LEDs with the given *length* starting
+	 * Sets the *rgb* values for the LEDs with the given *length* starting 
 	 * from *index*.
-	 *
+	 * 
 	 * The maximum length is 16, the index goes from 0 to 319 and the rgb values
 	 * have 8 bits each.
-	 *
+	 * 
 	 * Example: If you set
-	 *
+	 * 
 	 * * index to 5,
 	 * * length to 3,
 	 * * r to [255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	 * * g to [0, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] and
 	 * * b to [0, 0, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	 *
+	 * 
 	 * the LED with index 5 will be red, 6 will be green and 7 will be blue.
-	 *
+	 * 
+	 * \note Depending on the LED circuitry colors can be permuted.
+	 * 
 	 * The colors will be transfered to actual LEDs when the next
 	 * frame duration ends, see {@link BrickletLEDStrip#setFrameDuration(int)}.
-	 *
-	 * Generic approach:
-	 *
+	 * 
+	 * Generic approach: 
+	 * 
 	 * * Set the frame duration to a value that represents
-	 *   the number of frames per second you want to achieve.
+	 *   the number of frames per second you want to achieve. 
 	 * * Set all of the LED colors for one frame.
 	 * * Wait for the {@link BrickletLEDStrip.FrameRenderedListener} listener.
 	 * * Set all of the LED colors for next frame.
 	 * * Wait for the {@link BrickletLEDStrip.FrameRenderedListener} listener.
 	 * * and so on.
-	 *
+	 * 
 	 * This approach ensures that you can change the LED colors with
 	 * a fixed frame rate.
-	 *
+	 * 
 	 * The actual number of controllable LEDs depends on the number of free
-	 * Bricklet ports. See :ref:`here <led_strip_bricklet_ram_constraints>` for more
+	 * Bricklet ports. See :ref:`here &lt;led_strip_bricklet_ram_constraints&gt;` for more
 	 * information. A call of {@link BrickletLEDStrip#setRGBValues(int, short, short[], short[], short[])} with index + length above the
 	 * bounds is ignored completely.
 	 */
@@ -170,7 +156,7 @@ public class BrickletLEDStrip extends Device {
 	/**
 	 * Returns the rgb with the given *length* starting from the
 	 * given *index*.
-	 *
+	 * 
 	 * The values are the last values that were set by {@link BrickletLEDStrip#setRGBValues(int, short, short[], short[], short[])}.
 	 */
 	public RGBValues getRGBValues(int index, short length) throws TimeoutException, NotConnectedException {
@@ -202,12 +188,12 @@ public class BrickletLEDStrip extends Device {
 
 	/**
 	 * Sets the frame duration in ms.
-	 *
+	 * 
 	 * Example: If you want to achieve 20 frames per second, you should
-	 * set the frame duration to 50ms (50ms * 20 = 1 second).
-	 *
+	 * set the frame duration to 50ms (50ms * 20 = 1 second). 
+	 * 
 	 * For an explanation of the general approach see {@link BrickletLEDStrip#setRGBValues(int, short, short[], short[], short[])}.
-	 *
+	 * 
 	 * Default value: 100ms (10 frames per second).
 	 */
 	public void setFrameDuration(int duration) throws TimeoutException, NotConnectedException {
@@ -252,7 +238,7 @@ public class BrickletLEDStrip extends Device {
 	/**
 	 * Sets the frequency of the clock in Hz. The range is 10000Hz (10kHz) up to
 	 * 2000000Hz (2MHz).
-	 *
+	 * 
 	 * The Bricklet will choose the nearest achievable frequency, which may
 	 * be off by a few Hz. You can get the exact frequency that is used by
 	 * calling {@link BrickletLEDStrip#getClockFrequency()}.
@@ -303,9 +289,8 @@ public class BrickletLEDStrip extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

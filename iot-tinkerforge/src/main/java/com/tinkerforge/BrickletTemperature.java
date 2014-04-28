@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing Temperature
@@ -75,11 +60,11 @@ public class BrickletTemperature extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletTemperature#setTemperatureCallbackPeriod(long)}. The parameter is the temperature
 	 * of the sensor.
-	 *
+	 * 
 	 * {@link BrickletTemperature.TemperatureListener} is only triggered if the temperature has changed since the
 	 * last triggering.
 	 */
-	public interface TemperatureListener {
+	public interface TemperatureListener extends DeviceListener {
 		public void temperature(short temperature);
 	}
 
@@ -87,11 +72,11 @@ public class BrickletTemperature extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletTemperature#setTemperatureCallbackThreshold(char, short, short)} is reached.
 	 * The parameter is the temperature of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletTemperature#setDebouncePeriod(long)}.
 	 */
-	public interface TemperatureReachedListener {
+	public interface TemperatureReachedListener extends DeviceListener {
 		public void temperatureReached(short temperature);
 	}
 
@@ -118,7 +103,7 @@ public class BrickletTemperature extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_TEMPERATURE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_TEMPERATURE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_TEMPERATURE] = new CallbackListener() {
+		callbacks[CALLBACK_TEMPERATURE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -131,7 +116,7 @@ public class BrickletTemperature extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_TEMPERATURE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_TEMPERATURE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -149,9 +134,9 @@ public class BrickletTemperature extends Device {
 	 * Returns the temperature of the sensor. The value
 	 * has a range of -2500 to 8500 and is given in °C/100,
 	 * e.g. a value of 4223 means that a temperature of 42.23 °C is measured.
-	 *
-	 * If you want to get the temperature periodically, it is recommended
-	 * to use the listener {@link BrickletTemperature.TemperatureListener} and set the period with
+	 * 
+	 * If you want to get the temperature periodically, it is recommended 
+	 * to use the listener {@link BrickletTemperature.TemperatureListener} and set the period with 
 	 * {@link BrickletTemperature#setTemperatureCallbackPeriod(long)}.
 	 */
 	public short getTemperature() throws TimeoutException, NotConnectedException {
@@ -170,10 +155,10 @@ public class BrickletTemperature extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletTemperature.TemperatureListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletTemperature.TemperatureListener} is only triggered if the temperature has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setTemperatureCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -200,20 +185,20 @@ public class BrickletTemperature extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletTemperature.TemperatureReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletTemperature.TemperatureReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the temperature is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the temperature is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the temperature is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the temperature is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the temperature is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the temperature is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the temperature is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the temperature is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setTemperatureCallbackThreshold(char option, short min, short max) throws TimeoutException, NotConnectedException {
@@ -246,15 +231,15 @@ public class BrickletTemperature extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listener
-	 *
+	 * 
 	 * * {@link BrickletTemperature.TemperatureReachedListener}
-	 *
+	 * 
 	 * is triggered, if the threshold
-	 *
+	 * 
 	 * * {@link BrickletTemperature#setTemperatureCallbackThreshold(char, short, short)}
-	 *
+	 * 
 	 * keeps being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -282,17 +267,17 @@ public class BrickletTemperature extends Device {
 
 	/**
 	 * Sets the I2C mode. Possible modes are:
-	 *
+	 * 
 	 * * 0: Fast (400kHz, default)
 	 * * 1: Slow (100kHz)
-	 *
+	 * 
 	 * If you have problems with obvious outliers in the
 	 * Temperature Bricklet measurements, they may be caused by EMI issues.
 	 * In this case it may be helpful to lower the I2C speed.
-	 *
+	 * 
 	 * It is however not recommended to lower the I2C speed in applications where
 	 * a high throughput needs to be achieved.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
 	public void setI2CMode(short mode) throws TimeoutException, NotConnectedException {
@@ -327,9 +312,8 @@ public class BrickletTemperature extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

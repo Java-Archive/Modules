@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for controlling up to 4 optically coupled digital inputs
@@ -70,18 +55,18 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 	/**
 	 * This listener is triggered whenever a change of the voltage level is detected
 	 * on pins where the interrupt was activated with {@link BrickletIndustrialDigitalIn4#setInterrupt(int)}.
-	 *
+	 * 
 	 * The values are a bitmask that specifies which interrupts occurred
 	 * and the current value bitmask.
-	 *
+	 * 
 	 * For example:
-	 *
+	 * 
 	 * * (1, 1) or (0b0001, 0b0001) means that an interrupt on pin 0 occurred and
 	 *   currently pin 0 is high and pins 1-3 are low.
 	 * * (9, 14) or (0b1001, 0b1110) means that interrupts on pins 0 and 3
 	 *   occurred and currently pin 0 is low and pins 1-3 are high.
 	 */
-	public interface InterruptListener {
+	public interface InterruptListener extends DeviceListener {
 		public void interrupt(int interruptMask, int valueMask);
 	}
 
@@ -109,7 +94,7 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_INTERRUPT)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_INTERRUPT] = new CallbackListener() {
+		callbacks[CALLBACK_INTERRUPT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -127,13 +112,13 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 	/**
 	 * Returns the input value with a bitmask. The bitmask is 16bit long, *true*
 	 * refers to high and *false* refers to low.
-	 *
+	 * 
 	 * For example: The value 3 or 0b0011 means that pins 0-1 are high and the other
 	 * pins are low.
-	 *
+	 * 
 	 * If no groups are used (see {@link BrickletIndustrialDigitalIn4#setGroup(char[])}), the pins correspond to the
 	 * markings on the Digital In 4 Bricklet.
-	 *
+	 * 
 	 * If groups are used, the pins correspond to the element in the group.
 	 * Element 1 in the group will get pins 0-3, element 2 pins 4-7, element 3
 	 * pins 8-11 and element 4 pins 12-15.
@@ -154,20 +139,20 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 	/**
 	 * Sets a group of Digital In 4 Bricklets that should work together. You can
 	 * find Bricklets that can be grouped together with {@link BrickletIndustrialDigitalIn4#getAvailableForGroup()}.
-	 *
+	 * 
 	 * The group consists of 4 elements. Element 1 in the group will get pins 0-3,
 	 * element 2 pins 4-7, element 3 pins 8-11 and element 4 pins 12-15.
-	 *
+	 * 
 	 * Each element can either be one of the ports ('a' to 'd') or 'n' if it should
 	 * not be used.
-	 *
+	 * 
 	 * For example: If you have two Digital In 4 Bricklets connected to port A and
 	 * port B respectively, you could call with ``['a', 'b', 'n', 'n']``.
-	 *
+	 * 
 	 * Now the pins on the Digital In 4 on port A are assigned to 0-3 and the
 	 * pins on the Digital In 4 on port B are assigned to 4-7. It is now possible
 	 * to call {@link BrickletIndustrialDigitalIn4#getValue()} and read out two Bricklets at the same time.
-	 *
+	 * 
 	 * Changing the group configuration resets all edge counter configurations
 	 * and values.
 	 */
@@ -221,11 +206,11 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 
 	/**
 	 * Sets the debounce period of the {@link BrickletIndustrialDigitalIn4.InterruptListener} listener in ms.
-	 *
+	 * 
 	 * For example: If you set this value to 100, you will get the interrupt
 	 * maximal every 100ms. This is necessary if something that bounces is
 	 * connected to the Digital In 4 Bricklet, such as a button.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -255,12 +240,12 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 	 * Sets the pins on which an interrupt is activated with a bitmask.
 	 * Interrupts are triggered on changes of the voltage level of the pin,
 	 * i.e. changes from high to low and low to high.
-	 *
+	 * 
 	 * For example: An interrupt bitmask of 9 or 0b1001 will enable the interrupt for
 	 * pins 0 and 3.
-	 *
+	 * 
 	 * The interrupts use the grouping as set by {@link BrickletIndustrialDigitalIn4#setGroup(char[])}.
-	 *
+	 * 
 	 * The interrupt is delivered with the listener {@link BrickletIndustrialDigitalIn4.InterruptListener}.
 	 */
 	public void setInterrupt(int interruptMask) throws TimeoutException, NotConnectedException {
@@ -289,10 +274,10 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 	/**
 	 * Returns the current value of the edge counter for the selected pin. You can
 	 * configure the edges that are counted with {@link BrickletIndustrialDigitalIn4#setEdgeCountConfig(int, short, short)}.
-	 *
+	 * 
 	 * If you set the reset counter to *true*, the count is set back to 0
 	 * directly after it is read.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
 	public long getEdgeCount(short pin, boolean resetCounter) throws TimeoutException, NotConnectedException {
@@ -311,22 +296,25 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 	}
 
 	/**
-	 * Configures the edge counter for the selected pins.
-	 *
+	 * Configures the edge counter for the selected pins. A bitmask of 9 or 0b1001 will
+	 * enable the edge counter for pins 0 and 3.
+	 * 
 	 * The edge type parameter configures if rising edges, falling edges or
 	 * both are counted if the pin is configured for input. Possible edge types are:
-	 *
+	 * 
 	 * * 0 = rising (default)
 	 * * 1 = falling
 	 * * 2 = both
-	 *
+	 * 
 	 * The debounce time is given in ms.
-	 *
+	 * 
+	 * Configuring an edge counter resets its value to 0.
+	 * 
 	 * If you don't know what any of this means, just leave it at default. The
 	 * default configuration is very likely OK for you.
-	 *
+	 * 
 	 * Default values: 0 (edge type) and 100ms (debounce time)
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
 	public void setEdgeCountConfig(int selectionMask, short edgeType, short debounce) throws TimeoutException, NotConnectedException {
@@ -367,9 +355,8 @@ public class BrickletIndustrialDigitalIn4 extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

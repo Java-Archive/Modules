@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for controlling a piezo buzzer
@@ -50,7 +35,7 @@ public class BrickletPiezoBuzzer extends Device {
 	/**
 	 * This listener is triggered if a beep set by {@link BrickletPiezoBuzzer#beep(long)} is finished
 	 */
-	public interface BeepFinishedListener {
+	public interface BeepFinishedListener extends DeviceListener {
 		public void beepFinished();
 	}
 
@@ -58,7 +43,7 @@ public class BrickletPiezoBuzzer extends Device {
 	 * This listener is triggered if the playback of the morse code set by
 	 * {@link BrickletPiezoBuzzer#morseCode(String)} is finished.
 	 */
-	public interface MorseCodeFinishedListener {
+	public interface MorseCodeFinishedListener extends DeviceListener {
 		public void morseCodeFinished();
 	}
 
@@ -78,7 +63,7 @@ public class BrickletPiezoBuzzer extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_BEEP_FINISHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MORSE_CODE_FINISHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_BEEP_FINISHED] = new CallbackListener() {
+		callbacks[CALLBACK_BEEP_FINISHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(BeepFinishedListener listener: listenerBeepFinished) {
 					listener.beepFinished();
@@ -86,7 +71,7 @@ public class BrickletPiezoBuzzer extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_MORSE_CODE_FINISHED] = new CallbackListener() {
+		callbacks[CALLBACK_MORSE_CODE_FINISHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(MorseCodeFinishedListener listener: listenerMorseCodeFinished) {
 					listener.morseCodeFinished();
@@ -108,12 +93,12 @@ public class BrickletPiezoBuzzer extends Device {
 
 	/**
 	 * Sets morse code that will be played by the piezo buzzer. The morse code
-	 * is given as a string consisting of "." (dot), "-" (minus) and " " (space)
+	 * is given as a string consisting of &quot;.&quot; (dot), &quot;-&quot; (minus) and &quot; &quot; (space)
 	 * for *dits*, *dahs* and *pauses*. Every other character is ignored.
 	 * 
-	 * For example: If you set the string "...---...", the piezo buzzer will beep
-	 * nine times with the durations "short short short long long long short 
-	 * short short".
+	 * For example: If you set the string &quot;...---...&quot;, the piezo buzzer will beep
+	 * nine times with the durations &quot;short short short long long long short 
+	 * short short&quot;.
 	 * 
 	 * The maximum string size is 60.
 	 */
@@ -138,9 +123,8 @@ public class BrickletPiezoBuzzer extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

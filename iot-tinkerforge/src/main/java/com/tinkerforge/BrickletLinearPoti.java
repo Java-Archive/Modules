@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing Linear Potentiometer input
@@ -90,11 +75,11 @@ public class BrickletLinearPoti extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletLinearPoti#setPositionCallbackPeriod(long)}. The parameter is the position of the
 	 * Linear Potentiometer.
-	 *
+	 * 
 	 * {@link BrickletLinearPoti.PositionListener} is only triggered if the position has changed since the
 	 * last triggering.
 	 */
-	public interface PositionListener {
+	public interface PositionListener extends DeviceListener {
 		public void position(int position);
 	}
 
@@ -102,11 +87,11 @@ public class BrickletLinearPoti extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletLinearPoti#setAnalogValueCallbackPeriod(long)}. The parameter is the analog value of the
 	 * Linear Potentiometer.
-	 *
+	 * 
 	 * {@link BrickletLinearPoti.AnalogValueListener} is only triggered if the position has changed since the
 	 * last triggering.
 	 */
-	public interface AnalogValueListener {
+	public interface AnalogValueListener extends DeviceListener {
 		public void analogValue(int value);
 	}
 
@@ -114,11 +99,11 @@ public class BrickletLinearPoti extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletLinearPoti#setPositionCallbackThreshold(char, short, short)} is reached.
 	 * The parameter is the position of the Linear Potentiometer.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletLinearPoti#setDebouncePeriod(long)}.
 	 */
-	public interface PositionReachedListener {
+	public interface PositionReachedListener extends DeviceListener {
 		public void positionReached(int position);
 	}
 
@@ -126,11 +111,11 @@ public class BrickletLinearPoti extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletLinearPoti#setAnalogValueCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the analog value of the Linear Potentiometer.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletLinearPoti#setDebouncePeriod(long)}.
 	 */
-	public interface AnalogValueReachedListener {
+	public interface AnalogValueReachedListener extends DeviceListener {
 		public void analogValueReached(int value);
 	}
 
@@ -162,7 +147,7 @@ public class BrickletLinearPoti extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_POSITION_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_ANALOG_VALUE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_POSITION] = new CallbackListener() {
+		callbacks[CALLBACK_POSITION] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -175,7 +160,7 @@ public class BrickletLinearPoti extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ANALOG_VALUE] = new CallbackListener() {
+		callbacks[CALLBACK_ANALOG_VALUE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -188,7 +173,7 @@ public class BrickletLinearPoti extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_POSITION_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_POSITION_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -201,7 +186,7 @@ public class BrickletLinearPoti extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ANALOG_VALUE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_ANALOG_VALUE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -216,11 +201,11 @@ public class BrickletLinearPoti extends Device {
 	}
 
 	/**
-	 * Returns the position of the Linear Potentiometer. The value is
+	 * Returns the position of the Linear Potentiometer. The value is  
 	 * between 0 (slider down) and 100 (slider up).
-	 *
+	 * 
 	 * If you want to get the position periodically, it is recommended to use the
-	 * listener {@link BrickletLinearPoti.PositionListener} and set the period with
+	 * listener {@link BrickletLinearPoti.PositionListener} and set the period with 
 	 * {@link BrickletLinearPoti#setPositionCallbackPeriod(long)}.
 	 */
 	public int getPosition() throws TimeoutException, NotConnectedException {
@@ -239,15 +224,15 @@ public class BrickletLinearPoti extends Device {
 	/**
 	 * Returns the value as read by a 12-bit analog-to-digital converter.
 	 * The value is between 0 and 4095.
-	 *
+	 * 
 	 * \note
 	 *  The value returned by {@link BrickletLinearPoti#getPosition()} is averaged over several samples
 	 *  to yield less noise, while {@link BrickletLinearPoti#getAnalogValue()} gives back raw
 	 *  unfiltered analog values. The only reason to use {@link BrickletLinearPoti#getAnalogValue()} is,
 	 *  if you need the full resolution of the analog-to-digital converter.
-	 *
-	 * If you want the analog value periodically, it is recommended to use the
-	 * listener {@link BrickletLinearPoti.AnalogValueListener} and set the period with
+	 * 
+	 * If you want the analog value periodically, it is recommended to use the 
+	 * listener {@link BrickletLinearPoti.AnalogValueListener} and set the period with 
 	 * {@link BrickletLinearPoti#setAnalogValueCallbackPeriod(long)}.
 	 */
 	public int getAnalogValue() throws TimeoutException, NotConnectedException {
@@ -266,10 +251,10 @@ public class BrickletLinearPoti extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletLinearPoti.PositionListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletLinearPoti.PositionListener} is only triggered if the position has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setPositionCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -298,10 +283,10 @@ public class BrickletLinearPoti extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletLinearPoti.AnalogValueListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletLinearPoti.AnalogValueListener} is only triggered if the analog value has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAnalogValueCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -328,20 +313,20 @@ public class BrickletLinearPoti extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletLinearPoti.PositionReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletLinearPoti.PositionReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the position is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the position is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the position is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the position is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the position is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the position is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the position is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the position is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setPositionCallbackThreshold(char option, short min, short max) throws TimeoutException, NotConnectedException {
@@ -373,20 +358,20 @@ public class BrickletLinearPoti extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletLinearPoti.AnalogValueReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletLinearPoti.AnalogValueReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the analog value is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the analog value is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the analog value is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the analog value is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the analog value is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the analog value is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the analog value is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the analog value is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setAnalogValueCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -419,17 +404,17 @@ public class BrickletLinearPoti extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickletLinearPoti.PositionReachedListener},
 	 * * {@link BrickletLinearPoti.AnalogValueReachedListener}
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletLinearPoti#setPositionCallbackThreshold(char, short, short)},
 	 * * {@link BrickletLinearPoti#setAnalogValueCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -462,9 +447,8 @@ public class BrickletLinearPoti extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

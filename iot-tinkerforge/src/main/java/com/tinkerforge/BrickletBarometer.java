@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing air pressure and altitude changes
@@ -105,11 +90,11 @@ public class BrickletBarometer extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletBarometer#setAirPressureCallbackPeriod(long)}. The parameter is the air pressure of the
 	 * air pressure sensor.
-	 *
+	 * 
 	 * {@link BrickletBarometer.AirPressureListener} is only triggered if the air pressure has changed since the
 	 * last triggering.
 	 */
-	public interface AirPressureListener {
+	public interface AirPressureListener extends DeviceListener {
 		public void airPressure(int airPressure);
 	}
 
@@ -117,11 +102,11 @@ public class BrickletBarometer extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletBarometer#setAltitudeCallbackPeriod(long)}. The parameter is the altitude of the
 	 * air pressure sensor.
-	 *
+	 * 
 	 * {@link BrickletBarometer.AltitudeListener} is only triggered if the altitude has changed since the
 	 * last triggering.
 	 */
-	public interface AltitudeListener {
+	public interface AltitudeListener extends DeviceListener {
 		public void altitude(int altitude);
 	}
 
@@ -129,11 +114,11 @@ public class BrickletBarometer extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletBarometer#setAirPressureCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the air pressure of the air pressure sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletBarometer#setDebouncePeriod(long)}.
 	 */
-	public interface AirPressureReachedListener {
+	public interface AirPressureReachedListener extends DeviceListener {
 		public void airPressureReached(int airPressure);
 	}
 
@@ -141,11 +126,11 @@ public class BrickletBarometer extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletBarometer#setAltitudeCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the altitude of the air pressure sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletBarometer#setDebouncePeriod(long)}.
 	 */
-	public interface AltitudeReachedListener {
+	public interface AltitudeReachedListener extends DeviceListener {
 		public void altitudeReached(int altitude);
 	}
 
@@ -182,7 +167,7 @@ public class BrickletBarometer extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_AIR_PRESSURE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_ALTITUDE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_AIR_PRESSURE] = new CallbackListener() {
+		callbacks[CALLBACK_AIR_PRESSURE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -195,7 +180,7 @@ public class BrickletBarometer extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ALTITUDE] = new CallbackListener() {
+		callbacks[CALLBACK_ALTITUDE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -208,7 +193,7 @@ public class BrickletBarometer extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_AIR_PRESSURE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_AIR_PRESSURE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -221,7 +206,7 @@ public class BrickletBarometer extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ALTITUDE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_ALTITUDE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -239,7 +224,7 @@ public class BrickletBarometer extends Device {
 	 * Returns the air pressure of the air pressure sensor. The value
 	 * has a range of 10000 to 1200000 and is given in mbar/1000, i.e. a value
 	 * of 1001092 means that an air pressure of 1001.092 mbar is measured.
-	 *
+	 * 
 	 * If you want to get the air pressure periodically, it is recommended to use the
 	 * listener {@link BrickletBarometer.AirPressureListener} and set the period with
 	 * {@link BrickletBarometer#setAirPressureCallbackPeriod(long)}.
@@ -261,7 +246,7 @@ public class BrickletBarometer extends Device {
 	 * Returns the relative altitude of the air pressure sensor. The value is given in
 	 * cm and is calculated based on the difference between the current air pressure
 	 * and the reference air pressure that can be set with {@link BrickletBarometer#setReferenceAirPressure(int)}.
-	 *
+	 * 
 	 * If you want to get the altitude periodically, it is recommended to use the
 	 * listener {@link BrickletBarometer.AltitudeListener} and set the period with
 	 * {@link BrickletBarometer#setAltitudeCallbackPeriod(long)}.
@@ -282,10 +267,10 @@ public class BrickletBarometer extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletBarometer.AirPressureListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletBarometer.AirPressureListener} is only triggered if the air pressure has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAirPressureCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -314,10 +299,10 @@ public class BrickletBarometer extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletBarometer.AltitudeListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletBarometer.AltitudeListener} is only triggered if the altitude has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAltitudeCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -345,19 +330,19 @@ public class BrickletBarometer extends Device {
 
 	/**
 	 * Sets the thresholds for the {@link BrickletBarometer.AirPressureReachedListener} listener.
-	 *
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the air pressure is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the air pressure is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the air pressure is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the air pressure is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the air pressure is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the air pressure is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the air pressure is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the air pressure is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setAirPressureCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -390,19 +375,19 @@ public class BrickletBarometer extends Device {
 
 	/**
 	 * Sets the thresholds for the {@link BrickletBarometer.AltitudeReachedListener} listener.
-	 *
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the altitude is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the altitude is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the altitude is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the altitude is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the altitude is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the altitude is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the altitude is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the altitude is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setAltitudeCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -435,17 +420,17 @@ public class BrickletBarometer extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickletBarometer.AirPressureReachedListener},
 	 * * {@link BrickletBarometer.AltitudeReachedListener}
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletBarometer#setAirPressureCallbackThreshold(char, int, int)},
 	 * * {@link BrickletBarometer#setAltitudeCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -476,15 +461,13 @@ public class BrickletBarometer extends Device {
 	 * Setting the reference to the current air pressure results in a calculated
 	 * altitude of 0cm. Passing 0 is a shortcut for passing the current air pressure as
 	 * reference.
-	 *
+	 * 
 	 * Well known reference values are the Q codes
-	 * `QNH <http://en.wikipedia.org/wiki/QNH>`__ and
-	 * `QFE <http://en.wikipedia.org/wiki/Mean_sea_level_pressure#Mean_sea_level_pressure>`__
+	 * `QNH &lt;http://en.wikipedia.org/wiki/QNH&gt;`__ and
+	 * `QFE &lt;http://en.wikipedia.org/wiki/Mean_sea_level_pressure#Mean_sea_level_pressure&gt;`__
 	 * used in aviation.
-	 *
+	 * 
 	 * The default value is 1013.25mbar.
-	 *
-	 * .. versionadded:: 1.1.0~(Plugin)
 	 */
 	public void setReferenceAirPressure(int airPressure) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)12, FUNCTION_SET_REFERENCE_AIR_PRESSURE, this);
@@ -497,7 +480,7 @@ public class BrickletBarometer extends Device {
 	 * Returns the temperature of the air pressure sensor. The value
 	 * has a range of -4000 to 8500 and is given in °C/100, i.e. a value
 	 * of 2007 means that a temperature of 20.07 °C is measured.
-	 *
+	 * 
 	 * This temperature is used internally for temperature compensation of the air
 	 * pressure measurement. It is not as accurate as the temperature measured by the
 	 * :ref:`temperature_bricklet` or the :ref:`temperature_ir_bricklet`.
@@ -517,8 +500,6 @@ public class BrickletBarometer extends Device {
 
 	/**
 	 * Returns the reference air pressure as set by {@link BrickletBarometer#setReferenceAirPressure(int)}.
-	 *
-	 * .. versionadded:: 1.1.0~(Plugin)
 	 */
 	public int getReferenceAirPressure() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_REFERENCE_AIR_PRESSURE, this);
@@ -536,23 +517,23 @@ public class BrickletBarometer extends Device {
 	/**
 	 * Sets the different averaging parameters. It is possible to set
 	 * the length of a normal averaging for the temperature and pressure,
-	 * as well as an additional length of a
-	 * `moving average <http://en.wikipedia.org/wiki/Moving_average>`__
-	 * for the pressure. The moving average is calculated from the normal
+	 * as well as an additional length of a 
+	 * `moving average &lt;http://en.wikipedia.org/wiki/Moving_average&gt;`__ 
+	 * for the pressure. The moving average is calculated from the normal 
 	 * averages.  There is no moving average for the temperature.
-	 *
+	 * 
 	 * The maximum length for the pressure average is 10, for the
 	 * temperature average is 255 and for the moving average is 25.
-	 *
+	 * 
 	 * Setting the all three parameters to 0 will turn the averaging
 	 * completely off. If the averaging is off, there is lots of noise
 	 * on the data, but the data is without delay. Thus we recommend
 	 * to turn the averaging off if the Barometer Bricklet data is
 	 * to be used for sensor fusion with other sensors.
-	 *
+	 * 
 	 * The default values are 10 for the normal averages and 25 for the
 	 * moving average.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.1~(Plugin)
 	 */
 	public void setAveraging(short movingAveragePressure, short averagePressure, short averageTemperature) throws TimeoutException, NotConnectedException {
@@ -592,9 +573,8 @@ public class BrickletBarometer extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

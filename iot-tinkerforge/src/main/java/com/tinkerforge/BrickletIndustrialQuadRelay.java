@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for controlling up to 4 Solid State Relays
@@ -67,7 +52,7 @@ public class BrickletIndustrialQuadRelay extends Device {
 	 * parameters contain the involved pins and the current value of the pins
 	 * (the value after the monoflop).
 	 */
-	public interface MonoflopDoneListener {
+	public interface MonoflopDoneListener extends DeviceListener {
 		public void monoflopDone(int selectionMask, int valueMask);
 	}
 
@@ -92,7 +77,7 @@ public class BrickletIndustrialQuadRelay extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MONOFLOP_DONE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_MONOFLOP_DONE] = new CallbackListener() {
+		callbacks[CALLBACK_MONOFLOP_DONE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -108,16 +93,15 @@ public class BrickletIndustrialQuadRelay extends Device {
 	}
 
 	/**
-	 * Sets the output value with a bitmask. The bitmask
-	 * is 16 bit long, *true* refers to a closed relay and *false* refers to 
-	 * an open relay.
+	 * Sets the output value with a bitmask (16bit). A 1 in the bitmask means relay
+	 * closed and a 0 means relay open.
 	 * 
-	 * For example: The value 0b0011 will close the relay of pins 0-1 and open the
-	 * other pins.
+	 * For example: The value 3 or 0b0011 will close the relay of pins 0-1 and open
+	 * the other pins.
 	 * 
 	 * If no groups are used (see {@link BrickletIndustrialQuadRelay#setGroup(char[])}), the pins correspond to the
 	 * markings on the Quad Relay Bricklet.
-	 *
+	 * 
 	 * If groups are used, the pins correspond to the element in the group.
 	 * Element 1 in the group will get pins 0-3, element 2 pins 4-7, element 3
 	 * pins 8-11 and element 4 pins 12-15.
@@ -148,17 +132,17 @@ public class BrickletIndustrialQuadRelay extends Device {
 	/**
 	 * Configures a monoflop of the pins specified by the first parameter
 	 * bitmask.
-	 *
+	 * 
 	 * The second parameter is a bitmask with the desired value of the specified
-	 * pins (*true* means relay closed and *false* means relay open).
-	 *
+	 * pins. A 1 in the bitmask means relay closed and a 0 means relay open.
+	 * 
 	 * The third parameter indicates the time (in ms) that the pins should hold
 	 * the value.
-	 *
+	 * 
 	 * If this function is called with the parameters (9, 1, 1500) or
 	 * (0b1001, 0b0001, 1500): Pin 0 will close and pin 3 will open. In 1.5s pin 0
 	 * will open and pin 3 will close again.
-	 *
+	 * 
 	 * A monoflop can be used as a fail-safe mechanism. For example: Lets assume you
 	 * have a RS485 bus and a Quad Relay Bricklet connected to one of the slave
 	 * stacks. You can now call this function every second, with a time parameter
@@ -177,7 +161,7 @@ public class BrickletIndustrialQuadRelay extends Device {
 	/**
 	 * Returns (for the given pin) the current value and the time as set by
 	 * {@link BrickletIndustrialQuadRelay#setMonoflop(int, int, long)} as well as the remaining time until the value flips.
-	 *
+	 * 
 	 * If the timer is not running currently, the remaining time will be returned
 	 * as 0.
 	 */
@@ -201,16 +185,16 @@ public class BrickletIndustrialQuadRelay extends Device {
 	/**
 	 * Sets a group of Quad Relay Bricklets that should work together. You can
 	 * find Bricklets that can be grouped together with {@link BrickletIndustrialQuadRelay#getAvailableForGroup()}.
-	 *
+	 * 
 	 * The group consists of 4 elements. Element 1 in the group will get pins 0-3,
 	 * element 2 pins 4-7, element 3 pins 8-11 and element 4 pins 12-15.
-	 *
+	 * 
 	 * Each element can either be one of the ports ('a' to 'd') or 'n' if it should
 	 * not be used.
-	 *
+	 * 
 	 * For example: If you have two Quad Relay Bricklets connected to port A and
 	 * port B respectively, you could call with ``['a', 'b', 'n', 'n']``.
-	 *
+	 * 
 	 * Now the pins on the Quad Relay on port A are assigned to 0-3 and the
 	 * pins on the Quad Relay on port B are assigned to 4-7. It is now possible
 	 * to call {@link BrickletIndustrialQuadRelay#setValue(int)} and control two Bricklets at the same time.
@@ -264,21 +248,19 @@ public class BrickletIndustrialQuadRelay extends Device {
 	}
 
 	/**
-	 * Sets the output value with a bitmask, according to the selection mask.
-	 * The bitmask is 16 bit long, *true* refers to a closed relay and
+	 * Sets the output value with a bitmask, according to the selection mask. 
+	 * The bitmask is 16 bit long, *true* refers to a closed relay and 
 	 * *false* refers to an open relay.
-	 *
+	 * 
 	 * For example: The values (3, 1) or (0b0011, 0b0001) will close the relay of
 	 * pin 0, open the relay of pin 1 and leave the others untouched.
-	 *
+	 * 
 	 * If no groups are used (see {@link BrickletIndustrialQuadRelay#setGroup(char[])}), the pins correspond to the
 	 * markings on the Quad Relay Bricklet.
 	 * 
 	 * If groups are used, the pins correspond to the element in the group.
 	 * Element 1 in the group will get pins 0-3, element 2 pins 4-7, element 3
 	 * pins 8-11 and element 4 pins 12-15.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
 	 */
 	public void setSelectedValues(int selectionMask, int valueMask) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)12, FUNCTION_SET_SELECTED_VALUES, this);
@@ -295,9 +277,8 @@ public class BrickletIndustrialQuadRelay extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

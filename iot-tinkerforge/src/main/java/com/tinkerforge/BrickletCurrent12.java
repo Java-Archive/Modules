@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing current of up to 12.5A
@@ -94,11 +79,11 @@ public class BrickletCurrent12 extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletCurrent12#setCurrentCallbackPeriod(long)}. The parameter is the current of the
 	 * sensor.
-	 *
+	 * 
 	 * {@link BrickletCurrent12.CurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
 	 */
-	public interface CurrentListener {
+	public interface CurrentListener extends DeviceListener {
 		public void current(short current);
 	}
 
@@ -106,11 +91,11 @@ public class BrickletCurrent12 extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletCurrent12#setAnalogValueCallbackPeriod(long)}. The parameter is the analog value
 	 * of the sensor.
-	 *
+	 * 
 	 * {@link BrickletCurrent12.AnalogValueListener} is only triggered if the current has changed since the
 	 * last triggering.
 	 */
-	public interface AnalogValueListener {
+	public interface AnalogValueListener extends DeviceListener {
 		public void analogValue(int value);
 	}
 
@@ -118,11 +103,11 @@ public class BrickletCurrent12 extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletCurrent12#setCurrentCallbackThreshold(char, short, short)} is reached.
 	 * The parameter is the current of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletCurrent12#setDebouncePeriod(long)}.
 	 */
-	public interface CurrentReachedListener {
+	public interface CurrentReachedListener extends DeviceListener {
 		public void currentReached(short current);
 	}
 
@@ -130,11 +115,11 @@ public class BrickletCurrent12 extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletCurrent12#setAnalogValueCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the analog value of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletCurrent12#setDebouncePeriod(long)}.
 	 */
-	public interface AnalogValueReachedListener {
+	public interface AnalogValueReachedListener extends DeviceListener {
 		public void analogValueReached(int value);
 	}
 
@@ -142,7 +127,7 @@ public class BrickletCurrent12 extends Device {
 	 * This listener is triggered when an over current is measured
 	 * (see {@link BrickletCurrent12#isOverCurrent()}).
 	 */
-	public interface OverCurrentListener {
+	public interface OverCurrentListener extends DeviceListener {
 		public void overCurrent();
 	}
 
@@ -177,7 +162,7 @@ public class BrickletCurrent12 extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_ANALOG_VALUE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_OVER_CURRENT)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_CURRENT] = new CallbackListener() {
+		callbacks[CALLBACK_CURRENT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -190,7 +175,7 @@ public class BrickletCurrent12 extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ANALOG_VALUE] = new CallbackListener() {
+		callbacks[CALLBACK_ANALOG_VALUE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -203,7 +188,7 @@ public class BrickletCurrent12 extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_CURRENT_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_CURRENT_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -216,7 +201,7 @@ public class BrickletCurrent12 extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ANALOG_VALUE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_ANALOG_VALUE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -229,7 +214,7 @@ public class BrickletCurrent12 extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_OVER_CURRENT] = new CallbackListener() {
+		callbacks[CALLBACK_OVER_CURRENT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(OverCurrentListener listener: listenerOverCurrent) {
 					listener.overCurrent();
@@ -241,9 +226,9 @@ public class BrickletCurrent12 extends Device {
 	/**
 	 * Returns the current of the sensor. The value is in mA
 	 * and between -12500mA and 12500mA.
-	 *
+	 * 
 	 * If you want to get the current periodically, it is recommended to use the
-	 * listener {@link BrickletCurrent12.CurrentListener} and set the period with
+	 * listener {@link BrickletCurrent12.CurrentListener} and set the period with 
 	 * {@link BrickletCurrent12#setCurrentCallbackPeriod(long)}.
 	 */
 	public short getCurrent() throws TimeoutException, NotConnectedException {
@@ -261,14 +246,14 @@ public class BrickletCurrent12 extends Device {
 
 	/**
 	 * Calibrates the 0 value of the sensor. You have to call this function
-	 * when there is no current present.
-	 *
+	 * when there is no current present. 
+	 * 
 	 * The zero point of the current sensor
 	 * is depending on the exact properties of the analog-to-digital converter,
 	 * the length of the Bricklet cable and the temperature. Thus, if you change
 	 * the Brick or the environment in which the Bricklet is used, you might
 	 * have to recalibrate.
-	 *
+	 * 
 	 * The resulting calibration will be saved on the EEPROM of the Current
 	 * Bricklet.
 	 */
@@ -280,7 +265,7 @@ public class BrickletCurrent12 extends Device {
 
 	/**
 	 * Returns *true* if more than 12.5A were measured.
-	 *
+	 * 
 	 * \note
 	 *  To reset this value you have to power cycle the Bricklet.
 	 */
@@ -300,15 +285,15 @@ public class BrickletCurrent12 extends Device {
 	/**
 	 * Returns the value as read by a 12-bit analog-to-digital converter.
 	 * The value is between 0 and 4095.
-	 *
+	 * 
 	 * \note
 	 *  The value returned by {@link BrickletCurrent12#getCurrent()} is averaged over several samples
 	 *  to yield less noise, while {@link BrickletCurrent12#getAnalogValue()} gives back raw
 	 *  unfiltered analog values. The only reason to use {@link BrickletCurrent12#getAnalogValue()} is,
 	 *  if you need the full resolution of the analog-to-digital converter.
-	 *
-	 * If you want the analog value periodically, it is recommended to use the
-	 * listener {@link BrickletCurrent12.AnalogValueListener} and set the period with
+	 * 
+	 * If you want the analog value periodically, it is recommended to use the 
+	 * listener {@link BrickletCurrent12.AnalogValueListener} and set the period with 
 	 * {@link BrickletCurrent12#setAnalogValueCallbackPeriod(long)}.
 	 */
 	public int getAnalogValue() throws TimeoutException, NotConnectedException {
@@ -327,10 +312,10 @@ public class BrickletCurrent12 extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletCurrent12.CurrentListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletCurrent12.CurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setCurrentCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -359,10 +344,10 @@ public class BrickletCurrent12 extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletCurrent12.AnalogValueListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletCurrent12.AnalogValueListener} is only triggered if the analog value has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAnalogValueCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -389,20 +374,20 @@ public class BrickletCurrent12 extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletCurrent12.CurrentReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletCurrent12.CurrentReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the current is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the current is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the current is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the current is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setCurrentCallbackThreshold(char option, short min, short max) throws TimeoutException, NotConnectedException {
@@ -434,20 +419,20 @@ public class BrickletCurrent12 extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletCurrent12.AnalogValueReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletCurrent12.AnalogValueReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the analog value is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the analog value is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the analog value is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the analog value is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the analog value is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the analog value is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the analog value is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the analog value is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setAnalogValueCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -480,17 +465,17 @@ public class BrickletCurrent12 extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickletCurrent12.CurrentReachedListener},
 	 * * {@link BrickletCurrent12.AnalogValueReachedListener}
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletCurrent12#setCurrentCallbackThreshold(char, short, short)},
 	 * * {@link BrickletCurrent12#setAnalogValueCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -523,9 +508,8 @@ public class BrickletCurrent12 extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,9 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Device for controlling Stacks and four Bricklets
@@ -108,6 +92,12 @@ public class BrickMaster extends Device {
 	public final static byte FUNCTION_GET_ETHERNET_STATUS = (byte)68;
 	public final static byte FUNCTION_SET_ETHERNET_HOSTNAME = (byte)69;
 	public final static byte FUNCTION_SET_ETHERNET_MAC_ADDRESS = (byte)70;
+	public final static byte FUNCTION_SET_ETHERNET_WEBSOCKET_CONFIGURATION = (byte)71;
+	public final static byte FUNCTION_GET_ETHERNET_WEBSOCKET_CONFIGURATION = (byte)72;
+	public final static byte FUNCTION_SET_ETHERNET_AUTHENTICATION_SECRET = (byte)73;
+	public final static byte FUNCTION_GET_ETHERNET_AUTHENTICATION_SECRET = (byte)74;
+	public final static byte FUNCTION_SET_WIFI_AUTHENTICATION_SECRET = (byte)75;
+	public final static byte FUNCTION_GET_WIFI_AUTHENTICATION_SECRET = (byte)76;
 	public final static byte FUNCTION_GET_PROTOCOL1_BRICKLET_NAME = (byte)241;
 	public final static byte FUNCTION_GET_CHIP_TEMPERATURE = (byte)242;
 	public final static byte FUNCTION_RESET = (byte)243;
@@ -309,6 +299,15 @@ public class BrickMaster extends Device {
 		}
 	}
 
+	public class EthernetWebsocketConfiguration {
+		public short sockets;
+		public int port;
+
+		public String toString() {
+			return "[" + "sockets = " + sockets + ", " + "port = " + port + "]";
+		}
+	}
+
 	public class Protocol1BrickletName {
 		public char port;
 		public short protocolVersion;
@@ -324,13 +323,13 @@ public class BrickMaster extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickMaster#setStackCurrentCallbackPeriod(long)}. The parameter is the current of the
 	 * sensor.
-	 *
+	 * 
 	 * {@link BrickMaster.StackCurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
-	public interface StackCurrentListener {
+	public interface StackCurrentListener extends DeviceListener {
 		public void stackCurrent(int current);
 	}
 
@@ -338,13 +337,13 @@ public class BrickMaster extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickMaster#setStackVoltageCallbackPeriod(long)}. The parameter is the voltage of the
 	 * sensor.
-	 *
+	 * 
 	 * {@link BrickMaster.StackVoltageListener} is only triggered if the voltage has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
-	public interface StackVoltageListener {
+	public interface StackVoltageListener extends DeviceListener {
 		public void stackVoltage(int voltage);
 	}
 
@@ -352,27 +351,27 @@ public class BrickMaster extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickMaster#setUSBVoltageCallbackPeriod(long)}. The parameter is the USB voltage
 	 * in mV.
-	 *
+	 * 
 	 * {@link BrickMaster.USBVoltageListener} is only triggered if the USB voltage has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
-	public interface USBVoltageListener {
-		public void usbvoltage(int voltage);
+	public interface USBVoltageListener extends DeviceListener {
+		public void usbVoltage(int voltage);
 	}
 
 	/**
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickMaster#setStackCurrentCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the stack current in mA.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickMaster#setDebouncePeriod(long)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
-	public interface StackCurrentReachedListener {
+	public interface StackCurrentReachedListener extends DeviceListener {
 		public void stackCurrentReached(int current);
 	}
 
@@ -380,13 +379,13 @@ public class BrickMaster extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickMaster#setStackVoltageCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the stack voltage in mV.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickMaster#setDebouncePeriod(long)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
-	public interface StackVoltageReachedListener {
+	public interface StackVoltageReachedListener extends DeviceListener {
 		public void stackVoltageReached(int voltage);
 	}
 
@@ -394,14 +393,14 @@ public class BrickMaster extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickMaster#setUSBVoltageCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the voltage of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickMaster#setDebouncePeriod(long)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
-	public interface USBVoltageReachedListener {
-		public void usbvoltageReached(int voltage);
+	public interface USBVoltageReachedListener extends DeviceListener {
+		public void usbVoltageReached(int voltage);
 	}
 
 	/**
@@ -413,7 +412,7 @@ public class BrickMaster extends Device {
 
 		apiVersion[0] = 2;
 		apiVersion[1] = 0;
-		apiVersion[2] = 2;
+		apiVersion[2] = 3;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_STACK_VOLTAGE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_STACK_CURRENT)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_SET_EXTENSION_TYPE)] = RESPONSE_EXPECTED_FLAG_FALSE;
@@ -478,6 +477,12 @@ public class BrickMaster extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_ETHERNET_STATUS)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_SET_ETHERNET_HOSTNAME)] = RESPONSE_EXPECTED_FLAG_FALSE;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_SET_ETHERNET_MAC_ADDRESS)] = RESPONSE_EXPECTED_FLAG_FALSE;
+		responseExpected[IPConnection.unsignedByte(FUNCTION_SET_ETHERNET_WEBSOCKET_CONFIGURATION)] = RESPONSE_EXPECTED_FLAG_FALSE;
+		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_ETHERNET_WEBSOCKET_CONFIGURATION)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
+		responseExpected[IPConnection.unsignedByte(FUNCTION_SET_ETHERNET_AUTHENTICATION_SECRET)] = RESPONSE_EXPECTED_FLAG_FALSE;
+		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_ETHERNET_AUTHENTICATION_SECRET)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
+		responseExpected[IPConnection.unsignedByte(FUNCTION_SET_WIFI_AUTHENTICATION_SECRET)] = RESPONSE_EXPECTED_FLAG_FALSE;
+		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_WIFI_AUTHENTICATION_SECRET)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_PROTOCOL1_BRICKLET_NAME)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_CHIP_TEMPERATURE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(FUNCTION_RESET)] = RESPONSE_EXPECTED_FLAG_FALSE;
@@ -489,7 +494,7 @@ public class BrickMaster extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_STACK_VOLTAGE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_USB_VOLTAGE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_STACK_CURRENT] = new CallbackListener() {
+		callbacks[CALLBACK_STACK_CURRENT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -502,7 +507,7 @@ public class BrickMaster extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_STACK_VOLTAGE] = new CallbackListener() {
+		callbacks[CALLBACK_STACK_VOLTAGE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -515,7 +520,7 @@ public class BrickMaster extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_USB_VOLTAGE] = new CallbackListener() {
+		callbacks[CALLBACK_USB_VOLTAGE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -523,12 +528,12 @@ public class BrickMaster extends Device {
 				int voltage = IPConnection.unsignedShort(bb.getShort());
 
 				for(USBVoltageListener listener: listenerUSBVoltage) {
-					listener.usbvoltage(voltage);
+					listener.usbVoltage(voltage);
 				}
 			}
 		};
 
-		callbacks[CALLBACK_STACK_CURRENT_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_STACK_CURRENT_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -541,7 +546,7 @@ public class BrickMaster extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_STACK_VOLTAGE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_STACK_VOLTAGE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -554,7 +559,7 @@ public class BrickMaster extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_USB_VOLTAGE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_USB_VOLTAGE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -562,7 +567,7 @@ public class BrickMaster extends Device {
 				int voltage = IPConnection.unsignedShort(bb.getShort());
 
 				for(USBVoltageReachedListener listener: listenerUSBVoltageReached) {
-					listener.usbvoltageReached(voltage);
+					listener.usbVoltageReached(voltage);
 				}
 			}
 		};
@@ -570,7 +575,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the stack voltage in mV. The stack voltage is the
-	 * voltage that is supplied via the stack, i.e. it is given by a
+	 * voltage that is supplied via the stack, i.e. it is given by a 
 	 * Step-Down or Step-Up Power Supply.
 	 */
 	public int getStackVoltage() throws TimeoutException, NotConnectedException {
@@ -605,22 +610,22 @@ public class BrickMaster extends Device {
 	}
 
 	/**
-	 * Writes the extension type to the EEPROM of a specified extension.
-	 * The extension is either 0 or 1 (0 is the on the bottom, 1 is the on on top,
+	 * Writes the extension type to the EEPROM of a specified extension. 
+	 * The extension is either 0 or 1 (0 is the on the bottom, 1 is the on on top, 
 	 * if only one extension is present use 0).
-	 *
+	 * 
 	 * Possible extension types:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Type", "Description"
-	 *
-	 *  "1",    "Chibi"
-	 *  "2",    "RS485"
-	 *  "3",    "WIFI"
-	 *  "4",    "Ethernet"
+	 *  &quot;Type&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;1&quot;,    &quot;Chibi&quot;
+	 *  &quot;2&quot;,    &quot;RS485&quot;
+	 *  &quot;3&quot;,    &quot;WIFI&quot;
+	 *  &quot;4&quot;,    &quot;Ethernet&quot;
 	 * \endverbatim
-	 *
-	 * The extension type is already set when bought and it can be set with the
+	 * 
+	 * The extension type is already set when bought and it can be set with the 
 	 * Brick Viewer, it is unlikely that you need this function.
 	 */
 	public void setExtensionType(short extension, long exttype) throws TimeoutException, NotConnectedException {
@@ -650,8 +655,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns *true* if a Chibi Extension is available to be used by the Master Brick.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public boolean isChibiPresent() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_IS_CHIBI_PRESENT, this);
@@ -668,12 +671,10 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Sets the address (1-255) belonging to the Chibi Extension.
-	 *
-	 * It is possible to set the address with the Brick Viewer and it will be
+	 * 
+	 * It is possible to set the address with the Brick Viewer and it will be 
 	 * saved in the EEPROM of the Chibi Extension, it does not
 	 * have to be set on every startup.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public void setChibiAddress(short address) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_CHIBI_ADDRESS, this);
@@ -684,8 +685,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the address as set by {@link BrickMaster#setChibiAddress(short)}.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public short getChibiAddress() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIBI_ADDRESS, this);
@@ -703,12 +702,10 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the address (1-255) of the Chibi Master. This address is used if the
 	 * Chibi Extension is used as slave (i.e. it does not have a USB connection).
-	 *
-	 * It is possible to set the address with the Brick Viewer and it will be
+	 * 
+	 * It is possible to set the address with the Brick Viewer and it will be 
 	 * saved in the EEPROM of the Chibi Extension, it does not
 	 * have to be set on every startup.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public void setChibiMasterAddress(short address) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_CHIBI_MASTER_ADDRESS, this);
@@ -719,8 +716,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the address as set by {@link BrickMaster#setChibiMasterAddress(short)}.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public short getChibiMasterAddress() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIBI_MASTER_ADDRESS, this);
@@ -738,21 +733,19 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets up to 254 slave addresses. Valid addresses are in range 1-255. 0 has a
 	 * special meaning, it is used as list terminator and not allowed as normal slave
-	 * address. The address numeration (via ``num`` parameter) has to be used
+	 * address. The address numeration (via \c num parameter) has to be used
 	 * ascending from 0. For example: If you use the Chibi Extension in Master mode
 	 * (i.e. the stack has an USB connection) and you want to talk to three other
 	 * Chibi stacks with the slave addresses 17, 23, and 42, you should call with
 	 * ``(0, 17)``, ``(1, 23)``, ``(2, 42)`` and ``(3, 0)``. The last call with
 	 * ``(3, 0)`` is a list terminator and indicates that the Chibi slave address
 	 * list contains 3 addresses in this case.
-	 *
+	 * 
 	 * It is possible to set the addresses with the Brick Viewer, that will take care
 	 * of correct address numeration and list termination.
-	 *
+	 * 
 	 * The slave addresses will be saved in the EEPROM of the Chibi Extension, they
 	 * don't have to be set on every startup.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public void setChibiSlaveAddress(short num, short address) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_SET_CHIBI_SLAVE_ADDRESS, this);
@@ -763,10 +756,8 @@ public class BrickMaster extends Device {
 	}
 
 	/**
-	 * Returns the slave address for a given ``num`` as set by
+	 * Returns the slave address for a given \c num as set by
 	 * {@link BrickMaster#setChibiSlaveAddress(short, short)}.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public short getChibiSlaveAddress(short num) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_CHIBI_SLAVE_ADDRESS, this);
@@ -785,8 +776,6 @@ public class BrickMaster extends Device {
 	/**
 	 * Returns the signal strength in dBm. The signal strength updates every time a
 	 * packet is received.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public short getChibiSignalStrength() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIBI_SIGNAL_STRENGTH, this);
@@ -806,8 +795,6 @@ public class BrickMaster extends Device {
 	 * communication. If these errors start rising, it is likely that either the
 	 * distance between two Chibi stacks is becoming too big or there are
 	 * interferences.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public ChibiErrorLog getChibiErrorLog() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIBI_ERROR_LOG, this);
@@ -828,21 +815,19 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Sets the Chibi frequency range for the Chibi Extension. Possible values are:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Type", "Description"
-	 *
-	 *  "0",    "OQPSK 868MHz (Europe)"
-	 *  "1",    "OQPSK 915MHz (US)"
-	 *  "2",    "OQPSK 780MHz (China)"
-	 *  "3",    "BPSK40 915MHz"
+	 *  &quot;Type&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;,    &quot;OQPSK 868MHz (Europe)&quot;
+	 *  &quot;1&quot;,    &quot;OQPSK 915MHz (US)&quot;
+	 *  &quot;2&quot;,    &quot;OQPSK 780MHz (China)&quot;
+	 *  &quot;3&quot;,    &quot;BPSK40 915MHz&quot;
 	 * \endverbatim
-	 *
-	 * It is possible to set the frequency with the Brick Viewer and it will be
+	 * 
+	 * It is possible to set the frequency with the Brick Viewer and it will be 
 	 * saved in the EEPROM of the Chibi Extension, it does not
 	 * have to be set on every startup.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public void setChibiFrequency(short frequency) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_CHIBI_FREQUENCY, this);
@@ -853,8 +838,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the frequency value as set by {@link BrickMaster#setChibiFrequency(short)}.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public short getChibiFrequency() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIBI_FREQUENCY, this);
@@ -872,21 +855,19 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the channel used by the Chibi Extension. Possible channels are
 	 * different for different frequencies:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Frequency",             "Possible Channels"
-	 *
-	 *  "OQPSK 868MHz (Europe)", "0"
-	 *  "OQPSK 915MHz (US)",     "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
-	 *  "OQPSK 780MHz (China)",  "0, 1, 2, 3"
-	 *  "BPSK40 915MHz",         "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+	 *  &quot;Frequency&quot;,             &quot;Possible Channels&quot;
+	 * 
+	 *  &quot;OQPSK 868MHz (Europe)&quot;, &quot;0&quot;
+	 *  &quot;OQPSK 915MHz (US)&quot;,     &quot;1, 2, 3, 4, 5, 6, 7, 8, 9, 10&quot;
+	 *  &quot;OQPSK 780MHz (China)&quot;,  &quot;0, 1, 2, 3&quot;
+	 *  &quot;BPSK40 915MHz&quot;,         &quot;1, 2, 3, 4, 5, 6, 7, 8, 9, 10&quot;
 	 * \endverbatim
-	 *
-	 * It is possible to set the channel with the Brick Viewer and it will be
+	 * 
+	 * It is possible to set the channel with the Brick Viewer and it will be 
 	 * saved in the EEPROM of the Chibi Extension, it does not
 	 * have to be set on every startup.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public void setChibiChannel(short channel) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_CHIBI_CHANNEL, this);
@@ -897,8 +878,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the channel as set by {@link BrickMaster#setChibiChannel(short)}.
-	 *
-	 * .. versionadded:: 1.1.0~(Firmware)
 	 */
 	public short getChibiChannel() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIBI_CHANNEL, this);
@@ -915,8 +894,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns *true* if a RS485 Extension is available to be used by the Master Brick.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public boolean isRS485Present() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_IS_RS485_PRESENT, this);
@@ -933,15 +910,13 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Sets the address (0-255) belonging to the RS485 Extension.
-	 *
+	 * 
 	 * Set to 0 if the RS485 Extension should be the RS485 Master (i.e.
 	 * connected to a PC via USB).
-	 *
-	 * It is possible to set the address with the Brick Viewer and it will be
+	 * 
+	 * It is possible to set the address with the Brick Viewer and it will be 
 	 * saved in the EEPROM of the RS485 Extension, it does not
 	 * have to be set on every startup.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public void setRS485Address(short address) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_RS485_ADDRESS, this);
@@ -952,8 +927,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the address as set by {@link BrickMaster#setRS485Address(short)}.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public short getRS485Address() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_RS485_ADDRESS, this);
@@ -978,14 +951,12 @@ public class BrickMaster extends Device {
 	 * ``(0, 17)``, ``(1, 23)``, ``(2, 42)`` and ``(3, 0)``. The last call with
 	 * ``(3, 0)`` is a list terminator and indicates that the RS485 slave address list
 	 * contains 3 addresses in this case.
-	 *
+	 * 
 	 * It is possible to set the addresses with the Brick Viewer, that will take care
 	 * of correct address numeration and list termination.
-	 *
+	 * 
 	 * The slave addresses will be saved in the EEPROM of the Chibi Extension, they
 	 * don't have to be set on every startup.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public void setRS485SlaveAddress(short num, short address) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_SET_RS485_SLAVE_ADDRESS, this);
@@ -998,8 +969,6 @@ public class BrickMaster extends Device {
 	/**
 	 * Returns the slave address for a given ``num`` as set by
 	 * {@link BrickMaster#setRS485SlaveAddress(short, short)}.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public short getRS485SlaveAddress(short num) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_RS485_SLAVE_ADDRESS, this);
@@ -1020,8 +989,6 @@ public class BrickMaster extends Device {
 	 * If this counter starts rising, it is likely that the distance
 	 * between the RS485 nodes is too big or there is some kind of
 	 * interference.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public int getRS485ErrorLog() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_RS485_ERROR_LOG, this);
@@ -1042,15 +1009,13 @@ public class BrickMaster extends Device {
 	 * The maximum recommended baud rate is 2000000 (2Mbit/s).
 	 * Possible values for parity are 'n' (none), 'e' (even) and 'o' (odd).
 	 * Possible values for stop bits are 1 and 2.
-	 *
+	 * 
 	 * If your RS485 is unstable (lost messages etc.), the first thing you should
 	 * try is to decrease the speed. On very large bus (e.g. 1km), you probably
 	 * should use a value in the range of 100000 (100kbit/s).
-	 *
+	 * 
 	 * The values are stored in the EEPROM and only applied on startup. That means
 	 * you have to restart the Master Brick after configuration.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public void setRS485Configuration(long speed, char parity, short stopbits) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)14, FUNCTION_SET_RS485_CONFIGURATION, this);
@@ -1063,8 +1028,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the configuration as set by {@link BrickMaster#setRS485Configuration(long, char, short)}.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public RS485Configuration getRS485Configuration() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_RS485_CONFIGURATION, this);
@@ -1084,8 +1047,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns *true* if a WIFI Extension is available to be used by the Master Brick.
-	 *
-	 * .. versionadded:: 1.2.0~(Firmware)
 	 */
 	public boolean isWifiPresent() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_IS_WIFI_PRESENT, this);
@@ -1103,33 +1064,31 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the configuration of the WIFI Extension. The ``ssid`` can have a max length
 	 * of 32 characters. Possible values for ``connection`` are:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Description"
-	 *
-	 *  "0", "DHCP"
-	 *  "1", "Static IP"
-	 *  "2", "Access Point: DHCP"
-	 *  "3", "Access Point: Static IP"
-	 *  "4", "Ad Hoc: DHCP"
-	 *  "5", "Ad Hoc: Static IP"
+	 *  &quot;Value&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;, &quot;DHCP&quot;
+	 *  &quot;1&quot;, &quot;Static IP&quot;
+	 *  &quot;2&quot;, &quot;Access Point: DHCP&quot;
+	 *  &quot;3&quot;, &quot;Access Point: Static IP&quot;
+	 *  &quot;4&quot;, &quot;Ad Hoc: DHCP&quot;
+	 *  &quot;5&quot;, &quot;Ad Hoc: Static IP&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * If you set ``connection`` to one of the static IP options then you have to
 	 * supply ``ip``, ``subnet_mask`` and ``gateway`` as an array of size 4 (first
 	 * element of the array is the least significant byte of the address). If
 	 * ``connection`` is set to one of the DHCP options then ``ip``, ``subnet_mask``
 	 * and ``gateway`` are ignored, you can set them to 0.
-	 *
+	 * 
 	 * The last parameter is the port that your program will connect to. The
 	 * default port, that is used by brickd, is 4223.
-	 *
+	 * 
 	 * The values are stored in the EEPROM and only applied on startup. That means
 	 * you have to restart the Master Brick after configuration.
-	 *
+	 * 
 	 * It is recommended to use the Brick Viewer to set the WIFI configuration.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public void setWifiConfiguration(String ssid, short connection, short[] ip, short[] subnetMask, short[] gateway, int port) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)55, FUNCTION_SET_WIFI_CONFIGURATION, this);
@@ -1161,8 +1120,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the configuration as set by {@link BrickMaster#setWifiConfiguration(String, short, short[], short[], short[], int)}.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public WifiConfiguration getWifiConfiguration() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_WIFI_CONFIGURATION, this);
@@ -1195,49 +1152,47 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the encryption of the WIFI Extension. The first parameter is the
 	 * type of the encryption. Possible values are:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Description"
-	 *
-	 *  "0", "WPA/WPA2"
-	 *  "1", "WPA Enterprise (EAP-FAST, EAP-TLS, EAP-TTLS, PEAP)"
-	 *  "2", "WEP"
-	 *  "3", "No Encryption"
+	 *  &quot;Value&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;, &quot;WPA/WPA2&quot;
+	 *  &quot;1&quot;, &quot;WPA Enterprise (EAP-FAST, EAP-TLS, EAP-TTLS, PEAP)&quot;
+	 *  &quot;2&quot;, &quot;WEP&quot;
+	 *  &quot;3&quot;, &quot;No Encryption&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The ``key`` has a max length of 50 characters and is used if ``encryption``
 	 * is set to 0 or 2 (WPA/WPA2 or WEP). Otherwise the value is ignored.
-	 *
+	 * 
 	 * For WPA/WPA2 the key has to be at least 8 characters long. If you want to set
 	 * a key with more than 50 characters, see {@link BrickMaster#setLongWifiKey(String)}.
-	 *
+	 * 
 	 * For WEP the key has to be either 10 or 26 hexadecimal digits long. It is
 	 * possible to set the WEP ``key_index`` (1-4). If you don't know your
 	 * ``key_index``, it is likely 1.
-	 *
+	 * 
 	 * If you choose WPA Enterprise as encryption, you have to set ``eap_options`` and
 	 * the length of the certificates (for other encryption types these parameters
 	 * are ignored). The certificate length are given in byte and the certificates
 	 * themselves can be set with {@link BrickMaster#setWifiCertificate(int, short[], short)}. ``eap_options`` consist
 	 * of the outer authentication (bits 1-2), inner authentication (bit 3) and
 	 * certificate type (bits 4-5):
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Bits", "Description"
-	 *
-	 *  "outer authentication", "1-2", "0=EAP-FAST, 1=EAP-TLS, 2=EAP-TTLS, 3=EAP-PEAP"
-	 *  "inner authentication", "3", "0=EAP-MSCHAP, 1=EAP-GTC"
-	 *  "certificate type", "4-5", "0=CA Certificate, 1=Client Certificate, 2=Private Key"
+	 *  &quot;Option&quot;, &quot;Bits&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;outer authentication&quot;, &quot;1-2&quot;, &quot;0=EAP-FAST, 1=EAP-TLS, 2=EAP-TTLS, 3=EAP-PEAP&quot;
+	 *  &quot;inner authentication&quot;, &quot;3&quot;, &quot;0=EAP-MSCHAP, 1=EAP-GTC&quot;
+	 *  &quot;certificate type&quot;, &quot;4-5&quot;, &quot;0=CA Certificate, 1=Client Certificate, 2=Private Key&quot;
 	 * \endverbatim
-	 *
-	 * Example for EAP-TTLS + EAP-GTC + Private Key: ``option = 2 | (1 << 2) | (2 << 3)``.
-	 *
+	 * 
+	 * Example for EAP-TTLS + EAP-GTC + Private Key: ``option = 2 | (1 &lt;&lt; 2) | (2 &lt;&lt; 3)``.
+	 * 
 	 * The values are stored in the EEPROM and only applied on startup. That means
 	 * you have to restart the Master Brick after configuration.
-	 *
+	 * 
 	 * It is recommended to use the Brick Viewer to set the WIFI encryption.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public void setWifiEncryption(short encryption, String key, short keyIndex, short eapOptions, int caCertificateLength, int clientCertificateLength, int privateKeyLength) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)67, FUNCTION_SET_WIFI_ENCRYPTION, this);
@@ -1261,8 +1216,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the encryption as set by {@link BrickMaster#setWifiEncryption(short, String, short, short, int, int, int)}.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public WifiEncryption getWifiEncryption() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_WIFI_ENCRYPTION, this);
@@ -1288,20 +1241,18 @@ public class BrickMaster extends Device {
 	 * Returns the status of the WIFI Extension. The ``state`` is updated automatically,
 	 * all of the other parameters are updated on startup and every time
 	 * {@link BrickMaster#refreshWifiStatus()} is called.
-	 *
+	 * 
 	 * Possible states are:
-	 *
+	 * 
 	 * \verbatim
-	 *  "State", "Description"
-	 *
-	 *  "0", "Disassociated"
-	 *  "1", "Associated"
-	 *  "2", "Associating"
-	 *  "3", "Error"
-	 *  "255", "Not initialized yet"
+	 *  &quot;State&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;, &quot;Disassociated&quot;
+	 *  &quot;1&quot;, &quot;Associated&quot;
+	 *  &quot;2&quot;, &quot;Associating&quot;
+	 *  &quot;3&quot;, &quot;Error&quot;
+	 *  &quot;255&quot;, &quot;Not initialized yet&quot;
 	 * \endverbatim
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public WifiStatus getWifiStatus() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_WIFI_STATUS, this);
@@ -1348,8 +1299,6 @@ public class BrickMaster extends Device {
 	 * unfortunately time consuming. This means, that it might take some ms
 	 * until the stack with attached WIFI Extension reacts again after this
 	 * function is called.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public void refreshWifiStatus() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_REFRESH_WIFI_STATUS, this);
@@ -1360,24 +1309,22 @@ public class BrickMaster extends Device {
 	/**
 	 * This function is used to set the certificate as well as password and username
 	 * for WPA Enterprise. To set the username use index 0xFFFF,
-	 * to set the password use index 0xFFFE. The max length of username and
+	 * to set the password use index 0xFFFE. The max length of username and 
 	 * password is 32.
-	 *
+	 * 
 	 * The certificate is written in chunks of size 32 and the index is used as
 	 * the index of the chunk. ``data_length`` should nearly always be 32. Only
 	 * the last chunk can have a length that is not equal to 32.
-	 *
+	 * 
 	 * The starting index of the CA Certificate is 0, of the Client Certificate
 	 * 10000 and for the Private Key 20000. Maximum sizes are 1312, 1312 and
 	 * 4320 byte respectively.
-	 *
+	 * 
 	 * The values are stored in the EEPROM and only applied on startup. That means
 	 * you have to restart the Master Brick after uploading the certificate.
-	 *
+	 * 
 	 * It is recommended to use the Brick Viewer to set the certificate, username
 	 * and password.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public void setWifiCertificate(int index, short[] data, short dataLength) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)43, FUNCTION_SET_WIFI_CERTIFICATE, this);
@@ -1393,8 +1340,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the certificate for a given index as set by {@link BrickMaster#setWifiCertificate(int, short[], short)}.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public WifiCertificate getWifiCertificate(int index) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_GET_WIFI_CERTIFICATE, this);
@@ -1417,17 +1362,15 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Sets the power mode of the WIFI Extension. Possible modes are:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Mode", "Description"
-	 *
-	 *  "0", "Full Speed (high power consumption, high throughput)"
-	 *  "1", "Low Power (low power consumption, low throughput)"
+	 *  &quot;Mode&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;, &quot;Full Speed (high power consumption, high throughput)&quot;
+	 *  &quot;1&quot;, &quot;Low Power (low power consumption, low throughput)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is 0 (Full Speed).
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public void setWifiPowerMode(short mode) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_WIFI_POWER_MODE, this);
@@ -1438,8 +1381,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the power mode as set by {@link BrickMaster#setWifiPowerMode(short)}.
-	 *
-	 * .. versionadded:: 1.3.0~(Firmware)
 	 */
 	public short getWifiPowerMode() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_WIFI_POWER_MODE, this);
@@ -1458,19 +1399,17 @@ public class BrickMaster extends Device {
 	 * Returns informations about the WIFI receive buffer. The WIFI
 	 * receive buffer has a max size of 1500 byte and if data is transfered
 	 * too fast, it might overflow.
-	 *
-	 * The return values are the number of overflows, the low watermark
+	 * 
+	 * The return values are the number of overflows, the low watermark 
 	 * (i.e. the smallest number of bytes that were free in the buffer) and
 	 * the bytes that are currently used.
-	 *
+	 * 
 	 * You should always try to keep the buffer empty, otherwise you will
 	 * have a permanent latency. A good rule of thumb is, that you can transfer
 	 * 1000 messages per second without problems.
-	 *
+	 * 
 	 * Try to not send more then 50 messages at a time without any kind of
 	 * break between them.
-	 *
-	 * .. versionadded:: 1.3.2~(Firmware)
 	 */
 	public WifiBufferInfo getWifiBufferInfo() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_WIFI_BUFFER_INFO, this);
@@ -1490,18 +1429,16 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Sets the regulatory domain of the WIFI Extension. Possible domains are:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Domain", "Description"
-	 *
-	 *  "0", "FCC: Channel 1-11 (N/S America, Australia, New Zealand)"
-	 *  "1", "ETSI: Channel 1-13 (Europe, Middle East, Africa)"
-	 *  "2", "TELEC: Channel 1-14 (Japan)"
+	 *  &quot;Domain&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;, &quot;FCC: Channel 1-11 (N/S America, Australia, New Zealand)&quot;
+	 *  &quot;1&quot;, &quot;ETSI: Channel 1-13 (Europe, Middle East, Africa)&quot;
+	 *  &quot;2&quot;, &quot;TELEC: Channel 1-14 (Japan)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is 1 (ETSI).
-	 *
-	 * .. versionadded:: 1.3.4~(Firmware)
 	 */
 	public void setWifiRegulatoryDomain(short domain) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_SET_WIFI_REGULATORY_DOMAIN, this);
@@ -1512,8 +1449,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the regulatory domain as set by {@link BrickMaster#setWifiRegulatoryDomain(short)}.
-	 *
-	 * .. versionadded:: 1.3.4~(Firmware)
 	 */
 	public short getWifiRegulatoryDomain() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_WIFI_REGULATORY_DOMAIN, this);
@@ -1530,8 +1465,6 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the USB voltage in mV.
-	 *
-	 * .. versionadded:: 1.3.5~(Firmware)
 	 */
 	public int getUSBVoltage() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_USB_VOLTAGE, this);
@@ -1549,12 +1482,12 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets a long WIFI key (up to 63 chars, at least 8 chars) for WPA encryption.
 	 * This key will be used
-	 * if the key in {@link BrickMaster#setWifiEncryption(short, String, short, short, int, int, int)} is set to "-". In the old protocol,
+	 * if the key in {@link BrickMaster#setWifiEncryption(short, String, short, short, int, int, int)} is set to &quot;-&quot;. In the old protocol,
 	 * a payload of size 63 was not possible, so the maximum key length was 50 chars.
-	 *
+	 * 
 	 * With the new protocol this is possible, since we didn't want to break API,
 	 * this function was added additionally.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.2~(Firmware)
 	 */
 	public void setLongWifiKey(String key) throws TimeoutException, NotConnectedException {
@@ -1573,7 +1506,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the encryption key as set by {@link BrickMaster#setLongWifiKey(String)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.2~(Firmware)
 	 */
 	public String getLongWifiKey() throws TimeoutException, NotConnectedException {
@@ -1590,11 +1523,11 @@ public class BrickMaster extends Device {
 	}
 
 	/**
-	 * Sets the hostname of the WIFI Extension. The hostname will be displayed
+	 * Sets the hostname of the WIFI Extension. The hostname will be displayed 
 	 * by access points as the hostname in the DHCP clients table.
-	 *
+	 * 
 	 * Setting an empty String will restore the default hostname.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setWifiHostname(String hostname) throws TimeoutException, NotConnectedException {
@@ -1613,9 +1546,9 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the hostname as set by {@link BrickMaster#getWifiHostname()}.
-	 *
+	 * 
 	 * An empty String means, that the default hostname is used.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public String getWifiHostname() throws TimeoutException, NotConnectedException {
@@ -1634,12 +1567,12 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickMaster.StackCurrentListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickMaster.StackCurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setStackCurrentCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -1651,7 +1584,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the period as set by :func:`SetCurrentCallbackPeriod`.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public long getStackCurrentCallbackPeriod() throws TimeoutException, NotConnectedException {
@@ -1670,12 +1603,12 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickMaster.StackVoltageListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickMaster.StackVoltageListener} is only triggered if the voltage has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setStackVoltageCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -1687,7 +1620,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the period as set by {@link BrickMaster#setStackVoltageCallbackPeriod(long)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public long getStackVoltageCallbackPeriod() throws TimeoutException, NotConnectedException {
@@ -1706,12 +1639,12 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickMaster.USBVoltageListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickMaster.USBVoltageListener} is only triggered if the voltage has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setUSBVoltageCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -1723,7 +1656,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the period as set by {@link BrickMaster#setUSBVoltageCallbackPeriod(long)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public long getUSBVoltageCallbackPeriod() throws TimeoutException, NotConnectedException {
@@ -1740,22 +1673,22 @@ public class BrickMaster extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickMaster.StackCurrentReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickMaster.StackCurrentReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the current is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the current is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the current is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the current is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setStackCurrentCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -1769,7 +1702,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the threshold as set by {@link BrickMaster#setStackCurrentCallbackThreshold(char, int, int)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public StackCurrentCallbackThreshold getStackCurrentCallbackThreshold() throws TimeoutException, NotConnectedException {
@@ -1789,22 +1722,22 @@ public class BrickMaster extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the :func:`StackStackVoltageReached` listener.
-	 *
+	 * Sets the thresholds for the :func:`StackStackVoltageReached` listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the voltage is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the voltage is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the voltage is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the voltage is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setStackVoltageCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -1818,7 +1751,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the threshold as set by {@link BrickMaster#setStackVoltageCallbackThreshold(char, int, int)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public StackVoltageCallbackThreshold getStackVoltageCallbackThreshold() throws TimeoutException, NotConnectedException {
@@ -1838,22 +1771,22 @@ public class BrickMaster extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickMaster.USBVoltageReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickMaster.USBVoltageReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the voltage is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the voltage is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the voltage is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the voltage is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setUSBVoltageCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -1867,7 +1800,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the threshold as set by {@link BrickMaster#setUSBVoltageCallbackThreshold(char, int, int)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public USBVoltageCallbackThreshold getUSBVoltageCallbackThreshold() throws TimeoutException, NotConnectedException {
@@ -1888,21 +1821,21 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickMaster.StackCurrentReachedListener},
 	 * * {@link BrickMaster.StackVoltageReachedListener},
 	 * * {@link BrickMaster.USBVoltageReachedListener}
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickMaster#setStackCurrentCallbackThreshold(char, int, int)},
 	 * * {@link BrickMaster#setStackVoltageCallbackThreshold(char, int, int)},
 	 * * {@link BrickMaster#setUSBVoltageCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -1914,7 +1847,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the debounce period as set by {@link BrickMaster#setDebouncePeriod(long)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
 	public long getDebouncePeriod() throws TimeoutException, NotConnectedException {
@@ -1933,7 +1866,7 @@ public class BrickMaster extends Device {
 	/**
 	 * Returns *true* if a Ethernet Extension is available to be used by the Master
 	 * Brick.
-	 *
+	 * 
 	 * .. versionadded:: 2.1.0~(Firmware)
 	 */
 	public boolean isEthernetPresent() throws TimeoutException, NotConnectedException {
@@ -1952,28 +1885,28 @@ public class BrickMaster extends Device {
 	/**
 	 * Sets the configuration of the Ethernet Extension. Possible values for
 	 * ``connection`` are:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Description"
-	 *
-	 *  "0", "DHCP"
-	 *  "1", "Static IP"
+	 *  &quot;Value&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;0&quot;, &quot;DHCP&quot;
+	 *  &quot;1&quot;, &quot;Static IP&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * If you set ``connection`` to static IP options then you have to supply ``ip``,
 	 * ``subnet_mask`` and ``gateway`` as an array of size 4 (first element of the
 	 * array is the least significant byte of the address). If ``connection`` is set
 	 * to the DHCP options then ``ip``, ``subnet_mask`` and ``gateway`` are ignored,
 	 * you can set them to 0.
-	 *
+	 * 
 	 * The last parameter is the port that your program will connect to. The
 	 * default port, that is used by brickd, is 4223.
-	 *
+	 * 
 	 * The values are stored in the EEPROM and only applied on startup. That means
 	 * you have to restart the Master Brick after configuration.
-	 *
+	 * 
 	 * It is recommended to use the Brick Viewer to set the Ethernet configuration.
-	 *
+	 * 
 	 * .. versionadded:: 2.1.0~(Firmware)
 	 */
 	public void setEthernetConfiguration(short connection, short[] ip, short[] subnetMask, short[] gateway, int port) throws TimeoutException, NotConnectedException {
@@ -1998,7 +1931,7 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the configuration as set by {@link BrickMaster#setEthernetConfiguration(short, short[], short[], short[], int)}.
-	 *
+	 * 
 	 * .. versionadded:: 2.1.0~(Firmware)
 	 */
 	public EthernetConfiguration getEthernetConfiguration() throws TimeoutException, NotConnectedException {
@@ -2030,15 +1963,15 @@ public class BrickMaster extends Device {
 
 	/**
 	 * Returns the status of the Ethernet Extension.
-	 *
+	 * 
 	 * ``mac_address``, ``ip``, ``subnet_mask`` and ``gateway`` are given as an array.
 	 * The first element of the array is the least significant byte of the address.
-	 *
+	 * 
 	 * ``rx_count`` and ``tx_count`` are the number of bytes that have been
 	 * received/send since last restart.
-	 *
+	 * 
 	 * ``hostname`` is the currently used hostname.
-	 *
+	 * 
 	 * .. versionadded:: 2.1.0~(Firmware)
 	 */
 	public EthernetStatus getEthernetStatus() throws TimeoutException, NotConnectedException {
@@ -2074,13 +2007,13 @@ public class BrickMaster extends Device {
 	}
 
 	/**
-	 * Sets the hostname of the Ethernet Extension. The hostname will be displayed
+	 * Sets the hostname of the Ethernet Extension. The hostname will be displayed 
 	 * by access points as the hostname in the DHCP clients table.
-	 *
+	 * 
 	 * Setting an empty String will restore the default hostname.
-	 *
+	 * 
 	 * The current hostname can be discovered with {@link BrickMaster#getEthernetStatus()}.
-	 *
+	 * 
 	 * .. versionadded:: 2.1.0~(Firmware)
 	 */
 	public void setEthernetHostname(String hostname) throws TimeoutException, NotConnectedException {
@@ -2101,7 +2034,7 @@ public class BrickMaster extends Device {
 	 * Sets the MAC address of the Ethernet Extension. The Ethernet Extension should
 	 * come configured with a valid MAC address, that is also written on a
 	 * sticker of the extension itself.
-	 *
+	 * 
 	 * The MAC address can be read out again with {@link BrickMaster#getEthernetStatus()}.
 	 * 
 	 * .. versionadded:: 2.1.0~(Firmware)
@@ -2117,13 +2050,153 @@ public class BrickMaster extends Device {
 	}
 
 	/**
+	 * Sets the Ethernet WebSocket configuration. The first parameter sets the number of socket
+	 * connections that are reserved for WebSockets. The range is 0-7. The connections
+	 * are shared with the plain sockets. Example: If you set the connections to 3,
+	 * there will be 3 WebSocket and 4 plain socket connections available.
+	 * 
+	 * The second parameter is the port for the WebSocket connections. The port can
+	 * not be the same as the port for the plain socket connections.
+	 * 
+	 * The values are stored in the EEPROM and only applied on startup. That means
+	 * you have to restart the Master Brick after configuration.
+	 * 
+	 * It is recommended to use the Brick Viewer to set the Ethernet configuration.
+	 * 
+	 * The default values are 3 for the socket connections and 4280 for the port.
+	 * 
+	 * .. versionadded:: 2.2.0~(Firmware)
+	 */
+	public void setEthernetWebsocketConfiguration(short sockets, int port) throws TimeoutException, NotConnectedException {
+		ByteBuffer bb = ipcon.createRequestPacket((byte)11, FUNCTION_SET_ETHERNET_WEBSOCKET_CONFIGURATION, this);
+		bb.put((byte)sockets);
+		bb.putShort((short)port);
+
+		sendRequest(bb.array());
+	}
+
+	/**
+	 * Returns the configuration as set by {@link BrickMaster#setEthernetConfiguration(short, short[], short[], short[], int)}.
+	 * 
+	 * .. versionadded:: 2.2.0~(Firmware)
+	 */
+	public EthernetWebsocketConfiguration getEthernetWebsocketConfiguration() throws TimeoutException, NotConnectedException {
+		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_ETHERNET_WEBSOCKET_CONFIGURATION, this);
+
+		byte[] response = sendRequest(bb.array());
+
+		bb = ByteBuffer.wrap(response, 8, response.length - 8);
+		bb.order(ByteOrder.LITTLE_ENDIAN);
+
+		EthernetWebsocketConfiguration obj = new EthernetWebsocketConfiguration();
+		obj.sockets = IPConnection.unsignedByte(bb.get());
+		obj.port = IPConnection.unsignedShort(bb.getShort());
+
+		return obj;
+	}
+
+	/**
+	 * Sets the Ethernet authentication secret. The secret can be a string of up to 64
+	 * characters. An empty string disables the authentication.
+	 * 
+	 * See the :ref:`authentication tutorial &lt;tutorial_authentication&gt;` for more
+	 * information.
+	 * 
+	 * The secret is stored in the EEPROM and only applied on startup. That means
+	 * you have to restart the Master Brick after configuration.
+	 * 
+	 * It is recommended to use the Brick Viewer to set the Ethernet authentication secret.
+	 * 
+	 * The default value is an empty string (authentication disabled).
+	 * 
+	 * .. versionadded:: 2.2.0~(Firmware)
+	 */
+	public void setEthernetAuthenticationSecret(String secret) throws TimeoutException, NotConnectedException {
+		ByteBuffer bb = ipcon.createRequestPacket((byte)72, FUNCTION_SET_ETHERNET_AUTHENTICATION_SECRET, this);
+		for(int i = 0; i < 64; i++) {
+			try {
+				bb.put((byte)secret.charAt(i));
+			} catch(Exception e) {
+				bb.put((byte)0);
+			}
+		}
+
+
+		sendRequest(bb.array());
+	}
+
+	/**
+	 * Returns the authentication secret as set by {@link BrickMaster#setEthernetAuthenticationSecret(String)}.
+	 * 
+	 * .. versionadded:: 2.2.0~(Firmware)
+	 */
+	public String getEthernetAuthenticationSecret() throws TimeoutException, NotConnectedException {
+		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_ETHERNET_AUTHENTICATION_SECRET, this);
+
+		byte[] response = sendRequest(bb.array());
+
+		bb = ByteBuffer.wrap(response, 8, response.length - 8);
+		bb.order(ByteOrder.LITTLE_ENDIAN);
+
+		String secret = IPConnection.string(bb, 64);
+
+		return secret;
+	}
+
+	/**
+	 * Sets the WIFI authentication secret. The secret can be a string of up to 64
+	 * characters. An empty string disables the authentication.
+	 * 
+	 * See the :ref:`authentication tutorial &lt;tutorial_authentication&gt;` for more
+	 * information.
+	 * 
+	 * The secret is stored in the EEPROM and only applied on startup. That means
+	 * you have to restart the Master Brick after configuration.
+	 * 
+	 * It is recommended to use the Brick Viewer to set the WIFI authentication secret.
+	 * 
+	 * The default value is an empty string (authentication disabled).
+	 * 
+	 * .. versionadded:: 2.2.0~(Firmware)
+	 */
+	public void setWifiAuthenticationSecret(String secret) throws TimeoutException, NotConnectedException {
+		ByteBuffer bb = ipcon.createRequestPacket((byte)72, FUNCTION_SET_WIFI_AUTHENTICATION_SECRET, this);
+		for(int i = 0; i < 64; i++) {
+			try {
+				bb.put((byte)secret.charAt(i));
+			} catch(Exception e) {
+				bb.put((byte)0);
+			}
+		}
+
+
+		sendRequest(bb.array());
+	}
+
+	/**
+	 * Returns the authentication secret as set by {@link BrickMaster#setWifiAuthenticationSecret(String)}.
+	 * 
+	 * .. versionadded:: 2.2.0~(Firmware)
+	 */
+	public String getWifiAuthenticationSecret() throws TimeoutException, NotConnectedException {
+		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_WIFI_AUTHENTICATION_SECRET, this);
+
+		byte[] response = sendRequest(bb.array());
+
+		bb = ByteBuffer.wrap(response, 8, response.length - 8);
+		bb.order(ByteOrder.LITTLE_ENDIAN);
+
+		String secret = IPConnection.string(bb, 64);
+
+		return secret;
+	}
+
+	/**
 	 * Returns the firmware and protocol version and the name of the Bricklet for a
 	 * given port.
 	 * 
 	 * This functions sole purpose is to allow automatic flashing of v1.x.y Bricklet
 	 * plugins.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
 	 */
 	public Protocol1BrickletName getProtocol1BrickletName(char port) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)9, FUNCTION_GET_PROTOCOL1_BRICKLET_NAME, this);
@@ -2152,8 +2225,6 @@ public class BrickMaster extends Device {
 	 * The temperature is only proportional to the real temperature and it has an
 	 * accuracy of +-15%. Practically it is only useful as an indicator for
 	 * temperature changes.
-	 * 
-	 * .. versionadded:: 1.2.1~(Firmware)
 	 */
 	public short getChipTemperature() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_CHIP_TEMPERATURE, this);
@@ -2175,8 +2246,6 @@ public class BrickMaster extends Device {
 	 * After a reset you have to create new device objects,
 	 * calling functions on the existing ones will result in
 	 * undefined behavior!
-	 * 
-	 * .. versionadded:: 1.2.1~(Firmware)
 	 */
 	public void reset() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_RESET, this);
@@ -2191,9 +2260,8 @@ public class BrickMaster extends Device {
 	 * 
 	 * The position can be '0'-'8' (stack position).
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Firmware)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

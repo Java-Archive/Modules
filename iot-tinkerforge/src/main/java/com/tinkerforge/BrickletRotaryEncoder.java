@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing Rotary Encoder input
@@ -76,11 +61,11 @@ public class BrickletRotaryEncoder extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletRotaryEncoder#setCountCallbackPeriod(long)}. The parameter is the count of
 	 * the encoder.
-	 *
+	 * 
 	 * {@link BrickletRotaryEncoder.CountListener} is only triggered if the count has changed since the
 	 * last triggering.
 	 */
-	public interface CountListener {
+	public interface CountListener extends DeviceListener {
 		public void count(int count);
 	}
 
@@ -88,25 +73,25 @@ public class BrickletRotaryEncoder extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletRotaryEncoder#setCountCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the count of the encoder.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletRotaryEncoder#setDebouncePeriod(long)}.
 	 */
-	public interface CountReachedListener {
+	public interface CountReachedListener extends DeviceListener {
 		public void countReached(int count);
 	}
 
 	/**
 	 * This listener is triggered when the button is pressed.
 	 */
-	public interface PressedListener {
+	public interface PressedListener extends DeviceListener {
 		public void pressed();
 	}
 
 	/**
 	 * This listener is triggered when the button is released.
 	 */
-	public interface ReleasedListener {
+	public interface ReleasedListener extends DeviceListener {
 		public void released();
 	}
 
@@ -134,7 +119,7 @@ public class BrickletRotaryEncoder extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_PRESSED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_RELEASED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_COUNT] = new CallbackListener() {
+		callbacks[CALLBACK_COUNT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -147,7 +132,7 @@ public class BrickletRotaryEncoder extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_COUNT_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_COUNT_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -160,7 +145,7 @@ public class BrickletRotaryEncoder extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_PRESSED] = new CallbackListener() {
+		callbacks[CALLBACK_PRESSED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(PressedListener listener: listenerPressed) {
 					listener.pressed();
@@ -168,7 +153,7 @@ public class BrickletRotaryEncoder extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_RELEASED] = new CallbackListener() {
+		callbacks[CALLBACK_RELEASED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(ReleasedListener listener: listenerReleased) {
 					listener.released();
@@ -181,9 +166,9 @@ public class BrickletRotaryEncoder extends Device {
 	 * Returns the current count of the encoder. If you set reset
 	 * to true, the count is set back to 0 directly after the
 	 * current count is read.
-	 *
+	 * 
 	 * The encoder has 24 steps per rotation
-	 *
+	 * 
 	 * Turning the encoder to the left decrements the counter,
 	 * so a negative count is possible.
 	 */
@@ -204,10 +189,10 @@ public class BrickletRotaryEncoder extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletRotaryEncoder.CountListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletRotaryEncoder.CountListener} is only triggered if the count has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setCountCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -234,20 +219,20 @@ public class BrickletRotaryEncoder extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletRotaryEncoder.CountReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletRotaryEncoder.CountReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the count is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the count is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the count is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the count is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the count is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the count is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the count is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the count is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setCountCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -280,15 +265,15 @@ public class BrickletRotaryEncoder extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listener
-	 *
+	 * 
 	 * * {@link BrickletRotaryEncoder.CountReachedListener}
-	 *
+	 * 
 	 * is triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletRotaryEncoder#setCountCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keeps being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -316,7 +301,7 @@ public class BrickletRotaryEncoder extends Device {
 
 	/**
 	 * Returns *true* if the button is pressed and *false* otherwise.
-	 *
+	 * 
 	 * It is recommended to use the {@link BrickletRotaryEncoder.PressedListener} and {@link BrickletRotaryEncoder.ReleasedListener} listeners
 	 * to handle the button.
 	 */
@@ -340,9 +325,8 @@ public class BrickletRotaryEncoder extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

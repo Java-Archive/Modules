@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>2.0</version>
+        <version>2.0.1</version>
     </parent>
     <name>iot-tinkerforge</name>
     <description>IoT TinkerForges</description>
@@ -40,6 +40,21 @@
             <artifactId>weld-se</artifactId>
             <scope>compile</scope>
         </dependency>
+
+
+        <!---->
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>[4.0,)</version>
+        </dependency>
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-media-support</artifactId>
+            <version>[4.0,)</version>
+        </dependency>
+        <!---->
+
         <!--arangodb-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

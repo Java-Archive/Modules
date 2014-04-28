@@ -17,72 +17,81 @@
 package org.rapidpm.module.iot.tinkerforge.sensor;
 
 import com.tinkerforge.*;
-import data.SensorDataElement;
+import org.rapidpm.module.iot.tinkerforge.data.SensorDataElement;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * Created by Sven Ruppert on 21.02.14.
  */
-public abstract class TinkerForgeSensor<T extends Device> implements Runnable{
+public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
 
-    public String UID;
-    public int callbackPeriod;
+  protected String UID;
+  protected int callbackPeriod;
+  protected int port;
+  protected String host;
+  protected IPConnection ipcon = new IPConnection();
+  public T bricklet;
 
-    public int port;
-    public String host;
+  public String masterUID;
+  public String brickletUID;
+  public String brickletType;
 
-    public IPConnection ipcon = new IPConnection();
+  public TinkerForgeSensor(final String UID, int callbackPeriod, int port, String host) {
+    this.UID = UID;
+    this.callbackPeriod = callbackPeriod;
+    this.port = port;
+    this.host = host;
+    connectBricklet();
+  }
 
-    public T bricklet;
-
-    public String masterUID;
-    public String brickletUID;
-    public String brickletType;
-
-
-    public TinkerForgeSensor(final String UID, int callbackPeriod, int port, String host) {
-        this.UID = UID;
-        this.callbackPeriod = callbackPeriod;
-        this.port = port;
-        this.host = host;
+  @Override
+  public void run() {
+//    bricklet = connectBricklet();
+    try {
+      ipcon.connect(host, port);
+      masterUID = bricklet.getIdentity().connectedUid;
+      brickletUID = bricklet.getIdentity().uid;
+      brickletType = bricklet.getIdentity().deviceIdentifier + "";
+      initBricklet();
+    } catch (IOException
+        | AlreadyConnectedException
+        | TimeoutException
+        | NotConnectedException e) {
+      e.printStackTrace();
     }
+  }
 
-    @Override
-    public void run() {
-        bricklet = getBrickletInstance();
-        try {
-            ipcon.connect(host, port);
-            masterUID = bricklet.getIdentity().connectedUid;
-            brickletUID = bricklet.getIdentity().uid;
-            brickletType = bricklet.getIdentity().deviceIdentifier+"";
-            initBricklet();
-        } catch (IOException
-                | AlreadyConnectedException
-                | TimeoutException
-                | NotConnectedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public SensorDataElement getNextSensorDataElement(){
-        final SensorDataElement data = new SensorDataElement();
-        data.setMasterUID(masterUID);
-        data.setBrickletUID(brickletUID);
-        data.setBrickletType(brickletType);
-        data.setDate(new Date());
+  public SensorDataElement getNextSensorDataElement() {
+    final SensorDataElement data = new SensorDataElement();
+    data.setMasterUID(masterUID);
+    data.setBrickletUID(brickletUID);
+    data.setBrickletType(brickletType);
+    data.setDate(LocalDateTime.now());
 //        data.setSensorValue(sensorvalue);
-        return data;
+    return data;
+  }
+
+
+  public void disconnect(){
+    try {
+      ipcon.setAutoReconnect(false);
+      ipcon.disconnect();
+    } catch (NotConnectedException e) {
+      e.printStackTrace();
     }
+  }
 
-
-
-    public abstract void initBricklet();
-
-    public abstract T getBrickletInstance();
-
-    public static interface SensorValueAction {
-        public default void workOnValue(int sensorvalue){}
+  public void connect(){
+    try {
+      ipcon.setAutoReconnect(true);
+      ipcon.connect(host, port);
+    } catch (IOException | AlreadyConnectedException e) {
+      e.printStackTrace();
     }
+  }
+  public abstract void initBricklet();
+  protected abstract void connectBricklet();
 }

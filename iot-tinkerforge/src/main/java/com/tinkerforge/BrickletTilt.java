@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing tilt and vibration
@@ -56,7 +41,7 @@ public class BrickletTilt extends Device {
 	 * 
 	 * See {@link BrickletTilt#getTiltState()} for a description of the states.
 	 */
-	public interface TiltStateListener {
+	public interface TiltStateListener extends DeviceListener {
 		public void tiltState(short state);
 	}
 
@@ -77,7 +62,7 @@ public class BrickletTilt extends Device {
 		responseExpected[IPConnection.unsignedByte(FUNCTION_GET_IDENTITY)] = RESPONSE_EXPECTED_FLAG_ALWAYS_TRUE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_TILT_STATE)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_TILT_STATE] = new CallbackListener() {
+		callbacks[CALLBACK_TILT_STATE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -93,11 +78,11 @@ public class BrickletTilt extends Device {
 
 	/**
 	 * Returns the current tilt state. The state can either be
-	 *
+	 * 
 	 * * 0 = Closed: The ball in the tilt switch closes the circuit.
 	 * * 1 = Open: The ball in the tilt switch does not close the circuit.
 	 * * 2 = Closed Vibrating: The tilt switch is in motion (rapid change between open and close).
-	 *
+	 * 
 	 * .. image:: /Images/Bricklets/bricklet_tilt_mechanics.jpg
 	 *    :scale: 100 %
 	 *    :alt: Tilt states
@@ -158,9 +143,8 @@ public class BrickletTilt extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

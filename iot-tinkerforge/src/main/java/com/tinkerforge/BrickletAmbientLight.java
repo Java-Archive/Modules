@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for sensing Ambient Light
@@ -90,11 +75,11 @@ public class BrickletAmbientLight extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletAmbientLight#setIlluminanceCallbackPeriod(long)}. The parameter is the illuminance of the
 	 * ambient light sensor.
-	 *
+	 * 
 	 * {@link BrickletAmbientLight.IlluminanceListener} is only triggered if the illuminance has changed since the
 	 * last triggering.
 	 */
-	public interface IlluminanceListener {
+	public interface IlluminanceListener extends DeviceListener {
 		public void illuminance(int illuminance);
 	}
 
@@ -102,11 +87,11 @@ public class BrickletAmbientLight extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletAmbientLight#setAnalogValueCallbackPeriod(long)}. The parameter is the analog value of the
 	 * ambient light sensor.
-	 *
+	 * 
 	 * {@link BrickletAmbientLight.AnalogValueListener} is only triggered if the analog value has changed since the
 	 * last triggering.
 	 */
-	public interface AnalogValueListener {
+	public interface AnalogValueListener extends DeviceListener {
 		public void analogValue(int value);
 	}
 
@@ -114,11 +99,11 @@ public class BrickletAmbientLight extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletAmbientLight#setIlluminanceCallbackThreshold(char, short, short)} is reached.
 	 * The parameter is the illuminance of the ambient light sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletAmbientLight#setDebouncePeriod(long)}.
 	 */
-	public interface IlluminanceReachedListener {
+	public interface IlluminanceReachedListener extends DeviceListener {
 		public void illuminanceReached(int illuminance);
 	}
 
@@ -126,11 +111,11 @@ public class BrickletAmbientLight extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletAmbientLight#setAnalogValueCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the analog value of the ambient light sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletAmbientLight#setDebouncePeriod(long)}.
 	 */
-	public interface AnalogValueReachedListener {
+	public interface AnalogValueReachedListener extends DeviceListener {
 		public void analogValueReached(int value);
 	}
 
@@ -162,7 +147,7 @@ public class BrickletAmbientLight extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_ILLUMINANCE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_ANALOG_VALUE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_ILLUMINANCE] = new CallbackListener() {
+		callbacks[CALLBACK_ILLUMINANCE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -175,7 +160,7 @@ public class BrickletAmbientLight extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ANALOG_VALUE] = new CallbackListener() {
+		callbacks[CALLBACK_ANALOG_VALUE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -188,7 +173,7 @@ public class BrickletAmbientLight extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ILLUMINANCE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_ILLUMINANCE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -201,7 +186,7 @@ public class BrickletAmbientLight extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_ANALOG_VALUE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_ANALOG_VALUE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -219,9 +204,9 @@ public class BrickletAmbientLight extends Device {
 	 * Returns the illuminance of the ambient light sensor. The value
 	 * has a range of 0 to 9000 and is given in Lux/10, i.e. a value
 	 * of 4500 means that an illuminance of 450 Lux is measured.
-	 *
+	 * 
 	 * If you want to get the illuminance periodically, it is recommended to use the
-	 * listener {@link BrickletAmbientLight.IlluminanceListener} and set the period with
+	 * listener {@link BrickletAmbientLight.IlluminanceListener} and set the period with 
 	 * {@link BrickletAmbientLight#setIlluminanceCallbackPeriod(long)}.
 	 */
 	public int getIlluminance() throws TimeoutException, NotConnectedException {
@@ -240,19 +225,19 @@ public class BrickletAmbientLight extends Device {
 	/**
 	 * Returns the value as read by a 12-bit analog-to-digital converter.
 	 * The value is between 0 and 4095.
-	 *
+	 * 
 	 * \note
 	 *  The value returned by {@link BrickletAmbientLight#getIlluminance()} is averaged over several samples
 	 *  to yield less noise, while {@link BrickletAmbientLight#getAnalogValue()} gives back raw
 	 *  unfiltered analog values. The only reason to use {@link BrickletAmbientLight#getAnalogValue()} is,
 	 *  if you need the full resolution of the analog-to-digital converter.
-	 *
+	 * 
 	 *  Also, the analog-to-digital converter covers three different ranges that are
 	 *  set dynamically depending on the light intensity. It is impossible to
 	 *  distinguish between these ranges with the analog value.
-	 *
-	 * If you want the analog value periodically, it is recommended to use the
-	 * listener {@link BrickletAmbientLight.AnalogValueListener} and set the period with
+	 * 
+	 * If you want the analog value periodically, it is recommended to use the 
+	 * listener {@link BrickletAmbientLight.AnalogValueListener} and set the period with 
 	 * {@link BrickletAmbientLight#setAnalogValueCallbackPeriod(long)}.
 	 */
 	public int getAnalogValue() throws TimeoutException, NotConnectedException {
@@ -271,10 +256,10 @@ public class BrickletAmbientLight extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletAmbientLight.IlluminanceListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletAmbientLight.IlluminanceListener} is only triggered if the illuminance has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setIlluminanceCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -303,10 +288,10 @@ public class BrickletAmbientLight extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletAmbientLight.AnalogValueListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletAmbientLight.AnalogValueListener} is only triggered if the analog value has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setAnalogValueCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -333,20 +318,20 @@ public class BrickletAmbientLight extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletAmbientLight.IlluminanceReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletAmbientLight.IlluminanceReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
+	 *  &quot;Option&quot;, &quot;Description&quot;
 	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the illuminance is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the illuminance is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the illuminance is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the illuminance is greater than the min value (max is ignored)"
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the illuminance is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the illuminance is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the illuminance is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the illuminance is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setIlluminanceCallbackThreshold(char option, short min, short max) throws TimeoutException, NotConnectedException {
@@ -378,20 +363,20 @@ public class BrickletAmbientLight extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletAmbientLight.AnalogValueReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletAmbientLight.AnalogValueReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the analog value is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the analog value is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the analog value is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the analog value is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the analog value is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the analog value is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the analog value is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the analog value is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setAnalogValueCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -424,17 +409,17 @@ public class BrickletAmbientLight extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickletAmbientLight.IlluminanceReachedListener},
 	 * * {@link BrickletAmbientLight.AnalogValueReachedListener}
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletAmbientLight#setIlluminanceCallbackThreshold(char, short, short)},
 	 * * {@link BrickletAmbientLight#setAnalogValueCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -467,9 +452,8 @@ public class BrickletAmbientLight extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

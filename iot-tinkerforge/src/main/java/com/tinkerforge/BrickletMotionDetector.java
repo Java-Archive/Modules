@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device that reads out PIR motion detector
@@ -51,7 +36,7 @@ public class BrickletMotionDetector extends Device {
 	/**
 	 * This listener is called after a motion was detected.
 	 */
-	public interface MotionDetectedListener {
+	public interface MotionDetectedListener extends DeviceListener {
 		public void motionDetected();
 	}
 
@@ -60,7 +45,7 @@ public class BrickletMotionDetector extends Device {
 	 * listener is called, a new motion can be detected again after approximately 2
 	 * seconds.
 	 */
-	public interface DetectionCycleEndedListener {
+	public interface DetectionCycleEndedListener extends DeviceListener {
 		public void detectionCycleEnded();
 	}
 
@@ -79,7 +64,7 @@ public class BrickletMotionDetector extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_MOTION_DETECTED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_DETECTION_CYCLE_ENDED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_MOTION_DETECTED] = new CallbackListener() {
+		callbacks[CALLBACK_MOTION_DETECTED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(MotionDetectedListener listener: listenerMotionDetected) {
 					listener.motionDetected();
@@ -87,7 +72,7 @@ public class BrickletMotionDetector extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_DETECTION_CYCLE_ENDED] = new CallbackListener() {
+		callbacks[CALLBACK_DETECTION_CYCLE_ENDED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				for(DetectionCycleEndedListener listener: listenerDetectionCycleEnded) {
 					listener.detectionCycleEnded();
@@ -100,10 +85,10 @@ public class BrickletMotionDetector extends Device {
 	 * Returns 1 if a motion was detected. How long this returns 1 after a motion
 	 * was detected can be adjusted with one of the small potentiometers on the
 	 * Motion Detector Bricklet, see :ref:`here
-	 * <motion_detector_bricklet_sensitivity_delay_block_time>`.
+	 * &lt;motion_detector_bricklet_sensitivity_delay_block_time&gt;`.
 	 * 
 	 * There is also a blue LED on the Bricklet that is on as long as the Bricklet is
-	 * in the "motion detected" state.
+	 * in the &quot;motion detected&quot; state.
 	 */
 	public short getMotionDetected() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_MOTION_DETECTED, this);
@@ -125,9 +110,8 @@ public class BrickletMotionDetector extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);

@@ -1,23 +1,7 @@
-/*
- * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 /* ***********************************************************
- * This file was automatically generated on 2013-12-19.      *
+ * This file was automatically generated on 2014-04-09.      *
  *                                                           *
- * Bindings Version 2.0.14                                    *
+ * Bindings Version 2.1.0                                    *
  *                                                           *
  * If you have a bugfix for this file and want to commit it, *
  * please fix the bug in the generator. You can find a link  *
@@ -28,8 +12,9 @@ package com.tinkerforge;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Device for high precision sensing of voltage and current
@@ -140,11 +125,11 @@ public class BrickletVoltageCurrent extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletVoltageCurrent#setCurrentCallbackPeriod(long)}. The parameter is the current of the
 	 * sensor.
-	 *
+	 * 
 	 * {@link BrickletVoltageCurrent.CurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
 	 */
-	public interface CurrentListener {
+	public interface CurrentListener extends DeviceListener {
 		public void current(int current);
 	}
 
@@ -152,11 +137,11 @@ public class BrickletVoltageCurrent extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletVoltageCurrent#setVoltageCallbackPeriod(long)}. The parameter is the voltage of the
 	 * sensor.
-	 *
+	 * 
 	 * {@link BrickletVoltageCurrent.VoltageListener} is only triggered if the voltage has changed since the
 	 * last triggering.
 	 */
-	public interface VoltageListener {
+	public interface VoltageListener extends DeviceListener {
 		public void voltage(int voltage);
 	}
 
@@ -164,11 +149,11 @@ public class BrickletVoltageCurrent extends Device {
 	 * This listener is triggered periodically with the period that is set by
 	 * {@link BrickletVoltageCurrent#setPowerCallbackPeriod(long)}. The parameter is the power of the
 	 * sensor.
-	 *
+	 * 
 	 * {@link BrickletVoltageCurrent.PowerListener} is only triggered if the power has changed since the
 	 * last triggering.
 	 */
-	public interface PowerListener {
+	public interface PowerListener extends DeviceListener {
 		public void power(int power);
 	}
 
@@ -176,11 +161,11 @@ public class BrickletVoltageCurrent extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletVoltageCurrent#setCurrentCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the current of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletVoltageCurrent#setDebouncePeriod(long)}.
 	 */
-	public interface CurrentReachedListener {
+	public interface CurrentReachedListener extends DeviceListener {
 		public void currentReached(int current);
 	}
 
@@ -188,11 +173,11 @@ public class BrickletVoltageCurrent extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletVoltageCurrent#setVoltageCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the voltage of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletVoltageCurrent#setDebouncePeriod(long)}.
 	 */
-	public interface VoltageReachedListener {
+	public interface VoltageReachedListener extends DeviceListener {
 		public void voltageReached(int voltage);
 	}
 
@@ -200,11 +185,11 @@ public class BrickletVoltageCurrent extends Device {
 	 * This listener is triggered when the threshold as set by
 	 * {@link BrickletVoltageCurrent#setPowerCallbackThreshold(char, int, int)} is reached.
 	 * The parameter is the power of the sensor.
-	 *
+	 * 
 	 * If the threshold keeps being reached, the listener is triggered periodically
 	 * with the period as set by {@link BrickletVoltageCurrent#setDebouncePeriod(long)}.
 	 */
-	public interface PowerReachedListener {
+	public interface PowerReachedListener extends DeviceListener {
 		public void powerReached(int power);
 	}
 
@@ -247,7 +232,7 @@ public class BrickletVoltageCurrent extends Device {
 		responseExpected[IPConnection.unsignedByte(CALLBACK_VOLTAGE_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 		responseExpected[IPConnection.unsignedByte(CALLBACK_POWER_REACHED)] = RESPONSE_EXPECTED_FLAG_ALWAYS_FALSE;
 
-		callbacks[CALLBACK_CURRENT] = new CallbackListener() {
+		callbacks[CALLBACK_CURRENT] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -260,7 +245,7 @@ public class BrickletVoltageCurrent extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_VOLTAGE] = new CallbackListener() {
+		callbacks[CALLBACK_VOLTAGE] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -273,7 +258,7 @@ public class BrickletVoltageCurrent extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_POWER] = new CallbackListener() {
+		callbacks[CALLBACK_POWER] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -286,7 +271,7 @@ public class BrickletVoltageCurrent extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_CURRENT_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_CURRENT_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -299,7 +284,7 @@ public class BrickletVoltageCurrent extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_VOLTAGE_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_VOLTAGE_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -312,7 +297,7 @@ public class BrickletVoltageCurrent extends Device {
 			}
 		};
 
-		callbacks[CALLBACK_POWER_REACHED] = new CallbackListener() {
+		callbacks[CALLBACK_POWER_REACHED] = new IPConnection.DeviceCallbackListener() {
 			public void callback(byte[] data) {
 				ByteBuffer bb = ByteBuffer.wrap(data, 8, data.length - 8);
 				bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -329,9 +314,9 @@ public class BrickletVoltageCurrent extends Device {
 	/**
 	 * Returns the current. The value is in mA
 	 * and between -20000mA and 20000mA.
-	 *
+	 * 
 	 * If you want to get the current periodically, it is recommended to use the
-	 * listener {@link BrickletVoltageCurrent.CurrentListener} and set the period with
+	 * listener {@link BrickletVoltageCurrent.CurrentListener} and set the period with 
 	 * {@link BrickletVoltageCurrent#setCurrentCallbackPeriod(long)}.
 	 */
 	public int getCurrent() throws TimeoutException, NotConnectedException {
@@ -350,9 +335,9 @@ public class BrickletVoltageCurrent extends Device {
 	/**
 	 * Returns the voltage. The value is in mV
 	 * and between 0mV and 36000mV.
-	 *
+	 * 
 	 * If you want to get the voltage periodically, it is recommended to use the
-	 * listener {@link BrickletVoltageCurrent.VoltageListener} and set the period with
+	 * listener {@link BrickletVoltageCurrent.VoltageListener} and set the period with 
 	 * {@link BrickletVoltageCurrent#setVoltageCallbackPeriod(long)}.
 	 */
 	public int getVoltage() throws TimeoutException, NotConnectedException {
@@ -371,9 +356,9 @@ public class BrickletVoltageCurrent extends Device {
 	/**
 	 * Returns the power. The value is in mW
 	 * and between 0mV and 720000mW.
-	 *
+	 * 
 	 * If you want to get the power periodically, it is recommended to use the
-	 * listener {@link BrickletVoltageCurrent.PowerListener} and set the period with
+	 * listener {@link BrickletVoltageCurrent.PowerListener} and set the period with 
 	 * {@link BrickletVoltageCurrent#setPowerCallbackPeriod(long)}.
 	 */
 	public int getPower() throws TimeoutException, NotConnectedException {
@@ -393,38 +378,38 @@ public class BrickletVoltageCurrent extends Device {
 	 * Sets the configuration of the Voltage/Current Bricklet. It is
 	 * possible to configure number of averages as well as
 	 * voltage and current conversion time.
-	 *
+	 * 
 	 * Averaging:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Number of Averages"
-	 *
-	 *  "0",    "1"
-	 *  "1",    "4"
-	 *  "2",    "16"
-	 *  "3",    "64"
-	 *  "4",    "128"
-	 *  "5",    "256"
-	 *  "6",    "512"
-	 *  ">=7",  "1024"
+	 *  &quot;Value&quot;, &quot;Number of Averages&quot;
+	 * 
+	 *  &quot;0&quot;,    &quot;1&quot;
+	 *  &quot;1&quot;,    &quot;4&quot;
+	 *  &quot;2&quot;,    &quot;16&quot;
+	 *  &quot;3&quot;,    &quot;64&quot;
+	 *  &quot;4&quot;,    &quot;128&quot;
+	 *  &quot;5&quot;,    &quot;256&quot;
+	 *  &quot;6&quot;,    &quot;512&quot;
+	 *  &quot;&gt;=7&quot;,  &quot;1024&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * Voltage/Current conversion:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Value", "Conversion time"
-	 *
-	 *  "0",    "140µs"
-	 *  "1",    "204µs"
-	 *  "2",    "332µs"
-	 *  "3",    "588µs"
-	 *  "4",    "1.1ms"
-	 *  "5",    "2.116ms"
-	 *  "6",    "4.156ms"
-	 *  ">=7",  "8.244ms"
+	 *  &quot;Value&quot;, &quot;Conversion time&quot;
+	 * 
+	 *  &quot;0&quot;,    &quot;140µs&quot;
+	 *  &quot;1&quot;,    &quot;204µs&quot;
+	 *  &quot;2&quot;,    &quot;332µs&quot;
+	 *  &quot;3&quot;,    &quot;588µs&quot;
+	 *  &quot;4&quot;,    &quot;1.1ms&quot;
+	 *  &quot;5&quot;,    &quot;2.116ms&quot;
+	 *  &quot;6&quot;,    &quot;4.156ms&quot;
+	 *  &quot;&gt;=7&quot;,  &quot;8.244ms&quot;
 	 * \endverbatim
-	 *
-	 * The default values are 3, 4 and 4 (64, 1.1ms, 1.1ms) for averaging, voltage
+	 * 
+	 * The default values are 3, 4 and 4 (64, 1.1ms, 1.1ms) for averaging, voltage 
 	 * conversion and current conversion.
 	 */
 	public void setConfiguration(short averaging, short voltageConversionTime, short currentConversionTime) throws TimeoutException, NotConnectedException {
@@ -459,9 +444,9 @@ public class BrickletVoltageCurrent extends Device {
 	 * Since the shunt resistor that is used to measure the current is not
 	 * perfectly precise, it needs to be calibrated by a multiplier and
 	 * divisor if a very precise reading is needed.
-	 *
+	 * 
 	 * For example, if you are expecting a measurement of 1000mA and you
-	 * are measuring 1023mA, you can calibrate the Voltage/Current Bricklet
+	 * are measuring 1023mA, you can calibrate the Voltage/Current Bricklet 
 	 * by setting the multiplier to 1000 and the divisor to 1023.
 	 */
 	public void setCalibration(int gainMultiplier, int gainDivisor) throws TimeoutException, NotConnectedException {
@@ -493,10 +478,10 @@ public class BrickletVoltageCurrent extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletVoltageCurrent.CurrentListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletVoltageCurrent.CurrentListener} is only triggered if the current has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setCurrentCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -525,10 +510,10 @@ public class BrickletVoltageCurrent extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletVoltageCurrent.VoltageListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletVoltageCurrent.VoltageListener} is only triggered if the voltage has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setVoltageCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -557,10 +542,10 @@ public class BrickletVoltageCurrent extends Device {
 	/**
 	 * Sets the period in ms with which the {@link BrickletVoltageCurrent.PowerListener} listener is triggered
 	 * periodically. A value of 0 turns the listener off.
-	 *
+	 * 
 	 * {@link BrickletVoltageCurrent.PowerListener} is only triggered if the power has changed since the
 	 * last triggering.
-	 *
+	 * 
 	 * The default value is 0.
 	 */
 	public void setPowerCallbackPeriod(long period) throws TimeoutException, NotConnectedException {
@@ -587,20 +572,20 @@ public class BrickletVoltageCurrent extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletVoltageCurrent.CurrentReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletVoltageCurrent.CurrentReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the current is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the current is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the current is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the current is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setCurrentCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -632,20 +617,20 @@ public class BrickletVoltageCurrent extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletVoltageCurrent.VoltageReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletVoltageCurrent.VoltageReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the voltage is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the voltage is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the voltage is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the voltage is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setVoltageCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -677,20 +662,20 @@ public class BrickletVoltageCurrent extends Device {
 	}
 
 	/**
-	 * Sets the thresholds for the {@link BrickletVoltageCurrent.PowerReachedListener} listener.
-	 *
+	 * Sets the thresholds for the {@link BrickletVoltageCurrent.PowerReachedListener} listener. 
+	 * 
 	 * The following options are possible:
-	 *
+	 * 
 	 * \verbatim
-	 *  "Option", "Description"
-	 *
-	 *  "'x'",    "Listener is turned off"
-	 *  "'o'",    "Listener is triggered when the power is *outside* the min and max values"
-	 *  "'i'",    "Listener is triggered when the power is *inside* the min and max values"
-	 *  "'<'",    "Listener is triggered when the power is smaller than the min value (max is ignored)"
-	 *  "'>'",    "Listener is triggered when the power is greater than the min value (max is ignored)"
+	 *  &quot;Option&quot;, &quot;Description&quot;
+	 * 
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the power is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the power is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the power is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the power is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
-	 *
+	 * 
 	 * The default value is ('x', 0, 0).
 	 */
 	public void setPowerCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
@@ -723,19 +708,19 @@ public class BrickletVoltageCurrent extends Device {
 
 	/**
 	 * Sets the period in ms with which the threshold listeners
-	 *
+	 * 
 	 * * {@link BrickletVoltageCurrent.CurrentReachedListener},
 	 * * {@link BrickletVoltageCurrent.VoltageReachedListener},
 	 * * {@link BrickletVoltageCurrent.PowerReachedListener}
-	 *
+	 * 
 	 * are triggered, if the thresholds
-	 *
+	 * 
 	 * * {@link BrickletVoltageCurrent#setCurrentCallbackThreshold(char, int, int)},
 	 * * {@link BrickletVoltageCurrent#setVoltageCallbackThreshold(char, int, int)},
 	 * * {@link BrickletVoltageCurrent#setPowerCallbackThreshold(char, int, int)}
-	 *
+	 * 
 	 * keep being reached.
-	 *
+	 * 
 	 * The default value is 100.
 	 */
 	public void setDebouncePeriod(long debounce) throws TimeoutException, NotConnectedException {
@@ -768,9 +753,8 @@ public class BrickletVoltageCurrent extends Device {
 	 * 
 	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
-	 * The device identifiers can be found :ref:`here <device_identifier>`.
-	 * 
-	 * .. versionadded:: 2.0.0~(Plugin)
+	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
+	 * |device_identifier_constant|
 	 */
 	public Identity getIdentity() throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)8, FUNCTION_GET_IDENTITY, this);
