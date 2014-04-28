@@ -99,7 +99,7 @@ public class BrickletDualRelay extends Device {
 	 * Sets the state of the relays, *true* means on and *false* means off. 
 	 * For example: (true, false) turns relay 1 on and relay 2 off.
 	 * 
-	 * If you just want to set one of the relays and don&apos;t know the current state
+	 * If you just want to set one of the relays and don't know the current state
 	 * of the other relay, you can get the state with {@link BrickletDualRelay#getState()} or you
 	 * can use {@link BrickletDualRelay#setSelectedState(short, boolean)}.
 	 * 
@@ -199,7 +199,7 @@ public class BrickletDualRelay extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

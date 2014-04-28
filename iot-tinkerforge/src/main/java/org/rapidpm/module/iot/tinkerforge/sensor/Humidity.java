@@ -25,8 +25,8 @@ import java.io.IOException;
  */
 public  class Humidity extends TinkerForgeSensor<BrickletHumidity> {
 
-    public BrickletHumidity getBrickletInstance() {
-        return new BrickletHumidity(UID, ipcon);
+    public void connectBricklet() {
+        bricklet = new BrickletHumidity(UID, ipcon);
     }
 
     public Humidity(String UID, int callbackPeriod, int port, String host) {

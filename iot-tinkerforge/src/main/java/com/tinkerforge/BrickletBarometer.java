@@ -336,14 +336,14 @@ public class BrickletBarometer extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the air pressure is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the air pressure is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the air pressure is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the air pressure is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the air pressure is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the air pressure is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the air pressure is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the air pressure is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 */
 	public void setAirPressureCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)17, FUNCTION_SET_AIR_PRESSURE_CALLBACK_THRESHOLD, this);
@@ -381,14 +381,14 @@ public class BrickletBarometer extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the altitude is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the altitude is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the altitude is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the altitude is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the altitude is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the altitude is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the altitude is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the altitude is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 */
 	public void setAltitudeCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)17, FUNCTION_SET_ALTITUDE_CALLBACK_THRESHOLD, this);
@@ -571,7 +571,7 @@ public class BrickletBarometer extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

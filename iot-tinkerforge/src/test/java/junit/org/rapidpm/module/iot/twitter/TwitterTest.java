@@ -17,12 +17,16 @@
 package junit.org.rapidpm.module.iot.twitter;
 
 
+import com.sun.imageio.plugins.common.ImageUtil;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
+import twitter4j.media.ImageUpload;
+import twitter4j.media.ImageUploadFactory;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -48,15 +52,17 @@ public class TwitterTest {
 
 
 
-    TwitterFactory tf = new TwitterFactory(cb.build());
-    Twitter twitter = tf.getInstance();
-    for(int i=0; i<100; i++){
-      final Status status = twitter.updateStatus("IoT Tweets comming soon.. " + i + " / 100");
-      System.out.println("status.getText() = " + status.getText());
-    }
+//    TwitterFactory tf = new TwitterFactory(cb.build());
+//    Twitter twitter = tf.getInstance();
+//    for(int i=0; i<100; i++){
+//      final Status status = twitter.updateStatus("IoT Tweets comming soon.. " + i + " / 100");
+//      System.out.println("status.getText() = " + status.getText());
+//    }
 
-
-
+    ImageUploadFactory imageUploadFactory = new ImageUploadFactory(cb.build());
+    ImageUpload imageUpload = imageUploadFactory.getInstance();
+    String upload = imageUpload.upload(new File("pic_0003.jpg"), "my first pic ;-)");
+    System.out.println("upload = " + upload);
 
 
 //    List<Status> statuses = twitter.getHomeTimeline();

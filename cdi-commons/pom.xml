@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
+        <version>2.0.1</version>
     </parent>
     <name>cdi-commons</name>
     <description>Utils for CDI SE and EE</description>

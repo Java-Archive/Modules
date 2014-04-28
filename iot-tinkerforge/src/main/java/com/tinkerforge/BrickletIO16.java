@@ -90,9 +90,9 @@ public class BrickletIO16 extends Device {
 	 * 
 	 * For example:
 	 * 
-	 * * (&apos;a&apos;, 1, 1) or (&apos;a&apos;, 0b00000001, 0b00000001) means that on port A an
+	 * * ('a', 1, 1) or ('a', 0b00000001, 0b00000001) means that on port A an
 	 *   interrupt on pin 0 occurred and currently pin 0 is high and pins 1-7 are low.
-	 * * (&apos;b&apos;, 129, 254) or (&apos;b&apos;, 0b10000001, 0b11111110) means that on port B
+	 * * ('b', 129, 254) or ('b', 0b10000001, 0b11111110) means that on port B
 	 *   interrupts on pins 0 and 7 occurred and currently pin 0 is low and pins 1-7
 	 *   are high.
 	 */
@@ -208,7 +208,7 @@ public class BrickletIO16 extends Device {
 
 	/**
 	 * Configures the value and direction of a specified port. Possible directions
-	 * are &apos;i&apos; and &apos;o&apos; for input and output.
+	 * are 'i' and 'o' for input and output.
 	 * 
 	 * If the direction is configured as output, the value is either high or low
 	 * (set as *true* or *false*).
@@ -218,10 +218,10 @@ public class BrickletIO16 extends Device {
 	 * 
 	 * For example:
 	 * 
-	 * * (&apos;a&apos;, 255, &apos;i&apos;, true) or (&apos;a&apos;, 0b11111111, &apos;i&apos;, true) will set all pins of port A as input pull-up.
-	 * * (&apos;a&apos;, 128, &apos;i&apos;, false) or (&apos;a&apos;, 0b10000000, &apos;i&apos;, false) will set pin 7 of port A as input default (floating if nothing is connected).
-	 * * (&apos;b&apos;, 3, &apos;o&apos;, false) or (&apos;b&apos;, 0b00000011, &apos;o&apos;, false) will set pins 0 and 1 of port B as output low.
-	 * * (&apos;b&apos;, 4, &apos;o&apos;, true) or (&apos;b&apos;, 0b00000100, &apos;o&apos;, true) will set pin 2 of port B as output high.
+	 * * ('a', 255, 'i', true) or ('a', 0b11111111, 'i', true) will set all pins of port A as input pull-up.
+	 * * ('a', 128, 'i', false) or ('a', 0b10000000, 'i', false) will set pin 7 of port A as input default (floating if nothing is connected).
+	 * * ('b', 3, 'o', false) or ('b', 0b00000011, 'o', false) will set pins 0 and 1 of port B as output low.
+	 * * ('b', 4, 'o', true) or ('b', 0b00000100, 'o', true) will set pin 2 of port B as output high.
 	 */
 	public void setPortConfiguration(char port, short selectionMask, char direction, boolean value) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)12, FUNCTION_SET_PORT_CONFIGURATION, this);
@@ -298,7 +298,7 @@ public class BrickletIO16 extends Device {
 	 * Interrupts are triggered on changes of the voltage level of the pin,
 	 * i.e. changes from high to low and low to high.
 	 * 
-	 * For example: (&apos;a&apos;, 129) or (&apos;a&apos;, 0b10000001) will enable the interrupt for
+	 * For example: ('a', 129) or ('a', 0b10000001) will enable the interrupt for
 	 * pins 0 and 7 of port a.
 	 * 
 	 * The interrupt is delivered with the listener {@link BrickletIO16.InterruptListener}.
@@ -340,9 +340,9 @@ public class BrickletIO16 extends Device {
 	 * The forth parameter indicates the time (in ms) that the pins should hold
 	 * the value.
 	 * 
-	 * If this function is called with the parameters (&apos;a&apos;, 9, 1, 1500) or
-	 * (&apos;a&apos;, 0b00001001, 0b00000001, 1500): Pin 0 will get high and pin 3 will get
-	 * low on port &apos;a&apos;. In 1.5s pin 0 will get low and pin 3 will get high again.
+	 * If this function is called with the parameters ('a', 9, 1, 1500) or
+	 * ('a', 0b00001001, 0b00000001, 1500): Pin 0 will get high and pin 3 will get
+	 * low on port 'a'. In 1.5s pin 0 will get low and pin 3 will get high again.
 	 * 
 	 * A monoflop can be used as a fail-safe mechanism. For example: Lets assume you
 	 * have a RS485 bus and an IO-16 Bricklet connected to one of the slave
@@ -390,7 +390,7 @@ public class BrickletIO16 extends Device {
 	 * according to the selection mask. The bitmask is 8 bit long and a 1 in the
 	 * bitmask means high and a 0 in the bitmask means low.
 	 * 
-	 * For example: The parameters (&apos;a&apos;, 192, 128) or (&apos;a&apos;, 0b11000000, 0b10000000)
+	 * For example: The parameters ('a', 192, 128) or ('a', 0b11000000, 0b10000000)
 	 * will turn pin 7 high and pin 6 low on port A, pins 0-6 will remain untouched.
 	 * 
 	 * \note
@@ -445,7 +445,7 @@ public class BrickletIO16 extends Device {
 	 * 
 	 * Configuring an edge counter resets its value to 0.
 	 * 
-	 * If you don&apos;t know what any of this means, just leave it at default. The
+	 * If you don't know what any of this means, just leave it at default. The
 	 * default configuration is very likely OK for you.
 	 * 
 	 * Default values: 0 (edge type) and 100ms (debounce time)
@@ -488,7 +488,7 @@ public class BrickletIO16 extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

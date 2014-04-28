@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package data;
+package org.rapidpm.module.iot.tinkerforge.data;
 
 /**
  * Created by Sven Ruppert on 16.04.2014.

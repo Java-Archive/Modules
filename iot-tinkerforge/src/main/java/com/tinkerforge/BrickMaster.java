@@ -745,7 +745,7 @@ public class BrickMaster extends Device {
 	 * of correct address numeration and list termination.
 	 * 
 	 * The slave addresses will be saved in the EEPROM of the Chibi Extension, they
-	 * don&apos;t have to be set on every startup.
+	 * don't have to be set on every startup.
 	 */
 	public void setChibiSlaveAddress(short num, short address) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_SET_CHIBI_SLAVE_ADDRESS, this);
@@ -956,7 +956,7 @@ public class BrickMaster extends Device {
 	 * of correct address numeration and list termination.
 	 * 
 	 * The slave addresses will be saved in the EEPROM of the Chibi Extension, they
-	 * don&apos;t have to be set on every startup.
+	 * don't have to be set on every startup.
 	 */
 	public void setRS485SlaveAddress(short num, short address) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)10, FUNCTION_SET_RS485_SLAVE_ADDRESS, this);
@@ -1007,7 +1007,7 @@ public class BrickMaster extends Device {
 	 * Sets the configuration of the RS485 Extension. Speed is given in baud. The
 	 * Master Brick will try to match the given baud rate as exactly as possible.
 	 * The maximum recommended baud rate is 2000000 (2Mbit/s).
-	 * Possible values for parity are &apos;n&apos; (none), &apos;e&apos; (even) and &apos;o&apos; (odd).
+	 * Possible values for parity are 'n' (none), 'e' (even) and 'o' (odd).
 	 * Possible values for stop bits are 1 and 2.
 	 * 
 	 * If your RS485 is unstable (lost messages etc.), the first thing you should
@@ -1169,7 +1169,7 @@ public class BrickMaster extends Device {
 	 * a key with more than 50 characters, see {@link BrickMaster#setLongWifiKey(String)}.
 	 * 
 	 * For WEP the key has to be either 10 or 26 hexadecimal digits long. It is
-	 * possible to set the WEP ``key_index`` (1-4). If you don&apos;t know your
+	 * possible to set the WEP ``key_index`` (1-4). If you don't know your
 	 * ``key_index``, it is likely 1.
 	 * 
 	 * If you choose WPA Enterprise as encryption, you have to set ``eap_options`` and
@@ -1485,7 +1485,7 @@ public class BrickMaster extends Device {
 	 * if the key in {@link BrickMaster#setWifiEncryption(short, String, short, short, int, int, int)} is set to &quot;-&quot;. In the old protocol,
 	 * a payload of size 63 was not possible, so the maximum key length was 50 chars.
 	 * 
-	 * With the new protocol this is possible, since we didn&apos;t want to break API,
+	 * With the new protocol this is possible, since we didn't want to break API,
 	 * this function was added additionally.
 	 * 
 	 * .. versionadded:: 2.0.2~(Firmware)
@@ -1680,14 +1680,14 @@ public class BrickMaster extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
@@ -1729,14 +1729,14 @@ public class BrickMaster extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
@@ -1778,14 +1778,14 @@ public class BrickMaster extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 * 
 	 * .. versionadded:: 2.0.5~(Firmware)
 	 */
@@ -2258,7 +2258,7 @@ public class BrickMaster extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
+	 * The position can be '0'-'8' (stack position).
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

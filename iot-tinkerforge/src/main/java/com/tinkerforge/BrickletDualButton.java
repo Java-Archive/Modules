@@ -121,7 +121,7 @@ public class BrickletDualButton extends Device {
 	 * 
 	 * In auto toggle mode the LED is toggled automatically at each press of a button.
 	 * 
-	 * If you just want to set one of the LEDs and don&apos;t know the current state
+	 * If you just want to set one of the LEDs and don't know the current state
 	 * of the other LED, you can get the state with {@link BrickletDualButton#getLEDState()} or you
 	 * can use {@link BrickletDualButton#setSelectedLEDState(short, short)}.
 	 * 
@@ -192,7 +192,7 @@ public class BrickletDualButton extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

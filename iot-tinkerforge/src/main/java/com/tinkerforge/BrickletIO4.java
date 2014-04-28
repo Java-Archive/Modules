@@ -201,7 +201,7 @@ public class BrickletIO4 extends Device {
 
 	/**
 	 * Configures the value and direction of the specified pins. Possible directions
-	 * are &apos;i&apos; and &apos;o&apos; for input and output.
+	 * are 'i' and 'o' for input and output.
 	 * 
 	 * If the direction is configured as output, the value is either high or low
 	 * (set as *true* or *false*).
@@ -211,10 +211,10 @@ public class BrickletIO4 extends Device {
 	 * 
 	 * For example:
 	 * 
-	 * * (15, &apos;i&apos;, true) or (0b1111, &apos;i&apos;, true) will set all pins of as input pull-up.
-	 * * (8, &apos;i&apos;, false) or (0b1000, &apos;i&apos;, false) will set pin 3 of as input default (floating if nothing is connected).
-	 * * (3, &apos;o&apos;, false) or (0b0011, &apos;o&apos;, false) will set pins 0 and 1 as output low.
-	 * * (4, &apos;o&apos;, true) or (0b0100, &apos;o&apos;, true) will set pin 2 of as output high.
+	 * * (15, 'i', true) or (0b1111, 'i', true) will set all pins of as input pull-up.
+	 * * (8, 'i', false) or (0b1000, 'i', false) will set pin 3 of as input default (floating if nothing is connected).
+	 * * (3, 'o', false) or (0b0011, 'o', false) will set pins 0 and 1 as output low.
+	 * * (4, 'o', true) or (0b0100, 'o', true) will set pin 2 of as output high.
 	 */
 	public void setConfiguration(short selectionMask, char direction, boolean value) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)11, FUNCTION_SET_CONFIGURATION, this);
@@ -429,7 +429,7 @@ public class BrickletIO4 extends Device {
 	 * 
 	 * Configuring an edge counter resets its value to 0.
 	 * 
-	 * If you don&apos;t know what any of this means, just leave it at default. The
+	 * If you don't know what any of this means, just leave it at default. The
 	 * default configuration is very likely OK for you.
 	 * 
 	 * Default values: 0 (edge type) and 100ms (debounce time)
@@ -472,7 +472,7 @@ public class BrickletIO4 extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

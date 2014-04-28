@@ -211,7 +211,7 @@ public class BrickletRemoteSwitch extends Device {
 	 * To switch a type C socket you have to give the system code, device code and the
 	 * state (on or off) you want to switch to.
 	 * 
-	 * The system code has a range of &apos;A&apos; to &apos;P&apos; (4bit) and the device code has a
+	 * The system code has a range of 'A' to 'P' (4bit) and the device code has a
 	 * range of 1 to 16 (4bit).
 	 * 
 	 * A detailed description on how you can figure out the system and device code
@@ -233,7 +233,7 @@ public class BrickletRemoteSwitch extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

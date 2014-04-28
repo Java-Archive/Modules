@@ -674,7 +674,7 @@ public class BrickIMU extends Device {
 	 * gyroscope will not be corrected. If you set the convergence speed to something
 	 * above 500, practically only the magnetometer and the accelerometer are used to
 	 * calculate the orientation. In this case the movements are abrupt and the values
-	 * will fluctuate, but there won&apos;t be any errors that accumulate over time.
+	 * will fluctuate, but there won't be any errors that accumulate over time.
 	 * 
 	 * In an application with high angular velocities, we recommend a high convergence
 	 * speed, so the errors of the gyroscope can be corrected fast. In applications with
@@ -1063,7 +1063,7 @@ public class BrickIMU extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
+	 * The position can be '0'-'8' (stack position).
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

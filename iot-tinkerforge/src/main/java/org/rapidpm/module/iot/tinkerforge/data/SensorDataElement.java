@@ -14,8 +14,9 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge;
+package org.rapidpm.module.iot.tinkerforge.data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -27,8 +28,8 @@ public class SensorDataElement  {
     private String masterUID;      //master abc
     private String brickletUID;    // sensor xyz
     private String brickletType;   // Temperatur
-    private Date date;
-    private Integer sensorValue;
+    private LocalDateTime date;
+    private int sensorValue;
 
     public String getMasterUID() {
         return masterUID;
@@ -54,15 +55,15 @@ public class SensorDataElement  {
         this.brickletType = brickletType;
     }
 
-    public Date getDate() {
-        return date;
-    }
+  public LocalDateTime getDate() {
+    return date;
+  }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  public void setDate(LocalDateTime date) {
+    this.date = date;
+  }
 
-    public int getSensorValue() {
+  public int getSensorValue() {
         return sensorValue;
     }
 

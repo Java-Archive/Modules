@@ -36,7 +36,7 @@ public class WeatherStationRemote {
 
   public static final String HOST = "192.168.0.200";  //wetterstation
   public static final int PORT = 4223;
-  private static int callbackPeriod = 10000;
+  private static int callbackPeriod = 5000;
 
   private static final LCD20x4 lcd20x4 = new LCD20x4("jvX", "192.168.0.202", PORT);
 
@@ -53,37 +53,41 @@ public class WeatherStationRemote {
       tweetIt(text);
     });
 
-    new Thread(temperature).start();
+//    new Thread(temperature).start();
+    temperature.run();
 
     final Barometer barometer = new Barometer("jY4", callbackPeriod, PORT, HOST);
-    barometer.bricklet.addAirPressureListener(sensorvalue ->{
+    barometer.bricklet.addAirPressureListener(sensorvalue -> {
       final String text = LocalDateTime.now() + " - Air   : " + sensorvalue / 1000.0 + " mbar";
       lcd20x4.printLine1(text);
       System.out.println("text = " + text);
       tweetIt(text);
     });
-    new Thread(barometer).start();
+//    new Thread(barometer).start();
+    barometer.run();
 
     final Light light = new Light("jy2", callbackPeriod, PORT, HOST);
-    light.bricklet.addIlluminanceListener(sensorvalue->{
+    light.bricklet.addIlluminanceListener(sensorvalue -> {
       final double lux = sensorvalue / 10.0;
       final String text = LocalDateTime.now() + " - Lux   : " + lux + " Lux";
       lcd20x4.printLine3(text);
       System.out.println("text = " + text);
       tweetIt(text);
     });
-    new Thread(light).start();
+//    new Thread(light).start();
+    light.run();
 
     final Humidity humidity = new Humidity("kfd", callbackPeriod, PORT, HOST);
-    humidity.bricklet.addHumidityListener(sensorvalue->{
+    humidity.bricklet.addHumidityListener(sensorvalue -> {
       final double tempNorm = sensorvalue / 10.0;
       final String text = LocalDateTime.now() + " - RelHum: " + tempNorm + " %RH";
       lcd20x4.printLine2(text);
       System.out.println("text = " + text);
       tweetIt(text);
     });
-    humidity.bricklet.addHumidityListener(v-> tweetIt(""+v));
-    new Thread(humidity).start();
+    humidity.bricklet.addHumidityListener(v -> tweetIt("" + v));
+//    new Thread(humidity).start();
+    humidity.run();
 
     WaitForQ.waitForQ();
   }
@@ -96,3 +100,4 @@ public class WeatherStationRemote {
     }
   }
 }
+

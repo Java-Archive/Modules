@@ -289,8 +289,8 @@ public class BrickletGPS extends Device {
 	 * Returns the GPS coordinates. Latitude and longitude are given in the
 	 * ``DD.dddddd°`` format, the value 57123468 means 57.123468°.
 	 * The parameter ``ns`` and ``ew`` are the cardinal directions for
-	 * latitude and longitude. Possible values for ``ns`` and ``ew`` are &apos;N&apos;, &apos;S&apos;, &apos;E&apos;
-	 * and &apos;W&apos; (north, south, east and west).
+	 * latitude and longitude. Possible values for ``ns`` and ``ew`` are 'N', 'S', 'E'
+	 * and 'W' (north, south, east and west).
 	 * 
 	 * PDOP, HDOP and VDOP are the dilution of precision (DOP) values. They specify
 	 * the additional multiplicative effect of GPS satellite geometry on GPS 
@@ -436,8 +436,8 @@ public class BrickletGPS extends Device {
 	 *  &quot;Value&quot;, &quot;Description&quot;
 	 * 
 	 *  &quot;0&quot;, &quot;Hot start (use all available data in the NV store)&quot;
-	 *  &quot;1&quot;, &quot;Warm start (don&apos;t use ephemeris at restart)&quot;
-	 *  &quot;2&quot;, &quot;Cold start (don&apos;t use time, position, almanacs and ephemeris at restart)&quot;
+	 *  &quot;1&quot;, &quot;Warm start (don't use ephemeris at restart)&quot;
+	 *  &quot;2&quot;, &quot;Cold start (don't use time, position, almanacs and ephemeris at restart)&quot;
 	 *  &quot;3&quot;, &quot;Factory reset (clear all system/user configurations at restart)&quot;
 	 * \endverbatim
 	 */
@@ -613,7 +613,7 @@ public class BrickletGPS extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

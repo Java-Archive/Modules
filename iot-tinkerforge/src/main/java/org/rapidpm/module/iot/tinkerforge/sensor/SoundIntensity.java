@@ -40,7 +40,7 @@ public class SoundIntensity extends TinkerForgeSensor<BrickletSoundIntensity> {
     }
 
     @Override
-    public BrickletSoundIntensity getBrickletInstance() {
-        return new BrickletSoundIntensity(UID, ipcon);
+    public void connectBricklet() {
+        bricklet= new BrickletSoundIntensity(UID, ipcon);
     }
 }

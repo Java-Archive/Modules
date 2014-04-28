@@ -29,8 +29,8 @@ public  class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
         super(UID, callbackPeriod, port, host);
     }
 
-    public BrickletAmbientLight getBrickletInstance() {
-        return new BrickletAmbientLight(UID, ipcon);
+    public void connectBricklet() {
+        bricklet = new BrickletAmbientLight(UID, ipcon);
     }
 
 

@@ -27,8 +27,8 @@ import java.util.function.Consumer;
  */
 public class Temperature extends TinkerForgeSensor<BrickletTemperature> {
 
-  public BrickletTemperature getBrickletInstance() {
-    return new BrickletTemperature(UID, ipcon);
+  public void connectBricklet() {
+    bricklet= new BrickletTemperature(UID, ipcon);
   }
 
   public Temperature(String UID, int callbackPeriod, int port, String host) {

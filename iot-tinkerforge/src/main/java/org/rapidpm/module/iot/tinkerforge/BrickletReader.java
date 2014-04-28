@@ -19,7 +19,7 @@ package org.rapidpm.module.iot.tinkerforge;
 import com.tinkerforge.AlreadyConnectedException;
 import com.tinkerforge.IPConnection;
 import com.tinkerforge.NotConnectedException;
-import data.DeviceIdentity;
+import org.rapidpm.module.iot.tinkerforge.data.DeviceIdentity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import java.util.List;
 public class BrickletReader {
   private final static int DEFAULT_PORT = 4223;
 
-  public List<DeviceIdentity> findBricklet(String host)  {
+  public List<DeviceIdentity> findBricklets(String host) {
     final List<DeviceIdentity> bricklets = new ArrayList<>();
 
     IPConnection ipcon = new IPConnection();
@@ -39,48 +39,40 @@ public class BrickletReader {
       ipcon.connect(host, DEFAULT_PORT);
 
       // Register enumerate listener and print incoming information
-      ipcon.addEnumerateListener(new IPConnection.EnumerateListener() {
-                                   public void enumerate(String uid, String connectedUid, char position,
-                                                         short[] hardwareVersion, short[] firmwareVersion,
-                                                         int deviceIdentifier, short enumerationType) {
+      ipcon.addEnumerateListener((uid, connectedUid, position, hardwareVersion, firmwareVersion, deviceIdentifier, enumerationType) -> {
 
-                                     System.out.println("UID:               " + uid);
-                                     System.out.println("Enumeration Type:  " + enumerationType);
+            System.out.println("UID:               " + uid);
+            System.out.println("Enumeration Type:  " + enumerationType);
 
-                                     if (enumerationType == IPConnection.ENUMERATION_TYPE_DISCONNECTED) {
-                                       System.out.println("");
-                                       return;
-                                     }
+            if (enumerationType == IPConnection.ENUMERATION_TYPE_DISCONNECTED) {
+              System.out.println("");
+              return;
+            }
 
-                                     DeviceIdentity identity = new DeviceIdentity(uid, connectedUid, position,
-                                         hardwareVersion, firmwareVersion, deviceIdentifier);
-                                     bricklets.add(identity);
+            DeviceIdentity identity = new DeviceIdentity(uid, connectedUid, position,
+                hardwareVersion, firmwareVersion, deviceIdentifier);
+            bricklets.add(identity);
 
-                                     System.out.println("Connected UID:     " + connectedUid);
-                                     System.out.println("Position:          " + position);
-                                     System.out.println("Hardware Version:  " + hardwareVersion[0] + "." +
-                                         hardwareVersion[1] + "." +
-                                         hardwareVersion[2]);
-                                     System.out.println("Firmware Version:  " + firmwareVersion[0] + "." +
-                                         firmwareVersion[1] + "." +
-                                         firmwareVersion[2]);
-                                     System.out.println("Device Identifier: " + deviceIdentifier);
-                                     System.out.println("");
-                                   }
-                                 }
-
+            System.out.println("Connected UID:     " + connectedUid);
+            System.out.println("Position:          " + position);
+            System.out.println("Hardware Version:  " + hardwareVersion[0] + "." +
+                hardwareVersion[1] + "." +
+                hardwareVersion[2]);
+            System.out.println("Firmware Version:  " + firmwareVersion[0] + "." +
+                firmwareVersion[1] + "." +
+                firmwareVersion[2]);
+            System.out.println("Device Identifier: " + deviceIdentifier);
+            System.out.println("");
+          }
       );
 
       ipcon.enumerate();
       Thread.sleep(2000l);
       ipcon.disconnect();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (AlreadyConnectedException e) {
-      e.printStackTrace();
-    } catch (NotConnectedException e) {
-      e.printStackTrace();
-    } catch (InterruptedException e) {
+    } catch (IOException
+        | AlreadyConnectedException
+        | NotConnectedException
+        | InterruptedException e) {
       e.printStackTrace();
     }
 

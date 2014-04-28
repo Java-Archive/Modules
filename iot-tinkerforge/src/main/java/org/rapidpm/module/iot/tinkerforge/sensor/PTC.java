@@ -41,7 +41,7 @@ public class PTC extends TinkerForgeSensor<BrickletPTC>{
     }
 
     @Override
-    public BrickletPTC getBrickletInstance() {
-        return new BrickletPTC(UID,ipcon);
+    public void connectBricklet() {
+        bricklet= new BrickletPTC(UID,ipcon);
     }
 }

@@ -17,9 +17,10 @@
 package org.rapidpm.module.iot.tinkerforge.sensor;
 
 import com.tinkerforge.*;
-import org.rapidpm.module.iot.tinkerforge.SensorDataElement;
+import org.rapidpm.module.iot.tinkerforge.data.SensorDataElement;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -27,31 +28,28 @@ import java.util.Date;
  */
 public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
 
-  public String UID;
-  public int callbackPeriod;
-
-  public int port;
-  public String host;
-
-  public IPConnection ipcon = new IPConnection();
-
+  protected String UID;
+  protected int callbackPeriod;
+  protected int port;
+  protected String host;
+  protected IPConnection ipcon = new IPConnection();
   public T bricklet;
 
   public String masterUID;
   public String brickletUID;
   public String brickletType;
 
-
   public TinkerForgeSensor(final String UID, int callbackPeriod, int port, String host) {
     this.UID = UID;
     this.callbackPeriod = callbackPeriod;
     this.port = port;
     this.host = host;
+    connectBricklet();
   }
 
   @Override
   public void run() {
-    bricklet = getBrickletInstance();
+//    bricklet = connectBricklet();
     try {
       ipcon.connect(host, port);
       masterUID = bricklet.getIdentity().connectedUid;
@@ -71,18 +69,29 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
     data.setMasterUID(masterUID);
     data.setBrickletUID(brickletUID);
     data.setBrickletType(brickletType);
-    data.setDate(new Date());
+    data.setDate(LocalDateTime.now());
 //        data.setSensorValue(sensorvalue);
     return data;
   }
 
 
-  public abstract void initBricklet();
-
-  public abstract T getBrickletInstance();
-
-  @FunctionalInterface
-  public static interface SensorValueAction {
-    public void workOnValue(int sensorvalue);
+  public void disconnect(){
+    try {
+      ipcon.setAutoReconnect(false);
+      ipcon.disconnect();
+    } catch (NotConnectedException e) {
+      e.printStackTrace();
+    }
   }
+
+  public void connect(){
+    try {
+      ipcon.setAutoReconnect(true);
+      ipcon.connect(host, port);
+    } catch (IOException | AlreadyConnectedException e) {
+      e.printStackTrace();
+    }
+  }
+  public abstract void initBricklet();
+  protected abstract void connectBricklet();
 }

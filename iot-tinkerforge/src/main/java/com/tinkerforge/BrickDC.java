@@ -106,7 +106,7 @@ public class BrickDC extends Device {
 	 * the set velocity is actually reached.
 	 * 
 	 * \note
-	 *  Since we can&apos;t get any feedback from the DC motor, this only works if the
+	 *  Since we can't get any feedback from the DC motor, this only works if the
 	 *  acceleration (see {@link BrickDC#setAcceleration(int)}) is set smaller or equal to the
 	 *  maximum acceleration of the motor. Otherwise the motor will lag behind the
 	 *  control value and the listener will be triggered too early.
@@ -623,7 +623,7 @@ public class BrickDC extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
+	 * The position can be '0'-'8' (stack position).
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

@@ -113,7 +113,7 @@ public class BrickServo extends Device {
 	 * You can enable this listener with {@link BrickServo#enablePositionReachedCallback()}.
 	 * 
 	 * \note
-	 *  Since we can&apos;t get any feedback from the servo, this only works if the
+	 *  Since we can't get any feedback from the servo, this only works if the
 	 *  velocity (see {@link BrickServo#setVelocity(short, int)}) is set smaller or equal to the
 	 *  maximum velocity of the servo. Otherwise the servo will lag behind the
 	 *  control value and the listener will be triggered too early.
@@ -129,7 +129,7 @@ public class BrickServo extends Device {
 	 * You can enable this listener with {@link BrickServo#enableVelocityReachedCallback()}.
 	 * 
 	 * \note
-	 *  Since we can&apos;t get any feedback from the servo, this only works if the
+	 *  Since we can't get any feedback from the servo, this only works if the
 	 *  acceleration (see {@link BrickServo#setAcceleration(short, int)}) is set smaller or equal to the
 	 *  maximum acceleration of the servo. Otherwise the servo will lag behind the
 	 *  control value and the listener will be triggered too early.
@@ -506,14 +506,14 @@ public class BrickServo extends Device {
 	 * 
 	 * * The datasheet of your servo specifies a range of 200° with the middle position
 	 *   at 110°. In this case you can set the minimum to -9000 and the maximum to 11000.
-	 * * You measure a range of 220° on your servo and you don&apos;t have or need a middle
+	 * * You measure a range of 220° on your servo and you don't have or need a middle
 	 *   position. In this case you can set the minimum to 0 and the maximum to 22000.
 	 * * You have a linear servo with a drive length of 20cm, In this case you could
 	 *   set the minimum to 0 and the maximum to 20000. Now you can set the Position
 	 *   with {@link BrickServo#setPosition(short, short)} with a resolution of cm/100. Also the velocity will
 	 *   have a resolution of cm/100s and the acceleration will have a resolution of
 	 *   cm/100s².
-	 * * You don&apos;t care about units and just want the highest possible resolution. In
+	 * * You don't care about units and just want the highest possible resolution. In
 	 *   this case you should set the minimum to -32767 and the maximum to 32767.
 	 * * You have a brushless motor with a maximum speed of 10000 rpm and want to
 	 *   control it with a RC brushless motor controller. In this case you can set the
@@ -562,7 +562,7 @@ public class BrickServo extends Device {
 	 * period of about 20ms.
 	 * 
 	 * If your servo comes with a datasheet that specifies a period, you should
-	 * set it accordingly. If you don&apos;t have a datasheet and you have no idea
+	 * set it accordingly. If you don't have a datasheet and you have no idea
 	 * what the correct period is, the default value (19.5ms) will most likely
 	 * work fine. 
 	 * 
@@ -860,7 +860,7 @@ public class BrickServo extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
+	 * The position can be '0'-'8' (stack position).
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

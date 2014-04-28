@@ -125,7 +125,7 @@ public class BrickletMultiTouch extends Device {
 	 * 
 	 * *True* enables the electrode, *false* disables the electrode. A
 	 * disabled electrode will always return *false* as its state. If you
-	 * don&apos;t need all electrodes you can disable the electrodes that are
+	 * don't need all electrodes you can disable the electrodes that are
 	 * not needed.
 	 * 
 	 * It is recommended that you disable the proximity bit (bit 12) if
@@ -202,7 +202,7 @@ public class BrickletMultiTouch extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

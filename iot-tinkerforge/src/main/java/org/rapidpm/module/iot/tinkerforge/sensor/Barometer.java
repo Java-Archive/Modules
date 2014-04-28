@@ -25,8 +25,8 @@ import java.io.IOException;
  */
 public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
 
-    public BrickletBarometer getBrickletInstance() {
-        return new BrickletBarometer(UID, ipcon);
+    public void connectBricklet() {
+        bricklet= new BrickletBarometer(UID, ipcon);
     }
 
     public Barometer(String UID, int callbackPeriod, int port, String host) {
@@ -41,5 +41,7 @@ public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
             e.printStackTrace();
         }
     }
+
+
 
 }

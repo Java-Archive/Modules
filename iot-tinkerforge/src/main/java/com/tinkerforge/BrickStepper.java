@@ -131,7 +131,7 @@ public class BrickStepper extends Device {
 	 * {@link BrickStepper#setTargetPosition(int)} is reached.
 	 * 
 	 * \note
-	 *  Since we can&apos;t get any feedback from the stepper motor, this only works if the
+	 *  Since we can't get any feedback from the stepper motor, this only works if the
 	 *  acceleration (see {@link BrickStepper#setSpeedRamping(int, int)}) is set smaller or equal to the
 	 *  maximum acceleration of the motor. Otherwise the motor will lag behind the
 	 *  control value and the listener will be triggered too early.
@@ -709,7 +709,7 @@ public class BrickStepper extends Device {
 	 * `this &lt;http://ebldc.com/?p=86/&gt;`__ blog post by Avayan.
 	 * 
 	 * A good decay mode is unfortunately different for every motor. The best
-	 * way to work out a good decay mode for your stepper motor, if you can&apos;t
+	 * way to work out a good decay mode for your stepper motor, if you can't
 	 * measure the current with an oscilloscope, is to listen to the sound of
 	 * the motor. If the value is too low, you often hear a high pitched 
 	 * sound and if it is too high you can often hear a humming sound.
@@ -974,7 +974,7 @@ public class BrickStepper extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;0&apos;-&apos;8&apos; (stack position).
+	 * The position can be '0'-'8' (stack position).
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

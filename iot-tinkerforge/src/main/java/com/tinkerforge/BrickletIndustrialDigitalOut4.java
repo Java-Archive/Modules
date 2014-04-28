@@ -189,7 +189,7 @@ public class BrickletIndustrialDigitalOut4 extends Device {
 	 * The group consists of 4 elements. Element 1 in the group will get pins 0-3,
 	 * element 2 pins 4-7, element 3 pins 8-11 and element 4 pins 12-15.
 	 * 
-	 * Each element can either be one of the ports (&apos;a&apos; to &apos;d&apos;) or &apos;n&apos; if it should
+	 * Each element can either be one of the ports ('a' to 'd') or 'n' if it should
 	 * not be used.
 	 * 
 	 * For example: If you have two Digital Out 4 Bricklets connected to port A and
@@ -275,7 +275,7 @@ public class BrickletIndustrialDigitalOut4 extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

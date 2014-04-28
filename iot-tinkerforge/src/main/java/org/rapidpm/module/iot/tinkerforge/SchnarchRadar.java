@@ -24,7 +24,6 @@ import org.rapidpm.module.iot.tinkerforge.sensor.SoundIntensity;
 
 import java.util.Date;
 
-import static org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor.SensorValueAction;
 
 /**
  * Created by Sven Ruppert on 10.03.14.
@@ -65,7 +64,7 @@ public class SchnarchRadar {
     });
 
     final MotionDectector motionDetector = new MotionDectector("kgn", callbackPeriod, PORT, HOST);
-    motionDetector.getBrickletInstance().addMotionDetectedListener(() -> {
+    motionDetector.bricklet.addMotionDetectedListener(() -> {
       System.out.println("Motion detected.. " + new Date());
     });
     new Thread(motionDetector).start();

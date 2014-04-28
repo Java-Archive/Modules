@@ -163,7 +163,7 @@ public class BrickletHallEffect extends Device {
 	 * 
 	 * Configuring an edge counter resets its value to 0.
 	 * 
-	 * If you don&apos;t know what any of this means, just leave it at default. The
+	 * If you don't know what any of this means, just leave it at default. The
 	 * default configuration is very likely OK for you.
 	 * 
 	 * Default values: 0 (edge type) and 100ms (debounce time)
@@ -283,7 +283,7 @@ public class BrickletHallEffect extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

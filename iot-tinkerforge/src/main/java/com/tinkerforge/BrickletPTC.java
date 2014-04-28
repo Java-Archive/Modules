@@ -334,14 +334,14 @@ public class BrickletPTC extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the temperature is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the temperature is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the temperature is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the temperature is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the temperature is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the temperature is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the temperature is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the temperature is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 */
 	public void setTemperatureCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)17, FUNCTION_SET_TEMPERATURE_CALLBACK_THRESHOLD, this);
@@ -379,14 +379,14 @@ public class BrickletPTC extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the temperature is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the temperature is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the temperature is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the temperature is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the temperature is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the temperature is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the temperature is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the temperature is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 */
 	public void setResistanceCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)13, FUNCTION_SET_RESISTANCE_CALLBACK_THRESHOLD, this);
@@ -457,7 +457,7 @@ public class BrickletPTC extends Device {
 	/**
 	 * Sets the noise rejection filter to either 50Hz (0) or 60Hz (1).
 	 * Noise from 50Hz or 60Hz power sources (including
-	 * harmonics of the AC power&apos;s fundamental frequency) is
+	 * harmonics of the AC power's fundamental frequency) is
 	 * attenuated by 82dB.
 	 * 
 	 * Default value is 0 = 50Hz.
@@ -541,7 +541,7 @@ public class BrickletPTC extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

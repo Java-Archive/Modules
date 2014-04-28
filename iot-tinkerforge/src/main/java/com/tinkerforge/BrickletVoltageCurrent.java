@@ -579,14 +579,14 @@ public class BrickletVoltageCurrent extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the current is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the current is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the current is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the current is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 */
 	public void setCurrentCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)17, FUNCTION_SET_CURRENT_CALLBACK_THRESHOLD, this);
@@ -624,14 +624,14 @@ public class BrickletVoltageCurrent extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the voltage is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the voltage is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the voltage is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the voltage is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 */
 	public void setVoltageCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)17, FUNCTION_SET_VOLTAGE_CALLBACK_THRESHOLD, this);
@@ -669,14 +669,14 @@ public class BrickletVoltageCurrent extends Device {
 	 * \verbatim
 	 *  &quot;Option&quot;, &quot;Description&quot;
 	 * 
-	 *  &quot;&apos;x&apos;&quot;,    &quot;Listener is turned off&quot;
-	 *  &quot;&apos;o&apos;&quot;,    &quot;Listener is triggered when the power is *outside* the min and max values&quot;
-	 *  &quot;&apos;i&apos;&quot;,    &quot;Listener is triggered when the power is *inside* the min and max values&quot;
-	 *  &quot;&apos;&lt;&apos;&quot;,    &quot;Listener is triggered when the power is smaller than the min value (max is ignored)&quot;
-	 *  &quot;&apos;&gt;&apos;&quot;,    &quot;Listener is triggered when the power is greater than the min value (max is ignored)&quot;
+	 *  &quot;'x'&quot;,    &quot;Listener is turned off&quot;
+	 *  &quot;'o'&quot;,    &quot;Listener is triggered when the power is *outside* the min and max values&quot;
+	 *  &quot;'i'&quot;,    &quot;Listener is triggered when the power is *inside* the min and max values&quot;
+	 *  &quot;'&lt;'&quot;,    &quot;Listener is triggered when the power is smaller than the min value (max is ignored)&quot;
+	 *  &quot;'&gt;'&quot;,    &quot;Listener is triggered when the power is greater than the min value (max is ignored)&quot;
 	 * \endverbatim
 	 * 
-	 * The default value is (&apos;x&apos;, 0, 0).
+	 * The default value is ('x', 0, 0).
 	 */
 	public void setPowerCallbackThreshold(char option, int min, int max) throws TimeoutException, NotConnectedException {
 		ByteBuffer bb = ipcon.createRequestPacket((byte)17, FUNCTION_SET_POWER_CALLBACK_THRESHOLD, this);
@@ -751,7 +751,7 @@ public class BrickletVoltageCurrent extends Device {
 	 * the position, the hardware and firmware version as well as the
 	 * device identifier.
 	 * 
-	 * The position can be &apos;a&apos;, &apos;b&apos;, &apos;c&apos; or &apos;d&apos;.
+	 * The position can be 'a', 'b', 'c' or 'd'.
 	 * 
 	 * The device identifier numbers can be found :ref:`here &lt;device_identifier&gt;`.
 	 * |device_identifier_constant|

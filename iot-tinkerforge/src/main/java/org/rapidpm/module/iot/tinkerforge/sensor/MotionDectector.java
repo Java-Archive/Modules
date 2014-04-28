@@ -34,7 +34,7 @@ public class MotionDectector extends TinkerForgeSensor<BrickletMotionDetector>{
     }
 
     @Override
-    public BrickletMotionDetector getBrickletInstance() {
-        return new BrickletMotionDetector(UID, ipcon);
+    public void connectBricklet() {
+        bricklet= new BrickletMotionDetector(UID, ipcon);
     }
 }
