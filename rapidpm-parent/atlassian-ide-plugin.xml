@@ -2,6 +2,8 @@
   <project-configuration id="1">
     <servers id="2" />
     <default-crucible-server id="3">5c538a85-b634-4384-acb2-42dde76dd5dc</default-crucible-server>
-    <default-jira-server id="4">25b9e85d-d4da-4dff-8f8b-de44a2f90788</default-jira-server>
+    <default-fisheye-server id="4">4b4e3ea3-7ee1-4bbc-8d5b-cc0f43dfc373</default-fisheye-server>
+    <default-fisheye-repo>RapidPM-Modules</default-fisheye-repo>
+    <default-jira-server id="5">9bf48625-f64b-4973-8318-7d0ee1456f7e</default-jira-server>
   </project-configuration>
 </atlassian-ide-plugin>
