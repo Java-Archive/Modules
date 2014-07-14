@@ -29,6 +29,10 @@ public class PTC extends TinkerForgeSensor<BrickletPTC>{
         super(UID, callbackPeriod, port, host);
     }
 
+  @Override
+  protected double convertRawValue(int sensorRawValue) {
+    return sensorRawValue / 100.0;
+  }
 
     @Override
     public void initBricklet() {

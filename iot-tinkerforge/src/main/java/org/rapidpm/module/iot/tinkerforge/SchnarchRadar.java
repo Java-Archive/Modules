@@ -42,32 +42,32 @@ public class SchnarchRadar {
       final double lux = sensorvalue / 10.0;
       final String text = "Lux   : " + lux + " Lux";
       System.out.println(text);
-
     });
+    light.run();
 
     final Humidity humidity = new Humidity("kc8", callbackPeriod, PORT, HOST);
     humidity.bricklet.addHumidityListener(sensorvalue -> {
       final double tempNorm = sensorvalue / 10.0;
       final String text = "RelHum: " + tempNorm + " %RH";
-//                lcd20x4.printLine(2, text);
       System.out.println(text);
 
     });
+    humidity.run();
 
     final SoundIntensity soundIntensity = new SoundIntensity("iQj", callbackPeriod, PORT, HOST);
     soundIntensity.bricklet.addIntensityListener(sensorvalue -> {
       //                final double soundNorm = sensorvalue / 10.0;
       final String text = "Sound: " + sensorvalue + " dB";
-//                lcd20x4.printLine(2, text);
       System.out.println(text);
 
     });
+    soundIntensity.run();
 
     final MotionDectector motionDetector = new MotionDectector("kgn", callbackPeriod, PORT, HOST);
     motionDetector.bricklet.addMotionDetectedListener(() -> {
       System.out.println("Motion detected.. " + new Date());
     });
-    new Thread(motionDetector).start();
+    motionDetector.run();
 
     WaitForQ.waitForQ();
   }

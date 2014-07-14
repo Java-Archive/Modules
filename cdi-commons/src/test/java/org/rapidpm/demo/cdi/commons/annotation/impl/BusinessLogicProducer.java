@@ -14,31 +14,24 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
+package org.rapidpm.demo.cdi.commons.annotation.impl;
 
-import com.tinkerforge.BrickletMotionDetector;
+import org.rapidpm.demo.cdi.commons.annotation.cdi.DemoAnnotation;
+
+import javax.enterprise.inject.New;
+import javax.enterprise.inject.Produces;
 
 /**
- * Created by Sven Ruppert on 11.03.14.
+ * Created by Sven Ruppert on 23.05.2014.
  */
-public class MotionDectector extends TinkerForgeSensor<BrickletMotionDetector>{
+public class BusinessLogicProducer {
 
-    public MotionDectector(String UID, int callbackPeriod, int port, String host) {
-        super(UID, callbackPeriod, port, host);
-    }
 
-  @Override
-  protected double convertRawValue(int sensorRawValue) {
-    return sensorRawValue / 1.0;
+  @Produces @DemoAnnotation
+  public BusinessLogic create(@New BusinessLogic businessLogic){
+    return businessLogic;
   }
 
-    @Override
-    public void initBricklet() {
 
-    }
 
-    @Override
-    public void connectBricklet() {
-        bricklet= new BrickletMotionDetector(UID, ipcon);
-    }
 }

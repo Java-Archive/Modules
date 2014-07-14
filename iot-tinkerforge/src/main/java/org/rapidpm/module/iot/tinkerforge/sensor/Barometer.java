@@ -33,6 +33,11 @@ public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
         super(UID, callbackPeriod, port, host);
     }
 
+  @Override
+  protected double convertRawValue(int sensorRawValue) {
+    return sensorRawValue / 1000.0;
+  }
+
     public void initBricklet() {
         try {
             bricklet.setAirPressureCallbackPeriod(callbackPeriod);

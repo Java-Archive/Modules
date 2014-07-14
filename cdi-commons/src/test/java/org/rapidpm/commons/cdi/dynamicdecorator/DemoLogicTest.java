@@ -29,7 +29,7 @@ import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 /**
- * Created by ts40 on 09.01.14.
+ * Created by Sven Ruppert on 09.01.14.
  */
 @RunWith(Arquillian.class)
 public class DemoLogicTest {

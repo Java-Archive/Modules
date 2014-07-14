@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: org.rapidpm.module.iot.tinkerforge.WeatherStationPersistent
+Main-Class: org.rapidpm.module.iot.raspi.CamTest
 

@@ -33,6 +33,10 @@ public  class Humidity extends TinkerForgeSensor<BrickletHumidity> {
         super(UID, callbackPeriod, port, host);
     }
 
+  @Override
+  protected double convertRawValue(int sensorRawValue) {
+    return sensorRawValue / 10.0;
+  }
 
     public void initBricklet(){
         try {

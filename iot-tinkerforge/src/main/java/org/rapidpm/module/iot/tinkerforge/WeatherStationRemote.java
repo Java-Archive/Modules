@@ -19,10 +19,7 @@ package org.rapidpm.module.iot.tinkerforge;
 
 import org.rapidpm.module.iot.tinkerforge.actor.LCD20x4;
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.sensor.Barometer;
-import org.rapidpm.module.iot.tinkerforge.sensor.Humidity;
-import org.rapidpm.module.iot.tinkerforge.sensor.Light;
-import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
+import org.rapidpm.module.iot.tinkerforge.sensor.*;
 import org.rapidpm.module.iot.twitter.TwitterFactory;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -38,28 +35,34 @@ public class WeatherStationRemote {
   public static final int PORT = 4223;
   private static int callbackPeriod = 5000;
 
-  private static final LCD20x4 lcd20x4 = new LCD20x4("jvX", "192.168.0.202", PORT);
+//  private static final LCD20x4 lcd20x4 = new LCD20x4("jvX", "192.168.0.202", PORT);
 
   private static final TwitterFactory tf = new TwitterFactory();
   private static final Twitter twitter = tf.createTwitter();
+
 
   public static void main(String args[]) throws Exception {
     final Temperature temperature = new Temperature("dXj", callbackPeriod, PORT, HOST);
     temperature.bricklet.addTemperatureListener(sensorvalue -> {
       final double tempNorm = sensorvalue / 100.0;
       final String text = LocalDateTime.now() + " - Temp  : " + tempNorm + " °C";
-      lcd20x4.printLine0(text);
       System.out.println("text = " + text);
       tweetIt(text);
     });
 
+    temperature.addSensorDataAction(sensorValue -> {
+      final String text = LocalDateTime.now() + " - Temp  : " + sensorValue + " °C";
+      System.out.println("text = " + text);
+      tweetIt(text);
+    });
 //    new Thread(temperature).start();
     temperature.run();
+
 
     final Barometer barometer = new Barometer("jY4", callbackPeriod, PORT, HOST);
     barometer.bricklet.addAirPressureListener(sensorvalue -> {
       final String text = LocalDateTime.now() + " - Air   : " + sensorvalue / 1000.0 + " mbar";
-      lcd20x4.printLine1(text);
+//      lcd20x4.printLine1(text);
       System.out.println("text = " + text);
       tweetIt(text);
     });
@@ -70,7 +73,7 @@ public class WeatherStationRemote {
     light.bricklet.addIlluminanceListener(sensorvalue -> {
       final double lux = sensorvalue / 10.0;
       final String text = LocalDateTime.now() + " - Lux   : " + lux + " Lux";
-      lcd20x4.printLine3(text);
+//      lcd20x4.printLine3(text);
       System.out.println("text = " + text);
       tweetIt(text);
     });
@@ -81,7 +84,7 @@ public class WeatherStationRemote {
     humidity.bricklet.addHumidityListener(sensorvalue -> {
       final double tempNorm = sensorvalue / 10.0;
       final String text = LocalDateTime.now() + " - RelHum: " + tempNorm + " %RH";
-      lcd20x4.printLine2(text);
+//      lcd20x4.printLine2(text);
       System.out.println("text = " + text);
       tweetIt(text);
     });

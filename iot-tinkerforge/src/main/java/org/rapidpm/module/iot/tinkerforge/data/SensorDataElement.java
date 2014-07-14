@@ -29,7 +29,7 @@ public class SensorDataElement  {
     private String brickletUID;    // sensor xyz
     private String brickletType;   // Temperatur
     private LocalDateTime date;
-    private int sensorValue;
+    private double sensorValue;
 
     public String getMasterUID() {
         return masterUID;
@@ -63,11 +63,11 @@ public class SensorDataElement  {
     this.date = date;
   }
 
-  public int getSensorValue() {
+  public double getSensorValue() {
         return sensorValue;
     }
 
-    public void setSensorValue(int sensorValue) {
+    public void setSensorValue(double sensorValue) {
         this.sensorValue = sensorValue;
     }
 

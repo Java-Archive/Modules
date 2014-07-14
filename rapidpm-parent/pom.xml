@@ -20,15 +20,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--for release only-->
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-  </parent>
+  <!--<parent>-->
+    <!--<groupId>org.sonatype.oss</groupId>-->
+    <!--<artifactId>oss-parent</artifactId>-->
+    <!--<version>7</version>-->
+  <!--</parent>-->
 
   <groupId>org.rapidpm</groupId>
   <artifactId>rapidpm-parent</artifactId>
-  <version>2.0.1</version>
+  <version>2.0.2-SNAPSHOT</version>
 
   <packaging>pom</packaging>
   <name>rapidpm-parent</name>
@@ -306,18 +306,18 @@
   </build>
 
   <!--for development of features/develop branch-->
-  <!--<distributionManagement>-->
-  <!--<repository>-->
-  <!--<id>releases</id>-->
-  <!--<name>RapidPM Releases</name>-->
-  <!--<url>http://${nexus.ip}/nexus/content/repositories/releases</url>-->
-  <!--</repository>-->
-  <!--<snapshotRepository>-->
-  <!--<id>snapshots</id>-->
-  <!--<name>RapidPM Snapshots</name>-->
-  <!--<url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>-->
-  <!--</snapshotRepository>-->
-  <!--</distributionManagement>-->
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>RapidPM Releases</name>
+      <url>http://${nexus.ip}/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>RapidPM Snapshots</name>
+      <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
   <profiles>
     <profile>
       <activation>
@@ -565,6 +565,7 @@
     <module>../cdi-commons-fx</module>
     <module>../javafx-commons</module>
     <module>../iot-tinkerforge</module>
+    <module>../web-vaadin</module>
     <!--deactivated-->
     <!--<module>../cdi-tablemodel</module>-->
     <!--<module>../javafx-chart-pie-drilldown</module>-->

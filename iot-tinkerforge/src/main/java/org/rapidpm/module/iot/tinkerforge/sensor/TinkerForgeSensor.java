@@ -21,7 +21,10 @@ import org.rapidpm.module.iot.tinkerforge.data.SensorDataElement;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by Sven Ruppert on 21.02.14.
@@ -49,7 +52,6 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
 
   @Override
   public void run() {
-//    bricklet = connectBricklet();
     try {
       ipcon.connect(host, port);
       masterUID = bricklet.getIdentity().connectedUid;
@@ -94,4 +96,30 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
   }
   public abstract void initBricklet();
   protected abstract void connectBricklet();
+
+  private List<SensorDataAction> actionList = new ArrayList<>();
+  public void clearActionList(){ actionList.clear(); }
+
+  protected abstract double convertRawValue(int sensorRawValue);
+
+  /**
+   * zeitkritische Operation, muss beendet sein bevor ein neuer Wert kommt.
+   * @param rawValue
+   */
+  protected void execute(int rawValue){
+    double value = convertRawValue(rawValue);
+    actionList.forEach(a -> a.execute(value));
+  }
+
+
+  public void addSensorDataAction(SensorDataAction action){
+    actionList.add(action);
+  }
+
+  @FunctionalInterface
+  public static interface SensorDataAction{
+    public void execute(double sensorValue);
+  }
+
+
 }

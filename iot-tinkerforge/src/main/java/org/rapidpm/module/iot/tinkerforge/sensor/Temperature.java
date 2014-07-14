@@ -31,6 +31,11 @@ public class Temperature extends TinkerForgeSensor<BrickletTemperature> {
     bricklet= new BrickletTemperature(UID, ipcon);
   }
 
+  @Override
+  protected double convertRawValue(int sensorRawValue) {
+    return sensorRawValue / 100.0;
+  }
+
   public Temperature(String UID, int callbackPeriod, int port, String host) {
     super(UID, callbackPeriod, port, host);
   }
@@ -38,8 +43,10 @@ public class Temperature extends TinkerForgeSensor<BrickletTemperature> {
   public void initBricklet() {
     try {
       bricklet.setTemperatureCallbackPeriod(callbackPeriod);
+      bricklet.addTemperatureListener(this::execute);
     } catch (TimeoutException | NotConnectedException e) {
       e.printStackTrace();
     }
   }
+
 }

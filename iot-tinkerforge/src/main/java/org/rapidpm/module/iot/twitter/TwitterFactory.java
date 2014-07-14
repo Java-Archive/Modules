@@ -26,8 +26,6 @@ public class TwitterFactory {
 
   private twitter4j.TwitterFactory tf;
 
-
-
   public TwitterFactory() {
     ConfigurationBuilder cb = new ConfigurationBuilder();
     cb.setDebugEnabled(true)
@@ -37,8 +35,5 @@ public class TwitterFactory {
         .setOAuthAccessTokenSecret("X9QYzlDKURIxGZbFWoZ7NdvhcFurBfEUVHMTLxtBSrU2x");
     tf = new twitter4j.TwitterFactory(cb.build());
   }
-
-
   public Twitter createTwitter(){ return tf.getInstance();}
-
 }

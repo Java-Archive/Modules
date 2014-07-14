@@ -29,6 +29,10 @@ public class SoundIntensity extends TinkerForgeSensor<BrickletSoundIntensity> {
         super(UID, callbackPeriod, port, host);
     }
 
+  @Override
+  protected double convertRawValue(int sensorRawValue) {
+    return sensorRawValue / 1.0;
+  }
 
     @Override
     public void initBricklet() {

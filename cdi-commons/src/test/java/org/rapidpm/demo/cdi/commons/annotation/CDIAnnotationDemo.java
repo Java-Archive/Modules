@@ -1,5 +1,5 @@
 /*
- * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,9 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.commons.cdi.logger;
-
-import javax.inject.Inject;
+package org.rapidpm.demo.cdi.commons.annotation;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -28,46 +26,42 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.rapidpm.demo.cdi.commons.annotation.cdi.DemoAnnotation;
+import org.rapidpm.demo.cdi.commons.annotation.impl.BusinessLogic;
 import org.rapidpm.module.se.commons.logger.Logger;
 
+import javax.inject.Inject;
 
 /**
- * LoggerProducer Tester.
- *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>Jun 3, 2013</pre>
+ * Created by Sven Ruppert on 23.05.2014.
  */
+
 @RunWith(Arquillian.class)
-public class LoggerProducerTest {
+public class CDIAnnotationDemo {
 
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackages(true, "org.rapidpm.commons")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
+  @Deployment
+  public static JavaArchive createDeployment() {
+    return ShrinkWrap.create(JavaArchive.class)
+        .addPackages(true, "org.rapidpm.demo")
+        .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+  }
 
-    @Before
-    public void before() throws Exception {
-    }
+  @Before
+  public void before() throws Exception {
+  }
 
-    @After
-    public void after() throws Exception {
-    }
-
-
-    @Inject @CDILogger Logger logger;
-
-    /**
-     * Method: produceLog4JLogger(InjectionPoint injectionPoint)
-     */
-    @Test
-    public void testProduceLog4JLogger() throws Exception {
-        Assert.assertNotNull(logger);
-        Assert.assertTrue(logger instanceof Logger);
-
-    }
+  @After
+  public void after() throws Exception {
+  }
 
 
-} 
+  @Inject @DemoAnnotation BusinessLogic businessLogic;
+
+  /**
+   * Method: produceLog4JLogger(InjectionPoint injectionPoint)
+   */
+  @Test
+  public void testProduceLog4JLogger() throws Exception {
+    System.out.println(businessLogic.doMore());
+  }
+}

@@ -14,31 +14,14 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
-
-import com.tinkerforge.BrickletMotionDetector;
+package org.rapidpm.module.iot.tinkerforge;
 
 /**
- * Created by Sven Ruppert on 11.03.14.
+ * Created by Sven Ruppert on 04.05.2014.
  */
-public class MotionDectector extends TinkerForgeSensor<BrickletMotionDetector>{
+public class WeatherStationMQTT {
 
-    public MotionDectector(String UID, int callbackPeriod, int port, String host) {
-        super(UID, callbackPeriod, port, host);
-    }
+  public static void main(String[] args) {
 
-  @Override
-  protected double convertRawValue(int sensorRawValue) {
-    return sensorRawValue / 1.0;
   }
-
-    @Override
-    public void initBricklet() {
-
-    }
-
-    @Override
-    public void connectBricklet() {
-        bricklet= new BrickletMotionDetector(UID, ipcon);
-    }
 }

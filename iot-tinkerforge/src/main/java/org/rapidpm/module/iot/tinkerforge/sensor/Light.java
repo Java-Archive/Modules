@@ -33,6 +33,10 @@ public  class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
         bricklet = new BrickletAmbientLight(UID, ipcon);
     }
 
+  @Override
+  protected double convertRawValue(int sensorRawValue) {
+    return sensorRawValue / 10.0;
+  }
 
     public void initBricklet(){
         try {

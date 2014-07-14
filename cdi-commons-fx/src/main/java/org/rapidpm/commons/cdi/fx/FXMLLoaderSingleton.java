@@ -59,14 +59,11 @@ public class FXMLLoaderSingleton {
 //            FXMLLoader loader = new CDIFXMLLoader(resource);
             FXMLLoader loader = new FXMLLoader(resource);
             loader.setClassLoader(cachingClassLoader);
-            loader.setControllerFactory(new Callback<Class<?>, Object>() {
-                @Override
-                public Object call(Class<?> param) {
-                    final Class<JavaFXBaseController> p = (Class<JavaFXBaseController>) param;
-                    final JavaFXBaseController controller = instance.select(p).get();
-                    controller.initInstance(); //trigger async call
-                    return controller;
-                }
+            loader.setControllerFactory(param -> {
+                final Class<JavaFXBaseController> p = (Class<JavaFXBaseController>) param;
+                final JavaFXBaseController controller = instance.select(p).get();
+                controller.initInstance(); //trigger async call
+                return controller;
             });
             try {  //verpacken in Dynamic Proxy
                 final Class<?> aClass = Class.forName(clazz.getName() + "Controller");

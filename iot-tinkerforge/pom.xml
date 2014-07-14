@@ -17,138 +17,145 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.rapidpm</groupId>
-        <artifactId>rapidpm-parent</artifactId>
-        <version>2.0.1</version>
-    </parent>
-    <name>iot-tinkerforge</name>
-    <description>IoT TinkerForges</description>
-    <groupId>org.rapidpm.modul</groupId>
-    <artifactId>iot-tinkerforge</artifactId>
-    <version>${project.parent.version}</version>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.rapidpm</groupId>
+    <artifactId>rapidpm-parent</artifactId>
+    <version>2.0.2-SNAPSHOT</version>
+  </parent>
+  <name>iot-tinkerforge</name>
+  <description>IoT TinkerForges</description>
+  <groupId>org.rapidpm.modul</groupId>
+  <artifactId>iot-tinkerforge</artifactId>
+  <version>${project.parent.version}</version>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.symbolic.name>iot-tinkerforge</project.symbolic.name>
-    </properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.symbolic.name>iot-tinkerforge</project.symbolic.name>
+  </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.weld.se</groupId>
-            <artifactId>weld-se</artifactId>
-            <scope>compile</scope>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.weld.se</groupId>
+      <artifactId>weld-se</artifactId>
+      <scope>compile</scope>
+    </dependency>
 
+    <!--MQTT-->
+    <dependency>
+      <groupId>org.eclipse.paho</groupId>
+      <artifactId>mqtt-client</artifactId>
+      <type>jar</type>
+      <version>0.4.0</version>
+    </dependency>
 
-        <!---->
-        <dependency>
-            <groupId>org.twitter4j</groupId>
-            <artifactId>twitter4j-core</artifactId>
-            <version>[4.0,)</version>
-        </dependency>
-        <dependency>
-            <groupId>org.twitter4j</groupId>
-            <artifactId>twitter4j-media-support</artifactId>
-            <version>[4.0,)</version>
-        </dependency>
-        <!---->
+    <!--Twitter-->
+    <dependency>
+      <groupId>org.twitter4j</groupId>
+      <artifactId>twitter4j-core</artifactId>
+      <version>[4.0,)</version>
+    </dependency>
+    <dependency>
+      <groupId>org.twitter4j</groupId>
+      <artifactId>twitter4j-media-support</artifactId>
+      <version>[4.0,)</version>
+    </dependency>
+    <!---->
 
-        <!--arangodb-->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-joda</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <!--arangodb-->
+    <!--arangodb-->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-joda</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <!--arangodb-->
 
-    </dependencies>
-
-
-    <profiles>
-        <!-- embedded profiles -->
-        <profile>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <id>junit</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <inherited>true</inherited>
-                        <configuration>
-                            <includes>
-                                <include>**/junit/**</include>
-                            </includes>
-                            <forkMode>once</forkMode>
-                            <reportFormat>xml</reportFormat>
-                            <!--<classesDirectory>target/generated-classes/emma/classes</classesDirectory>-->
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-    </profiles>
+  </dependencies>
 
 
-    <inceptionYear>2013</inceptionYear>
-    <organization>
-        <name>RapidPM</name>
-        <url>http://www.rapidpm.org</url>
-    </organization>
-    <url>http://wiki.rapidpm.org/display/PHB/Modul+-+GenericCache</url>
-    <developers>
-        <developer>
-            <name>Sven Ruppert</name>
-            <email>sven.ruppert@rapidpm.org</email>
-            <roles>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
-    <issueManagement>
-        <system>Jira</system>
-        <url>https://bitbucket.org/rapidpm/rapidpm-modules/issues</url>
-    </issueManagement>
-    <ciManagement>
-        <system>Jenkins</system>
-        <url>http://jenkins.rapidpm.org/job/rapidpm-modules/</url>
-        <!--<notifiers>-->
-        <!--<notifier></notifier>-->
-        <!--</notifiers>-->
-    </ciManagement>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
-    <!--<reporting>-->
-    <!--<plugins>-->
-    <!--<plugin></plugin>-->
-    <!--</plugins>-->
-    <!--</reporting>-->
+  <profiles>
+    <!-- embedded profiles -->
+    <profile>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <id>junit</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <inherited>true</inherited>
+            <configuration>
+              <includes>
+                <include>**/junit/**</include>
+              </includes>
+              <forkMode>once</forkMode>
+              <reportFormat>xml</reportFormat>
+              <!--<classesDirectory>target/generated-classes/emma/classes</classesDirectory>-->
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+
+  <inceptionYear>2013</inceptionYear>
+  <organization>
+    <name>RapidPM</name>
+    <url>http://www.rapidpm.org</url>
+  </organization>
+  <url>http://wiki.rapidpm.org/display/PHB/Modul+-+GenericCache</url>
+  <developers>
+    <developer>
+      <name>Sven Ruppert</name>
+      <email>sven.ruppert@rapidpm.org</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>Jira</system>
+    <url>https://bitbucket.org/rapidpm/rapidpm-modules/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>http://jenkins.rapidpm.org/job/rapidpm-modules/</url>
+    <!--<notifiers>-->
+    <!--<notifier></notifier>-->
+    <!--</notifiers>-->
+  </ciManagement>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+  <!--<reporting>-->
+  <!--<plugins>-->
+  <!--<plugin></plugin>-->
+  <!--</plugins>-->
+  <!--</reporting>-->
 
 
 </project>
