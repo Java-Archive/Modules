@@ -565,7 +565,7 @@
     <module>../cdi-commons-fx</module>
     <module>../javafx-commons</module>
     <module>../iot-tinkerforge</module>
-    <module>../web-vaadin</module>
+    <!--<module>../web-vaadin</module>-->
     <!--deactivated-->
     <!--<module>../cdi-tablemodel</module>-->
     <!--<module>../javafx-chart-pie-drilldown</module>-->
