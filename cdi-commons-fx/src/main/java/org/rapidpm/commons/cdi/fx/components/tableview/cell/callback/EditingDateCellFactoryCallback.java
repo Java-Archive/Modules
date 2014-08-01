@@ -59,7 +59,8 @@ public class EditingDateCellFactoryCallback<S> implements Callback<TableColumn<S
         SimpleDateFormat sdf;   //TODO von aussen setzen
 
         //        @Inject Instance<DatePicker> datePickerInstance;
-        private  @Inject DatePicker datePicker;
+//        private  @Inject DatePicker datePicker;
+        private DatePicker datePicker = new DatePicker();
 
         public EditingCell() {
         }

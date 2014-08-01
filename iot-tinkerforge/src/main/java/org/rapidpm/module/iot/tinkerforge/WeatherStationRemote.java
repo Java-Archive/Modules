@@ -17,7 +17,6 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 
-import org.rapidpm.module.iot.tinkerforge.actor.LCD20x4;
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
 import org.rapidpm.module.iot.tinkerforge.sensor.*;
 import org.rapidpm.module.iot.twitter.TwitterFactory;

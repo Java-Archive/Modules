@@ -35,6 +35,9 @@
   <description>Parent POM for the RapidPM-Modules-Projects</description>
 
   <properties>
+
+    <rapidpm.version>2.0.2-SNAPSHOT</rapidpm.version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.symbolic.name>rapidpm-parent</project.symbolic.name>
 
@@ -48,7 +51,7 @@
       <dependency>
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-dependicies</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -56,83 +59,83 @@
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>se-commons</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>se-genericcache</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>compile</scope>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>cdi-commons</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>cdi-commons</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>test</scope>
         <type>test-jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>cdi-commons-se</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>cdi-commons-se</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>test</scope>
         <type>test-jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>cdi-commons-fx</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <type>jar</type>
         <scope>compile</scope>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>cdi-commons-fx</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <type>test-jar</type>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>javafx-commons</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>javafx-commons</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>test</scope>
         <type>test-jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>iot-tinkerforge</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>compile</scope>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.rapidpm.modul</groupId>
         <artifactId>iot-tinkerforge</artifactId>
-        <version>${project.version}</version>
+        <version>${rapidpm.version}</version>
         <scope>test</scope>
         <type>test-jar</type>
       </dependency>
