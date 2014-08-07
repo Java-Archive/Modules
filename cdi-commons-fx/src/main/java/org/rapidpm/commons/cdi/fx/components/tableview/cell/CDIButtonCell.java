@@ -51,9 +51,7 @@ public abstract class CDIButtonCell<T> extends TableCell<T, Boolean> {
   public @Inject @CDILogger Logger logger;
   public @Inject ManagedInstanceCreator instanceCreator;
 
-  public CDIButtonCell() {
-
-  }
+  public CDIButtonCell() {}
 
   @PostConstruct
   public void init() {

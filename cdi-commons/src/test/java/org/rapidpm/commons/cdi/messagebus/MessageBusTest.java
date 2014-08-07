@@ -37,53 +37,78 @@ import org.rapidpm.commons.cdi.messagebus.model.TestCallbackData;
 @RunWith(Arquillian.class)
 public class MessageBusTest {
 
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackages(true, "org.rapidpm.commons")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
+  @Deployment
+  public static JavaArchive createDeployment() {
+    return ShrinkWrap.create(JavaArchive.class)
+        .addPackages(true, "org.rapidpm.commons")
+        .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+  }
 
 
-    @Inject @CDIMessageBus
-    MessageBus messageBus;
+  @Inject @CDIMessageBus MessageBus messageBus;
 
-    @Test
-    public void testMessageBus001() throws Exception {
-        Assert.assertNotNull(messageBus);
+  @Test
+  public void testMessageBus001() throws Exception {
+    Assert.assertNotNull(messageBus);
 
-        //someone that want to get the message - start
-        final MessageBusCallback<TestCallbackData> callBack = new MessageBusCallback<TestCallbackData>() {
-            @Override
-            public void recordCallbackMessage(Message<TestCallbackData> m) {
-                Assert.assertNotNull(m);
-                final TestCallbackData value = m.getValue();
-                Assert.assertNotNull(value.getValueLong());
-                Assert.assertEquals(-1L, value.getValueLong().longValue());
+    //someone that want to get the message - start
+//    final MessageBusCallback<TestCallbackData> callBack = new MessageBusCallback<TestCallbackData>() {
+//      @Override
+//      public void recordCallbackMessage(Message<TestCallbackData> m) {
+//        Assert.assertNotNull(m);
+//        final TestCallbackData value = m.getValue();
+//        Assert.assertNotNull(value.getValueLong());
+//        Assert.assertEquals(-1L, value.getValueLong().longValue());
+//
+//        Assert.assertNotNull(value.getValueTxt());
+//        Assert.assertEquals("AEAEAE", value.getValueTxt());
+//      }
+//    };
 
-                Assert.assertNotNull(value.getValueTxt());
-                Assert.assertEquals("AEAEAE", value.getValueTxt());
-            }
-        };
+//    final MessageBusCallback<TestCallbackData> callBack = new MessageBusCallback<>();
+//    callBack.setCallBackAction(m->{
+//        Assert.assertNotNull(m);
+//        final TestCallbackData value = m.getValue();
+//        Assert.assertNotNull(value.getValueLong());
+//        Assert.assertEquals(-1L, value.getValueLong().longValue());
+//
+//        Assert.assertNotNull(value.getValueTxt());
+//        Assert.assertEquals("AEAEAE", value.getValueTxt());
+//    });
+//
+//    messageBus.registerCallBack(callBack);
 
-        messageBus.registerCallBack(callBack);
-        //someone that want to get the message - stop
+    final String callbackUID = "testCallBack";
+    messageBus.<TestCallbackData>registerCallBack(callbackUID, m -> {
+        Assert.assertNotNull(m);
+        final TestCallbackData value = m.getValue();
+        Assert.assertNotNull(value.getValueLong());
+        Assert.assertEquals(-1L, value.getValueLong().longValue());
 
-        //someone that want to give the message - start
-        final TestCallbackData testCallbackData = new TestCallbackData();
-        testCallbackData.setValueTxt("AEAEAE");
-        testCallbackData.setValueLong(-1L);
-
-        final Message<TestCallbackData> message = new Message<>();
-        message.setAnnotationLiteral(new AnnotationLiteral<TestCDIMessageBus>() {
-        });
-        message.setValue(testCallbackData);
-        messageBus.post(message);
-        //someone that want to give the message - stop
+        Assert.assertNotNull(value.getValueTxt());
+        Assert.assertEquals("AEAEAE", value.getValueTxt());
+    });
 
 
-        //no listening enymore
-        messageBus.destroyCallBack(callBack);
 
-    }
+    //someone that want to get the message - stop
+
+    //someone that want to give the message - start
+    final TestCallbackData testCallbackData = new TestCallbackData();
+    testCallbackData.setValueTxt("AEAEAE");
+    testCallbackData.setValueLong(-1L);
+
+    final Message<TestCallbackData> message = new Message<>();
+
+    message.setAnnotationLiteral(new AnnotationLiteral<TestCDIMessageBus>() { });
+
+    message.setValue(testCallbackData);
+    messageBus.post(message);
+    //someone that want to give the message - stop
+
+
+    //no listening enymore
+    messageBus.destroyCallBack(callbackUID);
+
+  }
 }

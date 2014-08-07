@@ -16,13 +16,17 @@
 
 package org.rapidpm.commons.cdi.messagebus;
 
+import com.google.common.collect.Maps;
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.concurrent.ConcurrentMap;
+import java.util.function.Consumer;
 
 /**
  * User: Sven Ruppert
@@ -32,32 +36,69 @@ import java.io.Serializable;
 @ApplicationScoped //zu hart def
 public class MessageBus implements Serializable {
 
-    //    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());
-    private EventBus eventBus = new EventBus(this.getClass().getName());
+  //    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());
+  private EventBus eventBus = new EventBus(this.getClass().getName());
 
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
+  //damit nicht mehr die Callback referenzen gehalten werden muessen
+  private ConcurrentMap<String, MessageBusCallback> callbacks = Maps.newConcurrentMap();
 
-    public void registerCallBack(MessageBusCallback callBack) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("registerCallBack " + callBack);
-        }
-        eventBus.register(callBack);
+  private @Inject @CDILogger Logger logger;
+
+  public <T> void registerCallBack(final String callbackUID, Consumer<Message<T>> m) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("registerCallBack with UID" + callbackUID);
+    }
+    final MessageBusCallback<T> callback = this.new MessageBusCallback<>();
+    callback.setCallBackAction(m);
+    callbacks.put(callbackUID, callback);
+    eventBus.register(callback);
+  }
+
+//  public void destroyCallBack(MessageBusCallback callBack) {
+//    if (logger.isDebugEnabled()) {
+//      logger.debug("destroyCallBack " + callBack);
+//    }
+//    eventBus.unregister(callBack);
+//  }
+  public void destroyCallBack(final String callbackUID) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("destroyCallBack with UID" + callbackUID);
     }
 
-    public void destroyCallBack(MessageBusCallback callBack) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("destroyCallBack " + callBack);
-        }
-        eventBus.unregister(callBack);
+    if (callbacks.containsKey(callbackUID)) {
+      eventBus.unregister(callbacks.get(callbackUID));
+    } else {
+      logger.warn("Callback with the following UID was not registered. " + callbackUID);
+    }
+  }
+
+
+
+
+  public void post(Message message) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("post " + message);
+    }
+    eventBus.post(message);
+  }
+
+
+
+  private class MessageBusCallback<T> {
+
+    private Consumer<Message<T>> c;
+
+    @Subscribe
+    public void recordCallbackMessage(Message<T> m) {
+      c.accept(m);
     }
 
-    public void post(Message message) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("post " + message);
-        }
-        eventBus.post(message);
+    public void setCallBackAction(Consumer<Message<T>> m){
+      this.c = m;
     }
+
+
+
+  }
+
 }

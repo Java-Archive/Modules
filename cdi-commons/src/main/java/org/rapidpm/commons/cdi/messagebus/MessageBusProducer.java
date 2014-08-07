@@ -25,9 +25,8 @@ import javax.enterprise.inject.Produces;
  */
 public class MessageBusProducer {
 
-
-    @Produces
-    @CDIMessageBus public MessageBus create(MessageBus messageBus) {
+    @Produces @CDIMessageBus
+    public MessageBus create(MessageBus messageBus) {
         return messageBus;
     }
 
