@@ -132,6 +132,11 @@
 
       <!--JavaFX-->
       <dependency>
+        <groupId>org.controlsfx</groupId>
+        <artifactId>controlsfx</artifactId>
+        <version>8.0.6</version>
+      </dependency>
+      <dependency>
         <groupId>eu.hansolo.enzo</groupId>
         <artifactId>Enzo</artifactId>
         <version>0.1</version>
@@ -245,7 +250,7 @@
       <dependency>
         <groupId>org.loadui</groupId>
         <artifactId>testFx</artifactId>
-        <version>3.1.2</version>
+        <version>4.0.0.SNAPSHOT</version>
         <scope>test</scope>
       </dependency>
       <dependency>

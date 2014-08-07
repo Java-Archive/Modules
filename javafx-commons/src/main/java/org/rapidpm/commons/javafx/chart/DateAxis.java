@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.gui.fx;
+package org.rapidpm.commons.javafx.chart;
 
 import com.sun.javafx.charts.ChartLayoutAnimator;
 import javafx.animation.KeyFrame;

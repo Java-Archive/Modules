@@ -1,9 +1,6 @@
 package org.rapidpm.commons.cdi.fx.components.tableview.cell.deletebutton;
 
 
-import javafx.event.ActionEvent;
-import javafx.scene.control.TableRow;
-import org.rapidpm.commons.cdi.fx.components.tableview.cell.ButtonCellAction;
 import org.rapidpm.commons.cdi.fx.components.tableview.cell.CDIButtonCell;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
@@ -37,19 +34,7 @@ public class DeleteButtonCell extends CDIButtonCell<TransientTableRow> {
         if (logger.isDebugEnabled()) {
             logger.debug("DeleteButtonCell->init");
         }
-        addActionAsCDIManaged(new ButtonCellAction<TransientTableRow>() {
-            @Override
-            public void workOnRow(TableRow<TransientTableRow> row) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug("ButtonCellAction -> " + row);
-                }
-            }
-
-            @Override
-            public void workOnRowItem(TransientTableRow row) {
-
-            }
-        });
+      addCellAction(System.out::println);
 
     }
 

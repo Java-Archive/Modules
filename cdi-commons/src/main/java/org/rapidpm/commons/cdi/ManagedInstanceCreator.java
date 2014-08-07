@@ -19,6 +19,7 @@ package org.rapidpm.commons.cdi;
 import java.util.Set;
 
 import javax.enterprise.context.spi.CreationalContext;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.spi.AnnotatedType;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
@@ -36,42 +37,48 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public class ManagedInstanceCreator {
 
-    private @Inject @CDILogger Logger logger;
+  private @Inject @CDILogger Logger logger;
 
-    @Inject BeanManager beanManager;
+  @Inject BeanManager beanManager;
 
-    public <T> T getManagedInstance(final Class<T> beanType, final AnnotationLiteral annotationLiteral ){
+  public <T> T getManagedInstance(final Class<T> beanType, final AnnotationLiteral annotationLiteral) {
 
-        T result = null;
+    T result = null;
 
-        final Set<Bean<?>> beanSet = beanManager.getBeans(beanType, annotationLiteral);
-        result = beanSet.stream()
-                .map((b)-> b.getTypes()
-                                .stream()
-                                .filter(t -> t.equals(beanType))
-                                .findFirst()
-                                .map((bean) -> {
-                                    final Bean<T> beanTyped = (Bean<T>) b;
-                                    return beanTyped.create(beanManager.createCreationalContext(beanTyped));
-                                })
-                                .get())
-                .findFirst()
-                .get();
+    final Set<Bean<?>> beanSet;
+    if (annotationLiteral == null) {
+      beanSet = beanManager.getBeans(beanType, new AnnotationLiteral<Default>(){});
+    } else {
+      beanSet = beanManager.getBeans(beanType, annotationLiteral);
+    }
+    result = beanSet.stream()
+        .map((b) -> b.getTypes()
+            .stream()
+            .filter(t -> t.equals(beanType))
+            .findFirst()
+            .map((bean) -> {
+              final Bean<T> beanTyped = (Bean<T>) b;
+              return beanTyped.create(beanManager.createCreationalContext(beanTyped));
+            })
+            .get())
+        .findFirst()
+        .get();
 
-        return result;
+    return result;
+  }
+
+  public <T> T activateCDI(T t) {
+    final Class aClass = t.getClass();
+    if (logger.isDebugEnabled()) {
+      logger.debug("activateCDI-> " + aClass);
     }
 
-    public <T> T activateCDI(T t) {
-        final Class aClass = t.getClass();
-        if (logger.isDebugEnabled()) {
-            logger.debug("activateCDI-> " + aClass);
-        }
-        final AnnotatedType annotationType = beanManager.createAnnotatedType(aClass);
-        final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
-        final CreationalContext creationalContext = beanManager.createCreationalContext(null);
-        injectionTarget.inject(t, creationalContext);
-        injectionTarget.postConstruct(t);
-        return t;
-    }
+    final AnnotatedType annotationType = beanManager.createAnnotatedType(aClass);
+    final InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotationType);
+    final CreationalContext creationalContext = beanManager.createCreationalContext(null);
+    injectionTarget.inject(t, creationalContext);
+    injectionTarget.postConstruct(t);
+    return t;
+  }
 
 }
