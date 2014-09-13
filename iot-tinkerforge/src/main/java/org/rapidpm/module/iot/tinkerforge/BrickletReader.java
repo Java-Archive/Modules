@@ -55,12 +55,11 @@ public class BrickletReader {
 
             System.out.println("Connected UID:     " + connectedUid);
             System.out.println("Position:          " + position);
-            System.out.println("Hardware Version:  " + hardwareVersion[0] + "." +
-                hardwareVersion[1] + "." +
-                hardwareVersion[2]);
-            System.out.println("Firmware Version:  " + firmwareVersion[0] + "." +
-                firmwareVersion[1] + "." +
-                firmwareVersion[2]);
+            short nameA = hardwareVersion[0];
+            short nameB = hardwareVersion[1];
+            short nameC = hardwareVersion[2];
+            System.out.println("Hardware Version:  " + nameA + "." + nameB + "." + nameC);
+            System.out.println("Firmware Version:  " + firmwareVersion[0] + "." + firmwareVersion[1] + "." + firmwareVersion[2]);
             System.out.println("Device Identifier: " + deviceIdentifier);
             System.out.println("");
           }

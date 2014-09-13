@@ -41,6 +41,7 @@ public  class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
     public void initBricklet(){
         try {
             bricklet.setIlluminanceCallbackPeriod(callbackPeriod);
+          bricklet.addIlluminanceListener(this::execute);
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }

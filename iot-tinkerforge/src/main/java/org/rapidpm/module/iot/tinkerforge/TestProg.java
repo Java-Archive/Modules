@@ -23,7 +23,7 @@ import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
  * Created by Sven Ruppert on 11.03.14.
  */
 public class TestProg {
-    private static final String host = "192.168.0.201";
+    private static final String host = "192.168.0.200";
     private static final int port = 4223;
 
     // Note: To make the example code cleaner we do not handle exceptions. Exceptions you
