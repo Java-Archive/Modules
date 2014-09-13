@@ -23,28 +23,29 @@ import com.tinkerforge.TimeoutException;
 /**
  * Created by Sven Ruppert on 22.02.14.
  */
-public class SoundIntensity extends TinkerForgeSensor<BrickletSoundIntensity> {
+public class SoundIntensity extends TinkerForgeSensorSingleValue<BrickletSoundIntensity> {
 
-    public SoundIntensity(String UID, int callbackPeriod, int port, String host) {
-        super(UID, callbackPeriod, port, host);
-    }
+  public SoundIntensity(String UID, int callbackPeriod, int port, String host) {
+    super(UID, callbackPeriod, port, host);
+  }
 
   @Override
   protected double convertRawValue(int sensorRawValue) {
     return sensorRawValue / 1.0;
   }
 
-    @Override
-    public void initBricklet() {
-        try {
-            bricklet.setIntensityCallbackPeriod(callbackPeriod);
-        } catch (TimeoutException | NotConnectedException e) {
-            e.printStackTrace();
-        }
+  @Override
+  public void initBricklet() {
+    try {
+      bricklet.setIntensityCallbackPeriod(callbackPeriod);
+      bricklet.addIntensityListener(this::execute);
+    } catch (TimeoutException | NotConnectedException e) {
+      e.printStackTrace();
     }
+  }
 
-    @Override
-    public void connectBricklet() {
-        bricklet= new BrickletSoundIntensity(UID, ipcon);
-    }
+  @Override
+  public void connectBricklet() {
+    bricklet = new BrickletSoundIntensity(UID, ipcon);
+  }
 }

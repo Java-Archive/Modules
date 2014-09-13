@@ -16,34 +16,19 @@
 
 package org.rapidpm.module.iot.tinkerforge.sensor;
 
-import com.tinkerforge.*;
+import com.tinkerforge.Device;
 
 /**
- * Created by Sven Ruppert on 15.02.14.
+ * Created by Sven Ruppert on 14.09.2014.
  */
-public class Humidity extends TinkerForgeSensorSingleValue<BrickletHumidity> {
+public abstract class TinkerForgeSensorMultiValue<T extends Device> extends TinkerForgeBaseSensor<T> {
 
-  public void connectBricklet() {
-    bricklet = new BrickletHumidity(UID, ipcon);
-  }
-
-  public Humidity(String UID, int callbackPeriod, int port, String host) {
+  public TinkerForgeSensorMultiValue(String UID, int callbackPeriod, int port, String host) {
     super(UID, callbackPeriod, port, host);
   }
 
-  @Override
-  protected double convertRawValue(int sensorRawValue) {
-    return sensorRawValue / 10.0;
-  }
 
-  public void initBricklet() {
-    try {
-      bricklet.setHumidityCallbackPeriod(callbackPeriod);
-      bricklet.addHumidityListener(this::execute);
-    } catch (TimeoutException | NotConnectedException e) {
-      e.printStackTrace();
-    }
-  }
+  //evtl mal mehr...
 
 
 }

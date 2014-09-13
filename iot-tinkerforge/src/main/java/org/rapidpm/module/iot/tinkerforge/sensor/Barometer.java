@@ -18,12 +18,10 @@ package org.rapidpm.module.iot.tinkerforge.sensor;
 
 import com.tinkerforge.*;
 
-import java.io.IOException;
-
 /**
  * Created by Sven Ruppert on 09.02.14.
  */
-public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
+public class Barometer extends TinkerForgeSensorSingleValue<BrickletBarometer> {
 
     public void connectBricklet() {
         bricklet= new BrickletBarometer(UID, ipcon);
@@ -42,6 +40,8 @@ public class Barometer extends TinkerForgeSensor<BrickletBarometer> {
         try {
             bricklet.setAirPressureCallbackPeriod(callbackPeriod);
             bricklet.setAltitudeCallbackPeriod(callbackPeriod);
+          bricklet.addAltitudeListener(this::execute);
+//          bricklet.addAltitudeListener(this::execute);
         } catch (TimeoutException | NotConnectedException e) {
             e.printStackTrace();
         }

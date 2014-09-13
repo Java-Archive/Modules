@@ -18,33 +18,31 @@ package org.rapidpm.module.iot.tinkerforge.sensor;
 
 import com.tinkerforge.*;
 
-import java.io.IOException;
-
 /**
  * Created by Sven Ruppert on 09.02.14.
  */
-public  class Light extends TinkerForgeSensor<BrickletAmbientLight>  {
+public class Light extends TinkerForgeSensorSingleValue<BrickletAmbientLight> {
 
-    public Light(String UID, int callbackPeriod, int port, String host) {
-        super(UID, callbackPeriod, port, host);
-    }
+  public Light(String UID, int callbackPeriod, int port, String host) {
+    super(UID, callbackPeriod, port, host);
+  }
 
-    public void connectBricklet() {
-        bricklet = new BrickletAmbientLight(UID, ipcon);
-    }
+  public void connectBricklet() {
+    bricklet = new BrickletAmbientLight(UID, ipcon);
+  }
 
   @Override
   protected double convertRawValue(int sensorRawValue) {
     return sensorRawValue / 10.0;
   }
 
-    public void initBricklet(){
-        try {
-            bricklet.setIlluminanceCallbackPeriod(callbackPeriod);
-          bricklet.addIlluminanceListener(this::execute);
-        } catch (TimeoutException | NotConnectedException e) {
-            e.printStackTrace();
-        }
+  public void initBricklet() {
+    try {
+      bricklet.setIlluminanceCallbackPeriod(callbackPeriod);
+      bricklet.addIlluminanceListener(this::execute);
+    } catch (TimeoutException | NotConnectedException e) {
+      e.printStackTrace();
     }
+  }
 
 }

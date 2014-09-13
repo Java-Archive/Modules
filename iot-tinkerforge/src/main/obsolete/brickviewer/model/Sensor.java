@@ -1,7 +1,7 @@
 package org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model;
 
 import javafx.collections.ObservableList;
-import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 import java.io.Serializable;
 
@@ -14,14 +14,14 @@ public class Sensor implements Serializable {
     private int callbackPeriod;
     private int port;
     private String host;
-    private Class<? extends TinkerForgeSensor<?>> connectionClass;
+    private Class<? extends TinkerForgeSensorSingleValue<?>> connectionClass;
 
     private transient ObservableList seriesData;
 
     public Sensor() {
     }
 
-    public Sensor(String UID, int callbackPeriod, int port, String host, Class<? extends TinkerForgeSensor<?>> connectionClass) {
+    public Sensor(String UID, int callbackPeriod, int port, String host, Class<? extends TinkerForgeSensorSingleValue<?>> connectionClass) {
         this.UID = UID;
         this.callbackPeriod = callbackPeriod;
         this.port = port;
@@ -69,7 +69,7 @@ public class Sensor implements Serializable {
         this.host = host;
     }
 
-    public Class<? extends TinkerForgeSensor<?>> getConnectionClass() {
+    public Class<? extends TinkerForgeSensorSingleValue<?>> getConnectionClass() {
         return connectionClass;
     }
 

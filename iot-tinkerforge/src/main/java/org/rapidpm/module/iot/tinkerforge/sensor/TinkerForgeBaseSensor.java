@@ -21,15 +21,12 @@ import org.rapidpm.module.iot.tinkerforge.data.SensorDataElement;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 /**
- * Created by Sven Ruppert on 21.02.14.
+ * Created by Sven Ruppert on 14.09.2014.
  */
-public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
+public abstract class TinkerForgeBaseSensor<T extends Device> implements Runnable {
+
 
   protected String UID;
   protected int callbackPeriod;
@@ -42,13 +39,17 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
   public String brickletUID;
   public String brickletType;
 
-  public TinkerForgeSensor(final String UID, int callbackPeriod, int port, String host) {
+  public TinkerForgeBaseSensor(final String UID, int callbackPeriod, int port, String host) {
     this.UID = UID;
     this.callbackPeriod = callbackPeriod;
     this.port = port;
     this.host = host;
     connectBricklet();
   }
+
+  public abstract void initBricklet();
+
+  protected abstract void connectBricklet();
 
   @Override
   public void run() {
@@ -72,12 +73,11 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
     data.setBrickletUID(brickletUID);
     data.setBrickletType(brickletType);
     data.setDate(LocalDateTime.now());
-//        data.setSensorValue(sensorvalue);
     return data;
   }
 
 
-  public void disconnect(){
+  public void disconnect() {
     try {
       ipcon.setAutoReconnect(false);
       ipcon.disconnect();
@@ -86,7 +86,7 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
     }
   }
 
-  public void connect(){
+  public void connect() {
     try {
       ipcon.setAutoReconnect(true);
       ipcon.connect(host, port);
@@ -94,32 +94,5 @@ public abstract class TinkerForgeSensor<T extends Device> implements Runnable {
       e.printStackTrace();
     }
   }
-  public abstract void initBricklet();
-  protected abstract void connectBricklet();
-
-  private List<SensorDataAction> actionList = new ArrayList<>();
-  public void clearActionList(){ actionList.clear(); }
-
-  protected abstract double convertRawValue(int sensorRawValue);
-
-  /**
-   * zeitkritische Operation, muss beendet sein bevor ein neuer Wert kommt.
-   * @param rawValue
-   */
-  protected void execute(int rawValue){
-    double value = convertRawValue(rawValue);
-    actionList.forEach(a -> a.execute(value));
-  }
-
-
-  public void addSensorDataAction(SensorDataAction action){
-    actionList.add(action);
-  }
-
-  @FunctionalInterface
-  public static interface SensorDataAction{
-    public void execute(double sensorValue);
-  }
-
 
 }

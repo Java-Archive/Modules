@@ -1,6 +1,6 @@
 package org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model;
 
-import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class SensorConfiguration {
     private List<Persistence> persistenceList = new ArrayList<>();
     private boolean connected;
     private Thread thread;
-    private TinkerForgeSensor<?> tinkerForgeSensorConnection;
+    private TinkerForgeSensorSingleValue<?> tinkerForgeSensorSingleValueConnection;
 
     private List<SensorValueActionConfiguration> sensorValueActionConfigurations = new ArrayList<>();
 
@@ -41,19 +41,19 @@ public class SensorConfiguration {
         this.connected = connected;
     }
 
-    public TinkerForgeSensor<?> getTinkerForgeSensorConnection() {
-        return tinkerForgeSensorConnection;
+    public TinkerForgeSensorSingleValue<?> getTinkerForgeSensorSingleValueConnection() {
+        return tinkerForgeSensorSingleValueConnection;
     }
 
-    public void setTinkerForgeSensorConnection(TinkerForgeSensor<?> tinkerForgeSensorConnection) {
-        this.tinkerForgeSensorConnection = tinkerForgeSensorConnection;
+    public void setTinkerForgeSensorSingleValueConnection(TinkerForgeSensorSingleValue<?> tinkerForgeSensorSingleValueConnection) {
+        this.tinkerForgeSensorSingleValueConnection = tinkerForgeSensorSingleValueConnection;
     }
 
     public List<SensorValueActionConfiguration> getSensorValueActionConfigurations() {
         return sensorValueActionConfigurations;
     }
 
-    public void addSensorValueAction(TinkerForgeSensor.SensorValueAction sensorValueAction) {
+    public void addSensorValueAction(TinkerForgeSensorSingleValue.SensorValueAction sensorValueAction) {
         getSensorValueActionConfigurations().add(new SensorValueActionConfiguration(sensorValueAction));
     }
 

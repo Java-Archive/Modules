@@ -16,32 +16,36 @@
 
 package junit.org.rapidpm.module.iot.tinkerforge;
 
-import org.rapidpm.module.iot.tinkerforge.data.SensorDataElement;
-import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
+
+import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import org.rapidpm.module.iot.tinkerforge.sensor.Color;
 
 /**
- * Created by Sven Ruppert on 05.06.2014.
+ * Created by Sven Ruppert on 14.09.2014.
  */
-public class TempSesnorTest {
-
+public class ColorTest {
 
   public static void main(String[] args) {
-    Temperature temperature = new Temperature("xyz", 5000, 4299, "localhost");
+    //oxV
+    final Color color = new Color("oxV", 500, 4223, "localhost");
 
-    temperature.addSensorDataAction(sensorValue
-        -> System.out.println("sensorValue = " + sensorValue));
-
-    temperature.addSensorDataAction(sensorValue -> {
-      SensorDataElement dataElement = temperature.getNextSensorDataElement();
-      dataElement.setSensorValue(sensorValue);
-      saveValue(dataElement);
+    color.addColorAction((r, g, b, c) -> {
+      System.out.println("r = " + r);
+      System.out.println("g = " + g);
+      System.out.println("b = " + b);
+      System.out.println("c = " + c);
+      System.out.println("============ ");
     });
 
-    //..
-    temperature.run();
-  }
+    color.addColorTempAction(i -> System.out.println("colorTemp = " + i));
 
-  private static void saveValue(SensorDataElement dataElement) {
-    //zeitkritisch..
+    color.addIlluminanceAction(i -> System.out.println("illuminance = " + i));
+
+
+    color.run();
+
+    WaitForQ.waitForQ();
+
+
   }
 }

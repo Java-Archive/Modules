@@ -1,20 +1,20 @@
 package org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model;
 
-import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 /**
  * Created by lenaernst on 22.02.14.
  */
 public class SensorValueActionConfiguration {
-    private final TinkerForgeSensor.SensorValueAction sensorValueAction;
+    private final TinkerForgeSensorSingleValue.SensorValueAction sensorValueAction;
     private Thread thread;
     private boolean connected;
 
-    public SensorValueActionConfiguration(TinkerForgeSensor.SensorValueAction sensorValueAction) {
+    public SensorValueActionConfiguration(TinkerForgeSensorSingleValue.SensorValueAction sensorValueAction) {
         this.sensorValueAction = sensorValueAction;
     }
 
-    public TinkerForgeSensor.SensorValueAction getSensorValueAction() {
+    public TinkerForgeSensorSingleValue.SensorValueAction getSensorValueAction() {
         return sensorValueAction;
     }
 

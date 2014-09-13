@@ -23,29 +23,30 @@ import com.tinkerforge.TimeoutException;
 /**
  * Created by Sven Ruppert on 22.02.14.
  */
-public class PTC extends TinkerForgeSensor<BrickletPTC>{
+public class PTC extends TinkerForgeSensorSingleValue<BrickletPTC> {
 
-    public PTC(String UID, int callbackPeriod, int port, String host) {
-        super(UID, callbackPeriod, port, host);
-    }
+  public PTC(String UID, int callbackPeriod, int port, String host) {
+    super(UID, callbackPeriod, port, host);
+  }
 
   @Override
   protected double convertRawValue(int sensorRawValue) {
     return sensorRawValue / 100.0;
   }
 
-    @Override
-    public void initBricklet() {
-        try {
-            bricklet.setResistanceCallbackPeriod(callbackPeriod);
-            bricklet.setTemperatureCallbackPeriod(callbackPeriod);
-        } catch (TimeoutException | NotConnectedException e) {
-            e.printStackTrace();
-        }
+  @Override
+  public void initBricklet() {
+    try {
+      bricklet.setResistanceCallbackPeriod(callbackPeriod);
+      bricklet.setTemperatureCallbackPeriod(callbackPeriod);
+      bricklet.addTemperatureListener(this::execute);
+    } catch (TimeoutException | NotConnectedException e) {
+      e.printStackTrace();
     }
+  }
 
-    @Override
-    public void connectBricklet() {
-        bricklet= new BrickletPTC(UID,ipcon);
-    }
+  @Override
+  public void connectBricklet() {
+    bricklet = new BrickletPTC(UID, ipcon);
+  }
 }

@@ -22,7 +22,7 @@ import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.Sensor;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.service.SensorConnector;
 import org.rapidpm.module.iot.tinkerforge.sensor.Barometer;
 import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
-import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 import java.util.Date;
 
@@ -37,7 +37,7 @@ public class SensorDialog extends Stage {
 
     private ObservableList seriesData;
     public XYChart.Series seriesTemp;
-    private TinkerForgeSensor<?> sensorConnection;
+    private TinkerForgeSensorSingleValue<?> sensorConnection;
 
     public SensorDialog(StageStyle stageStyle, Sensor sensor) {
         super(stageStyle);
@@ -122,7 +122,7 @@ public class SensorDialog extends Stage {
 
         if (sensorConnection instanceof Temperature) {
             Temperature temperature = (Temperature) sensorConnection;
-            temperature.actionTemperature = new TinkerForgeSensor.SensorValueAction() {
+            temperature.actionTemperature = new TinkerForgeSensorSingleValue.SensorValueAction() {
                 @Override
                 public void workOnValue(int sensorvalue) {
                     double correctedSensorValue = sensorvalue / 100.0;
@@ -132,7 +132,7 @@ public class SensorDialog extends Stage {
             };
         }else if (sensorConnection instanceof Barometer) {
             Barometer barometer = (Barometer) sensorConnection;
-            barometer.actionAirPressure = new TinkerForgeSensor.SensorValueAction() {
+            barometer.actionAirPressure = new TinkerForgeSensorSingleValue.SensorValueAction() {
                 @Override
                 public void workOnValue(int sensorvalue) {
                     double correctedSensorValue = sensorvalue / 1000.0;

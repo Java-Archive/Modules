@@ -21,7 +21,7 @@ import com.tinkerforge.BrickletMotionDetector;
 /**
  * Created by Sven Ruppert on 11.03.14.
  */
-public class MotionDectector extends TinkerForgeSensor<BrickletMotionDetector>{
+public class MotionDectector extends TinkerForgeSensorSingleValue<BrickletMotionDetector> {
 
     public MotionDectector(String UID, int callbackPeriod, int port, String host) {
         super(UID, callbackPeriod, port, host);

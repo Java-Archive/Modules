@@ -6,7 +6,7 @@ import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.MasterbrickCo
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.Sensor;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.SensorConfiguration;
 import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
-import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensor;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ConfigurationService {
 
         masterbrickConfiguration.getSensorConfigurationList().stream().forEach(e -> {
             Sensor sensor = e.getSensor();
-            TinkerForgeSensor<?> sensorConnection = sensorConnector.connect(sensor);
+            TinkerForgeSensorSingleValue<?> sensorConnection = sensorConnector.connect(sensor);
             e.setTinkerForgeSensorConnection(sensorConnection);
             if (e.isConnected()) {
 
@@ -53,7 +53,7 @@ public class ConfigurationService {
         masterbrick.getSensorList().stream().forEach(e -> masterbrickConfiguration.addSensorConfiguration(e));
 
         SensorConfiguration sensorConfiguration = masterbrickConfiguration.getSensorConfigurationList().get(0);
-        sensorConfiguration.addSensorValueAction(new TinkerForgeSensor.SensorValueAction() {
+        sensorConfiguration.addSensorValueAction(new TinkerForgeSensorSingleValue.SensorValueAction() {
             @Override
             public void workOnValue(int sensorvalue) {
                 double correctedSensorValue = sensorvalue / 100.0;
