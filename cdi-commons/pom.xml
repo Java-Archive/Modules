@@ -23,6 +23,7 @@
         <groupId>org.rapidpm</groupId>
         <artifactId>rapidpm-parent</artifactId>
         <version>2.0.2-SNAPSHOT</version>
+      <relativePath>../rapidpm-parent/pom.xml</relativePath>
     </parent>
     <name>cdi-commons</name>
     <description>Utils for CDI SE and EE</description>

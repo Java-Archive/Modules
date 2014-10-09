@@ -22,6 +22,7 @@
         <artifactId>rapidpm-parent</artifactId>
         <groupId>org.rapidpm</groupId>
         <version>2.0.2-SNAPSHOT</version>
+      <relativePath>../rapidpm-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
