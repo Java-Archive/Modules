@@ -36,37 +36,38 @@ import org.rapidpm.commons.cdi.se.CDIContainerSingleton;
 @CDINotMapped
 public abstract class CDIBaseAnchorPane<T, C extends CDIJavaFxBaseController> extends AnchorPane implements CDIBaseFxComponent<T> {
 
-    public CDIBaseAnchorPane() {
-        AnchorPane.setBottomAnchor(this,0.0);
-        AnchorPane.setTopAnchor(this,0.0);
-        AnchorPane.setLeftAnchor(this,0.0);
-        AnchorPane.setRightAnchor(this,0.0);
+  public CDIBaseAnchorPane() {
+    AnchorPane.setBottomAnchor(this,0.0);
+    AnchorPane.setTopAnchor(this,0.0);
+    AnchorPane.setLeftAnchor(this,0.0);
+    AnchorPane.setRightAnchor(this,0.0);
+    CDIContainerSingleton.getInstance().activateCDI(this);
+  }
+
+  public
+  @Inject
+  FXMLLoaderSingleton fxmlLoaderSingleton;
+  public C controller;
+
+
+  @PostConstruct
+  public void init() {
+    final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(getPaneClass());
+    fxmlLoader.setRoot(this);
+    try {
+      fxmlLoader.load();
+      controller = fxmlLoader.getController();
+    } catch (IOException exception) {
+      throw new RuntimeException(exception);
     }
+  }
 
-    public
-    @Inject
-    FXMLLoaderSingleton fxmlLoaderSingleton;
-    public C controller;
+  public C getController() {
+    if (controller == null) CDIContainerSingleton.getInstance().activateCDI(this);
+    return controller;
+  }
 
-
-    @PostConstruct
-    public void init() {
-        final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(getPaneClass());
-        fxmlLoader.setRoot(this);
-        try {
-            fxmlLoader.load();
-            controller = fxmlLoader.getController();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }
-
-    public C getController() {
-        if (controller == null) CDIContainerSingleton.getInstance().activateCDI(this);
-        return controller;
-    }
-
-    public void setController(C controller) {
-        this.controller = controller;
-    }
+  public void setController(C controller) {
+    this.controller = controller;
+  }
 }

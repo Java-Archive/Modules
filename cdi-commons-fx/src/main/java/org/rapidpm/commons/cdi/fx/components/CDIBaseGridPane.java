@@ -37,34 +37,35 @@ import org.rapidpm.commons.cdi.se.CDIContainerSingleton;
 @CDINotMapped
 public abstract class CDIBaseGridPane<T, C extends CDIJavaFxBaseController> extends GridPane implements CDIBaseFxComponent<T> {
 
-    public @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
-    public C controller;
+  public @Inject FXMLLoaderSingleton fxmlLoaderSingleton;
+  public C controller;
 
-    protected CDIBaseGridPane() {
-        AnchorPane.setBottomAnchor(this, 0.0);
-        AnchorPane.setTopAnchor(this,0.0);
-        AnchorPane.setLeftAnchor(this,0.0);
-        AnchorPane.setRightAnchor(this,0.0);
-    }
+  protected CDIBaseGridPane() {
+    AnchorPane.setBottomAnchor(this, 0.0);
+    AnchorPane.setTopAnchor(this, 0.0);
+    AnchorPane.setLeftAnchor(this, 0.0);
+    AnchorPane.setRightAnchor(this, 0.0);
+    CDIContainerSingleton.getInstance().activateCDI(this);
+  }
 
-    @PostConstruct
-    public void init() {
-        final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(getPaneClass());
-        fxmlLoader.setRoot(this);
-        try {
-            fxmlLoader.load();
-            controller = fxmlLoader.getController();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
+  @PostConstruct
+  public void init() {
+    final FXMLLoader fxmlLoader = fxmlLoaderSingleton.getFXMLLoader(getPaneClass());
+    fxmlLoader.setRoot(this);
+    try {
+      fxmlLoader.load();
+      controller = fxmlLoader.getController();
+    } catch (IOException exception) {
+      throw new RuntimeException(exception);
     }
+  }
 
-    public C getController() {
-        if (controller == null) CDIContainerSingleton.getInstance().activateCDI(this);
-        return controller;
-    }
+  public C getController() {
+    if (controller == null) CDIContainerSingleton.getInstance().activateCDI(this);
+    return controller;
+  }
 
-    public void setController(C controller) {
-        this.controller = controller;
-    }
+  public void setController(C controller) {
+    this.controller = controller;
+  }
 }
