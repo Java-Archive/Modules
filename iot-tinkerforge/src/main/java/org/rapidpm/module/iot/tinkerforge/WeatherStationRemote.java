@@ -19,6 +19,10 @@ package org.rapidpm.module.iot.tinkerforge;
 
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
 import org.rapidpm.module.iot.tinkerforge.sensor.*;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Barometer;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Humidity;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Light;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Temperature;
 import org.rapidpm.module.iot.twitter.TwitterFactory;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;

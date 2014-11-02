@@ -3,8 +3,8 @@ package org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.service;
 
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.Masterbrick;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.Sensor;
-import org.rapidpm.module.iot.tinkerforge.sensor.Barometer;
-import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Barometer;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Temperature;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -17,10 +17,10 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.sensor.Humidity;
-import org.rapidpm.module.iot.tinkerforge.sensor.Light;
-import org.rapidpm.module.iot.tinkerforge.sensor.MotionDectector;
-import org.rapidpm.module.iot.tinkerforge.sensor.SoundIntensity;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Humidity;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Light;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.MotionDectector;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.SoundIntensity;
 
 import java.util.Date;
 
