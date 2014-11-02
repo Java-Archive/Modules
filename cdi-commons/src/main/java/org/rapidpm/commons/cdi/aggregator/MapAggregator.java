@@ -1,5 +1,5 @@
 /*
- * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,23 +16,21 @@
 
 package org.rapidpm.commons.cdi.aggregator;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import javax.inject.Inject;
-
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
+
+import javax.inject.Inject;
+import java.util.*;
 
 /**
  * User: Sven Ruppert
  * Date: 02.09.13
  * Time: 11:35
+ *
+ * ersetzen durch Streams Collector groupingBy
+ *
  */
+@Deprecated
 public abstract class MapAggregator<T, K> {
 
     private @Inject @CDILogger Logger logger;

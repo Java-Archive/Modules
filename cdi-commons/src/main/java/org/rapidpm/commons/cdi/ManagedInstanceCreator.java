@@ -1,5 +1,5 @@
 /*
- * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,7 +16,8 @@
 
 package org.rapidpm.commons.cdi;
 
-import java.util.Set;
+import org.rapidpm.commons.cdi.logger.CDILogger;
+import org.rapidpm.module.se.commons.logger.Logger;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Default;
@@ -26,9 +27,7 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionTarget;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
-
-import org.rapidpm.commons.cdi.logger.CDILogger;
-import org.rapidpm.module.se.commons.logger.Logger;
+import java.util.Set;
 
 /**
  * User: Sven Ruppert
@@ -58,12 +57,12 @@ public class ManagedInstanceCreator {
             .findFirst()
             .map((bean) -> {
               final Bean<T> beanTyped = (Bean<T>) b;
-              return beanTyped.create(beanManager.createCreationalContext(beanTyped));
+              final T t = beanTyped.create(beanManager.createCreationalContext(beanTyped));
+              return t;
             })
             .get())
         .findFirst()
         .get();
-
     return result;
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,17 +14,16 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.commons.cdi.legacy;
+package org.rapidpm.demo.legacy;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.rapidpm.commons.cdi.CDICommons;
+import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
 
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
-
-import org.rapidpm.commons.cdi.CDICommons;
-import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: Sven Ruppert
@@ -33,11 +32,12 @@ import org.rapidpm.commons.cdi.contextresolver.ContextResolver;
  */
 public class ListProducer {
 
-    @Produces @CDILegacyTest
-    public List createList(InjectionPoint injectionPoint, BeanManager beanManager,
-                           @CDICommons ContextResolver contextResolver) {
-        //treffen der Entscheidungen...
+  @Produces
+  @CDILegacyTest
+  public List createList(InjectionPoint injectionPoint, BeanManager beanManager,
+                         @CDICommons ContextResolver contextResolver) {
+    //treffen der Entscheidungen...
 
-        return new ArrayList();
-    }
+    return new ArrayList();
+  }
 }
