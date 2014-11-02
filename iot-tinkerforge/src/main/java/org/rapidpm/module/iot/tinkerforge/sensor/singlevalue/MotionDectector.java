@@ -14,36 +14,32 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
+package org.rapidpm.module.iot.tinkerforge.sensor.singlevalue;
 
-import com.tinkerforge.*;
+import com.tinkerforge.BrickletMotionDetector;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 /**
- * Created by Sven Ruppert on 15.02.14.
+ * Created by Sven Ruppert on 11.03.14.
  */
-public class Humidity extends TinkerForgeSensorSingleValue<BrickletHumidity> {
+public class MotionDectector extends TinkerForgeSensorSingleValue<BrickletMotionDetector> {
 
-  public void connectBricklet() {
-    bricklet = new BrickletHumidity(UID, ipcon);
-  }
-
-  public Humidity(String UID, int callbackPeriod, int port, String host) {
-    super(UID, callbackPeriod, port, host);
-  }
+    public MotionDectector(String UID, int callbackPeriod, int port, String host) {
+        super(UID, callbackPeriod, port, host);
+    }
 
   @Override
   protected double convertRawValue(int sensorRawValue) {
-    return sensorRawValue / 10.0;
+    return sensorRawValue / 1.0;
   }
 
-  public void initBricklet() {
-    try {
-      bricklet.setHumidityCallbackPeriod(callbackPeriod);
-      bricklet.addHumidityListener(this::execute);
-    } catch (TimeoutException | NotConnectedException e) {
-      e.printStackTrace();
+    @Override
+    public void initBricklet() {
+
     }
-  }
 
-
+    @Override
+    public void connectBricklet() {
+        bricklet= new BrickletMotionDetector(UID, ipcon);
+    }
 }

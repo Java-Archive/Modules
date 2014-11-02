@@ -20,7 +20,7 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Temperature;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;

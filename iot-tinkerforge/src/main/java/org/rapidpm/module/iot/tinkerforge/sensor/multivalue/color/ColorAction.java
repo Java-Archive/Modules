@@ -14,31 +14,12 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
-
-import com.tinkerforge.BrickletMotionDetector;
+package org.rapidpm.module.iot.tinkerforge.sensor.multivalue.color;
 
 /**
- * Created by Sven Ruppert on 11.03.14.
+ * Created by Sven Ruppert on 21.10.2014.
  */
-public class MotionDectector extends TinkerForgeSensorSingleValue<BrickletMotionDetector> {
-
-    public MotionDectector(String UID, int callbackPeriod, int port, String host) {
-        super(UID, callbackPeriod, port, host);
-    }
-
-  @Override
-  protected double convertRawValue(int sensorRawValue) {
-    return sensorRawValue / 1.0;
-  }
-
-    @Override
-    public void initBricklet() {
-
-    }
-
-    @Override
-    public void connectBricklet() {
-        bricklet= new BrickletMotionDetector(UID, ipcon);
-    }
+@FunctionalInterface
+public interface ColorAction {
+  public void execute(int r, int g, int b, int c);
 }

@@ -17,7 +17,6 @@
 package org.rapidpm.module.iot.tinkerforge.data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -25,35 +24,36 @@ import java.util.Objects;
  */
 public class SensorDataElement  {
 
-    private String masterUID;      //master abc
-    private String brickletUID;    // sensor xyz
-    private String brickletType;   // Temperatur
-    private LocalDateTime date;
-    private double sensorValue;
+  private String masterUID;      //master abc
+  private String brickletUID;    // sensor xyz
+  private String brickletType;   // Temperatur
+  private LocalDateTime date;
+  private String valueType;  //for multiValue Elements
+  private double sensorValue;
 
-    public String getMasterUID() {
-        return masterUID;
-    }
+  public String getMasterUID() {
+    return masterUID;
+  }
 
-    public void setMasterUID(String masterUID) {
-        this.masterUID = masterUID;
-    }
+  public void setMasterUID(String masterUID) {
+    this.masterUID = masterUID;
+  }
 
-    public String getBrickletUID() {
-        return brickletUID;
-    }
+  public String getBrickletUID() {
+    return brickletUID;
+  }
 
-    public void setBrickletUID(String brickletUID) {
-        this.brickletUID = brickletUID;
-    }
+  public void setBrickletUID(String brickletUID) {
+    this.brickletUID = brickletUID;
+  }
 
-    public String getBrickletType() {
-        return brickletType;
-    }
+  public String getBrickletType() {
+    return brickletType;
+  }
 
-    public void setBrickletType(String brickletType) {
-        this.brickletType = brickletType;
-    }
+  public void setBrickletType(String brickletType) {
+    this.brickletType = brickletType;
+  }
 
   public LocalDateTime getDate() {
     return date;
@@ -64,43 +64,53 @@ public class SensorDataElement  {
   }
 
   public double getSensorValue() {
-        return sensorValue;
-    }
+    return sensorValue;
+  }
 
-    public void setSensorValue(double sensorValue) {
-        this.sensorValue = sensorValue;
-    }
+  public void setSensorValue(double sensorValue) {
+    this.sensorValue = sensorValue;
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(masterUID, brickletUID, brickletType, date, sensorValue);
-    }
+  public String getValueType() {
+    return valueType;
+  }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        final SensorDataElement other = (SensorDataElement) obj;
-        return Objects.equals(this.masterUID, other.masterUID)
-                && Objects.equals(this.brickletUID, other.brickletUID)
-                && Objects.equals(this.brickletType, other.brickletType)
-                && Objects.equals(this.date, other.date)
-                && Objects.equals(this.sensorValue, other.sensorValue);
-    }
+  public void setValueType(String valueType) {
+    this.valueType = valueType;
+  }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("SensorDataElement{");
-        sb.append("masterUID='").append(masterUID).append('\'');
-        sb.append(", brickletUID='").append(brickletUID).append('\'');
-        sb.append(", brickletType='").append(brickletType).append('\'');
-        sb.append(", date=").append(date);
-        sb.append(", sensorValue=").append(sensorValue);
-        sb.append('}');
-        return sb.toString();
+  @Override
+  public int hashCode() {
+    return Objects.hash(masterUID, brickletUID, brickletType, date, valueType, sensorValue);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
     }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+    final SensorDataElement other = (SensorDataElement) obj;
+    return Objects.equals(this.masterUID, other.masterUID)
+        && Objects.equals(this.brickletUID, other.brickletUID)
+        && Objects.equals(this.brickletType, other.brickletType)
+        && Objects.equals(this.date, other.date)
+        && Objects.equals(this.valueType, other.valueType)
+        && Objects.equals(this.sensorValue, other.sensorValue);
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("SensorDataElement{");
+    sb.append("masterUID='").append(masterUID).append('\'');
+    sb.append(", brickletUID='").append(brickletUID).append('\'');
+    sb.append(", brickletType='").append(brickletType).append('\'');
+    sb.append(", date=").append(date);
+    sb.append(", valueType=").append(valueType);
+    sb.append(", sensorValue=").append(sensorValue);
+    sb.append('}');
+    return sb.toString();
+  }
 }

@@ -18,7 +18,7 @@ package junit.org.rapidpm.module.iot.tinkerforge;
 
 
 import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
-import org.rapidpm.module.iot.tinkerforge.sensor.Color;
+import org.rapidpm.module.iot.tinkerforge.sensor.multivalue.color.Color;
 
 /**
  * Created by Sven Ruppert on 14.09.2014.

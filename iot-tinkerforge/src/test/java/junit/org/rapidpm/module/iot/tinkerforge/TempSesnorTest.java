@@ -17,7 +17,7 @@
 package junit.org.rapidpm.module.iot.tinkerforge;
 
 import org.rapidpm.module.iot.tinkerforge.data.SensorDataElement;
-import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Temperature;
 
 /**
  * Created by Sven Ruppert on 05.06.2014.

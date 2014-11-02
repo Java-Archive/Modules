@@ -20,8 +20,8 @@ import javafx.stage.StageStyle;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.DateAxis;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.Sensor;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.service.SensorConnector;
-import org.rapidpm.module.iot.tinkerforge.sensor.Barometer;
-import org.rapidpm.module.iot.tinkerforge.sensor.Temperature;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Barometer;
+import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Temperature;
 import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 import java.util.Date;

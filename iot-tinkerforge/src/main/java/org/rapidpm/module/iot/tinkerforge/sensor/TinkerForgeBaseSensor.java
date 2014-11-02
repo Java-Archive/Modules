@@ -32,7 +32,8 @@ public abstract class TinkerForgeBaseSensor<T extends Device> implements Runnabl
   protected int callbackPeriod;
   protected int port;
   protected String host;
-  protected IPConnection ipcon = new IPConnection();
+  //  protected IPConnection ipcon = new IPConnection();
+  protected IPConnection ipcon;
   public T bricklet;
 
   public String masterUID;
@@ -95,4 +96,7 @@ public abstract class TinkerForgeBaseSensor<T extends Device> implements Runnabl
     }
   }
 
+  public void setIpcon(IPConnection ipcon) {
+    this.ipcon = ipcon;
+  }
 }

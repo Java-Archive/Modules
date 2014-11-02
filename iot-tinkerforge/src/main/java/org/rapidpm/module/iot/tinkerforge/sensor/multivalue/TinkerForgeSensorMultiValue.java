@@ -14,9 +14,10 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
+package org.rapidpm.module.iot.tinkerforge.sensor.multivalue;
 
 import com.tinkerforge.Device;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeBaseSensor;
 
 /**
  * Created by Sven Ruppert on 14.09.2014.

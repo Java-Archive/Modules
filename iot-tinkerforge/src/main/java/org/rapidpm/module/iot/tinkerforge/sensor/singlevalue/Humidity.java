@@ -14,37 +14,37 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
+package org.rapidpm.module.iot.tinkerforge.sensor.singlevalue;
 
-import com.tinkerforge.BrickletTemperature;
-import com.tinkerforge.NotConnectedException;
-import com.tinkerforge.TimeoutException;
+import com.tinkerforge.*;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 /**
- * Created by Sven Ruppert on 09.02.14.
+ * Created by Sven Ruppert on 15.02.14.
  */
-public class Temperature extends TinkerForgeSensorSingleValue<BrickletTemperature> {
+public class Humidity extends TinkerForgeSensorSingleValue<BrickletHumidity> {
 
   public void connectBricklet() {
-    bricklet= new BrickletTemperature(UID, ipcon);
+    bricklet = new BrickletHumidity(UID, ipcon);
+  }
+
+  public Humidity(String UID, int callbackPeriod, int port, String host) {
+    super(UID, callbackPeriod, port, host);
   }
 
   @Override
   protected double convertRawValue(int sensorRawValue) {
-    return sensorRawValue / 100.0;
-  }
-
-  public Temperature(String UID, int callbackPeriod, int port, String host) {
-    super(UID, callbackPeriod, port, host);
+    return sensorRawValue / 10.0;
   }
 
   public void initBricklet() {
     try {
-      bricklet.setTemperatureCallbackPeriod(callbackPeriod);
-      bricklet.addTemperatureListener(this::execute);
+      bricklet.setHumidityCallbackPeriod(callbackPeriod);
+      bricklet.addHumidityListener(this::execute);
     } catch (TimeoutException | NotConnectedException e) {
       e.printStackTrace();
     }
   }
+
 
 }

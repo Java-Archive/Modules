@@ -14,11 +14,12 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
+package org.rapidpm.module.iot.tinkerforge.sensor.multivalue.color;
 
 import com.tinkerforge.BrickletColor;
 import com.tinkerforge.NotConnectedException;
 import com.tinkerforge.TimeoutException;
+import org.rapidpm.module.iot.tinkerforge.sensor.multivalue.TinkerForgeSensorMultiValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,6 @@ public class Color extends TinkerForgeSensorMultiValue<BrickletColor> {
       bricklet.setColorCallbackPeriod(callbackPeriod);
       bricklet.setColorTemperatureCallbackPeriod(callbackPeriod);
       bricklet.setIlluminanceCallbackPeriod(callbackPeriod);
-
 
       bricklet.addColorListener(this::executeColor);
       bricklet.addColorTemperatureListener(this::executeColorTemp);
@@ -72,43 +72,28 @@ public class Color extends TinkerForgeSensorMultiValue<BrickletColor> {
   private List<ColorTempAction> colorTempActionList = new ArrayList<>();
   private List<ColorAction> colorActionList = new ArrayList<>();
 
+
   public void addColorAction(ColorAction action) {
     colorActionList.add(action);
   }
-
   public void clearColorActionList() {
     colorActionList.clear();
   }
 
-  @FunctionalInterface
-  public static interface ColorAction {
-    public void execute(int r, int g, int b, int c);
-  }
 
   public void addColorTempAction(ColorTempAction action) {
     colorTempActionList.add(action);
   }
-
   public void clearColorTempActionList() {
     colorTempActionList.clear();
   }
 
-  @FunctionalInterface
-  public static interface ColorTempAction {
-    public void execute(int i);
-  }
 
   public void addIlluminanceAction(IlluminanceAction action) {
     illuminanceActionList.add(action);
   }
-
   public void clearIlluminanceActionList() {
     illuminanceActionList.clear();
-  }
-
-  @FunctionalInterface
-  public static interface IlluminanceAction {
-    public void execute(long i);
   }
 
 
