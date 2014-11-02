@@ -1,5 +1,5 @@
 /*
- * Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+ * Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,22 +14,14 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.commons.cdi.legacy;
+package org.rapidpm.demo.producers;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import javax.inject.Qualifier;
+import org.rapidpm.commons.cdi.CDINotMapped;
 
 /**
- * User: Sven Ruppert
- * Date: 02.08.13
- * Time: 07:14
+ * Created by Sven Ruppert on 02.11.2014.
  */
-@Qualifier
-@Retention(value = RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
-public @interface CDILegacyTest {
+@CDINotMapped
+public interface DemoInterface {
+  public void doSomething();
 }
