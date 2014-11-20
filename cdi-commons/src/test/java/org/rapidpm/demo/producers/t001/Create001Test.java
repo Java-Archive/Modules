@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers;
+package org.rapidpm.demo.producers.t001;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -41,6 +41,7 @@ public class Create001Test {
 
 
   @Inject DemoInterface demo;
+
 
   @Test
   public void testCreate001() throws Exception {

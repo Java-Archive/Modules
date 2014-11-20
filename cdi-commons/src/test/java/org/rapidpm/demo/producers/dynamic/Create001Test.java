@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.legacy;
+package org.rapidpm.demo.producers.dynamic;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -25,44 +25,32 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.rapidpm.demo.producers.demo001.DemoInterface;
 
-import java.util.List;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.inject.Inject;
 
 /**
- * Created by Sven Ruppert on 02.08.13.
+ * Created by Sven Ruppert on 02.11.2014.
  */
 @RunWith(Arquillian.class)
-public class ListFactoryTest {
-
+public class Create001Test {
   @Deployment
   public static JavaArchive createDeployment() {
     return ShrinkWrap.create(JavaArchive.class)
-        .addPackages(true, "org.rapidpm.commons")
+        .addPackages(true, "org.rapidpm")
         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
   }
 
-  @Test
-  public void testListFactory001() throws Exception {
-    final List list = new ListFactory().createArrayList();
-    Assert.assertNotNull(list);
-    Assert.assertTrue(list.isEmpty());
-  }
 
+  @Inject DemoInterface demo;
 
-//  @Inject @CDILegacyTest Instance<List> listInstance;
-//  @Inject @CDILegacyTest List list;
-
+  @Inject BeanManager beanManager;
 
   @Test
   @Ignore
-  public void testListFactory002() throws Exception {
-
-//        final List list = listInstance.select(new AnnotationLiteral<CDILegacyTest>() {}).get();
-//    final List list = listInstance.get();
-//    Assert.assertNotNull(list);
-//    Assert.assertTrue(list.isEmpty());
-
+  public void testCreate001() throws Exception {
+    Assert.assertNotNull(demo);
+    demo.doSomething();
   }
-
-
 }

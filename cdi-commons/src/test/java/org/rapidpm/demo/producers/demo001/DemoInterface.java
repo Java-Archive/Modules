@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
+package org.rapidpm.demo.producers.demo001;
 
 import org.rapidpm.commons.cdi.CDINotMapped;
 

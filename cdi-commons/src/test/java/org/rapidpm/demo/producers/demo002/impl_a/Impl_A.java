@@ -14,14 +14,19 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
+package org.rapidpm.demo.producers.demo002.impl_a;
 
-import org.rapidpm.commons.cdi.CDINotMapped;
+import javax.inject.Qualifier;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Created by Sven Ruppert on 02.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
+@Qualifier
+@Retention(value = RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
+public @interface Impl_A {
 }

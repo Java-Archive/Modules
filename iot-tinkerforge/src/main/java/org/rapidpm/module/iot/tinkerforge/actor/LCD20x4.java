@@ -16,10 +16,10 @@
 
 package org.rapidpm.module.iot.tinkerforge.actor;
 
-import com.tinkerforge.*;
-
-import java.io.IOException;
-import java.util.function.Function;
+import com.tinkerforge.BrickletLCD20x4;
+import com.tinkerforge.IPConnection;
+import com.tinkerforge.NotConnectedException;
+import com.tinkerforge.TimeoutException;
 
 /**
  * Created by Sven Ruppert on 07.02.14.
@@ -27,17 +27,29 @@ import java.util.function.Function;
 public class LCD20x4 {
 
   private BrickletLCD20x4 lcd;
+  private IPConnection ipcon;
 
   public LCD20x4(final String UID, String host, int port) {
-    IPConnection ipcon = new IPConnection();
+    ipcon = new IPConnection();
+    init(UID);
+  }
+
+  public LCD20x4(final String UID, IPConnection ipcon) {
+    this.ipcon = ipcon;
+    init(UID);
+  }
+
+
+  private void init(String UID) {
     lcd = new BrickletLCD20x4(UID, ipcon);
     try {
-      ipcon.connect(host, port);
+//      ipcon.connect(host, port);
       lcd.backlightOn();
       lcd.clearDisplay();
       lcd.setDefaultText((short) 0, utf16ToKS0066U("bereite mich vor.."));
       lcd.setDefaultTextCounter(-1);
-    } catch (IOException | AlreadyConnectedException | TimeoutException | NotConnectedException e) {
+//    } catch (IOException | AlreadyConnectedException | TimeoutException | NotConnectedException e) {
+    } catch (TimeoutException | NotConnectedException e) {
       e.printStackTrace();
     }
   }
@@ -226,6 +238,10 @@ public class LCD20x4 {
       ks0066u += c;
     }
     return ks0066u;
+  }
+
+  public void setIpcon(IPConnection ipcon) {
+    this.ipcon = ipcon;
   }
 
   public BrickletLCD20x4 getLcd() {

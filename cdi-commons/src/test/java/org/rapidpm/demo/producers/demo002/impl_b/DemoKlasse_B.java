@@ -14,14 +14,27 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
+package org.rapidpm.demo.producers.demo002.impl_b;
 
-import org.rapidpm.commons.cdi.CDINotMapped;
+
+import org.rapidpm.demo.producers.demo002.DemoInterface;
+import org.rapidpm.demo.producers.demo002.impl_a.Impl_A;
+
+import javax.inject.Inject;
 
 /**
  * Created by Sven Ruppert on 02.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
+public class DemoKlasse_B implements DemoInterface {
+
+  @Inject @Impl_A DemoInterface demoKlasse_a;
+
+
+  @Override
+  public void doSomething() {
+    System.out.println("demoKlasse_a = " + demoKlasse_a);
+    demoKlasse_a.doSomething();
+
+    System.out.println("doSomething : " + DemoKlasse_B.class.getSimpleName());
+  }
 }

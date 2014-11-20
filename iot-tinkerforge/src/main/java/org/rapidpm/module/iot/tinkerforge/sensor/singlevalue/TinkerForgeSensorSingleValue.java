@@ -14,17 +14,13 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.iot.tinkerforge.sensor;
+package org.rapidpm.module.iot.tinkerforge.sensor.singlevalue;
 
-import com.tinkerforge.*;
-import org.rapidpm.module.iot.tinkerforge.data.SensorDataElement;
+import com.tinkerforge.Device;
+import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeBaseSensor;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by Sven Ruppert on 21.02.14.
@@ -47,7 +43,7 @@ public abstract class TinkerForgeSensorSingleValue<T extends Device> extends Tin
    */
   protected void execute(int rawValue){
     double value = convertRawValue(rawValue);
-    actionList.forEach(a -> a.execute(value));
+    actionList.forEach(a -> a.execute(value));   //TODO die Abarbeitung immer in einen Async legen
   }
 
 

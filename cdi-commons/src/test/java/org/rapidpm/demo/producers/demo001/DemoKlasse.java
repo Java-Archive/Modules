@@ -14,14 +14,14 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
-
-import org.rapidpm.commons.cdi.CDINotMapped;
+package org.rapidpm.demo.producers.demo001;
 
 /**
  * Created by Sven Ruppert on 02.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
+public class DemoKlasse implements DemoInterface {
+  @Override
+  public void doSomething() {
+    System.out.println("doSomething : " + DemoKlasse.class.getSimpleName());
+  }
 }

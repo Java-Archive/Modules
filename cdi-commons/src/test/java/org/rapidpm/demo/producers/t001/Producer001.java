@@ -16,12 +16,16 @@
 
 package org.rapidpm.demo.producers.t001;
 
-import org.rapidpm.commons.cdi.CDINotMapped;
-
 /**
  * Created by Sven Ruppert on 02.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
+public class Producer001 {
+
+
+//  @Produces
+//  public DemoInterface create(){
+//
+//  }
+
+
 }

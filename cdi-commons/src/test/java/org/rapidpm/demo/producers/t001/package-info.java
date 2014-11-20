@@ -14,14 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
-
-import org.rapidpm.commons.cdi.CDINotMapped;
-
 /**
  * Created by Sven Ruppert on 02.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
-}
+package org.rapidpm.demo.producers.t001;

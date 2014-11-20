@@ -19,7 +19,6 @@ package org.rapidpm.module.iot.tinkerforge.sensor.singlevalue;
 import com.tinkerforge.BrickletTemperature;
 import com.tinkerforge.NotConnectedException;
 import com.tinkerforge.TimeoutException;
-import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
 
 /**
  * Created by Sven Ruppert on 09.02.14.

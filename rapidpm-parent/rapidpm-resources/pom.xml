@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+  ~ Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
         <artifactId>rapidpm-parent</artifactId>
         <groupId>org.rapidpm</groupId>
         <version>2.0.2-SNAPSHOT</version>
-      <relativePath>../rapidpm-parent/pom.xml</relativePath>
+      <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

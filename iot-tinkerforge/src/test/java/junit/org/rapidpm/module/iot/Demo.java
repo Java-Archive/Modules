@@ -14,14 +14,19 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
-
-import org.rapidpm.commons.cdi.CDINotMapped;
+package junit.org.rapidpm.module.iot;
 
 /**
- * Created by Sven Ruppert on 02.11.2014.
+ * Created by Sven Ruppert on 04.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
+public class Demo {
+  public static void main(String[] args) {
+    final byte[] data2Write = "Dr. Diana Kupfer".getBytes();
+
+    for (final byte b : data2Write) {
+      final String s = Integer.toHexString(b);
+      System.out.println("s = " + s);
+    }
+
+  }
 }

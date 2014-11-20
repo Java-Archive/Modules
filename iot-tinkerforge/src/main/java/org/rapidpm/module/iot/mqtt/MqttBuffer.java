@@ -30,7 +30,7 @@ import java.util.function.Supplier;
  */
 public class MqttBuffer {
 
-  static final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
+  static final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4); //TODO dynamisch
 
   private String topic;
   private MqttClient client;

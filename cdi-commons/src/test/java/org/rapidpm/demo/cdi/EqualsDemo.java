@@ -14,14 +14,27 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
+package org.rapidpm.demo.cdi;
 
-import org.rapidpm.commons.cdi.CDINotMapped;
+import org.rapidpm.commons.cdi.CDICommons;
+
+import javax.enterprise.util.AnnotationLiteral;
 
 /**
- * Created by Sven Ruppert on 02.11.2014.
+ * Created by Sven Ruppert on 12.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
+public class EqualsDemo {
+
+  public static void main(String[] args) {
+
+    final AnnotationLiteral<CDICommons> a1 = new AnnotationLiteral<CDICommons>() {
+    };
+    final AnnotationLiteral<CDICommons> a2 = new AnnotationLiteral<CDICommons>() {
+    };
+
+    System.out.println("a1.equals(a2) = " + a1.equals(a2));
+
+
+  }
+
 }

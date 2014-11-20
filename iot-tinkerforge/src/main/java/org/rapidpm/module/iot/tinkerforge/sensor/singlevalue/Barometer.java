@@ -16,8 +16,9 @@
 
 package org.rapidpm.module.iot.tinkerforge.sensor.singlevalue;
 
-import com.tinkerforge.*;
-import org.rapidpm.module.iot.tinkerforge.sensor.TinkerForgeSensorSingleValue;
+import com.tinkerforge.BrickletBarometer;
+import com.tinkerforge.NotConnectedException;
+import com.tinkerforge.TimeoutException;
 
 /**
  * Created by Sven Ruppert on 09.02.14.

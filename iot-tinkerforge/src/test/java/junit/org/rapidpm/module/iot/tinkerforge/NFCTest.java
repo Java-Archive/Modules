@@ -32,7 +32,7 @@ public class NFCTest {
 
   private static final String host = "localhost";
   private static final int port = 4223;
-  private static final String UID = "oEP"; // Change to your UID
+  private static final String UID = "oCT"; // Change to your UID
 
   public static void main(String args[]) throws Exception {
     IPConnection ipcon = new IPConnection();
@@ -45,7 +45,7 @@ public class NFCTest {
           // Write 16 byte to pages 5-8
           short[] fourPagesArray = new short[16];  //immer 4x4
           Arrays.fill(fourPagesArray, (byte)0);
-          final byte[] data2Write = "Hallo".getBytes();
+          final byte[] data2Write = "Sven Ruppert".getBytes();
           System.arraycopy(data2Write, 0, fourPagesArray, 0, data2Write.length);
           nfc.writePage(5, fourPagesArray);
           System.out.println("Writing data...");

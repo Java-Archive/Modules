@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+  ~ Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -563,6 +563,7 @@
     <module>rapidpm-resources</module>
     <module>../se-commons</module>
     <module>../se-genericcache</module>
+    <module>../dagger-commons</module>
     <module>../cdi-commons</module>
     <module>../cdi-commons-se</module>
     <module>../cdi-commons-fx</module>

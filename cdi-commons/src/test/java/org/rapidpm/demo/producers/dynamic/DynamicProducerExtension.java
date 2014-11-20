@@ -14,14 +14,17 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.demo.producers.t001;
+package org.rapidpm.demo.producers.dynamic;
 
-import org.rapidpm.commons.cdi.CDINotMapped;
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.spi.AfterBeanDiscovery;
+import javax.enterprise.inject.spi.Extension;
 
 /**
  * Created by Sven Ruppert on 02.11.2014.
  */
-@CDINotMapped
-public interface DemoInterface {
-  public void doSomething();
+public class DynamicProducerExtension implements Extension {
+  public void afterBean(final @Observes AfterBeanDiscovery afterBeanDiscovery) {
+    afterBeanDiscovery.addBean(new DynamicIntegerProducer());
+  }
 }
