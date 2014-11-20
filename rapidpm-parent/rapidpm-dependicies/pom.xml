@@ -39,12 +39,12 @@
     <repository>
       <id>releases</id>
       <name>RapidPM Releases</name>
-      <url>http://${nexus.ip}/nexus/content/repositories/releases</url>
+      <url>http://nexus.rapidpm.org/nexus/content/repositories/releases</url>
     </repository>
     <snapshotRepository>
       <id>snapshots</id>
       <name>RapidPM Snapshots</name>
-      <url>http://${nexus.ip}/nexus/content/repositories/snapshots</url>
+      <url>http://nexus.rapidpm.org/nexus/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
@@ -54,21 +54,27 @@
       <dependency>
         <groupId>org.jboss.weld</groupId>
         <artifactId>weld-core-bom</artifactId>
-        <version>2.1.0.Final</version>
+        <version>3.0.0.Alpha1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.jboss.weld.se</groupId>
         <artifactId>weld-se</artifactId>
-        <version>2.1.0.Final</version>
+        <version>3.0.0.Alpha1</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.weld.se</groupId>
+        <artifactId>weld-se-core</artifactId>
+        <version>3.0.0.Alpha1</version>
         <scope>compile</scope>
       </dependency>
 
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>17.0</version>
+        <version>18.0</version>
         <scope>compile</scope>
       </dependency>
       <dependency>
@@ -123,13 +129,13 @@
       <dependency>
         <groupId>com.hazelcast</groupId>
         <artifactId>hazelcast</artifactId>
-        <version>3.2.4</version>
+        <version>3.3.3</version>
       </dependency>
 
       <dependency>
         <groupId>org.mapdb</groupId>
         <artifactId>mapdb</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
       </dependency>
 
       <!--persistence -->
@@ -138,12 +144,12 @@
       <dependency>
         <groupId>org.controlsfx</groupId>
         <artifactId>controlsfx</artifactId>
-        <version>8.20.7</version>
+        <version>8.20.8</version>
       </dependency>
       <dependency>
         <groupId>eu.hansolo.enzo</groupId>
         <artifactId>Enzo</artifactId>
-        <version>0.1.5</version>
+        <version>0.1.6</version>
       </dependency>
       <!--JavaFX-->
 
@@ -254,7 +260,7 @@
       <dependency>
         <groupId>org.loadui</groupId>
         <artifactId>testFx</artifactId>
-        <version>4.0.0.SNAPSHOT</version>
+        <version>3.1.2</version>
         <scope>test</scope>
       </dependency>
       <dependency>
