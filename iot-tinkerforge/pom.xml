@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright [2013] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
+  ~ Copyright [2014] [www.rapidpm.org / Sven Ruppert (sven.ruppert@rapidpm.org)]
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -62,9 +62,9 @@
     <!--MQTT-->
     <dependency>
       <groupId>org.eclipse.paho</groupId>
-      <artifactId>mqtt-client</artifactId>
+      <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
       <type>jar</type>
-      <version>0.4.0</version>
+      <version>1.0.1</version>
     </dependency>
 
     <!--Twitter-->
