@@ -17,7 +17,7 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 import com.tinkerforge.IPConnection;
-import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import org.rapidpm.module.se.commons.WaitForQ;
 
 /**
  * Created by Sven Ruppert on 11.03.14.

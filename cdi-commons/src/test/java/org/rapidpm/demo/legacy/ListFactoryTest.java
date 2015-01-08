@@ -54,7 +54,7 @@ public class ListFactoryTest {
 
 
   @Test
-  @Ignore
+  @Ignore  //TODO CDILegacyTest muss wieder hergestellt werden
   public void testListFactory002() throws Exception {
 
 //        final List list = listInstance.select(new AnnotationLiteral<CDILegacyTest>() {}).get();

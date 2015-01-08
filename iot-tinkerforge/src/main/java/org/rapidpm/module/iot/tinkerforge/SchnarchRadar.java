@@ -16,7 +16,7 @@
 
 package org.rapidpm.module.iot.tinkerforge;
 
-import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import org.rapidpm.module.se.commons.WaitForQ;
 import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Humidity;
 import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Light;
 import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.MotionDectector;
