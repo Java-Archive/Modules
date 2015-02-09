@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>rapidpm-parent</artifactId>
+    <groupId>org.rapidpm</groupId>
+    <version>2.0.2-SNAPSHOT</version>
+    <relativePath>../rapidpm-parent/pom.xml</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.rapidpm.module</groupId>
+  <artifactId>iot-cdi</artifactId>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.rapidpm.modul</groupId>
+      <artifactId>se-commons</artifactId>
+      <type>jar</type>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>org.rapidpm.module.se.commons.reflections</groupId>-->
+      <!--<artifactId>reflections</artifactId>-->
+      <!--<version>0.9.9</version>-->
+    <!--</dependency>-->
+  </dependencies>
+
+</project>
