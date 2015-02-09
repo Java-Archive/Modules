@@ -25,7 +25,7 @@ import javax.inject.Inject;
 /**
  * Created by Sven Ruppert on 07.12.2014.
  */
-public class NamedTest002 {
+public class NamedBaseTest002 {
   @Test
   public void testInjection001() throws Exception {
     BusinessModule businessModule = new BusinessModule();
