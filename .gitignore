@@ -4,3 +4,4 @@ target
 .clover/*
 test-reports/*
 *.iml
+rapidpm-parent/.clover
