@@ -16,7 +16,8 @@
 
 package org.rapidpm.module.iot.tinkerforge;
 
-import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import com.tinkerforge.NotConnectedException;
+import org.rapidpm.module.se.commons.WaitForQ;
 import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Humidity;
 import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Light;
 import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.MotionDectector;
@@ -69,6 +70,17 @@ public class SchnarchRadar {
     });
     motionDetector.run();
 
-    WaitForQ.waitForQ();
+    WaitForQ waitForQ = new WaitForQ();
+
+//    waitForQ.addShutDownAction(() -> {
+//      try {
+//        ipcon.disconnect();
+//      } catch (NotConnectedException e) {
+//        e.printStackTrace();
+//      }
+//    });
+    waitForQ.addShutDownAction(() -> System.exit(0));
+
+    waitForQ.waitForQ();
   }
 }

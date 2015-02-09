@@ -49,6 +49,18 @@
             <artifactId>se-commons</artifactId>
             <scope>compile</scope>
         </dependency>
+        <!--Arquillian-->
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-vfs2</artifactId>
+        </dependency>
+        <!--Arquillian-->
         <dependency>
             <groupId>org.rapidpm.modul</groupId>
             <artifactId>se-genericcache</artifactId>

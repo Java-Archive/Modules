@@ -16,7 +16,7 @@
 
 package org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.service;
 
-import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import org.rapidpm.module.se.commons.WaitForQ;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.Masterbrick;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.MasterbrickConfiguration;
 import org.rapidpm.module.iot.tinkerforge.gui.fx.brickviewer.model.Sensor;

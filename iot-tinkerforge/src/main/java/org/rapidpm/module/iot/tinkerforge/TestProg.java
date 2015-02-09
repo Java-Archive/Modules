@@ -17,7 +17,8 @@
 package org.rapidpm.module.iot.tinkerforge;
 
 import com.tinkerforge.IPConnection;
-import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import com.tinkerforge.NotConnectedException;
+import org.rapidpm.module.se.commons.WaitForQ;
 
 /**
  * Created by Sven Ruppert on 11.03.14.
@@ -56,7 +57,18 @@ public class TestProg {
         });
 
         ipcon.enumerate();
-        WaitForQ.waitForQ();
-        ipcon.disconnect();
+        WaitForQ waitForQ = new WaitForQ();
+
+        waitForQ.addShutDownAction(() -> {
+            try {
+                ipcon.disconnect();
+            } catch (NotConnectedException e) {
+                e.printStackTrace();
+            }
+        });
+        waitForQ.addShutDownAction(() -> System.exit(0));
+
+        waitForQ.waitForQ();
+
     }
 }

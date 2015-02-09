@@ -16,13 +16,12 @@
 
 package org.rapidpm.module.iot.mqtt;
 
+import com.tinkerforge.NotConnectedException;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.rapidpm.module.iot.tinkerforge.gui.cml.WaitForQ;
+import org.rapidpm.module.se.commons.WaitForQ;
 import org.rapidpm.module.iot.tinkerforge.sensor.singlevalue.Temperature;
 
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 
 /**
@@ -67,7 +66,18 @@ public class Sender {
       e.printStackTrace();
     }
 
-    WaitForQ.waitForQ();
+    WaitForQ waitForQ = new WaitForQ();
+
+//    waitForQ.addShutDownAction(() -> {
+//      try {
+//        ipcon.disconnect();
+//      } catch (NotConnectedException e) {
+//        e.printStackTrace();
+//      }
+//    });
+    waitForQ.addShutDownAction(() -> System.exit(0));
+
+    waitForQ.waitForQ();
 
   }
 }

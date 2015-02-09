@@ -29,11 +29,6 @@ public class LCD20x4 {
   private BrickletLCD20x4 lcd;
   private IPConnection ipcon;
 
-  public LCD20x4(final String UID, String host, int port) {
-    ipcon = new IPConnection();
-    init(UID);
-  }
-
   public LCD20x4(final String UID, IPConnection ipcon) {
     this.ipcon = ipcon;
     init(UID);

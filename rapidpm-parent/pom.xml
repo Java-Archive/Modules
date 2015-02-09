@@ -139,6 +139,20 @@
         <scope>test</scope>
         <type>test-jar</type>
       </dependency>
+      <dependency>
+        <groupId>org.rapidpm.modul</groupId>
+        <artifactId>iot-cdi</artifactId>
+        <version>${rapidpm.version}</version>
+        <scope>compile</scope>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>org.rapidpm.modul</groupId>
+        <artifactId>iot-cdi</artifactId>
+        <version>${rapidpm.version}</version>
+        <scope>test</scope>
+        <type>test-jar</type>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -578,12 +592,12 @@
     <module>rapidpm-resources</module>
     <module>../se-commons</module>
     <module>../se-genericcache</module>
-    <module>../dagger-commons</module>
     <module>../cdi-commons</module>
     <module>../cdi-commons-se</module>
     <module>../cdi-commons-fx</module>
     <module>../javafx-commons</module>
     <module>../iot-tinkerforge</module>
+    <module>../iot-cdi</module>
     <!--<module>../web-vaadin</module>-->
     <!--deactivated-->
     <!--<module>../cdi-tablemodel</module>-->
