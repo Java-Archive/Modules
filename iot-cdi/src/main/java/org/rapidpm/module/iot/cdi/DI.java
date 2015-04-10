@@ -85,6 +85,7 @@ public class DI {
     }
   }
 
+
   private <T> void injectAttributesForClass(Class<?> clazz, T instance) {
     Field[] fields = clazz.getDeclaredFields();
     for (final Field field : fields) {
