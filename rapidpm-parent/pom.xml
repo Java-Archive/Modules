@@ -460,6 +460,9 @@
 
         <profile>
             <id>module-cdi-arquillian-weld-ee-embedded</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <dependencyManagement>
                 <dependencies>
                     <dependency>
