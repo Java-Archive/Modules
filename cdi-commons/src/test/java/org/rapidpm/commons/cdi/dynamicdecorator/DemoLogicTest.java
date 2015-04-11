@@ -36,7 +36,7 @@ public class DemoLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackages(true, "org.rapidpm.commons")
+                .addPackages(true, "org.rapidpm")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 

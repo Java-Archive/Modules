@@ -16,7 +16,10 @@
 
 package org.rapidpm.commons.cdi.messagebus;
 
+import org.rapidpm.commons.cdi.ManagedInstanceCreator;
+
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 
 /**
  * User: Sven Ruppert
@@ -25,9 +28,11 @@ import javax.enterprise.inject.Produces;
  */
 public class MessageBusProducer {
 
+    private @Inject ManagedInstanceCreator managedInstanceCreator;
+
     @Produces @CDIMessageBus
-    public MessageBus create(MessageBus messageBus) {
-        return messageBus;
+    public MessageBus create() {
+        return managedInstanceCreator.activateCDI(new MessageBus());
     }
 
 }

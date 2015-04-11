@@ -39,9 +39,14 @@ public class MessageBusTest {
 
   @Deployment
   public static JavaArchive createDeployment() {
-    return ShrinkWrap.create(JavaArchive.class)
-        .addPackages(true, "org.rapidpm.commons")
-        .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+      JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class)
+              .addPackages(true, "org.rapidpm")
+//        .addPackages(true, "com.google")
+//        .addPackages(true, "javassist")
+//        .addPackages(true, "org")
+              .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+      System.out.println(javaArchive.toString(true));
+      return javaArchive;
   }
 
 

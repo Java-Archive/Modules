@@ -19,7 +19,7 @@ package org.rapidpm.module.se.commons.reflections.util;
 import com.google.common.collect.Sets;
 import org.rapidpm.module.se.commons.reflections.Reflections;
 
-import javax.servlet.ServletContext;
+//import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -256,45 +256,45 @@ public abstract class ClasspathHelper {
     return distinctUrls(urls);
   }
 
-  /**
-   * Returns a distinct collection of URLs based on the {@code WEB-INF/lib} folder.
-   * <p>
-   * This finds the URLs using the {@link javax.servlet.ServletContext}.
-   * <p>
-   * The returned URLs retains the order of the given {@code classLoaders}.
-   *
-   * @return the collection of URLs, not null
-   */
-  public static Collection<URL> forWebInfLib(final ServletContext servletContext) {
-    final Collection<URL> urls = new ArrayList<URL>();
-    for (Object urlString : servletContext.getResourcePaths("/WEB-INF/lib")) {
-      try {
-        urls.add(servletContext.getResource((String) urlString));
-      } catch (MalformedURLException e) { /*fuck off*/ }
-    }
-    return distinctUrls(urls);
-  }
+//  /**
+//   * Returns a distinct collection of URLs based on the {@code WEB-INF/lib} folder.
+//   * <p>
+//   * This finds the URLs using the {@link javax.servlet.ServletContext}.
+//   * <p>
+//   * The returned URLs retains the order of the given {@code classLoaders}.
+//   *
+//   * @return the collection of URLs, not null
+//   */
+//  public static Collection<URL> forWebInfLib(final ServletContext servletContext) {
+//    final Collection<URL> urls = new ArrayList<URL>();
+//    for (Object urlString : servletContext.getResourcePaths("/WEB-INF/lib")) {
+//      try {
+//        urls.add(servletContext.getResource((String) urlString));
+//      } catch (MalformedURLException e) { /*fuck off*/ }
+//    }
+//    return distinctUrls(urls);
+//  }
 
-  /**
-   * Returns the URL of the {@code WEB-INF/classes} folder.
-   * <p>
-   * This finds the URLs using the {@link javax.servlet.ServletContext}.
-   *
-   * @return the collection of URLs, not null
-   */
-  public static URL forWebInfClasses(final ServletContext servletContext) {
-    try {
-      final String path = servletContext.getRealPath("/WEB-INF/classes");
-      if (path != null) {
-        final File file = new File(path);
-        if (file.exists())
-          return file.toURL();
-      } else {
-        return servletContext.getResource("/WEB-INF/classes");
-      }
-    } catch (MalformedURLException e) { /*fuck off*/ }
-    return null;
-  }
+//  /**
+//   * Returns the URL of the {@code WEB-INF/classes} folder.
+//   * <p>
+//   * This finds the URLs using the {@link javax.servlet.ServletContext}.
+//   *
+//   * @return the collection of URLs, not null
+//   */
+//  public static URL forWebInfClasses(final ServletContext servletContext) {
+//    try {
+//      final String path = servletContext.getRealPath("/WEB-INF/classes");
+//      if (path != null) {
+//        final File file = new File(path);
+//        if (file.exists())
+//          return file.toURL();
+//      } else {
+//        return servletContext.getResource("/WEB-INF/classes");
+//      }
+//    } catch (MalformedURLException e) { /*fuck off*/ }
+//    return null;
+//  }
 
   /**
    * Returns a distinct collection of URLs based on URLs derived from class loaders expanded with Manifest information.

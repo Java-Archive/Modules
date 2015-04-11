@@ -35,7 +35,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
 public class CDITransactionExtension implements Extension {
 
 
-    private static final Logger logger = Logger.getLogger(CDITransactionExtension.class);
+    private final Logger logger = new Logger(CDITransactionExtension.class);
 
     public void afterBeanDiscovery(@Observes AfterBeanDiscovery event, BeanManager manager) {
         final AnnotatedType annotationType = manager.createAnnotatedType(CDITransactionContext.class);

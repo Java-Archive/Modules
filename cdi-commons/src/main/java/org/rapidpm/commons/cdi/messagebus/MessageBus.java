@@ -23,7 +23,9 @@ import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Consumer;
@@ -33,7 +35,7 @@ import java.util.function.Consumer;
  * Date: 31.07.13
  * Time: 10:16
  */
-@ApplicationScoped //zu hart def
+@Singleton //zu hart def
 public class MessageBus implements Serializable {
 
   //    private EventBus eventBus = new AsyncEventBus(this.getClass().getName(), Executors.newCachedThreadPool());

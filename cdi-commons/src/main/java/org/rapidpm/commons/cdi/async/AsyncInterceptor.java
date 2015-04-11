@@ -42,11 +42,8 @@ public class AsyncInterceptor implements Serializable {
     private static final long serialVersionUID = 7938266823530974338L;
 
 
-    //private static final Logger logger = Logger.getLogger(AsyncInterceptor.class);
-    private
-    @Inject
-    @CDILogger
-    Logger logger;
+//    private static final Logger logger = Logger.getLogger(AsyncInterceptor.class);
+    @Inject @CDILogger Logger logger;
 
     @AroundInvoke
     public Object executeAsynchronous(InvocationContext invocationContext) throws Exception {

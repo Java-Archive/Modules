@@ -23,7 +23,8 @@ public class MockedInterceptor implements Serializable {
 
 
     @Inject CDIContext context;
-    private @Inject @CDILogger Logger logger;
+//    private static final Logger logger = Logger.getLogger(MockedInterceptor.class);
+    @Inject @CDILogger Logger logger;
 
     @AroundInvoke
     public Object checkMockedMode(InvocationContext ctx) throws Exception {

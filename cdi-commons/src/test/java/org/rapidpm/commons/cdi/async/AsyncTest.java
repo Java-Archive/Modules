@@ -23,6 +23,7 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -30,6 +31,7 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.rapidpm.commons.cdi.logger.CDILogger;
 import org.rapidpm.module.se.commons.logger.Logger;
 
@@ -43,7 +45,7 @@ import static org.junit.Assert.fail;
  * Date: 31.07.13
  * Time: 10:58
  */
-//@RunWith(Arquillian.class)
+@RunWith(Arquillian.class)
 public class AsyncTest {
 //    @Deployment
 //    public static WebArchive createTestArchive()
@@ -66,11 +68,11 @@ public class AsyncTest {
     @Deployment
     public static JavaArchive createDeployment() {
         Asset beansXml = new StringAsset("<beans>" +
-                "<interceptors><class>AsyncInterceptor</class></interceptors>" +
+                "<interceptors><class>org.rapidpm.commons.cdi.async.AsyncInterceptor</class></interceptors>" +
                 "</beans>");
 
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackages(true, "org.rapidpm.commons.cdi")
+                .addPackages(true, "org.rapidpm")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 //                .addAsManifestResource(beansXml, "beans.xml");
     }
@@ -98,8 +100,8 @@ public class AsyncTest {
         assertNotNull(testService1);
 
         testService1.call();
-
         assertFalse(testService1.isCalled());
+
 
         try {
             TestService1.TEST_LATCH.await(5, TimeUnit.SECONDS);

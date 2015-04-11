@@ -30,7 +30,7 @@ import org.rapidpm.module.se.commons.logger.Logger;
  */
 public class AsyncExecutor implements Callable<Future<Object>> {
     private final InvocationContext invocationContext;
-    private static final Logger logger = new Logger(AsyncExecutor.class);
+//    private static final Logger logger = new Logger(AsyncExecutor.class);
 //    private final ContextControl contextControl;
 
     //    AsyncExecutor(InvocationContext invocationContext, Instance<ContextControl> contextControlInstance)
@@ -48,7 +48,7 @@ public class AsyncExecutor implements Callable<Future<Object>> {
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("e = " + e);
+            System.out.println("AsyncExecutor e = " + e);
 //            throw ExceptionUtils.throwAsRuntimeException(e);
         } finally {
 

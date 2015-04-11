@@ -45,7 +45,7 @@ public class TestService1 {
     @Async
     public void call() {
         try {
-            Thread.sleep(1 * 1000);
+            Thread.sleep(10 * 1000);
             if (logger.isDebugEnabled()) {
                 logger.debug("wach again");
             }
