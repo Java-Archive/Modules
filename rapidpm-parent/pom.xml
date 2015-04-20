@@ -431,33 +431,6 @@
             </build>
         </profile>
 
-        <!--<profile>-->
-        <!--<id>module-cdi-global</id>-->
-        <!--<activation>-->
-        <!--<activeByDefault>true</activeByDefault>-->
-        <!--</activation>-->
-        <!--<dependencyManagement>-->
-        <!--<dependencies>-->
-        <!--<dependency>-->
-        <!--<groupId>org.jboss.arquillian</groupId>-->
-        <!--<artifactId>arquillian-bom</artifactId>-->
-        <!--<version>1.1.7.Final</version>-->
-        <!--<scope>import</scope>-->
-        <!--<type>pom</type>-->
-        <!--</dependency>-->
-        <!--</dependencies>-->
-        <!--</dependencyManagement>-->
-
-        <!--<dependencies>-->
-        <!--<dependency>-->
-        <!--<groupId>org.jboss.arquillian.junit</groupId>-->
-        <!--<artifactId>arquillian-junit-container</artifactId>-->
-        <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <!--</dependencies>-->
-
-        <!--</profile>-->
-
         <profile>
             <id>module-cdi-arquillian-weld-ee-embedded</id>
             <activation>
@@ -900,21 +873,10 @@
     <modules>
         <module>rapidpm-resources</module>
         <module>../se-commons</module>
-        <module>../se-genericcache</module>
         <module>../cdi-commons</module>
         <module>../cdi-commons-se</module>
         <module>../cdi-commons-fx</module>
-        <module>../javafx-commons</module>
-        <module>../iot-tinkerforge</module>
         <module>../iot-cdi</module>
-        <module>../web-vaadin</module>
-        <!--deactivated-->
-        <!--<module>../cdi-tablemodel</module>-->
-        <!--<module>../javafx-chart-pie-drilldown</module>-->
-        <!--<module>../javafx-autocomplete-textfield</module>-->
-        <!--<module>../javafx-filtered-tableview</module>-->
-        <!--<module>../javafx-progressbartable</module>-->
-        <!--<module>../javafx-searchbox</module>-->
     </modules>
 
 

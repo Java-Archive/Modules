@@ -28,7 +28,8 @@ import java.util.List;
  */
 public class WaitForQ {
 
-  public static interface ShutDownAction{ void execute();}
+  @FunctionalInterface
+  public interface ShutDownAction{ void execute();}
 
   private List<ShutDownAction> shutDownActions = new ArrayList<>();
   public void addShutDownAction(ShutDownAction action){
