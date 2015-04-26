@@ -23,17 +23,19 @@ import java.io.IOException;
  * Created by Sven Ruppert on 06.01.14.
  */
 public class GeneratingJavaFileManager extends ForwardingJavaFileManager<JavaFileManager> {
-    private final GeneratedClassFile gcf;
-    public GeneratingJavaFileManager(
-            StandardJavaFileManager sjfm,
-            GeneratedClassFile gcf) {
-        super(sjfm);
-        this.gcf = gcf;
-    }
-    public JavaFileObject getJavaFileForOutput(
-            Location location, String className,
-            JavaFileObject.Kind kind, FileObject sibling)
-            throws IOException {
-        return gcf;
-    }
+  private final GeneratedClassFile gcf;
+
+  public GeneratingJavaFileManager(
+      StandardJavaFileManager sjfm,
+      GeneratedClassFile gcf) {
+    super(sjfm);
+    this.gcf = gcf;
+  }
+
+  public JavaFileObject getJavaFileForOutput(
+      Location location, String className,
+      JavaFileObject.Kind kind, FileObject sibling)
+      throws IOException {
+    return gcf;
+  }
 }
