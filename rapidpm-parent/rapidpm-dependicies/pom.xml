@@ -19,358 +19,307 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <!--for release only-->
-  <!--<parent>-->
-  <!--<groupId>org.sonatype.oss</groupId>-->
-  <!--<artifactId>oss-parent</artifactId>-->
-  <!--<version>7</version>-->
-  <!--</parent>-->
+    <!--for release only-->
+    <!--<parent>-->
+    <!--<groupId>org.sonatype.oss</groupId>-->
+    <!--<artifactId>oss-parent</artifactId>-->
+    <!--<version>7</version>-->
+    <!--</parent>-->
 
-  <groupId>org.rapidpm</groupId>
-  <artifactId>rapidpm-dependicies</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+    <groupId>org.rapidpm</groupId>
+    <artifactId>rapidpm-dependicies</artifactId>
+    <version>2.0.2-SNAPSHOT</version>
 
-  <packaging>pom</packaging>
+    <packaging>pom</packaging>
 
-  <!--for development of features/develop branch-->
-  <distributionManagement>
-    <repository>
-      <id>releases</id>
-      <name>RapidPM Releases</name>
-      <url>http://nexus.rapidpm.org/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>RapidPM Snapshots</name>
-      <url>http://nexus.rapidpm.org/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
+    <!--for development of features/develop branch-->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>RapidPM Releases</name>
+            <url>http://nexus.rapidpm.org/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>RapidPM Snapshots</name>
+            <url>http://nexus.rapidpm.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <name>RapidPM Releases</name>
+            <url>http://nexus.rapidpm.org/nexus/content/repositories/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.weld</groupId>
+                <artifactId>weld-core-bom</artifactId>
+                <version>2.2.10.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.se</groupId>
+                <artifactId>weld-se</artifactId>
+                <version>2.2.10.Final</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.se</groupId>
+                <artifactId>weld-se-core</artifactId>
+                <version>2.2.10.Final</version>
+                <scope>compile</scope>
+            </dependency>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.jboss.weld</groupId>
-        <artifactId>weld-core-bom</artifactId>
-        <version>2.2.10.Final</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.weld.se</groupId>
-        <artifactId>weld-se</artifactId>
-        <version>2.2.10.Final</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.weld.se</groupId>
-        <artifactId>weld-se-core</artifactId>
-        <version>2.2.10.Final</version>
-        <scope>compile</scope>
-      </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>18.0</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-vfs2</artifactId>
+                <version>2.0</version>
+            </dependency>
 
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>18.0</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.google.code.gson</groupId>
-        <artifactId>gson</artifactId>
-        <version>2.3.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-vfs2</artifactId>
-        <version>2.0</version>
-      </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-1.2-api</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>1.7.12</version>
+                <scope>compile</scope>
+            </dependency>
 
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-api</artifactId>
-        <version>2.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>2.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>2.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-1.2-api</artifactId>
-        <version>2.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <version>1.7.12</version>
-        <scope>compile</scope>
-      </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>3.11</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-scratchpad</artifactId>
+                <version>3.11</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>1.2</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>1.4.1</version>
+                <scope>compile</scope>
+            </dependency>
 
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-ooxml</artifactId>
-        <version>3.11</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-scratchpad</artifactId>
-        <version>3.11</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.enterprise</groupId>
-        <artifactId>cdi-api</artifactId>
-        <version>1.2</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>commons-validator</groupId>
-        <artifactId>commons-validator</artifactId>
-        <version>1.4.1</version>
-        <scope>compile</scope>
-      </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.1.0.Final</version>
+                <scope>compile</scope>
+            </dependency>
 
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>1.1.0.Final</version>
-        <scope>compile</scope>
-      </dependency>
-
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-            <version>1.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.ejb3</groupId>
-            <artifactId>jboss-ejb3-api</artifactId>
-            <version>3.1.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.protocol</groupId>
-            <artifactId>arquillian-protocol-servlet</artifactId>
-            <version>1.1.7.Final</version>
-            <scope>test</scope>
-        </dependency>
-
-
-
-
-
-
-
-
-
-
-      <!--persistence -->
-
-      <dependency>
-        <groupId>com.hazelcast</groupId>
-        <artifactId>hazelcast</artifactId>
-        <version>3.4.2</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.mapdb</groupId>
-        <artifactId>mapdb</artifactId>
-        <version>1.0.7</version>
-      </dependency>
-
-      <!--persistence -->
-
-      <!--JavaFX-->
-      <dependency>
-        <groupId>org.controlsfx</groupId>
-        <artifactId>controlsfx</artifactId>
-        <version>8.20.8</version>
-      </dependency>
-      <dependency>
-        <groupId>eu.hansolo.enzo</groupId>
-        <artifactId>Enzo</artifactId>
-        <version>0.2.1</version>
-      </dependency>
-      <!--JavaFX-->
-
-      <!-- Lucene f SearchBox-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.lucene</groupId>-->
-      <!--<artifactId>lucene-core</artifactId>-->
-      <!--<version>4.5.1</version>-->
-      <!--<scope>compile</scope>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.lucene</groupId>-->
-      <!--<artifactId>lucene-analyzers-common</artifactId>-->
-      <!--<version>4.5.1</version>-->
-      <!--<scope>compile</scope>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.lucene</groupId>-->
-      <!--<artifactId>lucene-queryparser</artifactId>-->
-      <!--<version>4.5.1</version>-->
-      <!--<scope>compile</scope>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.lucene</groupId>-->
-      <!--<artifactId>lucene-queries</artifactId>-->
-      <!--<version>4.5.1</version>-->
-      <!--<scope>compile</scope>-->
-      <!--</dependency>-->
-      <!-- Lucene f SearchBox-->
-      <!--Solr-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.solr</groupId>-->
-      <!--<artifactId>solr-solrj</artifactId>-->
-      <!--<version>4.5.1</version>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.httpcomponents</groupId>-->
-      <!--<artifactId>httpcore</artifactId>-->
-      <!--<version>4.3</version>-->
-      <!--<scope>compile</scope>-->
-      <!--<type>jar</type>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.httpcomponents</groupId>-->
-      <!--<artifactId>httpclient</artifactId>-->
-      <!--<version>4.3.1</version>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>org.apache.httpcomponents</groupId>-->
-      <!--<artifactId>httpmime</artifactId>-->
-      <!--<version>4.3.1</version>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>commons-codec</groupId>-->
-      <!--<artifactId>commons-codec</artifactId>-->
-      <!--<version>1.8</version>-->
-      <!--</dependency>-->
-      <!--Solr-->
-
-      <!--arangodb-->
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.datatype</groupId>
-        <artifactId>jackson-datatype-joda</artifactId>
-        <version>2.5.1</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-        <version>2.4.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.4.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.5.1</version>
-      </dependency>
-      <!--arangodb-->
+            <dependency>
+                <groupId>javax.transaction</groupId>
+                <artifactId>jta</artifactId>
+                <version>1.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>1.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.ejb3</groupId>
+                <artifactId>jboss-ejb3-api</artifactId>
+                <version>3.1.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.protocol</groupId>
+                <artifactId>arquillian-protocol-servlet</artifactId>
+                <version>1.1.7.Final</version>
+                <scope>test</scope>
+            </dependency>
 
 
-      <!-- tinkerforge -->
-      <dependency>
-        <groupId>com.tinkerforge</groupId>
-        <artifactId>tinkerforge</artifactId>
-        <version>2.1.4</version>
-      </dependency>
-      <!-- tinkerforge -->
+            <!--persistence -->
+
+            <dependency>
+                <groupId>com.hazelcast</groupId>
+                <artifactId>hazelcast</artifactId>
+                <version>3.4.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapdb</groupId>
+                <artifactId>mapdb</artifactId>
+                <version>1.0.7</version>
+            </dependency>
+
+            <!--persistence -->
+
+            <!--JavaFX-->
+            <dependency>
+                <groupId>org.controlsfx</groupId>
+                <artifactId>controlsfx</artifactId>
+                <version>8.20.8</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.hansolo.enzo</groupId>
+                <artifactId>Enzo</artifactId>
+                <version>0.2.1</version>
+            </dependency>
+            <!--JavaFX-->
 
 
-      <!--cassandra-->
-      <dependency>
-        <groupId>com.datastax.cassandra</groupId>
-        <artifactId>cassandra-driver-core</artifactId>
-        <version>2.1.1</version>
-      </dependency>
+            <!--arangodb-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-joda</artifactId>
+                <version>2.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.5.1</version>
+            </dependency>
+            <!--arangodb-->
 
-      <!--cassandra-->
-<!--Testing -->
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-core</artifactId>
-            <version>1.7</version>
-            <!--<scope>test</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-core-benchmarks</artifactId>
-            <version>1.7</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-generator-annprocess</artifactId>
-            <version>1.7</version>
-            <!--<scope>provided</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-generator-reflection</artifactId>
-            <version>1.7</version>
-            <scope>test</scope>
-        </dependency>
 
-      <dependency>
-        <groupId>org.loadui</groupId>
-        <artifactId>testFx</artifactId>
-        <version>3.1.2</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.12</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.cenqua.clover</groupId>
-        <artifactId>clover</artifactId>
-        <version>3.2.0</version>
-        <scope>compile</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+            <!-- tinkerforge -->
+            <dependency>
+                <groupId>com.tinkerforge</groupId>
+                <artifactId>tinkerforge</artifactId>
+                <version>2.1.4</version>
+            </dependency>
+            <!-- tinkerforge -->
 
-  <inceptionYear>2013</inceptionYear>
-  <organization>
-    <name>RapidPM</name>
-    <url>http://www.rapidpm.org</url>
-  </organization>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-      <comments>A business-friendly OSS license</comments>
-    </license>
-  </licenses>
+
+            <!--cassandra-->
+            <dependency>
+                <groupId>com.datastax.cassandra</groupId>
+                <artifactId>cassandra-driver-core</artifactId>
+                <version>2.1.1</version>
+            </dependency>
+
+            <!--cassandra-->
+            <!--Testing -->
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>1.7</version>
+                <!--<scope>test</scope>-->
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core-benchmarks</artifactId>
+                <version>1.7</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>1.7</version>
+                <!--<scope>provided</scope>-->
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-reflection</artifactId>
+                <version>1.7</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.loadui</groupId>
+                <artifactId>testFx</artifactId>
+                <version>3.1.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.cenqua.clover</groupId>
+                <artifactId>clover</artifactId>
+                <version>3.2.0</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <inceptionYear>2013</inceptionYear>
+    <organization>
+        <name>RapidPM</name>
+        <url>http://www.rapidpm.org</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
 
 
 </project>

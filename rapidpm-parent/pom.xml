@@ -113,34 +113,6 @@
             </dependency>
             <dependency>
                 <groupId>org.rapidpm.modul</groupId>
-                <artifactId>javafx-commons</artifactId>
-                <version>${rapidpm.version}</version>
-                <scope>compile</scope>
-                <type>jar</type>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>javafx-commons</artifactId>
-                <version>${rapidpm.version}</version>
-                <scope>test</scope>
-                <type>test-jar</type>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>iot-tinkerforge</artifactId>
-                <version>${rapidpm.version}</version>
-                <scope>compile</scope>
-                <type>jar</type>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
-                <artifactId>iot-tinkerforge</artifactId>
-                <version>${rapidpm.version}</version>
-                <scope>test</scope>
-                <type>test-jar</type>
-            </dependency>
-            <dependency>
-                <groupId>org.rapidpm.modul</groupId>
                 <artifactId>iot-cdi</artifactId>
                 <version>${rapidpm.version}</version>
                 <scope>compile</scope>
@@ -239,11 +211,6 @@
                     <version>2.3.1</version>
                 </plugin>
                 <plugin>
-                    <groupId>com.atlassian.maven.plugins</groupId>
-                    <artifactId>maven-clover2-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>1.4</version>
@@ -291,45 +258,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <forkMode>always</forkMode>
-                    <!--<skipTests>true</skipTests>-->
-                    <!--<forkCount>2.5C</forkCount>-->
-                    <!--<forkCount>1</forkCount>-->
-                    <!--<parallel>methods</parallel>-->
-                    <!--<threadCount>10</threadCount>-->
-                    <!--<reuseForks>false</reuseForks>-->
-                    <!--<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
-                    <!--<argLine>-Xmx1024m</argLine>-->
-                    <!--<forkMode>always</forkMode>-->
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-repository-plugin</artifactId>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>com.atlassian.maven.plugins</groupId>-->
-            <!--<artifactId>maven-clover2-plugin</artifactId>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-            <!--<artifactId>kotlin-maven-plugin</artifactId>-->
-            <!--<groupId>org.jetbrains.kotlin</groupId>-->
-            <!--<version>0.6.602</version>-->
-
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<id>compile</id>-->
-            <!--<phase>process-sources</phase>-->
-            <!--<goals> <goal>compile</goal> </goals>-->
-            <!--</execution>-->
-
-            <!--<execution>-->
-            <!--<id>test-compile</id>-->
-            <!--<phase>process-test-sources</phase>-->
-            <!--<goals> <goal>test-compile</goal> </goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--</plugin>-->
-        </plugins>
+       </plugins>
     </build>
 
     <!--for development of features/develop branch-->
