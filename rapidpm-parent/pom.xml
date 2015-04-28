@@ -280,6 +280,19 @@
             <url>http://nexus.rapidpm.org/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <name>RapidPM Releases</name>
+            <url>http://nexus.rapidpm.org/nexus/content/repositories/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <profiles>
         <profile>
             <activation>
