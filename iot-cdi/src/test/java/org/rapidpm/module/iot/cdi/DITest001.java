@@ -37,6 +37,8 @@ public class DITest001 {
 
   }
 
+
+
   public static class Service{
     @Inject SubService subService;
     public String work(String txt){

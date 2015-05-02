@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.se.commons.proxy;
+package org.rapidpm.module.se.commons.proxy.type.virtual;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -34,9 +34,7 @@ public class VirtualDynamicProxyNotThreadSafe implements InvocationHandler {
         }
         return realSubject;
     }
-    public Object invoke(
-            Object proxy, Method method, Object[] args)
-            throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         return method.invoke(realSubject(), args);
     }
 }

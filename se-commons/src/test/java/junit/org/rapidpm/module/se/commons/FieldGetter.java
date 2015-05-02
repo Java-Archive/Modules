@@ -16,9 +16,9 @@
 
 package junit.org.rapidpm.module.se.commons;
 
-import org.rapidpm.module.se.commons.proxy.ProxyGenerator;
+import org.rapidpm.module.se.commons.proxy.type.virtual.ProxyGenerator;
 
-import static org.rapidpm.module.se.commons.proxy.Concurrency.NO_DUPLICATES;
+import static org.rapidpm.module.se.commons.proxy.type.virtual.Concurrency.NO_DUPLICATES;
 
 /**
  * Created by ts40 on 19.02.14.

@@ -14,46 +14,46 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.se.commons.proxy;
-
+package org.rapidpm.module.se.commons.proxy.type.virtual;
 
 import java.io.PrintWriter;
 
 /**
  * Created by Sven Ruppert on 14.01.14.
  */
- class VirtualProxySourceGeneratorNoDuplicates
+ class VirtualProxySourceGeneratorSomeDuplicates
         extends VirtualProxySourceGenerator {
-    public VirtualProxySourceGeneratorNoDuplicates(
+    public VirtualProxySourceGeneratorSomeDuplicates(
             Class subject, Class realSubject) {
-        super(subject, realSubject, Concurrency.NO_DUPLICATES);
+        super(subject, realSubject, Concurrency.SOME_DUPLICATES);
     }
     protected void addImports(PrintWriter out) {
-        out.println("import java.util.concurrent.locks.*;");
+        out.println("import java.util.concurrent.atomic.*;");
         out.println();
     }
     protected void addRealSubjectCreation(PrintWriter out,
                                           String name,
                                           String realName) {
-        out.printf(" private volatile %s realSubject;%n", name);
-        out.println(" private final " +
-                "Lock initializationLock = " +
-                "new ReentrantLock();");
+        out.printf(" private final AtomicReference<%s> " +
+                "ref = new AtomicReference<%1$s>();%n", name);
         out.println();
         out.printf(" private %s realSubject() {%n", name);
-        out.printf(" %s result = realSubject;%n", name);
+        out.printf(" %s result = ref.get()%n;", name);
         out.printf(" if (result == null) {%n");
-        out.printf(" initializationLock.lock();%n");
-        out.printf(" try {%n");
-        out.printf(" result = realSubject;%n");
-        out.printf(" if (result == null) {%n");
-        out.printf(" result = realSubject = new %s();%n",realName);
-        out.printf(" }%n");
-        out.printf(" } finally {%n");
-        out.printf(" initializationLock.unlock();%n");
-        out.printf(" }%n");
-        out.printf(" }%n");
-        out.printf(" return result;%n");
+        out.printf(" result = new %s();%n", realName);
+        out.printf(" if (!ref.compareAndSet" +
+                "(null, result)) {%n");
+        out.printf(" result = ref.get();%n");
+        out.println(" }");
+        out.println(" }");
+        out.println(" return result;");
         out.println(" }");
     }
 }
+
+
+
+
+
+
+

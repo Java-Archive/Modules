@@ -14,14 +14,16 @@
  *    limitations under the License.
  */
 
-package junit.org.rapidpm.module.se.commons.proxy;
+package junit.org.rapidpm.module.se.commons.proxy.type.virtual;
 
 import junit.org.rapidpm.module.se.commons.DemoClassA;
 import junit.org.rapidpm.module.se.commons.DemoClassB;
 import junit.org.rapidpm.module.se.commons.DemoClassC;
+import junit.org.rapidpm.module.se.commons.proxy.DemoInterface;
+import junit.org.rapidpm.module.se.commons.proxy.DemoLogic;
 import org.junit.Test;
-import org.rapidpm.module.se.commons.proxy.Concurrency;
-import org.rapidpm.module.se.commons.proxy.ProxyGenerator;
+import org.rapidpm.module.se.commons.proxy.type.virtual.Concurrency;
+import org.rapidpm.module.se.commons.proxy.type.virtual.ProxyGenerator;
 
 /**
  * Created by ts40 on 19.02.14.

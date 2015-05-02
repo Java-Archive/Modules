@@ -14,11 +14,11 @@
  *    limitations under the License.
  */
 
-package org.rapidpm.module.se.commons.proxy;
+package org.rapidpm.module.se.commons.proxy.type.virtual;
 
 /**
  * Created by Sven Ruppert on 14.01.14.
  */
-public enum Concurrency {
-    NONE, SOME_DUPLICATES, NO_DUPLICATES, OnExistingObject;
+public enum ProxyType {
+    STATIC, DYNAMIC, OnExistingObject
 }

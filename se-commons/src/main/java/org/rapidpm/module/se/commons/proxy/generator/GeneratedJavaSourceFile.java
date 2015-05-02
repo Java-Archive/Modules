@@ -25,8 +25,7 @@ import java.net.URI;
  */
 public class GeneratedJavaSourceFile extends SimpleJavaFileObject {
     private CharSequence javaSource;
-    public GeneratedJavaSourceFile(String className,
-                                   CharSequence javaSource) {
+    public GeneratedJavaSourceFile(String className, CharSequence javaSource) {
         super(URI.create(className + ".java"), Kind.SOURCE);
         this.javaSource = javaSource;
     }
